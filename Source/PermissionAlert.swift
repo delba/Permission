@@ -25,22 +25,22 @@
 import UIKit
 
 public class PermissionAlert {
-    public var title: String {
+    public var title: String? {
         get { return self.title }
         set(title) { strings[status]![.title] = title }
     }
     
-    public var message: String {
+    public var message: String? {
         get { return self.message }
         set(message) { strings[status]![.message] = message }
     }
     
-    public var cancel: String {
+    public var cancel: String? {
         get { return self.cancel }
         set(cancel) { strings[status]![.cancel] = cancel }
     }
     
-    public var settings: String {
+    public var settings: String? {
         get { return self.settings }
         set(settings) { strings[status]![.settings] = settings }
     }
