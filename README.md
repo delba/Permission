@@ -63,6 +63,14 @@ button.setTitleColor(UIColor.redColor(), forStatus: .Denied)
 // ...
 ```
 
+#### Customize the alerts
+
+```swift
+button.configureAlert(.Denied) { alert in
+	alert.title = "You denied access to your contacts"
+}
+```
+
 ## Installation
 
 ### Carthage

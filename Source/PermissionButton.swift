@@ -135,6 +135,14 @@ public class PermissionButton: UIButton {
         }
     }
     
+    // MARK: - PermissionAlert
+    
+    public func configureAlert(status: PermissionStatus, block: PermissionAlert -> Void) {
+        permission.configureAlert(status, block: block)
+    }
+    
+    // MARK: - UIView
+    
     public override func didMoveToSuperview() {
         render(.Normal)
     }
