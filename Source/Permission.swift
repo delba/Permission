@@ -40,8 +40,10 @@ public enum PermissionType {
 private var permissions = NSCache()
 
 public class Permission: NSObject {
+    /// The permission type.
     public let type: PermissionType
     
+    /// The permission status.
     public var status: PermissionStatus {
         switch type {
         case .Contacts: return statusContacts
@@ -73,10 +75,22 @@ public class Permission: NSObject {
     
     private var notificationTimer: NSTimer?
     
+    /**
+     Creates and return a new permission of the specified type.
+     
+     - parameter type: The permission type.
+     
+     - returns: A newly created permission.
+     */
     public init(_ type: PermissionType) {
         self.type = type
     }
     
+    /**
+     Requests the permission.
+     
+     - parameter callback: The function to be triggered after the user responded to the request.
+     */
     public func request(callback: PermissionStatus -> Void) {
         self.callback = callback
         
@@ -89,6 +103,12 @@ public class Permission: NSObject {
         }
     }
     
+    /**
+    Configures the alert for the specifed status.
+    
+    - parameter status: The status for which the alert is displayed.
+    - parameter block:  The configuration block.
+     */
     public func configureAlert(status: PermissionStatus, block: PermissionAlert -> Void) {
         guard [.Denied, .Disabled].contains(status) else { return }
         

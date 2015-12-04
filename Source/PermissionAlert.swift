@@ -25,21 +25,25 @@
 import UIKit
 
 public class PermissionAlert {
+    /// The title of the alert.
     public var title: String? {
         get { return self.title }
         set(title) { strings[status]![.title] = title }
     }
     
+    /// Descriptive text that provides more details about the reason for the alert.
     public var message: String? {
         get { return self.message }
         set(message) { strings[status]![.message] = message }
     }
     
+    /// The title of the cancel action.
     public var cancel: String? {
         get { return self.cancel }
         set(cancel) { strings[status]![.cancel] = cancel }
     }
     
+    /// The title of the settings action.
     public var settings: String? {
         get { return self.settings }
         set(settings) { strings[status]![.settings] = settings }
