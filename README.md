@@ -1,4 +1,6 @@
-<h3 align="center">Sorry</h3>
+<p align="center">
+  <img src="https://github.com/delba/Sorry/raw/assets/Sorry@2x.png">
+</p>
 
 <p align="center">
   <a href="https://travis-ci.org/delba/Sorry"><img alt="Travis Status" src="https://img.shields.io/travis/delba/Sorry.svg"/></a>
