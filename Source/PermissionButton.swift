@@ -36,7 +36,7 @@ public class PermissionButton: UIButton {
     
     private var titles: [UIControlState: [PermissionStatus: String]] = [:]
     private var attributedTitles: [UIControlState: [PermissionStatus: NSAttributedString]] = [:]
-    private var colors: [UIControlState: [PermissionStatus: UIColor]] = [:]
+    private var titleColors: [UIControlState: [PermissionStatus: UIColor]] = [:]
     
     // MARK: - Initialization
     
@@ -198,7 +198,7 @@ public class PermissionButton: UIButton {
     - returns: The color of the title for the specified permission status and state.
     */
     public func titleColorForStatus(status: PermissionStatus, andState state: UIControlState = .Normal) -> UIColor? {
-        return colors[state]?[status]
+        return titleColors[state]?[status]
     }
     
     /**
@@ -208,7 +208,7 @@ public class PermissionButton: UIButton {
     - parameter state: The state that uses the specified color.
     */
     public override func setTitleColor(color: UIColor?, forState state: UIControlState) {
-        colors[state] = nil
+        titleColors[state] = nil
         super.setTitleColor(color, forState: state)
     }
     
@@ -222,11 +222,11 @@ public class PermissionButton: UIButton {
     public func setTitleColor(color: UIColor?, forStatus status: PermissionStatus, andState state: UIControlState = .Normal) {
         guard state == .Normal || state == .Highlighted else { return }
         
-        if colors[state] == nil {
-            colors[state] = [:]
+        if titleColors[state] == nil {
+            titleColors[state] = [:]
         }
         
-        colors[state]?[status] = color
+        titleColors[state]?[status] = color
     }
     
     /**
@@ -238,12 +238,12 @@ public class PermissionButton: UIButton {
     public func setTitleColors(colors: [PermissionStatus: UIColor?], forState state: UIControlState = .Normal) {
         guard [.Normal, .Highlighted].contains(state) else { return }
         
-        if self.colors[state] == nil {
-            self.colors[state] = [:]
+        if titleColors[state] == nil {
+            titleColors[state] = [:]
         }
         
         for (status, color) in colors {
-            self.colors[state]?[status] = color
+            titleColors[state]?[status] = color
         }
     }
     
