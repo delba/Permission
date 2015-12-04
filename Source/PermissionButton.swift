@@ -37,6 +37,7 @@ public class PermissionButton: UIButton {
     private var titles: [UIControlState: [PermissionStatus: String]] = [:]
     private var attributedTitles: [UIControlState: [PermissionStatus: NSAttributedString]] = [:]
     private var titleColors: [UIControlState: [PermissionStatus: UIColor]] = [:]
+    private var titleShadowColors: [UIControlState: [PermissionStatus: UIColor]] = [:]
     
     // MARK: - Initialization
     
@@ -192,8 +193,8 @@ public class PermissionButton: UIButton {
     /**
     Returns the title color used for a permission status and state.
     
-    - parameter status: The permission status.
-    - parameter state:  The state.
+    - parameter status: The permission status that uses the title color.
+    - parameter state:  The state that uses the title color.
     
     - returns: The color of the title for the specified permission status and state.
     */
@@ -247,6 +248,66 @@ public class PermissionButton: UIButton {
         }
     }
     
+    // MARK: - Title shadow colors
+    
+    /**
+    Returns the shadow color of the title used for a permission status and state.
+    
+    - parameter status: The permission status that uses the title shadow color.
+    - parameter state:  The state that uses the title shadow color.
+    
+    - returns: The color of the title's shadow for the specified permission status and state.
+    */
+    public func titleShadowColorForStatus(status: PermissionStatus, andState state: UIControlState = .Normal) -> UIColor? {
+        return titleShadowColors[state]?[status]
+    }
+    
+    /**
+     Sets the color of the title shadow to use for the specified state.
+     
+     - parameter color: The color of the title shadow to use for the specified state.
+     - parameter state: The state that uses the specified color.
+     */
+    public override func setTitleShadowColor(color: UIColor?, forState state: UIControlState) {
+        titleShadowColors[state] = nil
+        super.setTitleShadowColor(color, forState: state)
+    }
+    
+    /**
+     Sets the color of the title shadow to use for the specified permission status and state.
+     
+     - parameter color:  The color of the title shadow to use for the specified permission status and state.
+     - parameter status: The permission status that uses the specified color.
+     - parameter state:  The state that uses the specified color.
+     */
+    public func setTitleShadowColor(color: UIColor?, forStatus status: PermissionStatus, andState state: UIControlState = .Normal) {
+        guard state == .Normal || state == .Highlighted else { return }
+        
+        if titleShadowColors[state] == nil {
+            titleShadowColors[state] = [:]
+        }
+        
+        titleShadowColors[state]?[status] = color
+    }
+    
+    /**
+    Sets the colors of the title shadow to use for the specified permission statuses and state.
+    
+    - parameter colors: The colors to use for the specified permission statuses.
+    - parameter state:  The state that uses the specified colors.
+    */
+    public func setTitleShadowColors(colors: [PermissionStatus: UIColor?], forState state: UIControlState = .Normal) {
+        guard [.Normal, .Highlighted].contains(state) else { return }
+        
+        if titleShadowColors[state] == nil {
+            titleShadowColors[state] = [:]
+        }
+        
+        for (status, color) in colors {
+            titleShadowColors[state]?[status] = color
+        }
+    }
+    
     // MARK: - PermissionAlert
     
     /**
@@ -281,6 +342,10 @@ private extension PermissionButton {
         
         if let color = titleColorForStatus(status, andState: state) {
             super.setTitleColor(color, forState: state)
+        }
+        
+        if let color = titleShadowColorForStatus(status, andState: state) {
+            super.setTitleShadowColor(color, forState: state)
         }
     }
     
