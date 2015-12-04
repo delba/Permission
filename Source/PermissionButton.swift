@@ -38,6 +38,8 @@ public class PermissionButton: UIButton {
     private var attributedTitles: [UIControlState: [PermissionStatus: NSAttributedString]] = [:]
     private var titleColors: [UIControlState: [PermissionStatus: UIColor]] = [:]
     private var titleShadowColors: [UIControlState: [PermissionStatus: UIColor]] = [:]
+    private var images: [UIControlState: [PermissionStatus: UIImage]] = [:]
+    private var backgroundImages: [UIControlState: [PermissionStatus: UIImage]] = [:]
     
     // MARK: - Initialization
     
@@ -221,7 +223,7 @@ public class PermissionButton: UIButton {
      - parameter state:  The state that uses the specified color.
      */
     public func setTitleColor(color: UIColor?, forStatus status: PermissionStatus, andState state: UIControlState = .Normal) {
-        guard state == .Normal || state == .Highlighted else { return }
+        guard [.Normal, .Highlighted].contains(state) else { return }
         
         if titleColors[state] == nil {
             titleColors[state] = [:]
@@ -281,7 +283,7 @@ public class PermissionButton: UIButton {
      - parameter state:  The state that uses the specified color.
      */
     public func setTitleShadowColor(color: UIColor?, forStatus status: PermissionStatus, andState state: UIControlState = .Normal) {
-        guard state == .Normal || state == .Highlighted else { return }
+        guard [.Normal, .Highlighted].contains(state) else { return }
         
         if titleShadowColors[state] == nil {
             titleShadowColors[state] = [:]
@@ -305,6 +307,126 @@ public class PermissionButton: UIButton {
         
         for (status, color) in colors {
             titleShadowColors[state]?[status] = color
+        }
+    }
+    
+    // MARK: - Images
+    
+    /**
+    Returns the image used for a permission status and state
+    
+    - parameter status: The permission status that uses the image.
+    - parameter state:  The state that uses the image.
+    
+    - returns: The image used for the specified permission status and state.
+    */
+    public func imageForStatus(status: PermissionStatus, andState state: UIControlState = .Normal) -> UIImage? {
+        return images[state]?[status]
+    }
+    
+    /**
+     Sets the image to use for the specified state.
+     
+     - parameter image: The image to use for the specified state.
+     - parameter state: The state that uses the specified image.
+     */
+    public override func setImage(image: UIImage?, forState state: UIControlState) {
+        images[state] = nil
+        super.setImage(image, forState: state)
+    }
+    
+    /**
+     Sets the image to use for the specified permission status and state.
+     
+     - parameter image:  The image to use for the specified permission status and state.
+     - parameter status: The permission status that uses the specified image.
+     - parameter state:  The state that uses the specified image.
+     */
+    public func setImage(image: UIImage?, forStatus status: PermissionStatus, andState state: UIControlState = .Normal) {
+        guard [.Normal, .Highlighted].contains(state) else { return }
+        
+        if images[state] == nil {
+            images[state] = [:]
+        }
+        
+        images[state]?[status] = image
+    }
+    
+    /**
+     Sets the images for the specified permission statuses and state.
+     
+     - parameter images: The images to use for the specified permission statuses.
+     - parameter state:  The state that uses the specified images.
+     */
+    public func setImages(images: [PermissionStatus: UIImage], forState state: UIControlState = .Normal) {
+        guard [.Normal, .Highlighted].contains(state) else { return }
+        
+        if self.images[state] == nil {
+            self.images[state] = [:]
+        }
+        
+        for (status, image) in images {
+            self.images[state]?[status] = image
+        }
+    }
+    
+    // MARK: - Background images
+    
+    /**
+    Returns the background image used for a permission status and a button state.
+    
+    - parameter status: The permission status that uses the background image.
+    - parameter state:  The state that uses the background image.
+    
+    - returns: The background image used for the specified permission status and state.
+    */
+    public func backgroundImageForStatus(status: PermissionStatus, andState state: UIControlState = .Normal) -> UIImage? {
+        return backgroundImages[state]?[status]
+    }
+    
+    /**
+     Sets the background image to use for the specified button state.
+     
+     - parameter image: The background image to use for the specified state.
+     - parameter state: The state that uses the specified image.
+     */
+    public override func setBackgroundImage(image: UIImage?, forState state: UIControlState) {
+        backgroundImages[state] = nil
+        super.setBackgroundImage(image, forState: state)
+    }
+    
+    /**
+     Sets the background image to use for the specified permission status and button state.
+     
+     - parameter image:  The background image to use for the specified permission status and button state.
+     - parameter status: The permission status that uses the specified image.
+     - parameter state:  The state that uses the specified image.
+     */
+    public func setBackgroundImage(image: UIImage?, forStatus status: PermissionStatus, andState state: UIControlState = .Normal) {
+        guard [.Normal, .Highlighted].contains(state) else { return }
+        
+        if backgroundImages[state] == nil {
+            backgroundImages[state] = [:]
+        }
+        
+        backgroundImages[state]?[status] = image
+    }
+    
+    /**
+     Set the background images to use for the specified permission statuses and button state.
+     
+     - parameter images: The background images to use for the specified permission statuses.
+     - parameter state:  The state that uses the specified images.
+     */
+    public func setBackgroundImages(images: [PermissionStatus: UIImage], forState state: UIControlState = .Normal) {
+        guard [.Normal, .Highlighted].contains(state) else { return }
+        
+        if backgroundImages[state] == nil {
+            backgroundImages[state] = [:]
+        }
+        
+        for (status, image) in images {
+            backgroundImages[state]?[status] = image
         }
     }
     
@@ -346,6 +468,14 @@ private extension PermissionButton {
         
         if let color = titleShadowColorForStatus(status, andState: state) {
             super.setTitleShadowColor(color, forState: state)
+        }
+        
+        if let image = imageForStatus(status, andState: state) {
+            super.setImage(image, forState: state)
+        }
+        
+        if let image = backgroundImageForStatus(status, andState: state) {
+            super.setBackgroundImage(image, forState: state)
         }
     }
     
