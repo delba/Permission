@@ -195,7 +195,7 @@ public class PermissionButton: UIButton {
     - parameter status: The permission status.
     - parameter state:  The state.
     
-    - returns: The color of the title for the specified permission status and state. 
+    - returns: The color of the title for the specified permission status and state.
     */
     public func titleColorForStatus(status: PermissionStatus, andState state: UIControlState = .Normal) -> UIColor? {
         return colors[state]?[status]
@@ -271,11 +271,15 @@ public class PermissionButton: UIButton {
 
 private extension PermissionButton {
     func render(state: UIControlState = .Normal) {
-        if let title = titles[state]?[status] {
+        if let title = titleForStatus(status, andState: state) {
             super.setTitle(title, forState: state)
         }
         
-        if let color = colors[state]?[status] {
+        if let title = attributedTitleForStatus(status, andState: state) {
+            super.setAttributedTitle(title, forState: state)
+        }
+        
+        if let color = titleColorForStatus(status, andState: state) {
             super.setTitleColor(color, forState: state)
         }
     }
