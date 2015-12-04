@@ -70,6 +70,18 @@ public class PermissionButton: UIButton {
     // MARK: - Titles
     
     /**
+    Returns the title associated with the specified permission status and state.
+    
+    - parameter status: The permission status that uses the title.
+    - parameter state:  The state that uses the title.
+    
+    - returns: The title for the specified permission status and state.
+    */
+    public func titleForStatus(status: PermissionStatus, andState state: UIControlState = .Normal) -> String? {
+        return titles[state]?[status]
+    }
+    
+    /**
     Sets the title to use for the specified state.
     
     - parameter title: The title to use for the specified state.
@@ -118,6 +130,18 @@ public class PermissionButton: UIButton {
     // MARK: - Attributed titles
     
     /**
+    Returns the styled title associated with the specified permission status and state.
+    
+    - parameter status: The permission status that uses the styled title.
+    - parameter state:  The state that uses the styled title.
+    
+    - returns: The title for the specified permission status and state.
+    */
+    public func attributedTitleForStatus(status: PermissionStatus, andState state: UIControlState = .Normal) -> NSAttributedString? {
+        return attributedTitles[state]?[status]
+    }
+    
+    /**
     Sets the styled title to use for the specified state.
     
     - parameter title: The styled text string to use for the title.
@@ -164,6 +188,18 @@ public class PermissionButton: UIButton {
     }
     
     // MARK: - Title colors
+    
+    /**
+    Returns the title color used for a permission status and state.
+    
+    - parameter status: The permission status.
+    - parameter state:  The state.
+    
+    - returns: The color of the title for the specified permission status and state. 
+    */
+    public func titleColorForStatus(status: PermissionStatus, andState state: UIControlState = .Normal) -> UIColor? {
+        return colors[state]?[status]
+    }
     
     /**
     Sets the color of the title to use for the specified state.
