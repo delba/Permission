@@ -69,7 +69,32 @@ button.setTitleColor(UIColor.redColor(), forStatus: .Denied)
 
 ```swift
 button.configureAlert(.Denied) { alert in
-	alert.title = "You denied access to your contacts"
+    alert.title = "You denied access to your contacts"
+}
+```
+
+#### PermissionSet
+
+```swift
+class PermissionsViewController: UIViewController, PermissionSetDelegate {
+
+    override func viewDidLoad() {
+        let photos = PermissionButton(.Photos)
+        let events = PermissionButton(.Events)
+        let camera = PermissionButton(.Camera)
+
+        // ...
+
+        let permissionSet = PermissionSet(photos, events, camera)
+        permissionSet.delegate = self
+    }
+
+    func permissionSet(permissionSet: PermissionSet, didRequestPermission permission: Permission) {
+        if permissionSet.status == .Authorized {
+            dismissViewControllerAnimated(true, completion: nil)
+        }
+    }
+
 }
 ```
 
