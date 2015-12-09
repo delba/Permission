@@ -77,7 +77,7 @@ public class PermissionAlert {
         
         let alertController = UIAlertController(title: strings[.title], message: strings[.message], preferredStyle: .Alert)
         
-        let cancel = UIAlertAction(title: strings[.cancel], style: .Cancel, handler: cancelHandler)
+        let cancel = UIAlertAction(title: strings[.cancel], style: .Cancel, handler: permission.cancelHandler)
         alertController.addAction(cancel)
         
         if status == .Denied {
@@ -89,14 +89,10 @@ public class PermissionAlert {
     }
     
     private func settingsHandler(action: UIAlertAction) {
-        NotificationCenter.addObserver(permission, selector: "appForegroundedAfterSettings", name: UIApplicationDidBecomeActiveNotification, object: nil)
+        NotificationCenter.addObserver(permission, selector: "settingsHandler", name: UIApplicationDidBecomeActiveNotification, object: nil)
         
         if let URL = NSURL(string: UIApplicationOpenSettingsURLString) {
             Application.openURL(URL)
         }
-    }
-    
-    private func cancelHandler(action: UIAlertAction) {
-        permission.callback(permission.status)
     }
 }

@@ -60,6 +60,8 @@ public class Permission: NSObject {
     
     internal var callback: (PermissionStatus -> Void)!
     
+    internal var sets = [PermissionSet]()
+    
     private lazy var alert: PermissionAlert = PermissionAlert(permission: self)
     
     private lazy var locationManager: CLLocationManager = {
@@ -97,7 +99,7 @@ public class Permission: NSObject {
         permissions.setObject(self, forKey: type.hashValue)
         
         switch status {
-        case .Authorized: callback(status)
+        case .Authorized: callbacks(status)
         case .NotDetermined: requestAuthorization()
         case .Denied, .Disabled: presentAlert(status)
         }
@@ -115,12 +117,20 @@ public class Permission: NSObject {
         alert.status = status
         block(alert)
     }
+    
+    internal func callbacks(status: PermissionStatus) {
+        callback(status)
+        
+        for set in sets {
+            set.didRequestPermission(self)
+        }
+    }
 }
 
 // MARK: - Request Authorizations
 
-private extension Permission {
-    func requestAuthorization() {
+internal extension Permission {
+    private func requestAuthorization() {
         switch type {
         case .Contacts: requestContacts()
         case .LocationAlways: requestLocationAlways()
@@ -134,7 +144,7 @@ private extension Permission {
         }
     }
     
-    func presentAlert(status: PermissionStatus) {
+    private func presentAlert(status: PermissionStatus) {
         let controller = alert.controllerFor(status)
         
         dispatch_async(dispatch_get_main_queue()) {
@@ -144,11 +154,14 @@ private extension Permission {
         }
     }
     
-    @objc func appForegroundedAfterSettings() {
+    @objc private func settingsHandler() {
         NotificationCenter.removeObserver(self, name: UIApplicationDidBecomeActiveNotification, object: nil)
-        callback(status)
+        callbacks(status)
     }
     
+    internal func cancelHandler(action: UIAlertAction) {
+        callbacks(status)
+    }
 }
 
 // MARK: - Contacts
@@ -173,11 +186,11 @@ private extension Permission {
     func requestContacts() {
         if #available(iOS 9.0, *) {
             CNContactStore().requestAccessForEntityType(.Contacts) { _,_ in
-                self.callback(self.status)
+                self.callbacks(self.status)
             }
         } else {
             ABAddressBookRequestAccessWithCompletion(nil) { _,_ in
-                self.callback(self.status)
+                self.callbacks(self.status)
             }
         }
     }
@@ -272,7 +285,7 @@ private extension Permission {
         
         delay(0.1) { [weak self] in
             guard let this = self else { return }
-            this.callback(this.status)
+            this.callbacks(this.status)
         }
     }
 }
@@ -290,7 +303,7 @@ private extension Permission {
     
     func requestMicrophone() {
         AVAudioSession.sharedInstance().requestRecordPermission { _ in
-            self.callback(self.status)
+            self.callbacks(self.status)
         }
     }
 }
@@ -308,7 +321,7 @@ private extension Permission {
     
     func requestCamera() {
         AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo) { _ in
-            self.callback(self.status)
+            self.callbacks(self.status)
         }
     }
 }
@@ -326,7 +339,7 @@ private extension Permission {
     
     func requestPhotos() {
         PHPhotoLibrary.requestAuthorization { _ in
-            self.callback(self.status)
+            self.callbacks(self.status)
         }
     }
 }
@@ -344,7 +357,7 @@ private extension Permission {
     
     func requestReminders() {
         EKEventStore().requestAccessToEntityType(.Reminder) { _,_ in
-            self.callback(self.status)
+            self.callbacks(self.status)
         }
     }
 }
@@ -362,7 +375,7 @@ private extension Permission {
     
     func requestEvents() {
         EKEventStore().requestAccessToEntityType(.Event) { _,_ in
-            self.callback(self.status)
+            self.callbacks(self.status)
         }
     }
 }
@@ -378,7 +391,7 @@ extension Permission: CLLocationManagerDelegate {
         
         dispatch_async(dispatch_get_main_queue()) { [weak self] in
             guard let this = self else { return }
-            this.callback(this.status)
+            this.callbacks(this.status)
         }
     }
 }
