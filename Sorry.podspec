@@ -1,11 +1,11 @@
 Pod::Spec.new do |s|
   s.name         = "Sorry"
-  s.version      = "0.0.1"
+  s.version      = "0.1"
   s.license      = { :type => "MIT" }
   s.homepage     = "https://github.com/delba/Sorry"
   s.author       = { "Damien" => "damien@delba.io" }
   s.summary      = "The better way to ask for permission"
-  s.source       = { :git => "https://github.com/delba/Sorry.git", :tag => "v0.0.1" }
+  s.source       = { :git => "https://github.com/delba/Sorry.git", :tag => "v0.1" }
 
   s.ios.deployment_target = "8.0"
 
