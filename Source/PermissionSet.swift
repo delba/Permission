@@ -85,7 +85,15 @@ public class PermissionSet {
     }
 }
 
-public protocol PermissionSetDelegate {}
+public protocol PermissionSetDelegate {
+    /**
+     Tells the delegate that the specified permission has been requested.
+     
+     - parameter permissionSet: The permission set containing the requested permission.
+     - parameter permission:    The requested permission.
+     */
+    func permissionSet(permissionSet: PermissionSet, didRequestPermission permission: Permission)
+}
 
 public extension PermissionSetDelegate {
     /**

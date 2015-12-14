@@ -99,7 +99,7 @@ public class Permission: NSObject {
         permissions.setObject(self, forKey: type.hashValue)
         
         switch status {
-        case .Authorized: callbacks(status)
+        case .Authorized: _callback(status)
         case .NotDetermined: requestAuthorization()
         case .Denied, .Disabled: presentAlert(status)
         }
@@ -118,12 +118,14 @@ public class Permission: NSObject {
         block(alert)
     }
     
-    internal func callbacks(status: PermissionStatus) {
+    private func _callback(status: PermissionStatus) {
         callback(status)
         
         for set in sets {
             set.didRequestPermission(self)
         }
+        
+        permissions.removeObjectForKey(type.hashValue)
     }
 }
 
@@ -156,11 +158,11 @@ internal extension Permission {
     
     @objc private func settingsHandler() {
         NotificationCenter.removeObserver(self, name: UIApplicationDidBecomeActiveNotification, object: nil)
-        callbacks(status)
+        _callback(status)
     }
     
     internal func cancelHandler(action: UIAlertAction) {
-        callbacks(status)
+        _callback(status)
     }
 }
 
@@ -186,11 +188,11 @@ private extension Permission {
     func requestContacts() {
         if #available(iOS 9.0, *) {
             CNContactStore().requestAccessForEntityType(.Contacts) { _,_ in
-                self.callbacks(self.status)
+                self._callback(self.status)
             }
         } else {
             ABAddressBookRequestAccessWithCompletion(nil) { _,_ in
-                self.callbacks(self.status)
+                self._callback(self.status)
             }
         }
     }
@@ -285,7 +287,7 @@ private extension Permission {
         
         delay(0.1) { [weak self] in
             guard let this = self else { return }
-            this.callbacks(this.status)
+            this._callback(this.status)
         }
     }
 }
@@ -303,7 +305,7 @@ private extension Permission {
     
     func requestMicrophone() {
         AVAudioSession.sharedInstance().requestRecordPermission { _ in
-            self.callbacks(self.status)
+            self._callback(self.status)
         }
     }
 }
@@ -321,7 +323,7 @@ private extension Permission {
     
     func requestCamera() {
         AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo) { _ in
-            self.callbacks(self.status)
+            self._callback(self.status)
         }
     }
 }
@@ -339,7 +341,7 @@ private extension Permission {
     
     func requestPhotos() {
         PHPhotoLibrary.requestAuthorization { _ in
-            self.callbacks(self.status)
+            self._callback(self.status)
         }
     }
 }
@@ -357,7 +359,7 @@ private extension Permission {
     
     func requestReminders() {
         EKEventStore().requestAccessToEntityType(.Reminder) { _,_ in
-            self.callbacks(self.status)
+            self._callback(self.status)
         }
     }
 }
@@ -375,7 +377,7 @@ private extension Permission {
     
     func requestEvents() {
         EKEventStore().requestAccessToEntityType(.Event) { _,_ in
-            self.callbacks(self.status)
+            self._callback(self.status)
         }
     }
 }
@@ -391,7 +393,7 @@ extension Permission: CLLocationManagerDelegate {
         
         dispatch_async(dispatch_get_main_queue()) { [weak self] in
             guard let this = self else { return }
-            this.callbacks(this.status)
+            this._callback(this.status)
         }
     }
 }
