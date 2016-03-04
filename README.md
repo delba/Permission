@@ -25,11 +25,11 @@ The supported permission types are the following: `Contacts`, `LocationAlways`, 
 You can customize the alerts `Sorry` will present to the user if you don't like the default ones:
 
 ```swift
-permission.configureAlert(.Denied) { alert in
-    alert.title = "You denied access to your contacts"
-    alert.message = "Please allow access in the settings app"
-    alert.cancel = "Cancel"
-    alert.settings = "Settings"
+permission.configureAlert(.Denied) {
+    $0.title = "You denied access to your contacts"
+    $0.message = "Please allow access in the settings app"
+    $0.cancel = "Cancel"
+    $0.settings = "Settings"
 }
 ```
 
@@ -68,8 +68,8 @@ button.setTitleColor(UIColor.redColor(), forStatus: .Denied)
 #### Customize the alerts
 
 ```swift
-button.configureAlert(.Denied) { alert in
-    alert.title = "You denied access to your contacts"
+button.configureAlert(.Denied) {
+    $0.title = "You denied access to your contacts"
 }
 ```
 
