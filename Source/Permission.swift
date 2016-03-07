@@ -45,15 +45,15 @@ public class Permission: NSObject {
     /// The permission status.
     public var status: PermissionStatus {
         switch type {
-        case .Contacts: return statusContacts
-        case .LocationAlways: return statusLocationAlways
+        case .Contacts:          return statusContacts
+        case .LocationAlways:    return statusLocationAlways
         case .LocationWhenInUse: return statusLocationWhenInUse
-        case .Notifications: return statusNotifications
-        case .Microphone: return statusMicrophone
-        case .Camera: return statusCamera
-        case .Photos: return statusPhotos
-        case .Reminders: return statusReminders
-        case .Events: return statusEvents
+        case .Notifications:     return statusNotifications
+        case .Microphone:        return statusMicrophone
+        case .Camera:            return statusCamera
+        case .Photos:            return statusPhotos
+        case .Reminders:         return statusReminders
+        case .Events:            return statusEvents
         }
     }
     
@@ -133,15 +133,15 @@ public class Permission: NSObject {
 internal extension Permission {
     private func requestAuthorization() {
         switch type {
-        case .Contacts: requestContacts()
-        case .LocationAlways: requestLocationAlways()
+        case .Contacts:          requestContacts()
+        case .LocationAlways:    requestLocationAlways()
         case .LocationWhenInUse: requestLocationWhenInUse()
-        case .Notifications: requestNotifications()
-        case .Microphone: requestMicrophone()
-        case .Camera: requestCamera()
-        case .Photos: requestPhotos()
-        case .Reminders: requestReminders()
-        case .Events: requestEvents()
+        case .Notifications:     requestNotifications()
+        case .Microphone:        requestMicrophone()
+        case .Camera:            requestCamera()
+        case .Photos:            requestPhotos()
+        case .Reminders:         requestReminders()
+        case .Events:            requestEvents()
         }
     }
     
@@ -170,16 +170,20 @@ internal extension Permission {
 private extension Permission {
     var statusContacts: PermissionStatus {
         if #available(iOS 9.0, *) {
-            switch CNContactStore.authorizationStatusForEntityType(.Contacts) {
-            case .Authorized: return .Authorized
+            let status = CNContactStore.authorizationStatusForEntityType(.Contacts)
+            
+            switch status {
+            case .Authorized:          return .Authorized
             case .Restricted, .Denied: return .Denied
-            case .NotDetermined: return .NotDetermined
+            case .NotDetermined:       return .NotDetermined
             }
         } else {
-            switch ABAddressBookGetAuthorizationStatus() {
-            case .Authorized: return .Authorized
+            let status = ABAddressBookGetAuthorizationStatus()
+            
+            switch status {
+            case .Authorized:          return .Authorized
             case .Restricted, .Denied: return .Denied
-            case .NotDetermined: return .NotDetermined
+            case .NotDetermined:       return .NotDetermined
             }
         }
     }
@@ -203,7 +207,9 @@ private extension Permission {
     var statusLocationAlways: PermissionStatus {
         guard CLLocationManager.locationServicesEnabled() else { return .Disabled }
         
-        switch CLLocationManager.authorizationStatus() {
+        let status = CLLocationManager.authorizationStatus()
+        
+        switch status {
         case .AuthorizedAlways: return .Authorized
         case .AuthorizedWhenInUse:
             let requested = UserDefaults.boolForKey(.requestedLocationAlways)
@@ -234,10 +240,12 @@ private extension Permission {
     var statusLocationWhenInUse: PermissionStatus {
         guard CLLocationManager.locationServicesEnabled() else { return .Disabled }
         
-        switch CLLocationManager.authorizationStatus() {
+        let status = CLLocationManager.authorizationStatus()
+        
+        switch status {
         case .AuthorizedWhenInUse, .AuthorizedAlways: return .Authorized
-        case .Restricted, .Denied: return .Denied
-        case .NotDetermined: return .NotDetermined
+        case .Restricted, .Denied:                    return .Denied
+        case .NotDetermined:                          return .NotDetermined
         }
     }
     
@@ -295,10 +303,12 @@ private extension Permission {
 
 private extension Permission {
     var statusMicrophone: PermissionStatus {
-        switch AVAudioSession.sharedInstance().recordPermission() {
-        case AVAudioSessionRecordPermission.Denied: return .Denied
+        let status = AVAudioSession.sharedInstance().recordPermission()
+        
+        switch status {
+        case AVAudioSessionRecordPermission.Denied:  return .Denied
         case AVAudioSessionRecordPermission.Granted: return .Authorized
-        default: return .NotDetermined
+        default:                                     return .NotDetermined
         }
     }
     
@@ -313,10 +323,12 @@ private extension Permission {
 
 private extension Permission {
     var statusCamera: PermissionStatus {
-        switch AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo) {
-        case .Authorized: return .Authorized
+        let status = AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)
+        
+        switch status {
+        case .Authorized:          return .Authorized
         case .Restricted, .Denied: return .Denied
-        case .NotDetermined: return .NotDetermined
+        case .NotDetermined:       return .NotDetermined
         }
     }
     
@@ -331,10 +343,12 @@ private extension Permission {
 
 private extension Permission {
     var statusPhotos: PermissionStatus {
-        switch PHPhotoLibrary.authorizationStatus() {
-        case .Authorized: return .Authorized
+        let status = PHPhotoLibrary.authorizationStatus()
+        
+        switch status {
+        case .Authorized:          return .Authorized
         case .Denied, .Restricted: return .Denied
-        case .NotDetermined: return .NotDetermined
+        case .NotDetermined:       return .NotDetermined
         }
     }
     
@@ -349,10 +363,12 @@ private extension Permission {
 
 private extension Permission {
     var statusReminders: PermissionStatus {
-        switch EKEventStore.authorizationStatusForEntityType(.Reminder) {
-        case .Authorized: return .Authorized
+        let status = EKEventStore.authorizationStatusForEntityType(.Reminder)
+        
+        switch status {
+        case .Authorized:          return .Authorized
         case .Restricted, .Denied: return .Denied
-        case .NotDetermined: return .NotDetermined
+        case .NotDetermined:       return .NotDetermined
         }
     }
     
@@ -367,10 +383,12 @@ private extension Permission {
 
 private extension Permission {
     var statusEvents: PermissionStatus {
-        switch EKEventStore.authorizationStatusForEntityType(.Event) {
-        case .Authorized: return .Authorized
+        let status = EKEventStore.authorizationStatusForEntityType(.Event)
+        
+        switch status {
+        case .Authorized:          return .Authorized
         case .Restricted, .Denied: return .Denied
-        case .NotDetermined: return .NotDetermined
+        case .NotDetermined:       return .NotDetermined
         }
     }
     
