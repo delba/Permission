@@ -22,7 +22,6 @@
 // SOFTWARE.
 //
 
-import UIKit
 import Contacts
 import CoreLocation
 import AVFoundation

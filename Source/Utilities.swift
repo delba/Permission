@@ -20,8 +20,6 @@
 // SOFTWARE.
 //
 
-import UIKit
-
 internal let Application = UIApplication.sharedApplication()
 internal let UserDefaults = NSUserDefaults.standardUserDefaults()
 internal let NotificationCenter = NSNotificationCenter.defaultCenter()

@@ -22,8 +22,6 @@
 // SOFTWARE.
 //
 
-import UIKit
-
 public class PermissionAlert {
     /// The title of the alert.
     public var title: String? {

@@ -22,8 +22,6 @@
 // SOFTWARE.
 //
 
-import UIKit
-
 public class PermissionButton: UIButton {
     /// The permission of the button.
     public let permission: Permission

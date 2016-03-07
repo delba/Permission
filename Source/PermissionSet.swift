@@ -22,8 +22,6 @@
 // SOFTWARE.
 //
 
-import Foundation
-
 public class PermissionSet {
     /// The permissions in the set.
     public let permissions: Set<Permission>
