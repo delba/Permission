@@ -87,7 +87,7 @@ public class PermissionAlert {
     }
     
     private func settingsHandler(action: UIAlertAction) {
-        NotificationCenter.addObserver(permission, selector: "settingsHandler", name: UIApplicationDidBecomeActiveNotification, object: nil)
+        NotificationCenter.addObserver(permission, selector: Selector("settingsHandler"), name: UIApplicationDidBecomeActiveNotification, object: nil)
         
         if let URL = NSURL(string: UIApplicationOpenSettingsURLString) {
             Application.openURL(URL)

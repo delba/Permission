@@ -265,14 +265,14 @@ private extension Permission {
     }
     
     func requestNotifications() {
-        NotificationCenter.addObserver(self, selector: "requestingNotifications", name: UIApplicationWillResignActiveNotification, object: nil)
-        notificationTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "finishedShowingNotificationPermission", userInfo: nil, repeats: false)
+        NotificationCenter.addObserver(self, selector: Selector("requestingNotifications"), name: UIApplicationWillResignActiveNotification, object: nil)
+        notificationTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("finishedShowingNotificationPermission"), userInfo: nil, repeats: false)
         Application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Sound, .Badge], categories: nil))
     }
     
     @objc func requestingNotifications() {
         NotificationCenter.removeObserver(self, name: UIApplicationWillResignActiveNotification, object: nil)
-        NotificationCenter.addObserver(self, selector: "doneRequestingNotifications", name: UIApplicationDidBecomeActiveNotification, object: nil)
+        NotificationCenter.addObserver(self, selector: Selector("doneRequestingNotifications"), name: UIApplicationDidBecomeActiveNotification, object: nil)
         notificationTimer?.invalidate()
     }
     
