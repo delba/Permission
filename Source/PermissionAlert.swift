@@ -57,14 +57,14 @@ public class PermissionAlert {
         
         self.strings = [
             .Denied: [
-                .title: "Permission for \(permission.type) was denied",
-                .message: "Please enable access to \(permission.type) in the Settings app.",
+                .title: "Permission for \(permission.domain) was denied",
+                .message: "Please enable access to \(permission.domain) in the Settings app.",
                 .cancel: "Cancel",
                 .settings: "Settings"
             ],
             .Disabled: [
-                .title: "\(permission.type) is currently disabled",
-                .message: "Please enable access to \(permission.type) in the Settings app.",
+                .title: "\(permission.domain) is currently disabled",
+                .message: "Please enable access to \(permission.domain) in the Settings app.",
                 .cancel: "OK"
             ]
         ]

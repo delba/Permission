@@ -33,7 +33,7 @@ public class Permission: NSObject {
         case Authorized, Denied, Disabled, NotDetermined
     }
     
-    public enum PermissionType {
+    public enum Domain {
         case Contacts, LocationAlways, LocationWhenInUse, Notifications, Microphone, Camera, Photos, Reminders, Events
     }
     
@@ -47,12 +47,12 @@ public class Permission: NSObject {
     public static let Reminders         = Permission(.Reminders)
     public static let Events            = Permission(.Events)
     
-    /// The permission type.
-    public let type: PermissionType
+    /// The permission domain.
+    public let domain: Domain
     
     /// The permission status.
     public var status: Permission.Status {
-        switch type {
+        switch domain {
         case .Contacts:          return statusContacts
         case .LocationAlways:    return statusLocationAlways
         case .LocationWhenInUse: return statusLocationWhenInUse
@@ -91,7 +91,7 @@ public class Permission: NSObject {
         return manager
     }()
     
-    private var locationStatusDidChange: [PermissionType: Bool] = [
+    private var locationStatusDidChange: [Domain: Bool] = [
         .LocationWhenInUse: false,
         .LocationAlways: false
     ]
@@ -99,14 +99,14 @@ public class Permission: NSObject {
     private var notificationTimer: NSTimer?
     
     /**
-     Creates and return a new permission of the specified type.
+     Creates and return a new permission for the specified domain.
      
-     - parameter type: The permission type.
+     - parameter domain: The permission domain.
      
      - returns: A newly created permission.
      */
-    private init(_ type: PermissionType) {
-        self.type = type
+    private init(_ domain: Domain) {
+        self.domain = domain
     }
     
     /**
@@ -137,7 +137,7 @@ public class Permission: NSObject {
 
 internal extension Permission {
     private func requestAuthorization() {
-        switch type {
+        switch domain {
         case .Contacts:          requestContacts()
         case .LocationAlways:    requestLocationAlways()
         case .LocationWhenInUse: requestLocationWhenInUse()
@@ -408,8 +408,8 @@ private extension Permission {
 
 extension Permission: CLLocationManagerDelegate {
     public func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        guard locationStatusDidChange[type]! else {
-            locationStatusDidChange[type] = true
+        guard locationStatusDidChange[domain]! else {
+            locationStatusDidChange[domain] = true
             return
         }
         
