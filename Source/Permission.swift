@@ -39,6 +39,16 @@ public enum PermissionType {
 private var permissions = NSCache()
 
 public class Permission: NSObject {
+    public static let Contacts          = Permission(.Contacts)
+    public static let LocationAlways    = Permission(.LocationAlways)
+    public static let LocationWhenInUse = Permission(.LocationWhenInUse)
+    public static let Notifications     = Permission(.Notifications)
+    public static let Microphone        = Permission(.Microphone)
+    public static let Camera            = Permission(.Camera)
+    public static let Photos            = Permission(.Photos)
+    public static let Reminders         = Permission(.Reminders)
+    public static let Events            = Permission(.Events)
+    
     /// The permission type.
     public let type: PermissionType
     
