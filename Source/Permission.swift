@@ -36,8 +36,6 @@ public enum PermissionType {
     case Contacts, LocationAlways, LocationWhenInUse, Notifications, Microphone, Camera, Photos, Reminders, Events
 }
 
-private var permissions = NSCache()
-
 public class Permission: NSObject {
     public static let Contacts          = Permission(.Contacts)
     public static let LocationAlways    = Permission(.LocationAlways)
@@ -105,8 +103,6 @@ public class Permission: NSObject {
     public func request(callback: PermissionStatus -> Void) {
         self.callback = callback
         
-        permissions.setObject(self, forKey: type.hashValue)
-        
         switch status {
         case .Authorized: callbacks(status)
         case .NotDetermined: requestAuthorization()
@@ -133,8 +129,6 @@ public class Permission: NSObject {
         for set in sets {
             set.didRequestPermission(self)
         }
-        
-        permissions.removeObjectForKey(type.hashValue)
     }
 }
 
