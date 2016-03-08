@@ -91,7 +91,7 @@ public class Permission: NSObject {
      
      - returns: A newly created permission.
      */
-    public init(_ type: PermissionType) {
+    private init(_ type: PermissionType) {
         self.type = type
     }
     

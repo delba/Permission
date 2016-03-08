@@ -15,7 +15,7 @@
 #### Initialization
 
 ```swift
-let permission = Permission(.Contacts)
+let permission: Permission = .Contacts
 ```
 
 The supported permission types are the following: `Contacts`, `LocationAlways`, `LocationWhenInUse`, `Notifications`, `Microphone`, `Camera`, `Photos`, `Reminders`, `Events`

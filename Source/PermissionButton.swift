@@ -42,14 +42,14 @@ public class PermissionButton: UIButton {
     // MARK: - Initialization
     
     /**
-    Creates and returns a new button of the specified permission type.
+    Creates and returns a new button for the specified permission.
     
-    - parameter type: The permission type.
+    - parameter permission: The permission.
     
     - returns: A newly created button.
     */
-    public init(_ type: PermissionType) {
-        self.permission = Permission(type)
+    public init(_ permission: Permission) {
+        self.permission = permission
         
         super.init(frame: .zero)
         
