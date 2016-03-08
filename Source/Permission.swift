@@ -65,6 +65,20 @@ public class Permission: NSObject {
         }
     }
     
+    /// The alert when the permission was denied.
+    public lazy var deniedAlert: PermissionAlert = {
+        let alert = PermissionAlert(permission: self)
+        alert.status = .Denied
+        return alert
+    }()
+    
+    /// The alert when the permission is disabled.
+    public lazy var disabledAlert: PermissionAlert = {
+        let alert = PermissionAlert(permission: self)
+        alert.status = .Disabled
+        return alert
+    }()
+    
     internal var callback: (PermissionStatus -> Void)!
     
     internal var sets = [PermissionSet]()
@@ -108,19 +122,6 @@ public class Permission: NSObject {
         case .NotDetermined: requestAuthorization()
         case .Denied, .Disabled: presentAlert(status)
         }
-    }
-    
-    /**
-    Configures the alert for the specifed status.
-    
-    - parameter status: The status for which the alert is displayed.
-    - parameter block:  The configuration block.
-     */
-    public func configureAlert(status: PermissionStatus, block: PermissionAlert -> Void) {
-        guard [.Denied, .Disabled].contains(status) else { return }
-        
-        alert.status = status
-        block(alert)
     }
     
     private func callbacks(status: PermissionStatus) {

@@ -39,6 +39,16 @@ public class PermissionButton: UIButton {
     private var images: [UIControlState: [PermissionStatus: UIImage]] = [:]
     private var backgroundImages: [UIControlState: [PermissionStatus: UIImage]] = [:]
     
+    /// The alert when the permission was denied.
+    public var deniedAlert: PermissionAlert {
+        return permission.deniedAlert
+    }
+    
+    /// The alert when the permission is disabled.
+    public var disabledAlert: PermissionAlert {
+        return permission.disabledAlert
+    }
+    
     // MARK: - Initialization
     
     /**
@@ -426,18 +436,6 @@ public class PermissionButton: UIButton {
         for (status, image) in images {
             backgroundImages[state]?[status] = image
         }
-    }
-    
-    // MARK: - PermissionAlert
-    
-    /**
-    Configures the alert for the specifed status.
-    
-    - parameter status: The status for which the alert is displayed.
-    - parameter block:  The configuration block.
-    */
-    public func configureAlert(status: PermissionStatus, block: PermissionAlert -> Void) {
-        permission.configureAlert(status, block: block)
     }
     
     // MARK: - UIView
