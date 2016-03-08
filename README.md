@@ -26,9 +26,10 @@ You can customize the alerts `Sorry` will present to the user if you don't like 
 
 ```swift
 let alert = permission.deniedAlert
-alert.title = "You denied access to your contacts"
-alert.message = "Please allow access in the settings app"
-alert.cancel = "Cancel"
+
+alert.title    = "You denied access to your contacts"
+alert.message  = "Please allow access in the settings app"
+alert.cancel   = "Cancel"
 alert.settings = "Settings"
 ```
 
