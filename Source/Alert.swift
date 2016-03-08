@@ -25,78 +25,63 @@
 extension Permission {
     public class Alert {
         /// The title of the alert.
-        public var title: String? {
-            get { return self.title }
-            set(title) { strings[status]![.title] = title }
-        }
+        public var title: String?
         
         /// Descriptive text that provides more details about the reason for the alert.
-        public var message: String? {
-            get { return self.message }
-            set(message) { strings[status]![.message] = message }
-        }
+        public var message: String?
         
         /// The title of the cancel action.
-        public var cancel: String? {
-            get { return self.cancel }
-            set(cancel) { strings[status]![.cancel] = cancel }
-        }
-        
-        /// The title of the settings action.
-        public var settings: String? {
-            get { return self.settings }
-            set(settings) { strings[status]![.settings] = settings }
-        }
+        public var cancel: String?
         
         internal var status: Permission.Status!
         
         private let permission: Permission
-        private var strings: [Permission.Status: [String: String]]
+        
+        var controller: UIAlertController {
+            let controller = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+            
+            let action = UIAlertAction(title: cancel, style: .Cancel, handler: permission.cancelHandler)
+            controller.addAction(action)
+            
+            return controller
+        }
         
         internal init(permission: Permission) {
             self.permission = permission
-            
-            self.strings = [
-                .Denied: [
-                    .title: "Permission for \(permission.domain) was denied",
-                    .message: "Please enable access to \(permission.domain) in the Settings app.",
-                    .cancel: "Cancel",
-                    .settings: "Settings"
-                ],
-                .Disabled: [
-                    .title: "\(permission.domain) is currently disabled",
-                    .message: "Please enable access to \(permission.domain) in the Settings app.",
-                    .cancel: "OK"
-                ]
-            ]
         }
         
         internal func present(callback: Callback) {
             // TODO: pass callback to settings handler and cancelHandler
             
-            let controller = controllerFor(status)
-            
             dispatch_async(dispatch_get_main_queue()) {
                 if let vc = Application.delegate?.window??.rootViewController {
-                    vc.presentViewController(controller, animated: true, completion: nil)
+                    vc.presentViewController(self.controller, animated: true, completion: nil)
                 }
             }
         }
+    }
+
+    class DeniedAlert: Alert {
+        var settings: String?
         
-        internal func controllerFor(status: Permission.Status) -> UIAlertController {
-            let strings = self.strings[status]!
+        override var controller: UIAlertController {
+            let controller = super.controller
             
-            let alertController = UIAlertController(title: strings[.title], message: strings[.message], preferredStyle: .Alert)
+            let action = UIAlertAction(title: settings, style: .Default, handler: settingsHandler)
+            controller.addAction(action)
             
-            let cancel = UIAlertAction(title: strings[.cancel], style: .Cancel, handler: permission.cancelHandler)
-            alertController.addAction(cancel)
+            return controller
+        }
+        
+        override init(permission: Permission) {
+            super.init(permission: permission)
             
-            if status == .Denied {
-                let settings = UIAlertAction(title: strings[.settings], style: .Default, handler: settingsHandler)
-                alertController.addAction(settings)
-            }
+            status = .Denied
             
-            return alertController
+            title    = "Permission for \(permission.domain) was denied"
+            message  = "Please enable access to \(permission.domain) in the Settings app."
+            cancel   = "Cancel"
+            settings = "Settings"
         }
         
         private func settingsHandler(action: UIAlertAction) {
@@ -105,6 +90,18 @@ extension Permission {
             if let URL = NSURL(string: UIApplicationOpenSettingsURLString) {
                 Application.openURL(URL)
             }
+        }
+    }
+
+    class DisabledAlert: Alert {
+        override init(permission: Permission) {
+            super.init(permission: permission)
+            
+            status = .Disabled
+            
+            title   = "\(permission.domain) is currently disabled"
+            message = "Please enable access to \(permission.domain) in the Settings app."
+            cancel  = "OK"
         }
     }
 }

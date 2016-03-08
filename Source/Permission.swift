@@ -73,16 +73,12 @@ public class Permission {
     
     /// The alert when the permission was denied.
     public lazy var deniedAlert: Permission.Alert = {
-        let alert = Permission.Alert(permission: self)
-        alert.status = .Denied
-        return alert
+        return DeniedAlert(permission: self)
     }()
     
     /// The alert when the permission is disabled.
     public lazy var disabledAlert: Permission.Alert = {
-        let alert = Permission.Alert(permission: self)
-        alert.status = .Disabled
-        return alert
+        return DisabledAlert(permission: self)
     }()
     
     internal var callback: Callback!
