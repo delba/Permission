@@ -105,12 +105,11 @@
 			isa = PBXGroup;
 			children = (
 				6DF9C2B01C8F4F30000710C1 /* Domains */,
-				6D86A9B71BEBDC7D00E3DD5A /* Info.plist */,
+				6DF9C2C21C8F53C3000710C1 /* Supporting Files */,
 				6D86A9CC1BEBDC9000E3DD5A /* Permission.swift */,
 				6DA8B4B11BFB8AD8007A94FC /* PermissionAlert.swift */,
 				6DA8B4AF1BFB80E9007A94FC /* PermissionButton.swift */,
 				6D0069B31C1868E8002FDB42 /* PermissionSet.swift */,
-				6D86A9B51BEBDC7D00E3DD5A /* Sorry.h */,
 				6D0EBDBC1BFCF8B700C35F8E /* Utilities.swift */,
 			);
 			path = Source;
@@ -119,7 +118,7 @@
 		6D86A9C01BEBDC7D00E3DD5A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				6D86A9C31BEBDC7D00E3DD5A /* Info.plist */,
+				6DF9C2C11C8F53B7000710C1 /* Supporting Files */,
 				6D86A9C11BEBDC7D00E3DD5A /* SorryTests.swift */,
 			);
 			path = Tests;
@@ -139,6 +138,23 @@
 				6DF9C2B51C8F4F69000710C1 /* Reminders.swift */,
 			);
 			path = Domains;
+			sourceTree = "<group>";
+		};
+		6DF9C2C11C8F53B7000710C1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6D86A9C31BEBDC7D00E3DD5A /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6DF9C2C21C8F53C3000710C1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6D86A9B71BEBDC7D00E3DD5A /* Info.plist */,
+				6D86A9B51BEBDC7D00E3DD5A /* Sorry.h */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -387,7 +403,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Source/Info.plist;
+				INFOPLIST_FILE = "Source/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -406,7 +422,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Source/Info.plist;
+				INFOPLIST_FILE = "Source/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -419,7 +435,7 @@
 		6D86A9CA1BEBDC7D00E3DD5A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = Tests/Info.plist;
+				INFOPLIST_FILE = "Tests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.delba.SorryTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -429,7 +445,7 @@
 		6D86A9CB1BEBDC7D00E3DD5A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = Tests/Info.plist;
+				INFOPLIST_FILE = "Tests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.delba.SorryTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
