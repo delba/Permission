@@ -100,6 +100,8 @@ public class Permission {
     public func request(callback: Permission.Status -> Void) {
         self.callback = callback
         
+        let status = self.status
+        
         switch status {
         case .Authorized: callbacks(status)
         case .NotDetermined: requestAuthorization()
