@@ -92,8 +92,6 @@ public class Permission: NSObject {
         .LocationAlways: false
     ]
     
-    internal var notificationTimer: NSTimer?
-    
     /**
      Creates and return a new permission for the specified domain.
      
