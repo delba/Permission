@@ -42,7 +42,7 @@ internal extension Permission {
         }
     }
     
-    func requestLocationAlways() {
+    func requestLocationAlways(callback: Callback) {
         guard let _ = NSBundle.mainBundle().objectForInfoDictionaryKey(.nsLocationAlwaysUsageDescription) else {
             print("WARNING: \(.nsLocationAlwaysUsageDescription) not found in Info.plist")
             return

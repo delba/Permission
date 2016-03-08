@@ -35,9 +35,9 @@ internal extension Permission {
         }
     }
     
-    func requestMicrophone() {
+    func requestMicrophone(callback: Callback) {
         AVAudioSession.sharedInstance().requestRecordPermission { _ in
-            self.callbacks(self.status)
+            callback(self.status)
         }
     }
 }

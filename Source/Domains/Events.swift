@@ -35,9 +35,9 @@ internal extension Permission {
         }
     }
     
-    func requestEvents() {
+    func requestEvents(callback: Callback) {
         EKEventStore().requestAccessToEntityType(.Event) { _,_ in
-            self.callbacks(self.status)
+            callback(self.status)
         }
     }
 }

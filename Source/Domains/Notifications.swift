@@ -37,7 +37,9 @@ internal extension Permission {
         return requested ? .Denied : .NotDetermined
     }
     
-    func requestNotifications() {
+    func requestNotifications(callback: Callback) {
+        // TODO: pass callback to doneRequestingNotifications
+        
         NotificationCenter.addObserver(self, selector: Selector("requestingNotifications"), name: UIApplicationWillResignActiveNotification, object: nil)
         notificationTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("finishedShowingNotificationPermission"), userInfo: nil, repeats: false)
         Application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Sound, .Badge], categories: nil))

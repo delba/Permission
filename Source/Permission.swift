@@ -24,6 +24,8 @@
 
 import EventKit
 
+public typealias Callback = Permission.Status -> Void
+
 public class Permission {
     public enum Status {
         case Authorized, Denied, Disabled, NotDetermined
@@ -83,7 +85,7 @@ public class Permission {
         return alert
     }()
     
-    internal var callback: (Permission.Status -> Void)!
+    internal var callback: Callback!
     
     internal var sets = [PermissionSet]()
     
@@ -103,18 +105,20 @@ public class Permission {
      
      - parameter callback: The function to be triggered after the user responded to the request.
      */
-    public func request(callback: Permission.Status -> Void) {
+    public func request(callback: Callback) {
         self.callback = callback
         
         let status = self.status
         
         switch status {
         case .Authorized:    callbacks(status)
-        case .NotDetermined: requestAuthorization()
-        case .Denied:        deniedAlert.present()
-        case .Disabled:      disabledAlert.present()
+        case .NotDetermined: requestAuthorization(callbacks)
+        case .Denied:        deniedAlert.present(callbacks)
+        case .Disabled:      disabledAlert.present(callbacks)
         }
     }
+    
+    // TODO: make private
     
     internal func callbacks(status: Permission.Status) {
         callback(status)
@@ -128,17 +132,17 @@ public class Permission {
 // MARK: - Request Authorizations
 
 internal extension Permission {
-    private func requestAuthorization() {
+    private func requestAuthorization(callback: Callback) {
         switch domain {
-        case .Contacts:          requestContacts()
-        case .LocationAlways:    requestLocationAlways()
-        case .LocationWhenInUse: requestLocationWhenInUse()
-        case .Notifications:     requestNotifications()
-        case .Microphone:        requestMicrophone()
-        case .Camera:            requestCamera()
-        case .Photos:            requestPhotos()
-        case .Reminders:         requestReminders()
-        case .Events:            requestEvents()
+        case .Contacts:          requestContacts(callback)
+        case .LocationAlways:    requestLocationAlways(callback)
+        case .LocationWhenInUse: requestLocationWhenInUse(callback)
+        case .Notifications:     requestNotifications(callback)
+        case .Microphone:        requestMicrophone(callback)
+        case .Camera:            requestCamera(callback)
+        case .Photos:            requestPhotos(callback)
+        case .Reminders:         requestReminders(callback)
+        case .Events:            requestEvents(callback)
         }
     }
     

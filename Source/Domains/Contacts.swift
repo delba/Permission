@@ -48,14 +48,14 @@ internal extension Permission {
         }
     }
     
-    func requestContacts() {
+    func requestContacts(callback: Callback) {
         if #available(iOS 9.0, *) {
             CNContactStore().requestAccessForEntityType(.Contacts) { _,_ in
-                self.callbacks(self.status)
+                callback(self.status)
             }
         } else {
             ABAddressBookRequestAccessWithCompletion(nil) { _,_ in
-                self.callbacks(self.status)
+                callback(self.status)
             }
         }
     }

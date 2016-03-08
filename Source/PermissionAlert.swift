@@ -70,7 +70,9 @@ public class PermissionAlert {
         ]
     }
     
-    internal func present() {
+    internal func present(callback: Callback) {
+        // TODO: pass callback to settings handler and cancelHandler
+        
         let controller = controllerFor(status)
         
         dispatch_async(dispatch_get_main_queue()) {

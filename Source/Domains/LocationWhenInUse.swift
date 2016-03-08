@@ -37,11 +37,13 @@ internal extension Permission {
         }
     }
     
-    func requestLocationWhenInUse() {
+    func requestLocationWhenInUse(callback: Callback) {
         guard let _ = NSBundle.mainBundle().objectForInfoDictionaryKey(.nsLocationWhenInUseUsageDescription) else {
             print("WARNING: \(.nsLocationWhenInUseUsageDescription) not found in Info.plist")
             return
         }
+        
+        // TODO: locationManager(callback: callback).requestWhenInUseAuthorization()
 
         locationManager.requestWhenInUseAuthorization()
     }

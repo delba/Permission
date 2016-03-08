@@ -35,9 +35,9 @@ internal extension Permission {
         }
     }
     
-    func requestPhotos() {
+    func requestPhotos(callback: Callback) {
         PHPhotoLibrary.requestAuthorization { _ in
-            self.callbacks(self.status)
+            callback(self.status)
         }
     }
 }
