@@ -30,7 +30,15 @@ public class Permission {
     }
     
     public enum Domain {
-        case Contacts, LocationAlways, LocationWhenInUse, Notifications, Microphone, Camera, Photos, Reminders, Events
+        case Contacts
+        case LocationAlways
+        case LocationWhenInUse
+        case Notifications
+        case Microphone
+        case Camera
+        case Photos
+        case Reminders
+        case Events
     }
     
     public static let Contacts          = Permission(.Contacts)
