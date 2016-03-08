@@ -79,8 +79,6 @@ public class Permission {
     
     internal var sets = [PermissionSet]()
     
-    private lazy var alert: PermissionAlert = PermissionAlert(permission: self)
-    
     /**
      Creates and return a new permission for the specified domain.
      
@@ -103,9 +101,10 @@ public class Permission {
         let status = self.status
         
         switch status {
-        case .Authorized: callbacks(status)
+        case .Authorized:    callbacks(status)
         case .NotDetermined: requestAuthorization()
-        case .Denied, .Disabled: presentAlert(status)
+        case .Denied:        deniedAlert.present()
+        case .Disabled:      disabledAlert.present()
         }
     }
     
@@ -132,16 +131,6 @@ internal extension Permission {
         case .Photos:            requestPhotos()
         case .Reminders:         requestReminders()
         case .Events:            requestEvents()
-        }
-    }
-    
-    private func presentAlert(status: Permission.Status) {
-        let controller = alert.controllerFor(status)
-        
-        dispatch_async(dispatch_get_main_queue()) {
-            if let vc = Application.delegate?.window??.rootViewController {
-                vc.presentViewController(controller, animated: true, completion: nil)
-            }
         }
     }
     

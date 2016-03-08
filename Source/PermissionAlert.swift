@@ -70,6 +70,16 @@ public class PermissionAlert {
         ]
     }
     
+    internal func present() {
+        let controller = controllerFor(status)
+        
+        dispatch_async(dispatch_get_main_queue()) {
+            if let vc = Application.delegate?.window??.rootViewController {
+                vc.presentViewController(controller, animated: true, completion: nil)
+            }
+        }
+    }
+    
     internal func controllerFor(status: Permission.Status) -> UIAlertController {
         let strings = self.strings[status]!
         
