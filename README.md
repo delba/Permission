@@ -18,7 +18,7 @@
 let permission: Permission = .Contacts
 ```
 
-The supported permission domains are the following: `Contacts`, `LocationAlways`, `LocationWhenInUse`, `Notifications`, `Microphone`, `Camera`, `Photos`, `Reminders`, `Events`
+> The supported permission domains are the following: `Contacts`, `LocationAlways`, `LocationWhenInUse`, `Notifications`, `Microphone`, `Camera`, `Photos`, `Reminders`, `Events`
 
 #### Customize the alerts
 
@@ -33,6 +33,8 @@ alert.cancel   = "Cancel"
 alert.settings = "Settings"
 ```
 
+> There are two types of alerts: `deniedAlert` and `disabledAlert`
+
 #### Request the permission
 
 ```swift
@@ -41,7 +43,7 @@ permission.request { status in
 }
 ```
 
-The status can be either `Authorized`, `Denied`, `Disabled` or `NotDetermined`
+> The status can be either `Authorized`, `Denied`, `Disabled` or `NotDetermined`
 
 ### PermissionButton
 
