@@ -24,7 +24,7 @@
 
 import EventKit
 
-public class Permission: NSObject {
+public class Permission {
     public enum Status {
         case Authorized, Denied, Disabled, NotDetermined
     }
@@ -80,17 +80,6 @@ public class Permission: NSObject {
     internal var sets = [PermissionSet]()
     
     private lazy var alert: PermissionAlert = PermissionAlert(permission: self)
-    
-    internal lazy var locationManager: CLLocationManager = {
-        let manager = CLLocationManager()
-        manager.delegate = self
-        return manager
-    }()
-    
-    private var locationStatusDidChange: [Domain: Bool] = [
-        .LocationWhenInUse: false,
-        .LocationAlways: false
-    ]
     
     /**
      Creates and return a new permission for the specified domain.
@@ -164,18 +153,12 @@ internal extension Permission {
     }
 }
 
-// MARK: - CLLocationManagerDelegate
-
-extension Permission: CLLocationManagerDelegate {
-    public func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        guard locationStatusDidChange[domain]! else {
-            locationStatusDidChange[domain] = true
-            return
-        }
-        
-        dispatch_async(dispatch_get_main_queue()) { [weak self] in
-            guard let this = self else { return }
-            this.callbacks(this.status)
-        }
+extension Permission: Hashable {
+    public var hashValue: Int {
+        return domain.hashValue
     }
+}
+
+public func ==(lhs: Permission, rhs: Permission) -> Bool {
+    return lhs.hashValue == rhs.hashValue
 }

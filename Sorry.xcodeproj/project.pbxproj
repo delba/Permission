@@ -29,6 +29,7 @@
 		6DF9C2BC1C8F4FDA000710C1 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF9C2BB1C8F4FDA000710C1 /* Camera.swift */; };
 		6DF9C2BE1C8F4FE5000710C1 /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF9C2BD1C8F4FE5000710C1 /* Photos.swift */; };
 		6DF9C2C01C8F5003000710C1 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF9C2BF1C8F5003000710C1 /* Events.swift */; };
+		6DF9C2C61C8F5B4C000710C1 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF9C2C51C8F5B4C000710C1 /* Location.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		6DF9C2BB1C8F4FDA000710C1 /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		6DF9C2BD1C8F4FE5000710C1 /* Photos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
 		6DF9C2BF1C8F5003000710C1 /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
+		6DF9C2C51C8F5B4C000710C1 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 				6DF9C2BB1C8F4FDA000710C1 /* Camera.swift */,
 				6DF9C2AE1C8F4F2A000710C1 /* Contacts.swift */,
 				6DF9C2BF1C8F5003000710C1 /* Events.swift */,
+				6DF9C2C51C8F5B4C000710C1 /* Location.swift */,
 				6DF9C2B11C8F4F45000710C1 /* LocationAlways.swift */,
 				6DF9C2B31C8F4F54000710C1 /* LocationWhenInUse.swift */,
 				6DF9C2B91C8F4FAC000710C1 /* Microphone.swift */,
@@ -272,6 +275,7 @@
 				6DF9C2C01C8F5003000710C1 /* Events.swift in Sources */,
 				6DF9C2B61C8F4F69000710C1 /* Reminders.swift in Sources */,
 				6DF9C2AF1C8F4F2A000710C1 /* Contacts.swift in Sources */,
+				6DF9C2C61C8F5B4C000710C1 /* Location.swift in Sources */,
 				6DA8B4B21BFB8AD8007A94FC /* PermissionAlert.swift in Sources */,
 				6DF9C2BE1C8F4FE5000710C1 /* Photos.swift in Sources */,
 				6DF9C2BA1C8F4FAC000710C1 /* Microphone.swift in Sources */,
