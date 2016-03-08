@@ -28,13 +28,13 @@ import AVFoundation
 import Photos
 import EventKit
 
-public enum PermissionType {
-    case Contacts, LocationAlways, LocationWhenInUse, Notifications, Microphone, Camera, Photos, Reminders, Events
-}
-
 public class Permission: NSObject {
     public enum Status {
         case Authorized, Denied, Disabled, NotDetermined
+    }
+    
+    public enum PermissionType {
+        case Contacts, LocationAlways, LocationWhenInUse, Notifications, Microphone, Camera, Photos, Reminders, Events
     }
     
     public static let Contacts          = Permission(.Contacts)

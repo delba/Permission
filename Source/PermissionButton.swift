@@ -27,7 +27,7 @@ public class PermissionButton: UIButton {
     public let permission: Permission
     
     /// The permission type of the button.
-    public var type: PermissionType { return permission.type }
+    public var type: Permission.PermissionType { return permission.type }
     
     /// The permission status of the button.
     public var status: Permission.Status { return permission.status }
