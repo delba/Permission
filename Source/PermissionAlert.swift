@@ -47,10 +47,10 @@ public class PermissionAlert {
         set(settings) { strings[status]![.settings] = settings }
     }
     
-    internal var status: PermissionStatus!
+    internal var status: Permission.Status!
     
     private let permission: Permission
-    private var strings: [PermissionStatus: [String: String]]
+    private var strings: [Permission.Status: [String: String]]
     
     internal init(permission: Permission) {
         self.permission = permission
@@ -70,7 +70,7 @@ public class PermissionAlert {
         ]
     }
     
-    internal func controllerFor(status: PermissionStatus) -> UIAlertController {
+    internal func controllerFor(status: Permission.Status) -> UIAlertController {
         let strings = self.strings[status]!
         
         let alertController = UIAlertController(title: strings[.title], message: strings[.message], preferredStyle: .Alert)

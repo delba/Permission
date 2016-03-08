@@ -28,15 +28,15 @@ import AVFoundation
 import Photos
 import EventKit
 
-public enum PermissionStatus {
-    case Authorized, Denied, Disabled, NotDetermined
-}
-
 public enum PermissionType {
     case Contacts, LocationAlways, LocationWhenInUse, Notifications, Microphone, Camera, Photos, Reminders, Events
 }
 
 public class Permission: NSObject {
+    public enum Status {
+        case Authorized, Denied, Disabled, NotDetermined
+    }
+    
     public static let Contacts          = Permission(.Contacts)
     public static let LocationAlways    = Permission(.LocationAlways)
     public static let LocationWhenInUse = Permission(.LocationWhenInUse)
@@ -51,7 +51,7 @@ public class Permission: NSObject {
     public let type: PermissionType
     
     /// The permission status.
-    public var status: PermissionStatus {
+    public var status: Permission.Status {
         switch type {
         case .Contacts:          return statusContacts
         case .LocationAlways:    return statusLocationAlways
@@ -79,7 +79,7 @@ public class Permission: NSObject {
         return alert
     }()
     
-    internal var callback: (PermissionStatus -> Void)!
+    internal var callback: (Permission.Status -> Void)!
     
     internal var sets = [PermissionSet]()
     
@@ -114,7 +114,7 @@ public class Permission: NSObject {
      
      - parameter callback: The function to be triggered after the user responded to the request.
      */
-    public func request(callback: PermissionStatus -> Void) {
+    public func request(callback: Permission.Status -> Void) {
         self.callback = callback
         
         switch status {
@@ -124,7 +124,7 @@ public class Permission: NSObject {
         }
     }
     
-    private func callbacks(status: PermissionStatus) {
+    private func callbacks(status: Permission.Status) {
         callback(status)
         
         for set in sets {
@@ -150,7 +150,7 @@ internal extension Permission {
         }
     }
     
-    private func presentAlert(status: PermissionStatus) {
+    private func presentAlert(status: Permission.Status) {
         let controller = alert.controllerFor(status)
         
         dispatch_async(dispatch_get_main_queue()) {
@@ -173,7 +173,7 @@ internal extension Permission {
 // MARK: - Contacts
 
 private extension Permission {
-    var statusContacts: PermissionStatus {
+    var statusContacts: Permission.Status {
         if #available(iOS 9.0, *) {
             let status = CNContactStore.authorizationStatusForEntityType(.Contacts)
             
@@ -209,7 +209,7 @@ private extension Permission {
 // MARK: - LocationAlways
 
 private extension Permission {
-    var statusLocationAlways: PermissionStatus {
+    var statusLocationAlways: Permission.Status {
         guard CLLocationManager.locationServicesEnabled() else { return .Disabled }
         
         let status = CLLocationManager.authorizationStatus()
@@ -242,7 +242,7 @@ private extension Permission {
 // MARK: - LocationWhenInUse
 
 private extension Permission {
-    var statusLocationWhenInUse: PermissionStatus {
+    var statusLocationWhenInUse: Permission.Status {
         guard CLLocationManager.locationServicesEnabled() else { return .Disabled }
         
         let status = CLLocationManager.authorizationStatus()
@@ -267,7 +267,7 @@ private extension Permission {
 // MARK: - Notifications
 
 private extension Permission {
-    var statusNotifications: PermissionStatus {
+    var statusNotifications: Permission.Status {
         if let types = Application.currentUserNotificationSettings()?.types where types != .None {
             return .Authorized
         }
@@ -307,7 +307,7 @@ private extension Permission {
 // MARK: - Microphone
 
 private extension Permission {
-    var statusMicrophone: PermissionStatus {
+    var statusMicrophone: Permission.Status {
         let status = AVAudioSession.sharedInstance().recordPermission()
         
         switch status {
@@ -327,7 +327,7 @@ private extension Permission {
 // MARK: - Camera
 
 private extension Permission {
-    var statusCamera: PermissionStatus {
+    var statusCamera: Permission.Status {
         let status = AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)
         
         switch status {
@@ -347,7 +347,7 @@ private extension Permission {
 // MARK: - Photos
 
 private extension Permission {
-    var statusPhotos: PermissionStatus {
+    var statusPhotos: Permission.Status {
         let status = PHPhotoLibrary.authorizationStatus()
         
         switch status {
@@ -367,7 +367,7 @@ private extension Permission {
 // MARK: - Reminders
 
 private extension Permission {
-    var statusReminders: PermissionStatus {
+    var statusReminders: Permission.Status {
         let status = EKEventStore.authorizationStatusForEntityType(.Reminder)
         
         switch status {
@@ -387,7 +387,7 @@ private extension Permission {
 // MARK: - Events
 
 private extension Permission {
-    var statusEvents: PermissionStatus {
+    var statusEvents: Permission.Status {
         let status = EKEventStore.authorizationStatusForEntityType(.Event)
         
         switch status {
