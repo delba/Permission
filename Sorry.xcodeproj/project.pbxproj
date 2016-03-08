@@ -20,6 +20,15 @@
 		6D86AA0D1BF108E600E3DD5A /* Permission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D86A9CC1BEBDC9000E3DD5A /* Permission.swift */; };
 		6DA8B4B01BFB80E9007A94FC /* PermissionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA8B4AF1BFB80E9007A94FC /* PermissionButton.swift */; };
 		6DA8B4B21BFB8AD8007A94FC /* PermissionAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA8B4B11BFB8AD8007A94FC /* PermissionAlert.swift */; };
+		6DF9C2AF1C8F4F2A000710C1 /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF9C2AE1C8F4F2A000710C1 /* Contacts.swift */; };
+		6DF9C2B21C8F4F45000710C1 /* LocationAlways.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF9C2B11C8F4F45000710C1 /* LocationAlways.swift */; };
+		6DF9C2B41C8F4F54000710C1 /* LocationWhenInUse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF9C2B31C8F4F54000710C1 /* LocationWhenInUse.swift */; };
+		6DF9C2B61C8F4F69000710C1 /* Reminders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF9C2B51C8F4F69000710C1 /* Reminders.swift */; };
+		6DF9C2B81C8F4F8F000710C1 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF9C2B71C8F4F8F000710C1 /* Notifications.swift */; };
+		6DF9C2BA1C8F4FAC000710C1 /* Microphone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF9C2B91C8F4FAC000710C1 /* Microphone.swift */; };
+		6DF9C2BC1C8F4FDA000710C1 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF9C2BB1C8F4FDA000710C1 /* Camera.swift */; };
+		6DF9C2BE1C8F4FE5000710C1 /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF9C2BD1C8F4FE5000710C1 /* Photos.swift */; };
+		6DF9C2C01C8F5003000710C1 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF9C2BF1C8F5003000710C1 /* Events.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +53,15 @@
 		6D86A9CC1BEBDC9000E3DD5A /* Permission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Permission.swift; sourceTree = "<group>"; };
 		6DA8B4AF1BFB80E9007A94FC /* PermissionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionButton.swift; sourceTree = "<group>"; };
 		6DA8B4B11BFB8AD8007A94FC /* PermissionAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionAlert.swift; sourceTree = "<group>"; };
+		6DF9C2AE1C8F4F2A000710C1 /* Contacts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
+		6DF9C2B11C8F4F45000710C1 /* LocationAlways.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationAlways.swift; sourceTree = "<group>"; };
+		6DF9C2B31C8F4F54000710C1 /* LocationWhenInUse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationWhenInUse.swift; sourceTree = "<group>"; };
+		6DF9C2B51C8F4F69000710C1 /* Reminders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reminders.swift; sourceTree = "<group>"; };
+		6DF9C2B71C8F4F8F000710C1 /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		6DF9C2B91C8F4FAC000710C1 /* Microphone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Microphone.swift; sourceTree = "<group>"; };
+		6DF9C2BB1C8F4FDA000710C1 /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		6DF9C2BD1C8F4FE5000710C1 /* Photos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
+		6DF9C2BF1C8F5003000710C1 /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,11 +104,12 @@
 		6D86A9B41BEBDC7D00E3DD5A /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				6DF9C2B01C8F4F30000710C1 /* Domains */,
 				6D86A9B71BEBDC7D00E3DD5A /* Info.plist */,
 				6D86A9CC1BEBDC9000E3DD5A /* Permission.swift */,
-				6D0069B31C1868E8002FDB42 /* PermissionSet.swift */,
 				6DA8B4B11BFB8AD8007A94FC /* PermissionAlert.swift */,
 				6DA8B4AF1BFB80E9007A94FC /* PermissionButton.swift */,
+				6D0069B31C1868E8002FDB42 /* PermissionSet.swift */,
 				6D86A9B51BEBDC7D00E3DD5A /* Sorry.h */,
 				6D0EBDBC1BFCF8B700C35F8E /* Utilities.swift */,
 			);
@@ -104,6 +123,22 @@
 				6D86A9C11BEBDC7D00E3DD5A /* SorryTests.swift */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		6DF9C2B01C8F4F30000710C1 /* Domains */ = {
+			isa = PBXGroup;
+			children = (
+				6DF9C2BB1C8F4FDA000710C1 /* Camera.swift */,
+				6DF9C2AE1C8F4F2A000710C1 /* Contacts.swift */,
+				6DF9C2BF1C8F5003000710C1 /* Events.swift */,
+				6DF9C2B11C8F4F45000710C1 /* LocationAlways.swift */,
+				6DF9C2B31C8F4F54000710C1 /* LocationWhenInUse.swift */,
+				6DF9C2B91C8F4FAC000710C1 /* Microphone.swift */,
+				6DF9C2B71C8F4F8F000710C1 /* Notifications.swift */,
+				6DF9C2BD1C8F4FE5000710C1 /* Photos.swift */,
+				6DF9C2B51C8F4F69000710C1 /* Reminders.swift */,
+			);
+			path = Domains;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -214,9 +249,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DF9C2B81C8F4F8F000710C1 /* Notifications.swift in Sources */,
 				6D0069B41C1868E8002FDB42 /* PermissionSet.swift in Sources */,
+				6DF9C2B41C8F4F54000710C1 /* LocationWhenInUse.swift in Sources */,
 				6DA8B4B01BFB80E9007A94FC /* PermissionButton.swift in Sources */,
+				6DF9C2C01C8F5003000710C1 /* Events.swift in Sources */,
+				6DF9C2B61C8F4F69000710C1 /* Reminders.swift in Sources */,
+				6DF9C2AF1C8F4F2A000710C1 /* Contacts.swift in Sources */,
 				6DA8B4B21BFB8AD8007A94FC /* PermissionAlert.swift in Sources */,
+				6DF9C2BE1C8F4FE5000710C1 /* Photos.swift in Sources */,
+				6DF9C2BA1C8F4FAC000710C1 /* Microphone.swift in Sources */,
+				6DF9C2BC1C8F4FDA000710C1 /* Camera.swift in Sources */,
+				6DF9C2B21C8F4F45000710C1 /* LocationAlways.swift in Sources */,
 				6D86A9CD1BEBDC9000E3DD5A /* Permission.swift in Sources */,
 				6D0EBDBD1BFCF8B700C35F8E /* Utilities.swift in Sources */,
 			);

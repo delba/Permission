@@ -22,10 +22,6 @@
 // SOFTWARE.
 //
 
-import Contacts
-import CoreLocation
-import AVFoundation
-import Photos
 import EventKit
 
 public class Permission: NSObject {
@@ -85,7 +81,7 @@ public class Permission: NSObject {
     
     private lazy var alert: PermissionAlert = PermissionAlert(permission: self)
     
-    private lazy var locationManager: CLLocationManager = {
+    internal lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
         manager.delegate = self
         return manager
@@ -96,7 +92,7 @@ public class Permission: NSObject {
         .LocationAlways: false
     ]
     
-    private var notificationTimer: NSTimer?
+    internal var notificationTimer: NSTimer?
     
     /**
      Creates and return a new permission for the specified domain.
@@ -124,7 +120,7 @@ public class Permission: NSObject {
         }
     }
     
-    private func callbacks(status: Permission.Status) {
+    internal func callbacks(status: Permission.Status) {
         callback(status)
         
         for set in sets {
@@ -167,240 +163,6 @@ internal extension Permission {
     
     internal func cancelHandler(action: UIAlertAction) {
         callbacks(status)
-    }
-}
-
-// MARK: - Contacts
-
-private extension Permission {
-    var statusContacts: Permission.Status {
-        if #available(iOS 9.0, *) {
-            let status = CNContactStore.authorizationStatusForEntityType(.Contacts)
-            
-            switch status {
-            case .Authorized:          return .Authorized
-            case .Restricted, .Denied: return .Denied
-            case .NotDetermined:       return .NotDetermined
-            }
-        } else {
-            let status = ABAddressBookGetAuthorizationStatus()
-            
-            switch status {
-            case .Authorized:          return .Authorized
-            case .Restricted, .Denied: return .Denied
-            case .NotDetermined:       return .NotDetermined
-            }
-        }
-    }
-    
-    func requestContacts() {
-        if #available(iOS 9.0, *) {
-            CNContactStore().requestAccessForEntityType(.Contacts) { _,_ in
-                self.callbacks(self.status)
-            }
-        } else {
-            ABAddressBookRequestAccessWithCompletion(nil) { _,_ in
-                self.callbacks(self.status)
-            }
-        }
-    }
-}
-
-// MARK: - LocationAlways
-
-private extension Permission {
-    var statusLocationAlways: Permission.Status {
-        guard CLLocationManager.locationServicesEnabled() else { return .Disabled }
-        
-        let status = CLLocationManager.authorizationStatus()
-        
-        switch status {
-        case .AuthorizedAlways: return .Authorized
-        case .AuthorizedWhenInUse:
-            let requested = UserDefaults.boolForKey(.requestedLocationAlways)
-            return requested ? .Denied : .NotDetermined
-        case .NotDetermined: return .NotDetermined
-        case .Restricted, .Denied: return .Denied
-        }
-    }
-    
-    func requestLocationAlways() {
-        guard let _ = NSBundle.mainBundle().objectForInfoDictionaryKey(.nsLocationAlwaysUsageDescription) else {
-            print("WARNING: \(.nsLocationAlwaysUsageDescription) not found in Info.plist")
-            return
-        }
-        
-        if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse {
-            UserDefaults.setBool(true, forKey: .requestedLocationAlways)
-            UserDefaults.synchronize()
-        }
-        
-        locationManager.requestAlwaysAuthorization()
-    }
-}
-
-// MARK: - LocationWhenInUse
-
-private extension Permission {
-    var statusLocationWhenInUse: Permission.Status {
-        guard CLLocationManager.locationServicesEnabled() else { return .Disabled }
-        
-        let status = CLLocationManager.authorizationStatus()
-        
-        switch status {
-        case .AuthorizedWhenInUse, .AuthorizedAlways: return .Authorized
-        case .Restricted, .Denied:                    return .Denied
-        case .NotDetermined:                          return .NotDetermined
-        }
-    }
-    
-    func requestLocationWhenInUse() {
-        guard let _ = NSBundle.mainBundle().objectForInfoDictionaryKey(.nsLocationWhenInUseUsageDescription) else {
-            print("WARNING: \(.nsLocationWhenInUseUsageDescription) not found in Info.plist")
-            return
-        }
-
-        locationManager.requestWhenInUseAuthorization()
-    }
-}
-
-// MARK: - Notifications
-
-private extension Permission {
-    var statusNotifications: Permission.Status {
-        if let types = Application.currentUserNotificationSettings()?.types where types != .None {
-            return .Authorized
-        }
-        
-        let requested = UserDefaults.boolForKey(.requestedNotifications)
-        
-        return requested ? .Denied : .NotDetermined
-    }
-    
-    func requestNotifications() {
-        NotificationCenter.addObserver(self, selector: Selector("requestingNotifications"), name: UIApplicationWillResignActiveNotification, object: nil)
-        notificationTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("finishedShowingNotificationPermission"), userInfo: nil, repeats: false)
-        Application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Sound, .Badge], categories: nil))
-    }
-    
-    @objc func requestingNotifications() {
-        NotificationCenter.removeObserver(self, name: UIApplicationWillResignActiveNotification, object: nil)
-        NotificationCenter.addObserver(self, selector: Selector("doneRequestingNotifications"), name: UIApplicationDidBecomeActiveNotification, object: nil)
-        notificationTimer?.invalidate()
-    }
-    
-    @objc func doneRequestingNotifications() {
-        NotificationCenter.removeObserver(self, name: UIApplicationWillResignActiveNotification, object: nil)
-        NotificationCenter.removeObserver(self, name: UIApplicationDidBecomeActiveNotification, object: nil)
-        notificationTimer?.invalidate()
-        
-        UserDefaults.setBool(true, forKey: .requestedNotifications)
-        UserDefaults.synchronize()
-        
-        delay(0.1) { [weak self] in
-            guard let this = self else { return }
-            this.callbacks(this.status)
-        }
-    }
-}
-
-// MARK: - Microphone
-
-private extension Permission {
-    var statusMicrophone: Permission.Status {
-        let status = AVAudioSession.sharedInstance().recordPermission()
-        
-        switch status {
-        case AVAudioSessionRecordPermission.Denied:  return .Denied
-        case AVAudioSessionRecordPermission.Granted: return .Authorized
-        default:                                     return .NotDetermined
-        }
-    }
-    
-    func requestMicrophone() {
-        AVAudioSession.sharedInstance().requestRecordPermission { _ in
-            self.callbacks(self.status)
-        }
-    }
-}
-
-// MARK: - Camera
-
-private extension Permission {
-    var statusCamera: Permission.Status {
-        let status = AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)
-        
-        switch status {
-        case .Authorized:          return .Authorized
-        case .Restricted, .Denied: return .Denied
-        case .NotDetermined:       return .NotDetermined
-        }
-    }
-    
-    func requestCamera() {
-        AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo) { _ in
-            self.callbacks(self.status)
-        }
-    }
-}
-
-// MARK: - Photos
-
-private extension Permission {
-    var statusPhotos: Permission.Status {
-        let status = PHPhotoLibrary.authorizationStatus()
-        
-        switch status {
-        case .Authorized:          return .Authorized
-        case .Denied, .Restricted: return .Denied
-        case .NotDetermined:       return .NotDetermined
-        }
-    }
-    
-    func requestPhotos() {
-        PHPhotoLibrary.requestAuthorization { _ in
-            self.callbacks(self.status)
-        }
-    }
-}
-
-// MARK: - Reminders
-
-private extension Permission {
-    var statusReminders: Permission.Status {
-        let status = EKEventStore.authorizationStatusForEntityType(.Reminder)
-        
-        switch status {
-        case .Authorized:          return .Authorized
-        case .Restricted, .Denied: return .Denied
-        case .NotDetermined:       return .NotDetermined
-        }
-    }
-    
-    func requestReminders() {
-        EKEventStore().requestAccessToEntityType(.Reminder) { _,_ in
-            self.callbacks(self.status)
-        }
-    }
-}
-
-// MARK: - Events
-
-private extension Permission {
-    var statusEvents: Permission.Status {
-        let status = EKEventStore.authorizationStatusForEntityType(.Event)
-        
-        switch status {
-        case .Authorized:          return .Authorized
-        case .Restricted, .Denied: return .Denied
-        case .NotDetermined:       return .NotDetermined
-        }
-    }
-    
-    func requestEvents() {
-        EKEventStore().requestAccessToEntityType(.Event) { _,_ in
-            self.callbacks(self.status)
-        }
     }
 }
 
