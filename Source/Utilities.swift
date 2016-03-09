@@ -34,11 +34,6 @@ extension UIControlState: Hashable {
 }
 
 internal extension String {
-    static let title = "title"
-    static let message = "message"
-    static let cancel = "cancel"
-    static let settings = "setttings"
-    
     static let nsLocationWhenInUseUsageDescription = "NSLocationWhenInUseUsageDescription"
     static let nsLocationAlwaysUsageDescription = "NSLocationAlwaysUsageDescription"
     
