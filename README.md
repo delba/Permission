@@ -45,14 +45,14 @@ permission.request { status in
 
 > The status can be either `Authorized`, `Denied`, `Disabled` or `NotDetermined`
 
-### PermissionButton
+### Permission.Button
 
-`PermissionButton` requests the permission on tap and updates itself when the permission changes.
+`Permission.Button` requests the permission on tap and updates itself when the permission changes.
 
 #### Initialization
 
 ```swift
-let button = PermissionButton(.Contacts)
+let button = Permission.Button(.Contacts)
 ```
 
 #### Customize the button
@@ -71,19 +71,19 @@ button.setTitleColor(UIColor.redColor(), forStatus: .Denied)
 button.deniedAlert.title = "You denied access to your contacts"
 ```
 
-#### PermissionSet
+#### Permission.Set
 
 ```swift
 class PermissionsViewController: UIViewController, PermissionSetDelegate {
 
     override func viewDidLoad() {
-        let photos = PermissionButton(.Photos)
-        let events = PermissionButton(.Events)
-        let camera = PermissionButton(.Camera)
+        let photos = Permission.Button(.Photos)
+        let events = Permission.Button(.Events)
+        let camera = Permission.Button(.Camera)
 
         // ...
 
-        let permissionSet = PermissionSet(photos, events, camera)
+        let permissionSet = Permission.Set(photos, events, camera)
         permissionSet.delegate = self
     }
 

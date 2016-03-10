@@ -72,10 +72,40 @@ extension Permission {
             self.init(buttons: buttons)
         }
         
+        /**
+         Creates and returns a new permission set containing the specified buttons.
+         
+         - parameter permissions: The permissions contained by the set.
+         
+         - returns: A newly created set.
+         */
+        public convenience init(_ permissions: Permission...) {
+            self.init(permissions: permissions)
+        }
+        
+        /**
+         Creates and returns a new permission set containing the specified buttons.
+         
+         - parameter permissions: The permissions contained by the set.
+         
+         - returns: A newly created set.
+         */
+        public convenience init(_ permissions: [Permission]) {
+            self.init(permissions: permissions)
+        }
+        
         private init(buttons: [Permission.Button]) {
             self.permissions = Swift.Set(buttons.map({ $0.permission }))
             
             for permission in permissions {
+                permission.sets.append(self)
+            }
+        }
+        
+        private init(permissions: [Permission]) {
+            self.permissions = Swift.Set(permissions)
+            
+            for permission in self.permissions {
                 permission.sets.append(self)
             }
         }
