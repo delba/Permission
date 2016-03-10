@@ -55,7 +55,7 @@ public class PermissionSet {
      
      - returns: A newly created set.
      */
-    public convenience init(_ buttons: PermissionButton...) {
+    public convenience init(_ buttons: Permission.Button...) {
         self.init(buttons: buttons)
     }
     
@@ -66,11 +66,11 @@ public class PermissionSet {
      
      - returns: A newly created set.
      */
-    public convenience init(_ buttons: [PermissionButton]) {
+    public convenience init(_ buttons: [Permission.Button]) {
         self.init(buttons: buttons)
     }
     
-    private init(buttons: [PermissionButton]) {
+    private init(buttons: [Permission.Button]) {
         self.permissions = Set(buttons.map({ $0.permission }))
         
         for permission in permissions {
