@@ -10,7 +10,7 @@
 
 ## Usage
 
-### Permission
+#### Permission
 
 ```swift
 let permission: Permission = .Contacts
@@ -42,7 +42,7 @@ alert.settings = "Settings"
 
 > There are two types of alerts: `deniedAlert` and `disabledAlert`
 
-### Permission.Button
+#### Permission.Button
 
 A `Permission.Button` requests the permission when tapped and updates itself when the permission changes.
 
@@ -71,6 +71,8 @@ button.setAttributedTitles([:])
 
 #### Permission.Set
 
+Use a `Permission.Set` to check the status of a group of `Permission` and to react whenever this status changes.
+
 ```swift
 class PermissionsViewController: UIViewController, PermissionSetDelegate {
 
@@ -82,15 +84,16 @@ class PermissionsViewController: UIViewController, PermissionSetDelegate {
         // ...
 
         let permissionSet = Permission.Set(photos, events, camera)
+        
         permissionSet.delegate = self
     }
 
     func permissionSet(permissionSet: Permission.Set, didRequestPermission permission: Permission) {
         switch permissionSet.status {
-        case .Authorized:    print("authorized")
-        case .Denied:        print("denied")
-        case .Disabled:      print("disabled")
-        case .NotDetermined: print("not determined")
+        case .Authorized:    print("all the permissions are granted")
+        case .Denied:        print("at least one permission is denied")
+        case .Disabled:      print("at least one permission is disabled")
+        case .NotDetermined: print("at least one permission is not determined")
         }
     }
 
