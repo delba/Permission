@@ -16,7 +16,7 @@
 let permission: Permission = .Contacts
 ```
 
-> The supported permissions are `Contacts`, `LocationAlways`, `LocationWhenInUse`, `Notifications`, `Microphone`, `Camera`, `Photos`, `Reminders`, and `Events`
+> Supported permissions: `Contacts`, `LocationAlways`, `LocationWhenInUse`, `Notifications`, `Microphone`, `Camera`, `Photos`, `Reminders`, and `Events`
 
 ```swift
 permission.request { status in
@@ -39,8 +39,6 @@ alert.message  = nil
 alert.cancel   = "Cancel"
 alert.settings = "Settings"
 ```
-
-> There are two types of alerts: `deniedAlert` and `disabledAlert`
 
 #### Permission.Button
 
