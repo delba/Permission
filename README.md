@@ -12,63 +12,61 @@
 
 ### Permission
 
-#### Initialization
-
 ```swift
 let permission: Permission = .Contacts
 ```
 
-> The supported permission domains are the following: `Contacts`, `LocationAlways`, `LocationWhenInUse`, `Notifications`, `Microphone`, `Camera`, `Photos`, `Reminders`, `Events`
-
-#### Customize the alerts
-
-You can customize the alerts `Sorry` will present to the user if you don't like the default ones:
+> The supported permissions are `Contacts`, `LocationAlways`, `LocationWhenInUse`, `Notifications`, `Microphone`, `Camera`, `Photos`, `Reminders`, and `Events`
 
 ```swift
-let alert = permission.deniedAlert
+permission.request { status in
+    switch status {
+    case .Authorized:    print("authorized")
+    case .Denied:        print("denied")
+    case .Disabled:      print("disabled")
+    case .NotDetermined: print("not determined")
+    }
+}
+```
 
-alert.title    = "You denied access to your contacts"
-alert.message  = "Please allow access in the settings app"
+You might want to customize the alerts that are presented to the user when the permission was denied/disabled.  
+
+```swift
+let alert = permission.deniedAlert // or permission.disabledAlert
+
+alert.title    = "Please allow access to your contacts"
+alert.message  = nil
 alert.cancel   = "Cancel"
 alert.settings = "Settings"
 ```
 
 > There are two types of alerts: `deniedAlert` and `disabledAlert`
 
-#### Request the permission
-
-```swift
-permission.request { status in
-    // Do something depending on status
-}
-```
-
-> The status can be either `Authorized`, `Denied`, `Disabled` or `NotDetermined`
-
 ### Permission.Button
 
-`Permission.Button` requests the permission on tap and updates itself when the permission changes.
-
-#### Initialization
+A `Permission.Button` requests the permission when tapped and updates itself when the permission changes.
 
 ```swift
-let button = Permission.Button(.Contacts)
+let button = Permission.Button(.Photos)
 ```
 
-#### Customize the button
-
-The button will update themselves when the permission status change:
+The `Permission.Button` are *very* customizable. Basically all the setters/getters of `UIButton`.
 
 ```swift
-button.setTitle("Authorized", forStatus: .Authorized, andState: .Normal)
-button.setTitleColor(UIColor.redColor(), forStatus: .Denied)
-// ...
-```
+button.setTitles([
+    .Authorized:    "Authorized",
+    .Denied:        "Denied",
+    .Disabled:      "Disabled",
+    .NotDetermined: "Not determined"
+])
 
-#### Customize the alerts
+button.setAttributedTitles([:])
+button.setTitleColors([:])
+button.setBackgroundColors([:])
+button.setAttributedTitles([:])
 
-```swift
-button.deniedAlert.title = "You denied access to your contacts"
+// etc.
+
 ```
 
 #### Permission.Set
@@ -87,9 +85,12 @@ class PermissionsViewController: UIViewController, PermissionSetDelegate {
         permissionSet.delegate = self
     }
 
-    func permissionSet(permissionSet: PermissionSet, didRequestPermission permission: Permission) {
-        if permissionSet.status == .Authorized {
-            dismissViewControllerAnimated(true, completion: nil)
+    func permissionSet(permissionSet: Permission.Set, didRequestPermission permission: Permission) {
+        switch permissionSet.status {
+        case .Authorized:    print("authorized")
+        case .Denied:        print("denied")
+        case .Disabled:      print("disabled")
+        case .NotDetermined: print("not determined")
         }
     }
 
