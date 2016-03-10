@@ -83,7 +83,7 @@ public class Permission {
     
     internal var callback: Callback!
     
-    internal var sets = [PermissionSet]()
+    internal var sets: [Permission.Set] = []
     
     /**
      Creates and return a new permission for the specified domain.
