@@ -1,5 +1,7 @@
 //
-//  Utilities.swift
+//  Events.swift
+//
+// Copyright (c) 2016 Damien (http://delba.io)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -20,23 +22,22 @@
 // SOFTWARE.
 //
 
-internal let Application = UIApplication.sharedApplication()
-internal let UserDefaults = NSUserDefaults.standardUserDefaults()
-internal let NotificationCenter = NSNotificationCenter.defaultCenter()
+import EventKit
 
-internal func delay(delay: Double, queue: dispatch_queue_t = dispatch_get_main_queue(), callback: () -> Void) {
-    let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC)))
-    dispatch_after(time, queue, callback)
-}
-
-extension UIControlState: Hashable {
-    public var hashValue: Int { return Int(rawValue) }
-}
-
-internal extension String {
-    static let nsLocationWhenInUseUsageDescription = "NSLocationWhenInUseUsageDescription"
-    static let nsLocationAlwaysUsageDescription = "NSLocationAlwaysUsageDescription"
+internal extension Permission {
+    var statusEvents: Permission.Status {
+        let status = EKEventStore.authorizationStatusForEntityType(.Event)
+        
+        switch status {
+        case .Authorized:          return .Authorized
+        case .Restricted, .Denied: return .Denied
+        case .NotDetermined:       return .NotDetermined
+        }
+    }
     
-    static let requestedNotifications = "sorry_requestedNotifications"
-    static let requestedLocationAlways = "sorry_requestedLocationAlways"
+    func requestEvents(callback: Callback) {
+        EKEventStore().requestAccessToEntityType(.Event) { _,_ in
+            callback(self.status)
+        }
+    }
 }

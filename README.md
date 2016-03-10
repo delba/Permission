@@ -10,88 +10,87 @@
 
 ## Usage
 
-### Permission
-
-#### Initialization
+#### Permission
 
 ```swift
-let permission = Permission(.Contacts)
+let permission: Permission = .Contacts
 ```
 
-The supported permission types are the following: `Contacts`, `LocationAlways`, `LocationWhenInUse`, `Notifications`, `Microphone`, `Camera`, `Photos`, `Reminders`, `Events`
-
-#### Customize the alerts
-
-You can customize the alerts `Sorry` will present to the user if you don't like the default ones:
-
-```swift
-permission.configureAlert(.Denied) {
-    $0.title = "You denied access to your contacts"
-    $0.message = "Please allow access in the settings app"
-    $0.cancel = "Cancel"
-    $0.settings = "Settings"
-}
-```
-
-> Note: Only the alerts with `Denied` and `Disabled` statuses can be configured.
-
-#### Request the permission
+> Supported permissions: `Contacts`, `LocationAlways`, `LocationWhenInUse`, `Notifications`, `Microphone`, `Camera`, `Photos`, `Reminders`, and `Events`
 
 ```swift
 permission.request { status in
-    // Do something depending on status
+    switch status {
+    case .Authorized:    print("authorized")
+    case .Denied:        print("denied")
+    case .Disabled:      print("disabled")
+    case .NotDetermined: print("not determined")
+    }
 }
 ```
 
-The status can be either `Authorized`, `Denied`, `Disabled` or `NotDetermined`
-
-### PermissionButton
-
-`PermissionButton` requests the permission on tap and updates itself when the permission changes.
-
-#### Initialization
+You might want to customize the alerts that are presented to the user when the permission was denied/disabled.  
 
 ```swift
-let button = PermissionButton(.Contacts)
+let alert = permission.deniedAlert // or permission.disabledAlert
+
+alert.title    = "Please allow access to your contacts"
+alert.message  = nil
+alert.cancel   = "Cancel"
+alert.settings = "Settings"
 ```
 
-#### Customize the button
+#### Permission.Button
 
-The button will update themselves when the permission status change:
+A `Permission.Button` requests the permission when tapped and updates itself when the permission changes.
 
 ```swift
-button.setTitle("Authorized", forStatus: .Authorized, andState: .Normal)
-button.setTitleColor(UIColor.redColor(), forStatus: .Denied)
-// ...
+let button = Permission.Button(.Photos)
 ```
 
-#### Customize the alerts
+The `Permission.Button` are *very* customizable. Basically all the setters/getters of `UIButton`.
 
 ```swift
-button.configureAlert(.Denied) {
-    $0.title = "You denied access to your contacts"
-}
+button.setTitles([
+    .Authorized:    "Authorized",
+    .Denied:        "Denied",
+    .Disabled:      "Disabled",
+    .NotDetermined: "Not determined"
+])
+
+button.setAttributedTitles([:])
+button.setTitleColors([:])
+button.setBackgroundColors([:])
+button.setAttributedTitles([:])
+
+// etc.
 ```
 
-#### PermissionSet
+#### Permission.Set
+
+Use a `Permission.Set` to check the status of a group of `Permission` and to react whenever this status changes.
 
 ```swift
 class PermissionsViewController: UIViewController, PermissionSetDelegate {
 
     override func viewDidLoad() {
-        let photos = PermissionButton(.Photos)
-        let events = PermissionButton(.Events)
-        let camera = PermissionButton(.Camera)
+        let photos = Permission.Button(.Photos)
+        let events = Permission.Button(.Events)
+        let camera = Permission.Button(.Camera)
 
         // ...
 
-        let permissionSet = PermissionSet(photos, events, camera)
+        let permissionSet = Permission.Set(photos, events, camera)
+        
         permissionSet.delegate = self
     }
 
-    func permissionSet(permissionSet: PermissionSet, didRequestPermission permission: Permission) {
-        if permissionSet.status == .Authorized {
-            dismissViewControllerAnimated(true, completion: nil)
+    func permissionSet(permissionSet: Permission.Set, didRequestPermission permission: Permission) {
+        switch permissionSet.status {
+        case .Authorized:    print("all the permissions are granted")
+        case .Denied:        print("at least one permission is denied")
+        case .Disabled:      print("at least one permission is disabled")
+        case .NotDetermined: print("at least one permission is not determined")
         }
     }
 
