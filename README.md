@@ -73,16 +73,21 @@ Use a `Permission.Set` to check the status of a group of `Permission` and to rea
 ```swift
 class PermissionsViewController: UIViewController, PermissionSetDelegate {
 
+    let label = UILabel()
+
     override func viewDidLoad() {
-        let photos = Permission.Button(.Photos)
-        let events = Permission.Button(.Events)
-        let camera = Permission.Button(.Camera)
+        let contacts   = Permission.Button(.Contacts)
+        let camera     = Permission.Button(.Camera)
+        let microphone = Permission.Button(.Microphone)
+        let photos     = Permission.Button(.Photos)
 
         // ...
 
-        let permissionSet = Permission.Set(photos, events, camera)
+        let permissionSet = Permission.Set(contacts, camera, microphone, photos)
         
         permissionSet.delegate = self
+        
+        label.text = String(permissionSet.status)
     }
 
     func permissionSet(permissionSet: Permission.Set, didRequestPermission permission: Permission) {
@@ -92,10 +97,14 @@ class PermissionsViewController: UIViewController, PermissionSetDelegate {
         case .Disabled:      print("at least one permission is disabled")
         case .NotDetermined: print("at least one permission is not determined")
         }
+        
+        label.text = String(permissionSet.status)
     }
 
 }
 ```
+
+<img align="center" src="https://raw.githubusercontent.com/delba/Sorry/assets/sorry.gif" />
 
 ## Installation
 
