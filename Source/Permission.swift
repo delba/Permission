@@ -117,10 +117,12 @@ public class Permission {
     // TODO: make private
     
     internal func callbacks(status: Permission.Status) {
-        callback(status)
+        dispatch_async(dispatch_get_main_queue()) {
+            self.callback(status)
         
-        for set in sets {
-            set.didRequestPermission(self)
+            for set in self.sets {
+                set.didRequestPermission(self)
+            }
         }
     }
 }

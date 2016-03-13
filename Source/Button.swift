@@ -484,9 +484,7 @@ private extension Permission.Button {
     
     @objc func tapped(button: Permission.Button) {
         permission.request { [weak self] status in
-            dispatch_async(dispatch_get_main_queue()) {
-                self?.render()
-            }
+            self?.render()
         }
     }
 }
