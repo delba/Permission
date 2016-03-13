@@ -22,8 +22,6 @@
 // SOFTWARE.
 //
 
-import EventKit
-
 public typealias Callback = Permission.Status -> Void
 
 public class Permission {
