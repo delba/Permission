@@ -94,12 +94,10 @@ extension Permission {
             self.init(permissions: permissions)
         }
         
-        private init(buttons: [Permission.Button]) {
-            self.permissions = Swift.Set(buttons.map({ $0.permission }))
+        private convenience init(buttons: [Permission.Button]) {
+            let permissions = buttons.map({ $0.permission })
             
-            for permission in permissions {
-                permission.sets.append(self)
-            }
+            self.init(permissions: permissions)
         }
         
         private init(permissions: [Permission]) {
