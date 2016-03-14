@@ -61,7 +61,7 @@ internal extension Permission {
         
         delay(0.1) { [weak self] in
             guard let this = self else { return }
-            this.callbacks(this.status)
+            this.callbacks(this.statusNotifications)
         }
     }
 }

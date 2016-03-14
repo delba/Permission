@@ -37,7 +37,7 @@ internal extension Permission {
     
     func requestReminders(callback: Callback) {
         EKEventStore().requestAccessToEntityType(.Reminder) { _,_ in
-            callback(self.status)
+            callback(self.statusReminders)
         }
     }
 }

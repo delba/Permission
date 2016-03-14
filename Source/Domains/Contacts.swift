@@ -51,11 +51,11 @@ internal extension Permission {
     func requestContacts(callback: Callback) {
         if #available(iOS 9.0, *) {
             CNContactStore().requestAccessForEntityType(.Contacts) { _,_ in
-                callback(self.status)
+                callback(self.statusContacts)
             }
         } else {
             ABAddressBookRequestAccessWithCompletion(nil) { _,_ in
-                callback(self.status)
+                callback(self.statusContacts)
             }
         }
     }

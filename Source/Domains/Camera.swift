@@ -37,7 +37,7 @@ internal extension Permission {
     
     func requestCamera(callback: Callback) {
         AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo) { _ in
-            callback(self.status)
+            callback(self.statusCamera)
         }
     }
 }
