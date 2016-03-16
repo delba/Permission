@@ -37,9 +37,7 @@ extension Permission {
             return permission.domain
         }
         
-        private var callback: Callback {
-            return permission.callbacks
-        }
+        private var callback: Callback!
         
         /// The title of the alert.
         public var title: String?
@@ -64,7 +62,7 @@ extension Permission {
         }
         
         internal func present(callback: Callback) {
-            // TODO: pass callback to settings handler and cancelHandler
+            self.callback = callback
             
             dispatch_async(dispatch_get_main_queue()) {
                 if let vc = Application.delegate?.window??.rootViewController {

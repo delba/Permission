@@ -149,8 +149,6 @@ public class Permission {
         }
     }
     
-    // TODO: make private
-    
     internal func callbacks(status: Permission.Status) {
         dispatch_async(dispatch_get_main_queue()) {
             self.callback(status)
