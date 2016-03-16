@@ -34,6 +34,14 @@ internal extension Permission {
 class LocationManagerDelegate: NSObject, CLLocationManagerDelegate {
     let permission: Permission
     
+    var callback: Callback {
+        return permission.callbacks
+    }
+    
+    var status: Permission.Status {
+        return permission.status
+    }
+    
     var locationStatusDidChange: [Permission.Domain: Bool] = [
         .LocationWhenInUse: false,
         .LocationAlways: false
@@ -49,10 +57,6 @@ class LocationManagerDelegate: NSObject, CLLocationManagerDelegate {
             return
         }
         
-        dispatch_async(dispatch_get_main_queue()) { [weak self] in
-            guard self != nil else { return }
-            
-            self!.permission.callbacks(self!.permission.status)
-        }
+        callback(self.status)
     }
 }
