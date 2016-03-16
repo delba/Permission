@@ -8,7 +8,7 @@
   <a href="https://github.com/Carthage/Carthage"><img alt="Carthage compatible" src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat"/></a>
 </p>
 
-**Sorry** provides a unified API to request permissions on iOS and highly customizable UI elements.
+**Sorry** exposes a unified API to request permissions on iOS. The library has been designed to be UI agnostic: while providing highly customizable UI elements, it does not constraint you to adopt a certain kind of interface.
 
 > See [`PermissionScope`](https://github.com/nickoneill/PermissionScope) for a different approach.
 
@@ -24,7 +24,7 @@
 let permission: Permission = .Contacts
 ```
 
-> Supported permissions: `Camera`, `Contacts`, `Events`, `Microphone`, `Notifications`, `Photos`, `Reminders`, `LocationAlways`, and `LocationWhenInUse`.
+> Supported permissions: `Bluetooth`, `Camera`, `Contacts`, `Events`, `Motion`, `Microphone`, `Notifications`, `Photos`, `Reminders`, `LocationAlways`, and `LocationWhenInUse`.
 
 ```swift
 permission.request { status in
@@ -48,32 +48,6 @@ alert.cancel   = "Cancel"
 alert.settings = "Settings"
 ```
 
-#### Permission.Button
-
-A `Permission.Button` requests the permission when tapped and updates itself when the permission changes.
-
-```swift
-let button = Permission.Button(.Photos)
-```
-
-The `Permission.Button` are *very* customizable. Basically all the setters/getters of `UIButton`.
-
-```swift
-button.setTitles([
-    .Authorized:    "Authorized",
-    .Denied:        "Denied",
-    .Disabled:      "Disabled",
-    .NotDetermined: "Not determined"
-])
-
-button.setAttributedTitles([:])
-button.setTitleColors([:])
-button.setBackgroundColors([:])
-button.setAttributedTitles([:])
-
-// etc.
-```
-
 #### Permission.Set
 
 Use a `Permission.Set` to check the status of a group of `Permission` and to react whenever it changes.
@@ -92,6 +66,32 @@ func permissionSet(permissionSet: Permission.Set, didRequestPermission permissio
     case .NotDetermined: print("at least one permission is not determined")
     }
 }
+```
+
+#### Permission.Button
+
+A `Permission.Button` requests the permission when tapped and updates itself when its status changes.
+
+```swift
+let button = Permission.Button(.Photos)
+```
+
+The `Permission.Button` are *very* customizable. All the getters and setters of `UIButton` have their equivalent.
+
+```swift
+button.setTitles([
+    .Authorized:    "Authorized",
+    .Denied:        "Denied",
+    .Disabled:      "Disabled",
+    .NotDetermined: "Not determined"
+])
+
+button.setAttributedTitles([:])
+button.setTitleColors([:])
+button.setBackgroundColors([:])
+button.setAttributedTitles([:])
+
+// etc.
 ```
 
 ## Example
