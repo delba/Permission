@@ -135,22 +135,6 @@ public class Permission {
         }
     }
     
-    // TODO: make private
-    
-    internal func callbacks(status: Permission.Status) {
-        dispatch_async(dispatch_get_main_queue()) {
-            self.callback(status)
-        
-            for set in self.sets {
-                set.didRequestPermission(self)
-            }
-        }
-    }
-}
-
-// MARK: - Request Authorizations
-
-internal extension Permission {
     private func requestAuthorization(callback: Callback) {
         switch domain {
         case .Contacts:          requestContacts(callback)
@@ -162,6 +146,18 @@ internal extension Permission {
         case .Photos:            requestPhotos(callback)
         case .Reminders:         requestReminders(callback)
         case .Events:            requestEvents(callback)
+        }
+    }
+    
+    // TODO: make private
+    
+    internal func callbacks(status: Permission.Status) {
+        dispatch_async(dispatch_get_main_queue()) {
+            self.callback(status)
+        
+            for set in self.sets {
+                set.didRequestPermission(self)
+            }
         }
     }
 }
