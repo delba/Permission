@@ -52,7 +52,11 @@ extension Permission {
         
         /// The textual representation of self.
         public var description: String {
-            return "\(status) - \(permissions.map({$0.description}))"
+            return [
+                "\(status): [",
+                permissions.map{ "\t\($0.description)" }.joinWithSeparator(",\n"),
+                "]"
+            ].joinWithSeparator("\n")
         }
         
         /**
