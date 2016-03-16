@@ -24,6 +24,19 @@
 
 extension Permission {
     public class Alert {
+        /// The permission.
+        private let permission: Permission
+        
+        /// The status of the permission.
+        private var status: Permission.Status {
+            return permission.status
+        }
+        
+        /// The domain of the permission.
+        private var domain: Permission.Domain {
+            return permission.domain
+        }
+        
         /// The title of the alert.
         public var title: String?
         
@@ -33,14 +46,10 @@ extension Permission {
         /// The title of the cancel action.
         public var cancel: String?
         
-        internal var status: Permission.Status!
-        
-        private let permission: Permission
-        
         var controller: UIAlertController {
             let controller = UIAlertController(title: title, message: message, preferredStyle: .Alert)
             
-            let action = UIAlertAction(title: cancel, style: .Cancel, handler: permission.cancelHandler)
+            let action = UIAlertAction(title: cancel, style: .Cancel, handler: cancelHandler)
             controller.addAction(action)
             
             return controller
@@ -59,6 +68,10 @@ extension Permission {
                 }
             }
         }
+    
+        private func cancelHandler(action: UIAlertAction) {
+            permission.callbacks(status)
+        }
     }
 
     class DeniedAlert: Alert {
@@ -76,20 +89,23 @@ extension Permission {
         override init(permission: Permission) {
             super.init(permission: permission)
             
-            status = .Denied
-            
-            title    = "Permission for \(permission.domain) was denied"
-            message  = "Please enable access to \(permission.domain) in the Settings app."
+            title    = "Permission for \(domain) was denied"
+            message  = "Please enable access to \(domain) in the Settings app."
             cancel   = "Cancel"
             settings = "Settings"
         }
         
         private func settingsHandler(action: UIAlertAction) {
-            NotificationCenter.addObserver(permission, selector: Selector("settingsHandler"), name: UIApplicationDidBecomeActiveNotification, object: nil)
+            NotificationCenter.addObserver(self, selector: Selector("settingsHandler"), name: UIApplicationDidBecomeActiveNotification, object: nil)
             
             if let URL = NSURL(string: UIApplicationOpenSettingsURLString) {
                 Application.openURL(URL)
             }
+        }
+    
+        @objc private func settingsHandler() {
+            NotificationCenter.removeObserver(self, name: UIApplicationDidBecomeActiveNotification, object: nil)
+            permission.callbacks(status)
         }
     }
 
@@ -97,10 +113,8 @@ extension Permission {
         override init(permission: Permission) {
             super.init(permission: permission)
             
-            status = .Disabled
-            
-            title   = "\(permission.domain) is currently disabled"
-            message = "Please enable access to \(permission.domain) in the Settings app."
+            title   = "\(domain) is currently disabled"
+            message = "Please enable access to \(domain) in the Settings app."
             cancel  = "OK"
         }
     }

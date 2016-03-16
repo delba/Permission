@@ -141,15 +141,6 @@ internal extension Permission {
         case .Events:            requestEvents(callback)
         }
     }
-    
-    @objc private func settingsHandler() {
-        NotificationCenter.removeObserver(self, name: UIApplicationDidBecomeActiveNotification, object: nil)
-        callbacks(status)
-    }
-    
-    internal func cancelHandler(action: UIAlertAction) {
-        callbacks(status)
-    }
 }
 
 extension Permission: Hashable {
