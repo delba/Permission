@@ -37,6 +37,10 @@ extension Permission {
             return permission.domain
         }
         
+        private var callback: Callback {
+            return permission.callbacks
+        }
+        
         /// The title of the alert.
         public var title: String?
         
@@ -70,7 +74,17 @@ extension Permission {
         }
     
         private func cancelHandler(action: UIAlertAction) {
-            permission.callbacks(status)
+            callback(status)
+        }
+    }
+
+    class DisabledAlert: Alert {
+        override init(permission: Permission) {
+            super.init(permission: permission)
+            
+            title   = "\(domain) is currently disabled"
+            message = "Please enable access to \(domain) in the Settings app."
+            cancel  = "OK"
         }
     }
 
@@ -105,17 +119,7 @@ extension Permission {
     
         @objc private func settingsHandler() {
             NotificationCenter.removeObserver(self, name: UIApplicationDidBecomeActiveNotification, object: nil)
-            permission.callbacks(status)
-        }
-    }
-
-    class DisabledAlert: Alert {
-        override init(permission: Permission) {
-            super.init(permission: permission)
-            
-            title   = "\(domain) is currently disabled"
-            message = "Please enable access to \(domain) in the Settings app."
-            cancel  = "OK"
+            callback(status)
         }
     }
 }
