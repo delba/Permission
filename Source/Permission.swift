@@ -72,20 +72,6 @@ public class Permission {
     /// The permission domain.
     public let domain: Domain
     
-    /// The textual representation of self.
-    public var description: String {
-        return "\(domain.description) - \(status)"
-    }
-    
-    internal var prettyDescription: String {
-        switch domain {
-        case .LocationAlways, .LocationWhenInUse:
-            return "Location"
-        default:
-            return domain.description
-        }
-    }
-    
     /// The permission status.
     public var status: Permission.Status {
         switch domain {
@@ -167,6 +153,24 @@ public class Permission {
             }
         }
     }
+}
+
+extension Permission: CustomStringConvertible {
+    /// The textual representation of self.
+    public var description: String {
+        return "\(domain.description) - \(status)"
+    }
+    
+    /// The pretty textual representation of self. 
+    internal var prettyDescription: String {
+        switch domain {
+        case .LocationAlways, .LocationWhenInUse:
+            return "Location"
+        default:
+            return domain.description
+        }
+    }
+    
 }
 
 extension Permission: Hashable {

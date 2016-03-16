@@ -50,15 +50,6 @@ extension Permission {
             return .Authorized
         }
         
-        /// The textual representation of self.
-        public var description: String {
-            return [
-                "\(status): [",
-                permissions.map{ "\t\($0.description)" }.joinWithSeparator(",\n"),
-                "]"
-            ].joinWithSeparator("\n")
-        }
-        
         /**
          Creates and returns a new permission set containing the specified buttons.
          
@@ -120,6 +111,17 @@ extension Permission {
         internal func didRequestPermission(permission: Permission) {
             delegate?.permissionSet(self, didRequestPermission: permission)
         }
+    }
+}
+
+extension Permission.Set: CustomStringConvertible {
+    /// The textual representation of self.
+    public var description: String {
+        return [
+            "\(status): [",
+            permissions.map{ "\t\($0.description)" }.joinWithSeparator(",\n"),
+            "]"
+            ].joinWithSeparator("\n")
     }
 }
 
