@@ -23,40 +23,22 @@
 
 import CoreLocation
 
-internal extension Permission {
-    var locationManager: CLLocationManager {
-        let manager = CLLocationManager()
-        manager.delegate = LocationManagerDelegate(permission: self)
-        return manager
+internal let LocationManager = CLLocationManager()
+
+extension Permission: CLLocationManagerDelegate {
+    public func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        callbacks(self.status)
     }
 }
 
-class LocationManagerDelegate: NSObject, CLLocationManagerDelegate {
-    let permission: Permission
-    
-    var callback: Callback {
-        return permission.callbacks
-    }
-    
-    var status: Permission.Status {
-        return permission.status
-    }
-    
-    var locationStatusDidChange: [Permission.Domain: Bool] = [
-        .LocationWhenInUse: false,
-        .LocationAlways: false
-    ]
-    
-    init(permission: Permission) {
-        self.permission = permission
-    }
-    
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        guard locationStatusDidChange[permission.domain]! else {
-            locationStatusDidChange[permission.domain] = true
-            return
-        }
+extension CLLocationManager {
+    func request(permission: Permission) {
+        delegate = permission
         
-        callback(self.status)
+        switch permission.domain {
+        case .LocationAlways: requestAlwaysAuthorization()
+        case .LocationWhenInUse: requestWhenInUseAuthorization()
+        default: break
+        }
     }
 }

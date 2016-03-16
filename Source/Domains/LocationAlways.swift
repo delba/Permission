@@ -53,6 +53,6 @@ internal extension Permission {
             UserDefaults.synchronize()
         }
         
-        locationManager.requestAlwaysAuthorization()
+        LocationManager.request(self)
     }
 }

@@ -24,7 +24,7 @@
 
 public typealias Callback = Permission.Status -> Void
 
-public class Permission {
+public class Permission: NSObject {
     public enum Status {
         case Authorized, Denied, Disabled, NotDetermined
     }
@@ -155,9 +155,9 @@ public class Permission {
     }
 }
 
-extension Permission: CustomStringConvertible {
+extension Permission {
     /// The textual representation of self.
-    public var description: String {
+    override public var description: String {
         return "\(domain.description) - \(status)"
     }
     
@@ -171,14 +171,4 @@ extension Permission: CustomStringConvertible {
         }
     }
     
-}
-
-extension Permission: Hashable {
-    public var hashValue: Int {
-        return domain.hashValue
-    }
-}
-
-public func ==(lhs: Permission, rhs: Permission) -> Bool {
-    return lhs.hashValue == rhs.hashValue
 }

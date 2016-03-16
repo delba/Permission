@@ -43,9 +43,7 @@ internal extension Permission {
             return
         }
         
-        // TODO: locationManager(callback: callback).requestWhenInUseAuthorization()
-
-        locationManager.requestWhenInUseAuthorization()
+        LocationManager.request(self)
     }
 }
 
