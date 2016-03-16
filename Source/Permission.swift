@@ -77,6 +77,15 @@ public class Permission {
         return "\(domain.description) - \(status)"
     }
     
+    internal var prettyDescription: String {
+        switch domain {
+        case .LocationAlways, .LocationWhenInUse:
+            return "Location"
+        default:
+            return domain.description
+        }
+    }
+    
     /// The permission status.
     public var status: Permission.Status {
         switch domain {
