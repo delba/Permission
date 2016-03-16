@@ -39,6 +39,15 @@ public class Permission {
         case Photos
         case Reminders
         case Events
+        
+        /// A textual representation of self.
+        public var description: String {
+            switch self {
+            case .LocationAlways: return "Location always"
+            case .LocationWhenInUse: return "Location when in use"
+            default: return String(self)
+            }
+        }
     }
     
     public static let Contacts          = Permission(.Contacts)
@@ -53,6 +62,11 @@ public class Permission {
     
     /// The permission domain.
     public let domain: Domain
+    
+    /// A textual representation of self.
+    public var description: String {
+        return "\(domain.description) - \(status)"
+    }
     
     /// The permission status.
     public var status: Permission.Status {
