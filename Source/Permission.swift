@@ -39,6 +39,7 @@ public class Permission: NSObject {
         case Photos
         case Reminders
         case Events
+        case Bluetooth
         
         /// The textual representation of self.
         public var description: String {
@@ -68,6 +69,8 @@ public class Permission: NSObject {
     public static let Reminders         = Permission(.Reminders)
     /// The permission to access the user's events.
     public static let Events            = Permission(.Events)
+    /// The permission to access the user's bluetooth.
+    public static let Bluetooth         = Permission(.Bluetooth)
     
     /// The permission domain.
     public let domain: Domain
@@ -84,6 +87,7 @@ public class Permission: NSObject {
         case .Photos:            return statusPhotos
         case .Reminders:         return statusReminders
         case .Events:            return statusEvents
+        case .Bluetooth:         return statusBluetooth
         }
     }
     
@@ -141,6 +145,7 @@ public class Permission: NSObject {
         case .Photos:            requestPhotos(callback)
         case .Reminders:         requestReminders(callback)
         case .Events:            requestEvents(callback)
+        case .Bluetooth:         requestBluetooth(callback)
         }
     }
     
