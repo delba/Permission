@@ -83,7 +83,7 @@ extension Permission {
             super.init(permission: permission)
             
             title   = "\(domain) is currently disabled"
-            message = "Please enable access to \(domain) in the Settings app."
+            message = "Please enable the access to your \(domain.description.lowercaseString) in the settings."
             cancel  = "OK"
         }
     }
@@ -103,8 +103,8 @@ extension Permission {
         override init(permission: Permission) {
             super.init(permission: permission)
             
-            title    = "Permission for \(domain) was denied"
-            message  = "Please enable access to \(domain) in the Settings app."
+            title    = "The access to the \(domain.description.lowercaseString) has been denied"
+            message  = "Please enable the access to your \(domain.description.lowercaseString) in the settings."
             cancel   = "Cancel"
             settings = "Settings"
         }
