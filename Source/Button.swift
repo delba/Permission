@@ -51,6 +51,11 @@ extension Permission {
             return permission.disabledAlert
         }
         
+        /// The textual representation of self.
+        public override var description: String {
+            return permission.description
+        }
+        
         // MARK: - Initialization
         
         /**

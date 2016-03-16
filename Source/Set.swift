@@ -50,6 +50,11 @@ extension Permission {
             return .Authorized
         }
         
+        /// The textual representation of self.
+        public var description: String {
+            return "\(status) - \(permissions.map({$0.description}))"
+        }
+        
         /**
          Creates and returns a new permission set containing the specified buttons.
          
