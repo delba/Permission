@@ -40,7 +40,7 @@ public class Permission {
         case Reminders
         case Events
         
-        /// A textual representation of self.
+        /// The textual representation of self.
         public var description: String {
             switch self {
             case .LocationAlways: return "Location always"
@@ -50,20 +50,29 @@ public class Permission {
         }
     }
     
+    /// The permission to access the user's contacts.
     public static let Contacts          = Permission(.Contacts)
+    /// The permission to access the user's location when the app is in background.
     public static let LocationAlways    = Permission(.LocationAlways)
+    /// The permission to access the user's location when the app is in use.
     public static let LocationWhenInUse = Permission(.LocationWhenInUse)
+    /// The permission to send notifications.
     public static let Notifications     = Permission(.Notifications)
+    /// The permission to access the microphone.
     public static let Microphone        = Permission(.Microphone)
+    /// The permission to access the camera.
     public static let Camera            = Permission(.Camera)
+    /// The permission to access the user's photos.
     public static let Photos            = Permission(.Photos)
+    /// The permission to access the user's reminders.
     public static let Reminders         = Permission(.Reminders)
+    /// The permission to access the user's events.
     public static let Events            = Permission(.Events)
     
     /// The permission domain.
     public let domain: Domain
     
-    /// A textual representation of self.
+    /// The textual representation of self.
     public var description: String {
         return "\(domain.description) - \(status)"
     }
