@@ -14,6 +14,7 @@
 		6D86A9C21BEBDC7D00E3DD5A /* SorryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D86A9C11BEBDC7D00E3DD5A /* SorryTests.swift */; };
 		6D86A9CD1BEBDC9000E3DD5A /* Permission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D86A9CC1BEBDC9000E3DD5A /* Permission.swift */; };
 		6D935F5D1C9A0FEA00BB39E3 /* Bluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D935F5C1C9A0FEA00BB39E3 /* Bluetooth.swift */; };
+		6D935F5F1C9A14AB00BB39E3 /* Motion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D935F5E1C9A14AB00BB39E3 /* Motion.swift */; };
 		6DA8B4B01BFB80E9007A94FC /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA8B4AF1BFB80E9007A94FC /* Button.swift */; };
 		6DA8B4B21BFB8AD8007A94FC /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA8B4B11BFB8AD8007A94FC /* Alert.swift */; };
 		6DF9C2AF1C8F4F2A000710C1 /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF9C2AE1C8F4F2A000710C1 /* Contacts.swift */; };
@@ -49,6 +50,7 @@
 		6D86A9C31BEBDC7D00E3DD5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6D86A9CC1BEBDC9000E3DD5A /* Permission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Permission.swift; sourceTree = "<group>"; };
 		6D935F5C1C9A0FEA00BB39E3 /* Bluetooth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bluetooth.swift; sourceTree = "<group>"; };
+		6D935F5E1C9A14AB00BB39E3 /* Motion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Motion.swift; sourceTree = "<group>"; };
 		6DA8B4AF1BFB80E9007A94FC /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		6DA8B4B11BFB8AD8007A94FC /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		6DF9C2AE1C8F4F2A000710C1 /* Contacts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 		6DF9C2B01C8F4F30000710C1 /* Domains */ = {
 			isa = PBXGroup;
 			children = (
+				6D935F5E1C9A14AB00BB39E3 /* Motion.swift */,
 				6D935F5C1C9A0FEA00BB39E3 /* Bluetooth.swift */,
 				6DF9C2BB1C8F4FDA000710C1 /* Camera.swift */,
 				6DF9C2AE1C8F4F2A000710C1 /* Contacts.swift */,
@@ -266,6 +269,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D935F5F1C9A14AB00BB39E3 /* Motion.swift in Sources */,
 				6D935F5D1C9A0FEA00BB39E3 /* Bluetooth.swift in Sources */,
 				6DF9C2B81C8F4F8F000710C1 /* Notifications.swift in Sources */,
 				6D0069B41C1868E8002FDB42 /* Set.swift in Sources */,
