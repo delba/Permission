@@ -24,7 +24,7 @@
 
 import CoreBluetooth
 
-internal let BluetoothManager = CBPeripheralManager()
+private let BluetoothManager = CBPeripheralManager()
 
 extension Permission {
     var statusBluetooth: Permission.Status {
