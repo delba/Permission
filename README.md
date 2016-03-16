@@ -8,6 +8,14 @@
   <a href="https://github.com/Carthage/Carthage"><img alt="Carthage compatible" src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat"/></a>
 </p>
 
+**Sorry** provides a unified API to request permissions on iOS and highly customizable UI elements.
+
+> See [`PermissionScope`](https://github.com/nickoneill/PermissionScope) for a different approach.
+
+<p align="center">
+    <a href="#usage">Usage</a> • <a href="#example">Example</a> • <a href="#installation">Installation</a> • <a href="#license">License</a>
+</p>
+
 ## Usage
 
 #### Permission
@@ -16,7 +24,7 @@
 let permission: Permission = .Contacts
 ```
 
-> Supported permissions: `Contacts`, `LocationAlways`, `LocationWhenInUse`, `Notifications`, `Microphone`, `Camera`, `Photos`, `Reminders`, and `Events`
+> Supported permissions: `Camera`, `Contacts`, `Events`, `Microphone`, `Notifications`, `Photos`, `Reminders`, `LocationAlways`, and `LocationWhenInUse`.
 
 ```swift
 permission.request { status in
@@ -68,7 +76,25 @@ button.setAttributedTitles([:])
 
 #### Permission.Set
 
-Use a `Permission.Set` to check the status of a group of `Permission` and to react whenever this status changes.
+Use a `Permission.Set` to check the status of a group of `Permission` and to react whenever it changes.
+
+```swift
+let permissionSet = Permission.Set(.Contacts, .Camera, .Microphone, .Photos)
+permissionSet.delegate = self
+
+// ...
+
+func permissionSet(permissionSet: Permission.Set, didRequestPermission permission: Permission) {
+    switch permissionSet.status {
+    case .Authorized:    print("all the permissions are granted")
+    case .Denied:        print("at least one permission is denied")
+    case .Disabled:      print("at least one permission is disabled")
+    case .NotDetermined: print("at least one permission is not determined")
+    }
+}
+```
+
+## Example
 
 ```swift
 class PermissionsViewController: UIViewController, PermissionSetDelegate {
@@ -91,16 +117,8 @@ class PermissionsViewController: UIViewController, PermissionSetDelegate {
     }
 
     func permissionSet(permissionSet: Permission.Set, didRequestPermission permission: Permission) {
-        switch permissionSet.status {
-        case .Authorized:    print("all the permissions are granted")
-        case .Denied:        print("at least one permission is denied")
-        case .Disabled:      print("at least one permission is disabled")
-        case .NotDetermined: print("at least one permission is not determined")
-        }
-        
         label.text = String(permissionSet.status)
     }
-
 }
 ```
 
