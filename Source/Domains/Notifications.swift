@@ -32,9 +32,7 @@ internal extension Permission {
             return .Authorized
         }
         
-        let requested = UserDefaults.boolForKey(.requestedNotifications)
-        
-        return requested ? .Denied : .NotDetermined
+        return Defaults.requestedNotifications ? .Denied : .NotDetermined
     }
     
     func requestNotifications(callback: Callback) {
@@ -56,8 +54,7 @@ internal extension Permission {
         NotificationCenter.removeObserver(self, name: UIApplicationDidBecomeActiveNotification, object: nil)
         notificationTimer?.invalidate()
         
-        UserDefaults.setBool(true, forKey: .requestedNotifications)
-        UserDefaults.synchronize()
+        Defaults.requestedNotifications = true
         
         delay(0.1) { [weak self] in
             guard let this = self else { return }

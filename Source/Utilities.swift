@@ -21,7 +21,7 @@
 //
 
 internal let Application = UIApplication.sharedApplication()
-internal let UserDefaults = NSUserDefaults.standardUserDefaults()
+internal let Defaults = NSUserDefaults.standardUserDefaults()
 internal let NotificationCenter = NSNotificationCenter.defaultCenter()
 
 internal func delay(delay: Double, queue: dispatch_queue_t = dispatch_get_main_queue(), callback: () -> Void) {
@@ -39,4 +39,26 @@ internal extension String {
     
     static let requestedNotifications = "sorry_requestedNotifications"
     static let requestedLocationAlways = "sorry_requestedLocationAlways"
+}
+
+extension NSUserDefaults {
+    var requestedLocationAlways: Bool {
+        get {
+            return boolForKey(.requestedLocationAlways)
+        }
+        set {
+            setBool(newValue, forKey: .requestedLocationAlways)
+            synchronize()
+        }
+    }
+    
+    var requestedNotifications: Bool {
+        get {
+            return boolForKey(.requestedNotifications)
+        }
+        set {
+            setBool(newValue, forKey: .requestedNotifications)
+            synchronize()
+        }
+    }
 }
