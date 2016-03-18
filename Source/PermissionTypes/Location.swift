@@ -35,7 +35,7 @@ extension CLLocationManager {
     func request(permission: Permission) {
         delegate = permission
         
-        switch permission.domain {
+        switch permission.type {
         case .LocationAlways: requestAlwaysAuthorization()
         case .LocationWhenInUse: requestWhenInUseAuthorization()
         default: break

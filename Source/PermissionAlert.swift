@@ -32,8 +32,8 @@ public class PermissionAlert {
     }
     
     /// The domain of the permission.
-    private var domain: Permission.Domain {
-        return permission.domain
+    private var type: PermissionType {
+        return permission.type
     }
     
     private var callback: Callback!
@@ -84,7 +84,7 @@ internal class PermissionDisabledAlert: PermissionAlert {
         
         title = "\(permission.prettyDescription) is currently disabled"
         message = "Please enable access to \(permission.prettyDescription) in the Settings app."
-        message = "Please enable the access to your \(domain.description.lowercaseString) in the settings."
+        message = "Please enable the access to your \(type.description.lowercaseString) in the settings."
         cancel  = "OK"
     }
 }

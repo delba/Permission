@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6D0069B41C1868E8002FDB42 /* PermissionSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0069B31C1868E8002FDB42 /* PermissionSet.swift */; };
 		6D0EBDBD1BFCF8B700C35F8E /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0EBDBC1BFCF8B700C35F8E /* Utilities.swift */; };
+		6D491E761C9CA7DE00611006 /* PermissionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D491E751C9CA7DE00611006 /* PermissionType.swift */; };
 		6D86A9B61BEBDC7D00E3DD5A /* Sorry.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D86A9B51BEBDC7D00E3DD5A /* Sorry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6D86A9BD1BEBDC7D00E3DD5A /* Sorry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D86A9B21BEBDC7D00E3DD5A /* Sorry.framework */; };
 		6D86A9C21BEBDC7D00E3DD5A /* SorryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D86A9C11BEBDC7D00E3DD5A /* SorryTests.swift */; };
@@ -42,6 +43,7 @@
 /* Begin PBXFileReference section */
 		6D0069B31C1868E8002FDB42 /* PermissionSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionSet.swift; sourceTree = "<group>"; };
 		6D0EBDBC1BFCF8B700C35F8E /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		6D491E751C9CA7DE00611006 /* PermissionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionType.swift; sourceTree = "<group>"; };
 		6D86A9B21BEBDC7D00E3DD5A /* Sorry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Sorry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D86A9B51BEBDC7D00E3DD5A /* Sorry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sorry.h; sourceTree = "<group>"; };
 		6D86A9B71BEBDC7D00E3DD5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -105,12 +107,13 @@
 		6D86A9B41BEBDC7D00E3DD5A /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				6DF9C2B01C8F4F30000710C1 /* Domains */,
+				6DF9C2B01C8F4F30000710C1 /* PermissionTypes */,
 				6DF9C2C21C8F53C3000710C1 /* Supporting Files */,
 				6D86A9CC1BEBDC9000E3DD5A /* Permission.swift */,
 				6DA8B4B11BFB8AD8007A94FC /* PermissionAlert.swift */,
 				6DA8B4AF1BFB80E9007A94FC /* PermissionButton.swift */,
 				6D0069B31C1868E8002FDB42 /* PermissionSet.swift */,
+				6D491E751C9CA7DE00611006 /* PermissionType.swift */,
 				6D0EBDBC1BFCF8B700C35F8E /* Utilities.swift */,
 			);
 			path = Source;
@@ -125,7 +128,7 @@
 			path = Tests;
 			sourceTree = "<group>";
 		};
-		6DF9C2B01C8F4F30000710C1 /* Domains */ = {
+		6DF9C2B01C8F4F30000710C1 /* PermissionTypes */ = {
 			isa = PBXGroup;
 			children = (
 				6D935F5C1C9A0FEA00BB39E3 /* Bluetooth.swift */,
@@ -141,7 +144,7 @@
 				6DF9C2BD1C8F4FE5000710C1 /* Photos.swift */,
 				6DF9C2B51C8F4F69000710C1 /* Reminders.swift */,
 			);
-			path = Domains;
+			path = PermissionTypes;
 			sourceTree = "<group>";
 		};
 		6DF9C2C11C8F53B7000710C1 /* Supporting Files */ = {
@@ -273,6 +276,7 @@
 				6D935F5D1C9A0FEA00BB39E3 /* Bluetooth.swift in Sources */,
 				6DF9C2B81C8F4F8F000710C1 /* Notifications.swift in Sources */,
 				6D0069B41C1868E8002FDB42 /* PermissionSet.swift in Sources */,
+				6D491E761C9CA7DE00611006 /* PermissionType.swift in Sources */,
 				6DF9C2B41C8F4F54000710C1 /* LocationWhenInUse.swift in Sources */,
 				6DA8B4B01BFB80E9007A94FC /* PermissionButton.swift in Sources */,
 				6DF9C2C01C8F5003000710C1 /* Events.swift in Sources */,

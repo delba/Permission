@@ -26,30 +26,10 @@ public typealias Callback = Permission.Status -> Void
 
 public class Permission: NSObject {
     public enum Status {
-        case Authorized, Denied, Disabled, NotDetermined
-    }
-    
-    public enum Domain {
-        case Contacts
-        case LocationAlways
-        case LocationWhenInUse
-        case Notifications
-        case Microphone
-        case Camera
-        case Photos
-        case Reminders
-        case Events
-        case Bluetooth
-        case Motion
-        
-        /// The textual representation of self.
-        public var description: String {
-            switch self {
-            case .LocationAlways: return "Location always"
-            case .LocationWhenInUse: return "Location when in use"
-            default: return String(self)
-            }
-        }
+        case Authorized
+        case Denied
+        case Disabled
+        case NotDetermined
     }
     
     /// The permission to access the user's contacts.
@@ -92,11 +72,11 @@ public class Permission: NSObject {
     internal var notificationCategories: Swift.Set<UIUserNotificationCategory>?
     
     /// The permission domain.
-    public let domain: Domain
+    public let type: PermissionType
     
     /// The permission status.
     public var status: Permission.Status {
-        switch domain {
+        switch type {
         case .Contacts:          return statusContacts
         case .LocationAlways:    return statusLocationAlways
         case .LocationWhenInUse: return statusLocationWhenInUse
@@ -132,9 +112,8 @@ public class Permission: NSObject {
      
      - returns: A newly created permission.
      */
-    private init(_ domain: Domain) {
-        self.domain = domain
-        Defaults.setBool(true, forKey: "something")
+    private init(_ type: PermissionType) {
+        self.type = type
     }
     
     /**
@@ -156,7 +135,7 @@ public class Permission: NSObject {
     }
     
     private func requestAuthorization(callback: Callback) {
-        switch domain {
+        switch type {
         case .Contacts:          requestContacts(callback)
         case .LocationAlways:    requestLocationAlways(callback)
         case .LocationWhenInUse: requestLocationWhenInUse(callback)
@@ -185,16 +164,16 @@ public class Permission: NSObject {
 extension Permission {
     /// The textual representation of self.
     override public var description: String {
-        return "\(domain.description) - \(status)"
+        return "\(type.description) - \(status)"
     }
     
     /// The pretty textual representation of self. 
     internal var prettyDescription: String {
-        switch domain {
+        switch type {
         case .LocationAlways, .LocationWhenInUse:
             return "Location"
         default:
-            return domain.description
+            return type.description
         }
     }
     

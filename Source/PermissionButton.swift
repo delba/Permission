@@ -28,7 +28,7 @@ public class PermissionButton: UIButton {
     public let permission: Permission
     
     /// The permission domain of the button.
-    public var domain: Permission.Domain { return permission.domain }
+    public var domain: PermissionType { return permission.type }
     
     /// The permission status of the button.
     public var status: Permission.Status { return permission.status }
