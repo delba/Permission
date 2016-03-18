@@ -117,7 +117,6 @@
 				6D0069B31C1868E8002FDB42 /* PermissionSet.swift */,
 				6D491E771C9CA90B00611006 /* PermissionStatus.swift */,
 				6D491E751C9CA7DE00611006 /* PermissionType.swift */,
-				6D0EBDBC1BFCF8B700C35F8E /* Utilities.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -163,6 +162,7 @@
 			children = (
 				6D86A9B71BEBDC7D00E3DD5A /* Info.plist */,
 				6D86A9B51BEBDC7D00E3DD5A /* Sorry.h */,
+				6D0EBDBC1BFCF8B700C35F8E /* Utilities.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
