@@ -8,9 +8,7 @@
   <a href="https://github.com/Carthage/Carthage"><img alt="Carthage compatible" src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat"/></a>
 </p>
 
-**Sorry** exposes a unified API to request permissions on iOS. The library has been designed to be UI agnostic: while providing highly customizable UI elements, it does not constraint you to adopt a certain kind of interface.
-
-> See [`PermissionScope`](https://github.com/nickoneill/PermissionScope) for a different approach.
+**Sorry** exposes a unified API to request permissions on iOS. The library aims to be UI agnostic: while providing highly customizable UI elements, it does not constraint you to a certain style of interface.
 
 <p align="center">
     <a href="#usage">Usage</a> • <a href="#example">Example</a> • <a href="#installation">Installation</a> • <a href="#license">License</a>
@@ -22,11 +20,9 @@
 
 ```swift
 let permission: Permission = .Contacts
-```
 
-> Supported permissions: `Bluetooth`, `Camera`, `Contacts`, `Events`, `Motion`, `Microphone`, `Notifications`, `Photos`, `Reminders`, `LocationAlways`, and `LocationWhenInUse`.
+print(permission.status) // PermissionStatus.NotDetermined
 
-```swift
 permission.request { status in
     switch status {
     case .Authorized:    print("authorized")
@@ -37,7 +33,24 @@ permission.request { status in
 }
 ```
 
-You might want to customize the alerts that are presented to the user when the permission was denied/disabled.  
+**Supported permissions**:
+- `Bluetooth`
+- `Camera`
+- `Contacts`
+- `Events`
+- `Motion`
+- `Microphone`
+- `Notifications`
+- `Photos`
+- `Reminders`
+- `LocationAlways`
+- `LocationWhenInUse`
+
+#### PermissionAlert
+
+When you first request a permission, a system alert is presented to the user.
+If you request a permission that was denied/disabled, a `PermissionAlert` will be presented.
+You might want to change the default `title`, `message`, `cancel` and `settings` text:
 
 ```swift
 let alert = permission.deniedAlert // or permission.disabledAlert
@@ -50,11 +63,13 @@ alert.settings = "Settings"
 
 #### PermissionSet
 
-Use a `PermissionSet` to check the status of a group of `Permission` and to react whenever it changes.
+Use a `PermissionSet` to check the status of a group of `Permission` and to react a permission is requested.
 
 ```swift
 let permissionSet = PermissionSet(.Contacts, .Camera, .Microphone, .Photos)
 permissionSet.delegate = self
+
+print(permissionSet.status) // PermissionStatus.NotDetermined
 
 // ...
 
@@ -70,13 +85,13 @@ func permissionSet(permissionSet: PermissionSet, didRequestPermission permission
 
 #### PermissionButton
 
-A `PermissionButton` requests the permission when tapped and updates itself when its status changes.
+A `PermissionButton` requests the permission when tapped and updates itself when its underlying permission status changes.
 
 ```swift
 let button = PermissionButton(.Photos)
 ```
 
-The `PermissionButton` are *very* customizable. All the getters and setters of `UIButton` have their equivalent.
+`PermissionButton` is a subclass of `UIButton`. All the getters and setters of `UIButton` have their equivalent in `PermissionButton`.
 
 ```swift
 button.setTitles([
@@ -85,14 +100,8 @@ button.setTitles([
     .Disabled:      "Disabled",
     .NotDetermined: "Not determined"
 ])
-
-button.setAttributedTitles([:])
-button.setTitleColors([:])
-button.setBackgroundColors([:])
-button.setAttributedTitles([:])
-
-// etc.
 ```
+
 
 ## Example
 
