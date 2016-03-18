@@ -41,12 +41,12 @@ public class PermissionButton: UIButton {
     private var backgroundImages: [UIControlState: [Permission.Status: UIImage]] = [:]
     
     /// The alert when the permission was denied.
-    public var deniedAlert: Permission.Alert {
+    public var deniedAlert: PermissionAlert {
         return permission.deniedAlert
     }
     
     /// The alert when the permission is disabled.
-    public var disabledAlert: Permission.Alert {
+    public var disabledAlert: PermissionAlert {
         return permission.disabledAlert
     }
     

@@ -112,13 +112,13 @@ public class Permission: NSObject {
     }
     
     /// The alert when the permission was denied.
-    public lazy var deniedAlert: Permission.Alert = {
-        return DeniedAlert(permission: self)
+    public lazy var deniedAlert: PermissionAlert = {
+        return PermissionDeniedAlert(permission: self)
     }()
     
     /// The alert when the permission is disabled.
-    public lazy var disabledAlert: Permission.Alert = {
-        return DisabledAlert(permission: self)
+    public lazy var disabledAlert: PermissionAlert = {
+        return PermissionDisabledAlert(permission: self)
     }()
     
     internal var callback: Callback!
