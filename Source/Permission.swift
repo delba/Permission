@@ -165,8 +165,8 @@ public class Permission: NSObject {
         case .Photos:            requestPhotos(callback)
         case .Reminders:         requestReminders(callback)
         case .Events:            requestEvents(callback)
-        case .Bluetooth:         requestBluetooth(callback)
-        case .Motion:            requestMotion(callback)
+        case .Bluetooth:         requestBluetooth(self.callback)
+        case .Motion:            requestMotion(self.callback)
         }
     }
     
