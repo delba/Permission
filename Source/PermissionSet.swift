@@ -25,7 +25,7 @@
 public class PermissionSet {
     
     /// The permissions in the set.
-    public let permissions: Swift.Set<Permission>
+    public let permissions: Set<Permission>
     
     /// The delegate of the permission set.
     public var delegate: PermissionSetDelegate?
