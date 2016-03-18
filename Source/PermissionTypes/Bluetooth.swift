@@ -31,7 +31,7 @@ internal let BluetoothManager = CBPeripheralManager(
 )
 
 extension Permission {
-    var statusBluetooth: Permission.Status {
+    var statusBluetooth: PermissionStatus {
         let state = (BluetoothManager.state, CBPeripheralManager.authorizationStatus())
         
         switch state {

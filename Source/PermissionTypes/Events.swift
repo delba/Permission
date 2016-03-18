@@ -25,7 +25,7 @@
 import EventKit
 
 internal extension Permission {
-    var statusEvents: Permission.Status {
+    var statusEvents: PermissionStatus {
         let status = EKEventStore.authorizationStatusForEntityType(.Event)
         
         switch status {

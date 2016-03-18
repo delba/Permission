@@ -22,16 +22,9 @@
 // SOFTWARE.
 //
 
-public typealias Callback = Permission.Status -> Void
+public typealias Callback = PermissionStatus -> Void
 
 public class Permission: NSObject {
-    public enum Status {
-        case Authorized
-        case Denied
-        case Disabled
-        case NotDetermined
-    }
-    
     /// The permission to access the user's contacts.
     public static let Contacts = Permission(.Contacts)
     
@@ -75,7 +68,7 @@ public class Permission: NSObject {
     public let type: PermissionType
     
     /// The permission status.
-    public var status: Permission.Status {
+    public var status: PermissionStatus {
         switch type {
         case .Contacts:          return statusContacts
         case .LocationAlways:    return statusLocationAlways
@@ -150,7 +143,7 @@ public class Permission: NSObject {
         }
     }
     
-    internal func callbacks(status: Permission.Status) {
+    internal func callbacks(status: PermissionStatus) {
         dispatch_async(dispatch_get_main_queue()) {
             self.callback(status)
         

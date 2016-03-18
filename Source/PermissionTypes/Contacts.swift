@@ -28,7 +28,7 @@ import Contacts
 // MARK: - Contacts
 
 internal extension Permission {
-    var statusContacts: Permission.Status {
+    var statusContacts: PermissionStatus {
         if #available(iOS 9.0, *) {
             let status = CNContactStore.authorizationStatusForEntityType(.Contacts)
             

@@ -27,7 +27,7 @@ import CoreMotion
 private let MotionManager = CMMotionActivityManager()
 
 extension Permission {
-    var statusMotion: Permission.Status {
+    var statusMotion: PermissionStatus {
         if Defaults.requestedMotion {
             return synchronousStatusMotion
         }
@@ -41,7 +41,7 @@ extension Permission {
         let now = NSDate()
         
         MotionManager.queryActivityStartingFromDate(now, toDate: now, toQueue: .mainQueue()) { activities, error in
-            let status: Permission.Status
+            let status: PermissionStatus
             
             if  let error = error where error.code == Int(CMErrorMotionActivityNotAuthorized.rawValue) {
                 status = .Denied
@@ -55,10 +55,10 @@ extension Permission {
         }
     }
     
-    private var synchronousStatusMotion: Permission.Status {
+    private var synchronousStatusMotion: PermissionStatus {
         let semaphore = dispatch_semaphore_create(0)
         
-        var status: Permission.Status = .NotDetermined
+        var status: PermissionStatus = .NotDetermined
         
         let now = NSDate()
         

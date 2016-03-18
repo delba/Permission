@@ -27,14 +27,10 @@ public class PermissionAlert {
     private let permission: Permission
     
     /// The status of the permission.
-    private var status: Permission.Status {
-        return permission.status
-    }
+    private var status: PermissionStatus { return permission.status }
     
     /// The domain of the permission.
-    private var type: PermissionType {
-        return permission.type
-    }
+    private var type: PermissionType { return permission.type }
     
     private var callback: Callback!
     

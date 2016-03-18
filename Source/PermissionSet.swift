@@ -31,7 +31,7 @@ public class PermissionSet {
     public var delegate: PermissionSetDelegate?
     
     /// The permission set status
-    public var status: Permission.Status {
+    public var status: PermissionStatus {
         let statuses = permissions.map({ $0.status })
         
         for status in statuses where status == .Denied {

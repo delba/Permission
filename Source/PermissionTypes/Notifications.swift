@@ -27,7 +27,7 @@ import Foundation
 private var notificationTimer: NSTimer?
 
 internal extension Permission {
-    var statusNotifications: Permission.Status {
+    var statusNotifications: PermissionStatus {
         if let types = Application.currentUserNotificationSettings()?.types where types != .None {
             return .Authorized
         }
