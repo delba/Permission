@@ -134,6 +134,7 @@ public class Permission: NSObject {
      */
     private init(_ domain: Domain) {
         self.domain = domain
+        Defaults.setBool(true, forKey: "something")
     }
     
     /**

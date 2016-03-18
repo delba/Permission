@@ -37,9 +37,10 @@ internal extension String {
     static let nsLocationWhenInUseUsageDescription = "NSLocationWhenInUseUsageDescription"
     static let nsLocationAlwaysUsageDescription = "NSLocationAlwaysUsageDescription"
     
-    static let requestedNotifications = "sorry_requestedNotifications"
+    static let requestedNotifications  = "sorry_requestedNotifications"
     static let requestedLocationAlways = "sorry_requestedLocationAlways"
-    static let requestedMotion = "sorry_requestedMotion"
+    static let requestedMotion         = "sorry_requestedMotion"
+    static let requestedBluetooth      = "sorry_requestedBluetooth"
 }
 
 extension NSUserDefaults {
@@ -69,6 +70,16 @@ extension NSUserDefaults {
         }
         set {
             setBool(newValue, forKey: .requestedMotion)
+            synchronize()
+        }
+    }
+    
+    var requestedBluetooth: Bool {
+        get {
+            return boolForKey(.requestedBluetooth)
+        }
+        set {
+            setBool(newValue, forKey: .requestedBluetooth)
             synchronize()
         }
     }

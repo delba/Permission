@@ -24,7 +24,11 @@
 
 import CoreBluetooth
 
-private let BluetoothManager = CBPeripheralManager()
+internal let BluetoothManager = CBPeripheralManager(
+    delegate: Permission.Bluetooth,
+    queue: nil,
+    options: [CBPeripheralManagerOptionShowPowerAlertKey: false]
+)
 
 extension Permission {
     var statusBluetooth: Permission.Status {
@@ -43,19 +47,22 @@ extension Permission {
     }
     
     func requestBluetooth(callback: Callback) {
+        Defaults.requestedBluetooth = true
+        
         BluetoothManager.request(self)
     }
 }
 
 extension Permission: CBPeripheralManagerDelegate {
     public func peripheralManagerDidUpdateState(peripheral: CBPeripheralManager) {
-        callbacks(statusBluetooth)
+        if callback != nil {
+            callback(statusBluetooth)
+        }
     }
 }
 
 extension CBPeripheralManager {
     func request(permission: Permission) {
-        delegate = permission
         startAdvertising(nil)
         stopAdvertising()
     }
