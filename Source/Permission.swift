@@ -123,7 +123,7 @@ public class Permission: NSObject {
     
     internal var callback: Callback!
     
-    internal var sets: [Permission.Set] = []
+    internal var permissionSets: [PermissionSet] = []
     
     /**
      Creates and return a new permission for the specified domain.
@@ -175,7 +175,7 @@ public class Permission: NSObject {
         dispatch_async(dispatch_get_main_queue()) {
             self.callback(status)
         
-            for set in self.sets {
+            for set in self.permissionSets {
                 set.didRequestPermission(self)
             }
         }
