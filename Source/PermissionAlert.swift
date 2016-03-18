@@ -74,7 +74,7 @@ public class PermissionAlert {
     }
 }
 
-internal class PermissionDisabledAlert: PermissionAlert {
+internal class DisabledAlert: PermissionAlert {
     override init(permission: Permission) {
         super.init(permission: permission)
         
@@ -85,7 +85,7 @@ internal class PermissionDisabledAlert: PermissionAlert {
     }
 }
 
-internal class PermissionDeniedAlert: PermissionAlert {
+internal class DeniedAlert: PermissionAlert {
     override var controller: UIAlertController {
         let controller = super.controller
         
