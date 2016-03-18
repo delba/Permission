@@ -147,8 +147,8 @@ public class Permission: NSObject {
         dispatch_async(dispatch_get_main_queue()) {
             self.callback(status)
         
-            for set in self.permissionSets {
-                set.didRequestPermission(self)
+            for permissionSet in self.permissionSets {
+                permissionSet.didRequestPermission(self)
             }
         }
     }
