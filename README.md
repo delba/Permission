@@ -18,6 +18,9 @@
 
 #### Permission
 
+> [`Permission.swift`](https://github.com/delba/Sorry/blob/master/Source/Permission.swift)
+> [`PermissionStatus.swift`](https://github.com/delba/Sorry/blob/master/Source/PermissionStatus.swift)
+
 ```swift
 let permission: Permission = .Contacts
 
@@ -34,6 +37,10 @@ permission.request { status in
 ```
 
 **Supported permissions**:
+
+> [`PermissionType.swift`](https://github.com/delba/Sorry/blob/master/Source/PermissionType.swift)
+> [`PermissionTypes/`](https://github.com/delba/Sorry/tree/master/Source/PermissionTypes)
+
 - `Bluetooth`
 - `Camera`
 - `Contacts`
@@ -47,6 +54,8 @@ permission.request { status in
 - `LocationWhenInUse`
 
 #### PermissionAlert
+
+> [`PermissionAlert.swift`](https://github.com/delba/Sorry/blob/master/Source/PermissionAlert.swift)
 
 When you first request a permission, a system alert is presented to the user.
 If you request a permission that was denied/disabled, a `PermissionAlert` will be presented.
@@ -62,6 +71,8 @@ alert.settings = "Settings"
 ```
 
 #### PermissionSet
+
+> [`PermissionSet.swift`](https://github.com/delba/Sorry/blob/master/Source/PermissionSet.swift)
 
 Use a `PermissionSet` to check the status of a group of `Permission` and to react a permission is requested.
 
@@ -85,6 +96,8 @@ func permissionSet(permissionSet: PermissionSet, didRequestPermission permission
 
 #### PermissionButton
 
+> [`PermissionButton`](https://github.com/delba/Sorry/blob/master/Source/PermissionButton.swift)
+
 A `PermissionButton` requests the permission when tapped and updates itself when its underlying permission status changes.
 
 ```swift
@@ -101,7 +114,6 @@ button.setTitles([
     .NotDetermined: "Not determined"
 ])
 ```
-
 
 ## Example
 
