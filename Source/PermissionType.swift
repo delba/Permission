@@ -34,11 +34,13 @@ public enum PermissionType {
     case Events
     case Bluetooth
     case Motion
-    
+}
+
+extension PermissionType: CustomStringConvertible {
     /// The textual representation of self.
     public var description: String {
         switch self {
-        case .LocationAlways: return "Location always"
+        case .LocationAlways:    return "Location always"
         case .LocationWhenInUse: return "Location when in use"
         default: return String(self)
         }

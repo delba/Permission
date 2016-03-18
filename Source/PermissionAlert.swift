@@ -80,7 +80,7 @@ internal class PermissionDisabledAlert: PermissionAlert {
         
         title = "\(permission.prettyDescription) is currently disabled"
         message = "Please enable access to \(permission.prettyDescription) in the Settings app."
-        message = "Please enable the access to your \(type.description.lowercaseString) in the settings."
+        message = "Please enable the access to your \(type) in the settings."
         cancel  = "OK"
     }
 }

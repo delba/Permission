@@ -157,7 +157,7 @@ public class Permission: NSObject {
 extension Permission {
     /// The textual representation of self.
     override public var description: String {
-        return "\(type.description) - \(status)"
+        return "\(type) - \(status)"
     }
     
     /// The pretty textual representation of self. 
@@ -166,7 +166,7 @@ extension Permission {
         case .LocationAlways, .LocationWhenInUse:
             return "Location"
         default:
-            return type.description
+            return String(type)
         }
     }
     
