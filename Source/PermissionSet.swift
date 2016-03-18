@@ -117,9 +117,9 @@ extension PermissionSet: CustomStringConvertible {
     public var description: String {
         return [
             "\(status): [",
-            permissions.map{ "\t\($0.description)" }.joinWithSeparator(",\n"),
+            permissions.map{ "\t\($0)" }.joinWithSeparator(",\n"),
             "]"
-            ].joinWithSeparator("\n")
+        ].joinWithSeparator("\n")
     }
 }
 

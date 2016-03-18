@@ -157,7 +157,7 @@ public class Permission: NSObject {
 extension Permission {
     /// The textual representation of self.
     override public var description: String {
-        return "\(type) - \(status)"
+        return "\(type): \(status)"
     }
     
     /// The pretty textual representation of self. 
