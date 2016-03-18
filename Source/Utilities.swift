@@ -39,6 +39,7 @@ internal extension String {
     
     static let requestedNotifications = "sorry_requestedNotifications"
     static let requestedLocationAlways = "sorry_requestedLocationAlways"
+    static let requestedMotion = "sorry_requestedMotion"
 }
 
 extension NSUserDefaults {
@@ -60,5 +61,23 @@ extension NSUserDefaults {
             setBool(newValue, forKey: .requestedNotifications)
             synchronize()
         }
+    }
+    
+    var requestedMotion: Bool {
+        get {
+            return boolForKey(.requestedMotion)
+        }
+        set {
+            setBool(newValue, forKey: .requestedMotion)
+            synchronize()
+        }
+    }
+}
+
+extension NSOperationQueue {
+    static func backgroundQueue() -> NSOperationQueue {
+        let queue = NSOperationQueue()
+        queue.qualityOfService = .Background
+        return queue
     }
 }

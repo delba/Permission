@@ -62,10 +62,8 @@ internal extension Permission {
         
         Defaults.requestedNotifications = true
         
-        delay(0.1) { [weak self] in
-           if self != nil {
-                self!.callbacks(self!.statusNotifications)
-            }
+        delay(0.1) {
+            self.callbacks(self.statusNotifications)
         }
     }
 }

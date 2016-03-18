@@ -28,10 +28,56 @@ private let MotionManager = CMMotionActivityManager()
 
 extension Permission {
     var statusMotion: Permission.Status {
+        if Defaults.requestedMotion {
+            return synchronousStatusMotion
+        }
+        
         return .NotDetermined
     }
     
     func requestMotion(callback: Callback) {
+        Defaults.requestedMotion = true
         
+        let now = NSDate()
+        
+        MotionManager.queryActivityStartingFromDate(now, toDate: now, toQueue: .mainQueue()) { activities, error in
+            let status: Permission.Status
+            
+            if  let error = error where error.code == Int(CMErrorMotionActivityNotAuthorized.rawValue) {
+                status = .Denied
+            } else {
+                status = .Authorized
+            }
+            
+            MotionManager.stopActivityUpdates()
+            
+            callback(status)
+        }
     }
+    
+    private var synchronousStatusMotion: Permission.Status {
+        let semaphore = dispatch_semaphore_create(0)
+        
+        var status: Permission.Status = .NotDetermined
+        
+        let now = NSDate()
+        
+        MotionManager.queryActivityStartingFromDate(now, toDate: now, toQueue: .backgroundQueue()) { activities, error in
+            if  let error = error where error.code == Int(CMErrorMotionActivityNotAuthorized.rawValue) {
+                status = .Denied
+            } else {
+                status = .Authorized
+            }
+            
+            MotionManager.stopActivityUpdates()
+            
+            dispatch_semaphore_signal(semaphore)
+        }
+        
+        
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
+        
+        return status
+    }
+    
 }
