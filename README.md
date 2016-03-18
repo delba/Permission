@@ -48,17 +48,17 @@ alert.cancel   = "Cancel"
 alert.settings = "Settings"
 ```
 
-#### Permission.Set
+#### PermissionSet
 
-Use a `Permission.Set` to check the status of a group of `Permission` and to react whenever it changes.
+Use a `PermissionSet` to check the status of a group of `Permission` and to react whenever it changes.
 
 ```swift
-let permissionSet = Permission.Set(.Contacts, .Camera, .Microphone, .Photos)
+let permissionSet = PermissionSet(.Contacts, .Camera, .Microphone, .Photos)
 permissionSet.delegate = self
 
 // ...
 
-func permissionSet(permissionSet: Permission.Set, didRequestPermission permission: Permission) {
+func permissionSet(permissionSet: PermissionSet, didRequestPermission permission: Permission) {
     switch permissionSet.status {
     case .Authorized:    print("all the permissions are granted")
     case .Denied:        print("at least one permission is denied")
@@ -68,15 +68,15 @@ func permissionSet(permissionSet: Permission.Set, didRequestPermission permissio
 }
 ```
 
-#### Permission.Button
+#### PermissionButton
 
-A `Permission.Button` requests the permission when tapped and updates itself when its status changes.
+A `PermissionButton` requests the permission when tapped and updates itself when its status changes.
 
 ```swift
-let button = Permission.Button(.Photos)
+let button = PermissionButton(.Photos)
 ```
 
-The `Permission.Button` are *very* customizable. All the getters and setters of `UIButton` have their equivalent.
+The `PermissionButton` are *very* customizable. All the getters and setters of `UIButton` have their equivalent.
 
 ```swift
 button.setTitles([
@@ -102,21 +102,21 @@ class PermissionsViewController: UIViewController, PermissionSetDelegate {
     let label = UILabel()
 
     override func viewDidLoad() {
-        let contacts   = Permission.Button(.Contacts)
-        let camera     = Permission.Button(.Camera)
-        let microphone = Permission.Button(.Microphone)
-        let photos     = Permission.Button(.Photos)
+        let contacts   = PermissionButton(.Contacts)
+        let camera     = PermissionButton(.Camera)
+        let microphone = PermissionButton(.Microphone)
+        let photos     = PermissionButton(.Photos)
 
         // ...
 
-        let permissionSet = Permission.Set(contacts, camera, microphone, photos)
+        let permissionSet = PermissionSet(contacts, camera, microphone, photos)
         
         permissionSet.delegate = self
         
         label.text = String(permissionSet.status)
     }
 
-    func permissionSet(permissionSet: Permission.Set, didRequestPermission permission: Permission) {
+    func permissionSet(permissionSet: PermissionSet, didRequestPermission permission: Permission) {
         label.text = String(permissionSet.status)
     }
 }
