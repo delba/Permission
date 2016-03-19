@@ -1,14 +1,14 @@
 <p align="center">
-  <img src="https://github.com/delba/Sorry/raw/assets/Sorry@2x.png">
+  <img src="https://github.com/delba/Permission/raw/assets/Permission@2x.png">
 </p>
 
 <p align="center">
-  <a href="https://travis-ci.org/delba/Sorry"><img alt="Travis Status" src="https://img.shields.io/travis/delba/Sorry.svg"/></a>
-  <a href="https://img.shields.io/cocoapods/v/Sorry.svg"><img alt="CocoaPods compatible" src="https://img.shields.io/cocoapods/v/Sorry.svg"/></a>
+  <a href="https://travis-ci.org/delba/Permission"><img alt="Travis Status" src="https://img.shields.io/travis/delba/Permission.svg"/></a>
+  <a href="https://img.shields.io/cocoapods/v/Permission.svg"><img alt="CocoaPods compatible" src="https://img.shields.io/cocoapods/v/Permission.svg"/></a>
   <a href="https://github.com/Carthage/Carthage"><img alt="Carthage compatible" src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat"/></a>
 </p>
 
-**Sorry** exposes a unified API to request permissions on iOS. The library aims to be UI agnostic: while providing highly customizable UI elements, it does not constraint you to a certain style of interface.
+**Permission** exposes a unified API to request permissions on iOS. The library aims to be UI agnostic: while providing highly customizable UI elements, it does not constraint you to a certain style of interface.
 
 <p align="center">
     <a href="#usage">Usage</a> • <a href="#example">Example</a> • <a href="#installation">Installation</a> • <a href="#license">License</a>
@@ -18,8 +18,8 @@
 
 #### Permission
 
-> [`Permission.swift`](https://github.com/delba/Sorry/blob/master/Source/Permission.swift)
-> [`PermissionStatus.swift`](https://github.com/delba/Sorry/blob/master/Source/PermissionStatus.swift)
+> [`Permission.swift`](https://github.com/delba/Permission/blob/master/Source/Permission.swift)
+> [`PermissionStatus.swift`](https://github.com/delba/Permission/blob/master/Source/PermissionStatus.swift)
 
 ```swift
 let permission: Permission = .Contacts
@@ -38,8 +38,8 @@ permission.request { status in
 
 **Supported permissions**:
 
-> [`PermissionType.swift`](https://github.com/delba/Sorry/blob/master/Source/PermissionType.swift)
-> [`PermissionTypes/`](https://github.com/delba/Sorry/tree/master/Source/PermissionTypes)
+> [`PermissionType.swift`](https://github.com/delba/Permission/blob/master/Source/PermissionType.swift)
+> [`PermissionTypes/`](https://github.com/delba/Permission/tree/master/Source/PermissionTypes)
 
 - `Bluetooth`
 - `Camera`
@@ -55,7 +55,7 @@ permission.request { status in
 
 #### PermissionAlert
 
-> [`PermissionAlert.swift`](https://github.com/delba/Sorry/blob/master/Source/PermissionAlert.swift)
+> [`PermissionAlert.swift`](https://github.com/delba/Permission/blob/master/Source/PermissionAlert.swift)
 
 When you first request a permission, a system alert is presented to the user.
 If you request a permission that was denied/disabled, a `PermissionAlert` will be presented.
@@ -72,7 +72,7 @@ alert.settings = "Settings"
 
 #### PermissionSet
 
-> [`PermissionSet.swift`](https://github.com/delba/Sorry/blob/master/Source/PermissionSet.swift)
+> [`PermissionSet.swift`](https://github.com/delba/Permission/blob/master/Source/PermissionSet.swift)
 
 Use a `PermissionSet` to check the status of a group of `Permission` and to react a permission is requested.
 
@@ -96,7 +96,7 @@ func permissionSet(permissionSet: PermissionSet, didRequestPermission permission
 
 #### PermissionButton
 
-> [`PermissionButton`](https://github.com/delba/Sorry/blob/master/Source/PermissionButton.swift)
+> [`PermissionButton`](https://github.com/delba/Permission/blob/master/Source/PermissionButton.swift)
 
 A `PermissionButton` requests the permission when tapped and updates itself when its underlying permission status changes.
 
@@ -143,7 +143,7 @@ class PermissionsViewController: UIViewController, PermissionSetDelegate {
 }
 ```
 
-<img align="center" src="https://raw.githubusercontent.com/delba/Sorry/assets/sorry.gif" />
+<img align="center" src="https://raw.githubusercontent.com/delba/Permission/assets/permission.gif" />
 
 ## Installation
 
@@ -158,10 +158,10 @@ $ brew update
 $ brew install carthage
 ```
 
-To integrate Sorry into your Xcode project using Carthage, specify it in your `Cartfile`:
+To integrate Permission into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "delba/Sorry"
+github "delba/Permission"
 ```
 
 ### Cocoapods
@@ -174,12 +174,12 @@ You can install it with the following command:
 $ gem install cocoapods
 ```
 
-To integrate Sorry into your Xcode project using CocoaPods, specify it in your `Podfile`:
+To integrate Permission into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
 use_frameworks!
 
-pod 'Sorry'
+pod 'Permission'
 ```
 
 ## License

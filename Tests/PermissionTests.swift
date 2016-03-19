@@ -1,5 +1,5 @@
 //
-//  SorryTests.swift
+//  PermissionTests.swift
 //
 //  Copyright (c) 2015 Damien (http://delba.io)
 //
@@ -24,6 +24,6 @@
 
 import XCTest
 
-class SorryTests: XCTestCase {
+class PermissionTests: XCTestCase {
     
 }

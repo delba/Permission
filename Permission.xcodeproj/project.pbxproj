@@ -11,8 +11,8 @@
 		6D0EBDBD1BFCF8B700C35F8E /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0EBDBC1BFCF8B700C35F8E /* Utilities.swift */; };
 		6D491E761C9CA7DE00611006 /* PermissionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D491E751C9CA7DE00611006 /* PermissionType.swift */; };
 		6D491E781C9CA90B00611006 /* PermissionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D491E771C9CA90B00611006 /* PermissionStatus.swift */; };
-		6D86A9B61BEBDC7D00E3DD5A /* Sorry.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D86A9B51BEBDC7D00E3DD5A /* Sorry.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6D86A9BD1BEBDC7D00E3DD5A /* Sorry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D86A9B21BEBDC7D00E3DD5A /* Sorry.framework */; };
+		6D86A9B61BEBDC7D00E3DD5A /* Permission.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D86A9B51BEBDC7D00E3DD5A /* Permission.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6D86A9BD1BEBDC7D00E3DD5A /* Permission.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D86A9B21BEBDC7D00E3DD5A /* Permission.framework */; };
 		6D86A9C21BEBDC7D00E3DD5A /* SorryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D86A9C11BEBDC7D00E3DD5A /* SorryTests.swift */; };
 		6D86A9CD1BEBDC9000E3DD5A /* Permission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D86A9CC1BEBDC9000E3DD5A /* Permission.swift */; };
 		6D935F5D1C9A0FEA00BB39E3 /* Bluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D935F5C1C9A0FEA00BB39E3 /* Bluetooth.swift */; };
@@ -46,10 +46,10 @@
 		6D0EBDBC1BFCF8B700C35F8E /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		6D491E751C9CA7DE00611006 /* PermissionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionType.swift; sourceTree = "<group>"; };
 		6D491E771C9CA90B00611006 /* PermissionStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionStatus.swift; sourceTree = "<group>"; };
-		6D86A9B21BEBDC7D00E3DD5A /* Sorry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Sorry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6D86A9B51BEBDC7D00E3DD5A /* Sorry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sorry.h; sourceTree = "<group>"; };
+		6D86A9B21BEBDC7D00E3DD5A /* Permission.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Permission.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D86A9B51BEBDC7D00E3DD5A /* Permission.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Permission.h; sourceTree = "<group>"; };
 		6D86A9B71BEBDC7D00E3DD5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6D86A9BC1BEBDC7D00E3DD5A /* SorryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SorryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D86A9BC1BEBDC7D00E3DD5A /* Permission.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Permission.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D86A9C11BEBDC7D00E3DD5A /* SorryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SorryTests.swift; sourceTree = "<group>"; };
 		6D86A9C31BEBDC7D00E3DD5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6D86A9CC1BEBDC9000E3DD5A /* Permission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Permission.swift; sourceTree = "<group>"; };
@@ -81,7 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D86A9BD1BEBDC7D00E3DD5A /* Sorry.framework in Frameworks */,
+				6D86A9BD1BEBDC7D00E3DD5A /* Permission.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,8 +100,8 @@
 		6D86A9B31BEBDC7D00E3DD5A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6D86A9B21BEBDC7D00E3DD5A /* Sorry.framework */,
-				6D86A9BC1BEBDC7D00E3DD5A /* SorryTests.xctest */,
+				6D86A9B21BEBDC7D00E3DD5A /* Permission.framework */,
+				6D86A9BC1BEBDC7D00E3DD5A /* Permission.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -161,7 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				6D86A9B71BEBDC7D00E3DD5A /* Info.plist */,
-				6D86A9B51BEBDC7D00E3DD5A /* Sorry.h */,
+				6D86A9B51BEBDC7D00E3DD5A /* Permission.h */,
 				6D0EBDBC1BFCF8B700C35F8E /* Utilities.swift */,
 			);
 			path = "Supporting Files";
@@ -174,16 +174,16 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D86A9B61BEBDC7D00E3DD5A /* Sorry.h in Headers */,
+				6D86A9B61BEBDC7D00E3DD5A /* Permission.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		6D86A9B11BEBDC7C00E3DD5A /* Sorry */ = {
+		6D86A9B11BEBDC7C00E3DD5A /* Permission */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6D86A9C61BEBDC7D00E3DD5A /* Build configuration list for PBXNativeTarget "Sorry" */;
+			buildConfigurationList = 6D86A9C61BEBDC7D00E3DD5A /* Build configuration list for PBXNativeTarget "Permission" */;
 			buildPhases = (
 				6D86A9AD1BEBDC7C00E3DD5A /* Sources */,
 				6D86A9AE1BEBDC7C00E3DD5A /* Frameworks */,
@@ -194,14 +194,14 @@
 			);
 			dependencies = (
 			);
-			name = Sorry;
+			name = Permission;
 			productName = Sorry;
-			productReference = 6D86A9B21BEBDC7D00E3DD5A /* Sorry.framework */;
+			productReference = 6D86A9B21BEBDC7D00E3DD5A /* Permission.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		6D86A9BB1BEBDC7D00E3DD5A /* SorryTests */ = {
+		6D86A9BB1BEBDC7D00E3DD5A /* PermissionTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6D86A9C91BEBDC7D00E3DD5A /* Build configuration list for PBXNativeTarget "SorryTests" */;
+			buildConfigurationList = 6D86A9C91BEBDC7D00E3DD5A /* Build configuration list for PBXNativeTarget "PermissionTests" */;
 			buildPhases = (
 				6D86A9B81BEBDC7D00E3DD5A /* Sources */,
 				6D86A9B91BEBDC7D00E3DD5A /* Frameworks */,
@@ -212,9 +212,9 @@
 			dependencies = (
 				6D86A9BF1BEBDC7D00E3DD5A /* PBXTargetDependency */,
 			);
-			name = SorryTests;
+			name = PermissionTests;
 			productName = SorryTests;
-			productReference = 6D86A9BC1BEBDC7D00E3DD5A /* SorryTests.xctest */;
+			productReference = 6D86A9BC1BEBDC7D00E3DD5A /* Permission.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -235,7 +235,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 6D86A9AC1BEBDC7C00E3DD5A /* Build configuration list for PBXProject "Sorry" */;
+			buildConfigurationList = 6D86A9AC1BEBDC7C00E3DD5A /* Build configuration list for PBXProject "Permission" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -247,8 +247,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6D86A9B11BEBDC7C00E3DD5A /* Sorry */,
-				6D86A9BB1BEBDC7D00E3DD5A /* SorryTests */,
+				6D86A9B11BEBDC7C00E3DD5A /* Permission */,
+				6D86A9BB1BEBDC7D00E3DD5A /* PermissionTests */,
 			);
 		};
 /* End PBXProject section */
@@ -310,7 +310,7 @@
 /* Begin PBXTargetDependency section */
 		6D86A9BF1BEBDC7D00E3DD5A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 6D86A9B11BEBDC7C00E3DD5A /* Sorry */;
+			target = 6D86A9B11BEBDC7C00E3DD5A /* Permission */;
 			targetProxy = 6D86A9BE1BEBDC7D00E3DD5A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -417,8 +417,8 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.delba.Sorry;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = io.delba.Permission;
+				PRODUCT_NAME = Permission;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -436,8 +436,8 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.delba.Sorry;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = io.delba.Permission;
+				PRODUCT_NAME = Permission;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -447,8 +447,8 @@
 			buildSettings = {
 				INFOPLIST_FILE = "Tests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.delba.SorryTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = io.delba.PermissionTests;
+				PRODUCT_NAME = Permission;
 			};
 			name = Debug;
 		};
@@ -457,15 +457,15 @@
 			buildSettings = {
 				INFOPLIST_FILE = "Tests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.delba.SorryTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = io.delba.PermissionTests;
+				PRODUCT_NAME = Permission;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6D86A9AC1BEBDC7C00E3DD5A /* Build configuration list for PBXProject "Sorry" */ = {
+		6D86A9AC1BEBDC7C00E3DD5A /* Build configuration list for PBXProject "Permission" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6D86A9C41BEBDC7D00E3DD5A /* Debug */,
@@ -474,7 +474,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6D86A9C61BEBDC7D00E3DD5A /* Build configuration list for PBXNativeTarget "Sorry" */ = {
+		6D86A9C61BEBDC7D00E3DD5A /* Build configuration list for PBXNativeTarget "Permission" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6D86A9C71BEBDC7D00E3DD5A /* Debug */,
@@ -483,7 +483,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6D86A9C91BEBDC7D00E3DD5A /* Build configuration list for PBXNativeTarget "SorryTests" */ = {
+		6D86A9C91BEBDC7D00E3DD5A /* Build configuration list for PBXNativeTarget "PermissionTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6D86A9CA1BEBDC7D00E3DD5A /* Debug */,

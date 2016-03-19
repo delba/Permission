@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0710"
+   LastUpgradeVersion = "0720"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6D86A9B11BEBDC7C00E3DD5A"
-               BuildableName = "Sorry.framework"
-               BlueprintName = "Sorry"
-               ReferencedContainer = "container:Sorry.xcodeproj">
+               BuildableName = "Permission.framework"
+               BlueprintName = "Permission"
+               ReferencedContainer = "container:Permission.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6D86A9BB1BEBDC7D00E3DD5A"
-               BuildableName = "SorryTests.xctest"
-               BlueprintName = "SorryTests"
-               ReferencedContainer = "container:Sorry.xcodeproj">
+               BuildableName = "Permission.xctest"
+               BlueprintName = "PermissionTests"
+               ReferencedContainer = "container:Permission.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6D86A9B11BEBDC7C00E3DD5A"
-            BuildableName = "Sorry.framework"
-            BlueprintName = "Sorry"
-            ReferencedContainer = "container:Sorry.xcodeproj">
+            BuildableName = "Permission.framework"
+            BlueprintName = "Permission"
+            ReferencedContainer = "container:Permission.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -65,9 +65,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6D86A9B11BEBDC7C00E3DD5A"
-            BuildableName = "Sorry.framework"
-            BlueprintName = "Sorry"
-            ReferencedContainer = "container:Sorry.xcodeproj">
+            BuildableName = "Permission.framework"
+            BlueprintName = "Permission"
+            ReferencedContainer = "container:Permission.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -83,9 +83,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6D86A9B11BEBDC7C00E3DD5A"
-            BuildableName = "Sorry.framework"
-            BlueprintName = "Sorry"
-            ReferencedContainer = "container:Sorry.xcodeproj">
+            BuildableName = "Permission.framework"
+            BlueprintName = "Permission"
+            ReferencedContainer = "container:Permission.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

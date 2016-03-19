@@ -1,5 +1,5 @@
 //
-//  Sorry.h
+//  Permission.h
 //
 //  Copyright (c) 2015 Damien (http://delba.io)
 //
@@ -24,12 +24,12 @@
 
 #import <UIKit/UIKit.h>
 
-//! Project version number for Sorry.
-FOUNDATION_EXPORT double SorryVersionNumber;
+//! Project version number for Permission.
+FOUNDATION_EXPORT double PermissionVersionNumber;
 
-//! Project version string for Sorry.
-FOUNDATION_EXPORT const unsigned char SorryVersionString[];
+//! Project version string for Permission.
+FOUNDATION_EXPORT const unsigned char PermissionVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <Sorry/PublicHeader.h>
+// In this header, you should import all the public headers of your framework using statements like #import <Permission/PublicHeader.h>
 
 
