@@ -4,10 +4,10 @@ branches:
   only:
     - master
 
-xcode_project: Sorry.xcodeproj
-xcode_scheme: SorryTests
+xcode_project: Permission.xcodeproj
+xcode_scheme: PermissionTests
 osx_image: xcode7.1
 xcode_sdk: iphonesimulator9.1
 
 script:
-  - xcodebuild test -project Sorry.xcodeproj -scheme SorryTests -destination "platform=iOS Simulator,name=iPhone 6s"
+  - xcodebuild test -project Permission.xcodeproj -scheme PermissionTests -destination "platform=iOS Simulator,name=iPhone 6s"
