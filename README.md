@@ -8,7 +8,7 @@
   <a href="https://github.com/Carthage/Carthage"><img alt="Carthage compatible" src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat"/></a>
 </p>
 
-**Permission** exposes a unified API to request permissions on iOS. The library aims to be UI agnostic: while providing highly customizable UI elements, it does not constraint you to a certain style of interface.
+**Permission** exposes a unified API to request permissions on iOS. The library aims to be UI agnostic: while providing highly customizable UI components, it does not constraint you to a certain style of interface.
 
 <p align="center">
     <a href="#usage">Usage</a> • <a href="#example">Example</a> • <a href="#installation">Installation</a> • <a href="#license">License</a>
@@ -41,17 +41,17 @@ permission.request { status in
 > [`PermissionType.swift`](https://github.com/delba/Permission/blob/master/Source/PermissionType.swift)
 > [`PermissionTypes/`](https://github.com/delba/Permission/tree/master/Source/PermissionTypes)
 
-- `Bluetooth`
-- `Camera`
-- `Contacts`
-- `Events`
-- `Motion`
-- `Microphone`
-- `Notifications`
-- `Photos`
-- `Reminders`
-- `LocationAlways`
-- `LocationWhenInUse`
+- [`Bluetooth`](https://github.com/delba/Permission/blob/master/Source/PermissionTypes/Bluetooth.swift)
+- [`Camera`](https://github.com/delba/Permission/blob/master/Source/PermissionTypes/Camera.swift)
+- [`Contacts`](https://github.com/delba/Permission/blob/master/Source/PermissionTypes/Contacts.swift)
+- [`Events`](https://github.com/delba/Permission/blob/master/Source/PermissionTypes/Events.swift)
+- [`Motion`](https://github.com/delba/Permission/blob/master/Source/PermissionTypes/Motion.swift)
+- [`Microphone`](https://github.com/delba/Permission/blob/master/Source/PermissionTypes/Microphone.swift)
+- [`Notifications`](https://github.com/delba/Permission/blob/master/Source/PermissionTypes/Notifications.swift)
+- [`Photos`](https://github.com/delba/Permission/blob/master/Source/PermissionTypes/Photos.swift)
+- [`Reminders`](https://github.com/delba/Permission/blob/master/Source/PermissionTypes/Reminders.swift)
+- [`LocationAlways`](https://github.com/delba/Permission/blob/master/Source/PermissionTypes/LocationAlways.swift)
+- [`LocationWhenInUse`](https://github.com/delba/Permission/blob/master/Source/PermissionTypes/LocationWhenInUse.swift)
 
 #### PermissionAlert
 
@@ -113,6 +113,13 @@ button.setTitles([
     .Disabled:      "Disabled",
     .NotDetermined: "Not determined"
 ])
+
+// button.setAttributedTitles
+// button.setTitleColors
+// button.setTitleShadowColors
+// button.setImages
+// button.setBackgroundImages
+// etc.
 ```
 
 ## Example
