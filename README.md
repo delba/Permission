@@ -8,7 +8,7 @@
   <a href="https://github.com/Carthage/Carthage"><img alt="Carthage compatible" src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat"/></a>
 </p>
 
-**Permission** exposes a unified API to request permissions on iOS. The library aims to be UI agnostic: while providing highly customizable UI components, it does not constraint you to a certain style of interface.
+**Permission** exposes a unified API to request permissions on iOS.
 
 <p align="center">
     <a href="#usage">Usage</a> • <a href="#example">Example</a> • <a href="#installation">Installation</a> • <a href="#license">License</a>
