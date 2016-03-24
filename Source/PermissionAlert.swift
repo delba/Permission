@@ -78,9 +78,8 @@ internal class DisabledAlert: PermissionAlert {
     override init(permission: Permission) {
         super.init(permission: permission)
         
-        title = "\(permission.prettyDescription) is currently disabled"
+        title   = "\(permission.prettyDescription) is currently disabled"
         message = "Please enable access to \(permission.prettyDescription) in the Settings app."
-        message = "Please enable the access to your \(type) in the settings."
         cancel  = "OK"
     }
 }
@@ -98,8 +97,8 @@ internal class DeniedAlert: PermissionAlert {
     override init(permission: Permission) {
         super.init(permission: permission)
         
-        title = "Permission for \(permission.prettyDescription) was denied"
-        message = "Please enable access to \(permission.prettyDescription) in the Settings app."
+        title    = "Permission for \(permission.prettyDescription) was denied"
+        message  = "Please enable access to \(permission.prettyDescription) in the Settings app."
         cancel   = "Cancel"
         settings = "Settings"
     }
