@@ -24,6 +24,12 @@ internal let Application = UIApplication.sharedApplication()
 internal let Defaults = NSUserDefaults.standardUserDefaults()
 internal let NotificationCenter = NSNotificationCenter.defaultCenter()
 
+extension UIApplication {
+    var rootViewController: UIViewController? {
+        return delegate?.window??.rootViewController
+    }
+}
+
 internal func delay(delay: Double, queue: dispatch_queue_t = dispatch_get_main_queue(), callback: () -> Void) {
     let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC)))
     dispatch_after(time, queue, callback)

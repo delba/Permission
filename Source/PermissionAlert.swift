@@ -63,7 +63,7 @@ public class PermissionAlert {
         self.callback = callback
         
         dispatch_async(dispatch_get_main_queue()) {
-            if let vc = Application.delegate?.window??.rootViewController {
+            if let vc = Application.rootViewController {
                 vc.presentViewController(self.controller, animated: true, completion: nil)
             }
         }
