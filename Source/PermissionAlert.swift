@@ -62,7 +62,7 @@ public class PermissionAlert {
     internal func present(callback: Callback) {
         self.callback = callback
         
-        dispatch_async(dispatch_get_main_queue()) {
+        Queue.main {
             if let vc = Application.rootViewController {
                 vc.presentViewController(self.controller, animated: true, completion: nil)
             }

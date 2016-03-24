@@ -117,7 +117,7 @@ public class Permission: NSObject {
     public func request(callback: Callback) {
         self.callback = callback
         
-        dispatch_async(dispatch_get_main_queue()) {
+        Queue.main {
             self.permissionSets.forEach { $0.willRequestPermission(self) }
         }
         
@@ -148,8 +148,8 @@ public class Permission: NSObject {
     }
     
     internal func callbacks(status: PermissionStatus) {
-        dispatch_async(dispatch_get_main_queue()) {
-            self.callback(status)
+        Queue.main {
+            self.callbacks(status)
             self.permissionSets.forEach { $0.didRequestPermission(self) }
         }
     }

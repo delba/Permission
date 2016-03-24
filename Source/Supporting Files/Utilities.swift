@@ -91,6 +91,12 @@ extension NSUserDefaults {
     }
 }
 
+struct Queue {
+    static func main(block: dispatch_block_t) {
+        dispatch_async(dispatch_get_main_queue(), block)
+    }
+}
+
 extension NSOperationQueue {
     static func backgroundQueue() -> NSOperationQueue {
         let queue = NSOperationQueue()
