@@ -101,10 +101,7 @@ public class PermissionSet {
     
     private init(permissions: [Permission]) {
         self.permissions = Set(permissions)
-        
-        for permission in self.permissions {
-            permission.permissionSets.append(self)
-        }
+        self.permissions.forEach { $0.permissionSets.append(self) }
     }
     
     internal func willRequestPermission(permission: Permission) {
