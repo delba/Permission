@@ -84,6 +84,10 @@ print(permissionSet.status) // PermissionStatus.NotDetermined
 
 // ...
 
+func permissionSet(permissionSet: PermissionSet, willRequestPermission permission: Permission) {
+    print("Will request \(permission)")
+}
+
 func permissionSet(permissionSet: PermissionSet, didRequestPermission permission: Permission) {
     switch permissionSet.status {
     case .Authorized:    print("all the permissions are granted")

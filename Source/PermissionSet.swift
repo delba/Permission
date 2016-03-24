@@ -107,6 +107,10 @@ public class PermissionSet {
         }
     }
     
+    internal func willRequestPermission(permission: Permission) {
+        delegate?.permissionSet(self, willRequestPermission: permission)
+    }
+    
     internal func didRequestPermission(permission: Permission) {
         delegate?.permissionSet(self, didRequestPermission: permission)
     }
@@ -131,6 +135,14 @@ public protocol PermissionSetDelegate {
      - parameter permission:    The requested permission.
      */
     func permissionSet(permissionSet: PermissionSet, didRequestPermission permission: Permission)
+    
+    /**
+     Tells the delegate that the specified permission will be requested.
+     
+     - parameter permissionSet: The permission set containing the requested permission.
+     - parameter permission:    The requested permission.
+     */
+    func permissionSet(permissionSet: PermissionSet, willRequestPermission permission: Permission)
 }
 
 public extension PermissionSetDelegate {
@@ -141,4 +153,12 @@ public extension PermissionSetDelegate {
      - parameter permission:    The requested permission.
      */
     func permissionSet(permissionSet: PermissionSet, didRequestPermission permission: Permission) {}
+    
+    /**
+     Tells the delegate that the specified permission will be requested.
+     
+     - parameter permissionSet: The permission set containing the requested permission.
+     - parameter permission:    The requested permission.
+     */
+    func permissionSet(permissionSet: PermissionSet, willRequestPermission permission: Permission) {}
 }
