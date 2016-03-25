@@ -98,9 +98,8 @@ struct Queue {
 }
 
 extension NSOperationQueue {
-    static func backgroundQueue() -> NSOperationQueue {
-        let queue = NSOperationQueue()
-        queue.qualityOfService = .Background
-        return queue
+    convenience init(_ qualityOfService: NSQualityOfService) {
+        self.init()
+        self.qualityOfService = qualityOfService
     }
 }

@@ -62,7 +62,7 @@ extension Permission {
         
         let now = NSDate()
         
-        MotionManager.queryActivityStartingFromDate(now, toDate: now, toQueue: .backgroundQueue()) { activities, error in
+        MotionManager.queryActivityStartingFromDate(now, toDate: now, toQueue: NSOperationQueue(.Background)) { activities, error in
             if  let error = error where error.code == Int(CMErrorMotionActivityNotAuthorized.rawValue) {
                 status = .Denied
             } else {
