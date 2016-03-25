@@ -62,7 +62,7 @@ internal extension Permission {
         
         Defaults.requestedNotifications = true
         
-        delay(0.1) {
+        Queue.main(after: 0.1) {
             self.callbacks(self.statusNotifications)
         }
     }

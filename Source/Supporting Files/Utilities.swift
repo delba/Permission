@@ -30,11 +30,6 @@ extension UIApplication {
     }
 }
 
-internal func delay(delay: Double, queue: dispatch_queue_t = dispatch_get_main_queue(), callback: () -> Void) {
-    let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC)))
-    dispatch_after(time, queue, callback)
-}
-
 extension UIControlState: Hashable {
     public var hashValue: Int { return Int(rawValue) }
 }
@@ -94,6 +89,11 @@ extension NSUserDefaults {
 struct Queue {
     static func main(block: dispatch_block_t) {
         dispatch_async(dispatch_get_main_queue(), block)
+    }
+    
+    static func main(after seconds: Double, block: dispatch_block_t) {
+        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(seconds * Double(NSEC_PER_SEC)))
+        dispatch_after(time, dispatch_get_main_queue(), block)
     }
 }
 
