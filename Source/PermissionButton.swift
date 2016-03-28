@@ -69,8 +69,8 @@ public class PermissionButton: UIButton {
         
         super.init(frame: .zero)
         
-        self.addTarget(self, action: Selector("tapped:"), forControlEvents: .TouchUpInside)
-        self.addTarget(self, action: Selector("highlight:"), forControlEvents: .TouchDown)
+        self.addTarget(self, action: .tapped, forControlEvents: .TouchUpInside)
+        self.addTarget(self, action: .highlight, forControlEvents: .TouchDown)
     }
     
     /**

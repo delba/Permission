@@ -38,8 +38,8 @@ internal extension Permission {
     func requestNotifications(callback: Callback) {
         // TODO: pass callback to finishedRequestingNotifications
         
-        NotificationCenter.addObserver(self, selector: Selector("requestingNotifications"), name: UIApplicationWillResignActiveNotification, object: nil)
-        notificationTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("finishedShowingNotificationPermission"), userInfo: nil, repeats: false)
+        NotificationCenter.addObserver(self, selector: .requestingNotifications, name: UIApplicationWillResignActiveNotification, object: nil)
+        notificationTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: .finishedRequestingNotifications, userInfo: nil, repeats: false)
         
         Application.registerUserNotificationSettings(
             UIUserNotificationSettings(
@@ -51,7 +51,7 @@ internal extension Permission {
     
     @objc func requestingNotifications() {
         NotificationCenter.removeObserver(self, name: UIApplicationWillResignActiveNotification, object: nil)
-        NotificationCenter.addObserver(self, selector: Selector("finishedRequestingNotifications"), name: UIApplicationDidBecomeActiveNotification, object: nil)
+        NotificationCenter.addObserver(self, selector: .finishedRequestingNotifications, name: UIApplicationDidBecomeActiveNotification, object: nil)
         notificationTimer?.invalidate()
     }
     

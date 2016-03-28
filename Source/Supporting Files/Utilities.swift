@@ -44,6 +44,14 @@ internal extension String {
     static let requestedBluetooth      = "sorry_requestedBluetooth"
 }
 
+internal extension Selector {
+    static let tapped = Selector("tapped:")
+    static let highlight = Selector("highlight:")
+    static let settingsHandler = Selector("settingsHandler")
+    static let requestingNotifications = Selector("requestingNotifications")
+    static let finishedRequestingNotifications = Selector("finishedRequestingNotifications")
+}
+
 extension NSUserDefaults {
     var requestedLocationAlways: Bool {
         get {
