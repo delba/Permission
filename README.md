@@ -132,6 +132,8 @@ button.setTitles([
 class PermissionsViewController: UIViewController, PermissionSetDelegate {
 
     override func viewDidLoad() {
+        super.viewDidLoad()
+
         let label = UILabel()
         
         let contacts   = PermissionButton(.Contacts)
