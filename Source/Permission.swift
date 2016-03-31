@@ -149,7 +149,7 @@ public class Permission: NSObject {
     
     internal func callbacks(status: PermissionStatus) {
         Queue.main {
-            self.callbacks(status)
+            self.callback(status)
             self.permissionSets.forEach { $0.didRequestPermission(self) }
         }
     }
