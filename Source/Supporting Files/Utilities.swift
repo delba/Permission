@@ -26,7 +26,8 @@ internal let NotificationCenter = NSNotificationCenter.defaultCenter()
 
 extension UIApplication {
     var rootViewController: UIViewController? {
-        return delegate?.window??.rootViewController
+        let root = delegate?.window??.rootViewController
+        return root?.presentedViewController ?? root // Handle presenting an alert over a modal screen
     }
 }
 
