@@ -46,11 +46,11 @@ internal extension String {
 }
 
 internal extension Selector {
-    static let tapped = Selector("tapped:")
-    static let highlight = Selector("highlight:")
-    static let settingsHandler = Selector("settingsHandler")
-    static let requestingNotifications = Selector("requestingNotifications")
-    static let finishedRequestingNotifications = Selector("finishedRequestingNotifications")
+    static let tapped = #selector(PermissionButton.tapped(_:))
+    static let highlight = #selector(PermissionButton.highlight(_:))
+    static let settingsHandler = #selector(DeniedAlert.settingsHandler)
+    static let requestingNotifications = #selector(Permission.requestingNotifications)
+    static let finishedRequestingNotifications = #selector(Permission.finishedRequestingNotifications)
 }
 
 extension NSUserDefaults {

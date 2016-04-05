@@ -454,6 +454,18 @@ public class PermissionButton: UIButton {
     }
 }
 
+internal extension PermissionButton {
+    @objc func highlight(button: PermissionButton) {
+        render(.Highlighted)
+    }
+    
+    @objc func tapped(button: PermissionButton) {
+        permission.request { [weak self] status in
+            self?.render()
+        }
+    }
+}
+
 private extension PermissionButton {
     func render(state: UIControlState = .Normal) {
         if let title = titleForStatus(status, andState: state) {
@@ -478,16 +490,6 @@ private extension PermissionButton {
         
         if let image = backgroundImageForStatus(status, andState: state) {
             super.setBackgroundImage(image, forState: state)
-        }
-    }
-    
-    @objc func highlight(button: PermissionButton) {
-        render(.Highlighted)
-    }
-    
-    @objc func tapped(button: PermissionButton) {
-        permission.request { [weak self] status in
-            self?.render()
         }
     }
 }

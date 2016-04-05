@@ -103,16 +103,16 @@ internal class DeniedAlert: PermissionAlert {
         settings = "Settings"
     }
     
+    @objc func settingsHandler() {
+        NotificationCenter.removeObserver(self, name: UIApplicationDidBecomeActiveNotification, object: nil)
+        callback(status)
+    }
+    
     private func settingsHandler(action: UIAlertAction) {
         NotificationCenter.addObserver(self, selector: .settingsHandler, name: UIApplicationDidBecomeActiveNotification, object: nil)
         
         if let URL = NSURL(string: UIApplicationOpenSettingsURLString) {
             Application.openURL(URL)
         }
-    }
-
-    @objc private func settingsHandler() {
-        NotificationCenter.removeObserver(self, name: UIApplicationDidBecomeActiveNotification, object: nil)
-        callback(status)
     }
 }
