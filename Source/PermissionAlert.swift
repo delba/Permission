@@ -63,7 +63,17 @@ public class PermissionAlert {
         self.callback = callback
         
         Queue.main {
-            if let vc = Application.rootViewController {
+            var presentingViewController = Application.rootViewController
+            while let vc = presentingViewController?.presentedViewController {
+                if let nvc = vc as? UINavigationController {
+                    presentingViewController = nvc.topViewController
+                }
+                else {
+                    presentingViewController = vc.presentedViewController
+                }
+            }
+            
+            if let vc = presentingViewController {
                 vc.presentViewController(self.controller, animated: true, completion: nil)
             }
         }
