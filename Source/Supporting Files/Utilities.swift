@@ -39,10 +39,10 @@ internal extension String {
     static let nsLocationWhenInUseUsageDescription = "NSLocationWhenInUseUsageDescription"
     static let nsLocationAlwaysUsageDescription = "NSLocationAlwaysUsageDescription"
     
-    static let requestedNotifications  = "sorry_requestedNotifications"
-    static let requestedLocationAlways = "sorry_requestedLocationAlways"
-    static let requestedMotion         = "sorry_requestedMotion"
-    static let requestedBluetooth      = "sorry_requestedBluetooth"
+    static let requestedNotifications  = "permission.requestedNotifications"
+    static let requestedLocationAlways = "permission.requestedLocationAlways"
+    static let requestedMotion         = "permission.requestedMotion"
+    static let requestedBluetooth      = "permission.requestedBluetooth"
 }
 
 internal extension Selector {
