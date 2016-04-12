@@ -46,7 +46,7 @@ extension Permission {
         }
     }
     
-    func requestBluetooth(callback: Callback) {
+    func requestBluetooth(callback: Callback?) {
         Defaults.requestedBluetooth = true
         
         BluetoothManager.request(self)
@@ -55,9 +55,7 @@ extension Permission {
 
 extension Permission: CBPeripheralManagerDelegate {
     public func peripheralManagerDidUpdateState(peripheral: CBPeripheralManager) {
-        if callback != nil {
-            callback(statusBluetooth)
-        }
+        callback?(statusBluetooth)
     }
 }
 

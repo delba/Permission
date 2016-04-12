@@ -32,7 +32,7 @@ public class PermissionAlert {
     /// The domain of the permission.
     private var type: PermissionType { return permission.type }
     
-    private var callback: Permission.Callback!
+    private var callback: Permission.Callback?
     
     /// The title of the alert.
     public var title: String?
@@ -70,7 +70,7 @@ public class PermissionAlert {
     }
 
     private func cancelHandler(action: UIAlertAction) {
-        callback(status)
+        callback?(status)
     }
 }
 
@@ -105,7 +105,7 @@ internal class DeniedAlert: PermissionAlert {
     
     @objc func settingsHandler() {
         NotificationCenter.removeObserver(self, name: UIApplicationDidBecomeActiveNotification, object: nil)
-        callback(status)
+        callback?(status)
     }
     
     private func settingsHandler(action: UIAlertAction) {

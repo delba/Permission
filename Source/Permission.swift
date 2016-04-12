@@ -97,7 +97,7 @@ public class Permission: NSObject {
         return DisabledAlert(permission: self)
     }()
     
-    internal var callback: Callback!
+    internal var callback: Callback?
     
     internal var permissionSets: [PermissionSet] = []
     
@@ -152,7 +152,7 @@ public class Permission: NSObject {
     
     internal func callbacks(status: PermissionStatus) {
         Queue.main {
-            self.callback(status)
+            self.callback?(status)
             self.permissionSets.forEach { $0.didRequestPermission(self) }
         }
     }

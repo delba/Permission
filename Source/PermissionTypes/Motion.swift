@@ -35,7 +35,7 @@ extension Permission {
         return .NotDetermined
     }
     
-    func requestMotion(callback: Callback) {
+    func requestMotion(callback: Callback?) {
         Defaults.requestedMotion = true
         
         let now = NSDate()
@@ -51,7 +51,7 @@ extension Permission {
             
             MotionManager.stopActivityUpdates()
             
-            callback(status)
+            callback?(status)
         }
     }
     
