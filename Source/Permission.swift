@@ -59,8 +59,11 @@ public class Permission: NSObject {
     public static func Notifications(categories categories: Swift.Set<UIUserNotificationCategory>?) -> Permission {
         let permission = Permission(.Notifications)
         permission.notificationCategories = categories
+        self._Notifications = permission
         return permission
     }
+    
+    private static var _Notifications: Permission?
     
     internal var notificationCategories: Swift.Set<UIUserNotificationCategory>?
     
