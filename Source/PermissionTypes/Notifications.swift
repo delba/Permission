@@ -24,6 +24,9 @@
 
 import Foundation
 
+internal var notifications: Permission?
+internal var notificationCategories: Set<UIUserNotificationCategory>?
+
 private var notificationTimer: NSTimer?
 
 internal extension Permission {
