@@ -22,9 +22,9 @@
 //  SOFTWARE.
 //
 
-public typealias Callback = PermissionStatus -> Void
-
 public class Permission: NSObject {
+    public typealias Callback = PermissionStatus -> Void
+
     /// The permission to access the user's contacts.
     public static let Contacts = Permission(.Contacts)
     

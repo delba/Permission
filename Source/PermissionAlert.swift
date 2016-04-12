@@ -32,7 +32,7 @@ public class PermissionAlert {
     /// The domain of the permission.
     private var type: PermissionType { return permission.type }
     
-    private var callback: Callback!
+    private var callback: Permission.Callback!
     
     /// The title of the alert.
     public var title: String?
@@ -59,7 +59,7 @@ public class PermissionAlert {
         self.permission = permission
     }
     
-    internal func present(callback: Callback) {
+    internal func present(callback: Permission.Callback) {
         self.callback = callback
         
         Queue.main {
