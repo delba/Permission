@@ -22,8 +22,6 @@
 //  SOFTWARE.
 //
 
-import Foundation
-
 internal var notifications: Permission?
 internal var notificationCategories: Set<UIUserNotificationCategory>?
 

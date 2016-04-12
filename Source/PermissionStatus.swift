@@ -22,8 +22,6 @@
 //  SOFTWARE.
 //
 
-import Foundation
-
 public enum PermissionStatus {
     case Authorized
     case Denied
