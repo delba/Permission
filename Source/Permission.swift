@@ -65,7 +65,7 @@ public class Permission: NSObject {
     
     private static var notifications: Permission?
     
-    internal var notificationCategories: Swift.Set<UIUserNotificationCategory>?
+    internal var notificationCategories: Set<UIUserNotificationCategory>?
     
     /// The permission domain.
     public let type: PermissionType
