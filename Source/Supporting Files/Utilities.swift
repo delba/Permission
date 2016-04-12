@@ -112,3 +112,13 @@ extension NSOperationQueue {
         self.qualityOfService = qualityOfService
     }
 }
+
+internal extension NSNotificationCenter {
+    func addObserver(observer: AnyObject, selector: Selector, name: String) {
+        addObserver(observer, selector: selector, name: name, object: nil)
+    }
+    
+    func removeObserver(observer: AnyObject, name: String) {
+        removeObserver(observer, name: name, object: nil)
+    }
+}
