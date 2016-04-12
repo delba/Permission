@@ -37,8 +37,6 @@ internal extension Permission {
     }
     
     func requestNotifications(callback: Callback) {
-        // TODO: pass callback to - finishedRequestingNotifications() ?
-        
         NotificationCenter.addObserver(self, selector: .requestingNotifications, name: UIApplicationWillResignActiveNotification)
         notificationTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: .finishedRequestingNotifications, userInfo: nil, repeats: false)
         
