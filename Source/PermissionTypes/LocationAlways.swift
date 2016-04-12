@@ -24,8 +24,6 @@
 
 import CoreLocation
 
-// MARK: - LocationAlways
-
 internal extension Permission {
     var statusLocationAlways: PermissionStatus {
         guard CLLocationManager.locationServicesEnabled() else { return .Disabled }
