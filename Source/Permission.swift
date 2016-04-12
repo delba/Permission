@@ -56,7 +56,7 @@ public class Permission: NSObject {
     public static let Motion = Permission(.Motion)
     
     /// The permission to send notifications.
-    public static func Notifications(categories categories: Swift.Set<UIUserNotificationCategory>?) -> Permission {
+    public static func Notifications(categories categories: Set<UIUserNotificationCategory>?) -> Permission {
         let permission = Permission(.Notifications)
         permission.notificationCategories = categories
         self.notifications = permission
