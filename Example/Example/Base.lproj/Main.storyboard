@@ -16,8 +16,33 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="1gl-5J-T7m">
+                                <rect key="frame" x="200" y="150" width="200" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="LpV-xg-fxo"/>
+                                    <constraint firstAttribute="height" constant="300" id="qks-p8-Vfv"/>
+                                </constraints>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="43n-wH-21p">
+                                <rect key="frame" x="279" y="115" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="1gl-5J-T7m" firstAttribute="top" secondItem="43n-wH-21p" secondAttribute="bottom" constant="14" id="ArG-2X-fmu"/>
+                            <constraint firstItem="1gl-5J-T7m" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="XHp-fT-kCc"/>
+                            <constraint firstItem="1gl-5J-T7m" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="dNa-dz-Xe1"/>
+                            <constraint firstItem="43n-wH-21p" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gpP-Ud-PMa"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="label" destination="43n-wH-21p" id="I3V-E9-P9f"/>
+                        <outlet property="stackView" destination="1gl-5J-T7m" id="ugF-t1-l5t"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
