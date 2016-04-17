@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  Example
 //
-//  Created by Lukasz Mroz on 17.04.2016.
+//  Created by Sunshinejr on 17.04.2016.
 //  Copyright © 2016 Sunshinejr. All rights reserved.
 //
 

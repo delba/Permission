@@ -30,3 +30,6 @@ xcuserdata
 
 # Carthage
 Carthage/Build
+
+# CocoaPods
+Pods/
