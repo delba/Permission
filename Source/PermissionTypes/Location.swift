@@ -28,17 +28,35 @@ internal let LocationManager = CLLocationManager()
 
 extension Permission: CLLocationManagerDelegate {
     public func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        if [Defaults.requestedLocationAlways, Defaults.requestedLocationWhenInUse].contains(true) {
+        if requestedLocation {
             callbacks(self.status)
-            
-            Defaults.requestedLocationAlways = false
-            Defaults.requestedLocationWhenInUse = false
+            requestedLocation = false
+        }
+    }
+    
+    private var requestedLocation: Bool {
+        get {
+            switch type {
+            case .LocationAlways: return Defaults.requestedLocationAlways
+            case .LocationWhenInUse: return Defaults.requestedLocationWhenInUse
+            default: return false
+            }
+        }
+        
+        set {
+            switch type {
+            case .LocationAlways: Defaults.requestedLocationAlways = newValue
+            case .LocationWhenInUse: Defaults.requestedLocationWhenInUse = newValue
+            default: break
+            }
         }
     }
 }
 
 extension CLLocationManager {
     func request(permission: Permission) {
+        permission.requestedLocation = true
+        
         delegate = permission
         
         switch permission.type {

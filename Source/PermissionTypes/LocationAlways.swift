@@ -49,7 +49,6 @@ internal extension Permission {
             Defaults.requestedLocationAlwaysWithWhenInUse = true
         }
         
-        Defaults.requestedLocationAlways = true
         LocationManager.request(self)
     }
 }

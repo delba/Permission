@@ -43,7 +43,6 @@ internal extension Permission {
             return
         }
         
-        Defaults.requestedLocationWhenInUse = true
         LocationManager.request(self)
     }
 }
