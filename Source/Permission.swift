@@ -83,6 +83,12 @@ public class Permission: NSObject {
         }
     }
     
+    public var presentInitialAlert = false
+    
+    public lazy var initialAlert: PermissionAlert = {
+        return InitialAlert(permission: self)
+    }()
+    
     /// The alert when the permission was denied.
     public lazy var deniedAlert: PermissionAlert = {
         return DeniedAlert(permission: self)
@@ -124,13 +130,17 @@ public class Permission: NSObject {
         
         switch status {
         case .Authorized:    callbacks(status)
-        case .NotDetermined: requestAuthorization(callbacks)
+        case .NotDetermined: requestInitialAuthorization()
         case .Denied:        deniedAlert.present()
         case .Disabled:      disabledAlert.present()
         }
     }
     
-    private func requestAuthorization(callback: Callback) {
+    private func requestInitialAuthorization() {
+        presentInitialAlert ? initialAlert.present() : requestAuthorization(callbacks)
+    }
+    
+    internal func requestAuthorization(callback: Callback) {
         switch type {
         case .Contacts:          requestContacts(callback)
         case .LocationAlways:    requestLocationAlways(callback)

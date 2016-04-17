@@ -46,6 +46,9 @@ public class PermissionAlert {
     /// The title of the settings action.
     public var settings: String?
     
+    /// The title of the confirm action.
+    public var confirm: String?
+    
     var controller: UIAlertController {
         let controller = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         
@@ -112,5 +115,29 @@ internal class DeniedAlert: PermissionAlert {
         if let URL = NSURL(string: UIApplicationOpenSettingsURLString) {
             Application.openURL(URL)
         }
+    }
+}
+
+internal class InitialAlert: PermissionAlert {
+    override var controller: UIAlertController {
+        let controller = super.controller
+        
+        let action = UIAlertAction(title: confirm, style: .Default, handler: confirmHandler)
+        controller.addAction(action)
+        
+        return controller
+    }
+    
+    override init(permission: Permission) {
+        super.init(permission: permission)
+        
+        title   = "[AppName] would like to access your \(permission.prettyDescription)"
+        message = "Please enable access to \(permission.prettyDescription)."
+        cancel  = "Cancel"
+        confirm = "Confirm"
+    }
+    
+    private func confirmHandler(action: UIAlertAction) {
+        permission.requestAuthorization(callbacks)
     }
 }
