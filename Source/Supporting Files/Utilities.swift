@@ -44,6 +44,8 @@ internal extension String {
     static let requestedLocationWhenInUse   = "permission.requestedLocationWhenInUse"
     static let requestedMotion              = "permission.requestedMotion"
     static let requestedBluetooth           = "permission.requestedBluetooth"
+    
+    static let requestedLocationAlwaysWithWhenInUse = "permission.requestedLocationAlwaysWithWhenInUse"
 }
 
 internal extension Selector {
