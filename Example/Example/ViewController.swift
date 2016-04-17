@@ -38,8 +38,16 @@ class ViewController: UIViewController {
             ])}
         
         let permissionSet = PermissionSet(buttons)
+        permissionSet.delegate = self
         
         label.text = String(permissionSet.status)
         buttons.forEach { stackView.addArrangedSubview($0) }
+    }
+}
+
+extension ViewController: PermissionSetDelegate {
+    
+    func permissionSet(permissionSet: PermissionSet, didRequestPermission permission: Permission) {
+        label.text = String(permissionSet.status)
     }
 }
