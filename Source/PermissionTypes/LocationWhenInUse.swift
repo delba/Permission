@@ -28,6 +28,8 @@ internal extension Permission {
     var statusLocationWhenInUse: PermissionStatus {
         guard CLLocationManager.locationServicesEnabled() else { return .Disabled }
         
+        LocationManager.delegate = self
+        
         let status = CLLocationManager.authorizationStatus()
         
         switch status {

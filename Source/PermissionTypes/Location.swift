@@ -33,8 +33,6 @@ extension Permission: CLLocationManagerDelegate {
 
 extension CLLocationManager {
     func request(permission: Permission) {
-        delegate = permission
-        
         switch permission.type {
         case .LocationAlways: requestAlwaysAuthorization()
         case .LocationWhenInUse: requestWhenInUseAuthorization()
