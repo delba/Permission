@@ -32,7 +32,7 @@ public class PermissionAlert {
     /// The domain of the permission.
     private var type: PermissionType { return permission.type }
     
-    private var callback: Permission.Callback?
+    private var callbacks: Permission.Callback { return permission.callbacks }
     
     /// The title of the alert.
     public var title: String?
@@ -59,9 +59,7 @@ public class PermissionAlert {
         self.permission = permission
     }
     
-    internal func present(callback: Permission.Callback) {
-        self.callback = callback
-        
+    internal func present() {
         Queue.main {
             if let vc = Application.rootViewController {
                 vc.presentViewController(self.controller, animated: true, completion: nil)
@@ -70,7 +68,7 @@ public class PermissionAlert {
     }
 
     private func cancelHandler(action: UIAlertAction) {
-        callback?(status)
+        callbacks(status)
     }
 }
 
@@ -105,7 +103,7 @@ internal class DeniedAlert: PermissionAlert {
     
     @objc func settingsHandler() {
         NotificationCenter.removeObserver(self, name: UIApplicationDidBecomeActiveNotification)
-        callback?(status)
+        callbacks(status)
     }
     
     private func settingsHandler(action: UIAlertAction) {
