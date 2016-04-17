@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Permission
 
 class ViewController: UIViewController {
 
@@ -15,6 +16,30 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let location   = PermissionButton(.LocationAlways)
+        let camera     = PermissionButton(.Camera)
+        let microphone = PermissionButton(.Microphone)
+        let photos     = PermissionButton(.Photos)
+        let buttons    = [location, camera, microphone, photos]
+        
+        buttons.forEach { $0.setTitles([
+            .NotDetermined: $0.description,
+            .Authorized: $0.description,
+            .Denied: $0.description,
+            .Disabled: $0.description
+            ])}
+        
+        buttons.forEach { $0.setTitleColors([
+            .NotDetermined: .blackColor(),
+            .Authorized:    .greenColor(),
+            .Denied:        .redColor(),
+            .Disabled:      .blackColor()
+            ])}
+        
+        let permissionSet = PermissionSet(buttons)
+        
+        label.text = String(permissionSet.status)
+        buttons.forEach { stackView.addArrangedSubview($0) }
     }
 }
-
