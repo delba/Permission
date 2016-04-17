@@ -18,9 +18,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="1gl-5J-T7m">
-                                <rect key="frame" x="200" y="150" width="200" height="300"/>
+                                <rect key="frame" x="150" y="150" width="300" height="300"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="LpV-xg-fxo"/>
+                                    <constraint firstAttribute="width" constant="300" id="LpV-xg-fxo"/>
                                     <constraint firstAttribute="height" constant="300" id="qks-p8-Vfv"/>
                                 </constraints>
                             </stackView>

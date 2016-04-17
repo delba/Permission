@@ -28,14 +28,14 @@ class ViewController: UIViewController {
             .Authorized: $0.description,
             .Denied: $0.description,
             .Disabled: $0.description
-            ])}
+        ])}
         
         buttons.forEach { $0.setTitleColors([
             .NotDetermined: .blackColor(),
             .Authorized:    .greenColor(),
             .Denied:        .redColor(),
             .Disabled:      .blackColor()
-            ])}
+        ])}
         
         let permissionSet = PermissionSet(buttons)
         permissionSet.delegate = self
