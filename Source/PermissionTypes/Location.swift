@@ -27,7 +27,12 @@ internal let LocationManager = CLLocationManager()
 
 extension Permission: CLLocationManagerDelegate {
     public func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        callbacks(self.status)
+        if [Defaults.requestedLocationAlways, Defaults.requestedLocationWhenInUse].contains(true) {
+            callbacks(self.status)
+            
+            Defaults.requestedLocationAlways = false
+            Defaults.requestedLocationWhenInUse = false
+        }
     }
 }
 
