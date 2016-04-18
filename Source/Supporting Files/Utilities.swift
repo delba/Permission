@@ -23,11 +23,18 @@
 internal let Application = UIApplication.sharedApplication()
 internal let Defaults = NSUserDefaults.standardUserDefaults()
 internal let NotificationCenter = NSNotificationCenter.defaultCenter()
+internal let Bundle = NSBundle.mainBundle()
 
 extension UIApplication {
     var rootViewController: UIViewController? {
         let root = delegate?.window??.rootViewController
         return root?.presentedViewController ?? root // Handle presenting an alert over a modal screen
+    }
+}
+
+extension NSBundle {
+    var name: String {
+        return objectForInfoDictionaryKey("CFBundleName") as? String ?? ""
     }
 }
 

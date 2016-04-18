@@ -131,7 +131,7 @@ internal class InitialAlert: PermissionAlert {
     override init(permission: Permission) {
         super.init(permission: permission)
         
-        title   = "[AppName] would like to access your \(permission.prettyDescription)"
+        title   = "\(Bundle.name) would like to access your \(permission.prettyDescription)"
         message = "Please enable access to \(permission.prettyDescription)."
         cancel  = "Cancel"
         confirm = "Confirm"
