@@ -83,10 +83,10 @@ public class Permission: NSObject {
         }
     }
     
-    public var presentInitialAlert = false
+    public var presentPrePermissionAlert = false
     
-    public lazy var initialAlert: PermissionAlert = {
-        return InitialAlert(permission: self)
+    public lazy var prePermissionAlert: PermissionAlert = {
+        return PrePermissionAlert(permission: self)
     }()
     
     /// The alert when the permission was denied.
@@ -137,7 +137,7 @@ public class Permission: NSObject {
     }
     
     private func requestInitialAuthorization() {
-        presentInitialAlert ? initialAlert.present() : requestAuthorization(callbacks)
+        presentPrePermissionAlert ? prePermissionAlert.present() : requestAuthorization(callbacks)
     }
     
     internal func requestAuthorization(callback: Callback) {

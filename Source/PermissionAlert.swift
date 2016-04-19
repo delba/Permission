@@ -130,7 +130,7 @@ internal class DeniedAlert: PermissionAlert {
     }
 }
 
-internal class InitialAlert: PermissionAlert {
+internal class PrePermissionAlert: PermissionAlert {
     override var controller: UIAlertController {
         let controller = super.controller
         
