@@ -41,18 +41,30 @@ public class PermissionAlert {
     public var message: String?
     
     /// The title of the cancel action.
-    public var cancel: String?
+    public var cancel: String? {
+        get { return cancelActionTitle }
+        set { cancelActionTitle = newValue }
+    }
     
     /// The title of the settings action.
-    public var settings: String?
+    public var settings: String? {
+        get { return defaultActionTitle }
+        set { defaultActionTitle = newValue }
+    }
     
     /// The title of the confirm action.
-    public var confirm: String?
+    public var confirm: String? {
+        get { return defaultActionTitle }
+        set { defaultActionTitle = newValue }
+    }
+    
+    private var cancelActionTitle: String?
+    private var defaultActionTitle: String?
     
     var controller: UIAlertController {
         let controller = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         
-        let action = UIAlertAction(title: cancel, style: .Cancel, handler: cancelHandler)
+        let action = UIAlertAction(title: cancelActionTitle, style: .Cancel, handler: cancelHandler)
         controller.addAction(action)
         
         return controller
@@ -89,7 +101,7 @@ internal class DeniedAlert: PermissionAlert {
     override var controller: UIAlertController {
         let controller = super.controller
         
-        let action = UIAlertAction(title: settings, style: .Default, handler: settingsHandler)
+        let action = UIAlertAction(title: defaultActionTitle, style: .Default, handler: settingsHandler)
         controller.addAction(action)
         
         return controller
@@ -122,7 +134,7 @@ internal class InitialAlert: PermissionAlert {
     override var controller: UIAlertController {
         let controller = super.controller
         
-        let action = UIAlertAction(title: confirm, style: .Default, handler: confirmHandler)
+        let action = UIAlertAction(title: defaultActionTitle, style: .Default, handler: confirmHandler)
         controller.addAction(action)
         
         return controller
