@@ -83,8 +83,10 @@ public class Permission: NSObject {
         }
     }
     
+    /// Determines whether to present the pre-permission alert.
     public var presentPrePermissionAlert = false
     
+    /// The pre-permission alert.
     public lazy var prePermissionAlert: PermissionAlert = {
         return PrePermissionAlert(permission: self)
     }()
