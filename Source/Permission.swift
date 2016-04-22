@@ -28,6 +28,9 @@ public class Permission: NSObject {
     /// The permission to access the user's contacts.
     public static let Contacts = Permission(.Contacts)
     
+    /// The permission to access the user's address book. (Deprecated in iOS 9.0)
+    public static let AddressBook = Permission(.AddressBook)
+    
     /// The permission to access the user's location when the app is in background.
     public static let LocationAlways = Permission(.LocationAlways)
     
@@ -70,6 +73,7 @@ public class Permission: NSObject {
     public var status: PermissionStatus {
         switch type {
         case .Contacts:          return statusContacts
+        case .AddressBook:       return statusAddressBook
         case .LocationAlways:    return statusLocationAlways
         case .LocationWhenInUse: return statusLocationWhenInUse
         case .Notifications:     return statusNotifications
@@ -145,6 +149,7 @@ public class Permission: NSObject {
     internal func requestAuthorization(callback: Callback) {
         switch type {
         case .Contacts:          requestContacts(callback)
+        case .AddressBook:       requestAddressBook(callback)
         case .LocationAlways:    requestLocationAlways(callback)
         case .LocationWhenInUse: requestLocationWhenInUse(callback)
         case .Notifications:     requestNotifications(callback)
