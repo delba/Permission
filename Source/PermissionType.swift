@@ -23,7 +23,7 @@
 //
 
 public enum PermissionType {
-    case Contacts
+    @available(iOS 9.0, *) case Contacts
     case AddressBook // Deprecated in iOS 9.0
     case LocationAlways
     case LocationWhenInUse

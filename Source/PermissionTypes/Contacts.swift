@@ -22,7 +22,6 @@
 //  SOFTWARE.
 //
 
-import AddressBook
 import Contacts
 
 // MARK: - Contacts
@@ -38,13 +37,7 @@ internal extension Permission {
             case .NotDetermined:       return .NotDetermined
             }
         } else {
-            let status = ABAddressBookGetAuthorizationStatus()
-            
-            switch status {
-            case .Authorized:          return .Authorized
-            case .Restricted, .Denied: return .Denied
-            case .NotDetermined:       return .NotDetermined
-            }
+            fatalError()
         }
     }
     
@@ -54,9 +47,7 @@ internal extension Permission {
                 callback(self.statusContacts)
             }
         } else {
-            ABAddressBookRequestAccessWithCompletion(nil) { _,_ in
-                callback(self.statusContacts)
-            }
+            fatalError()
         }
     }
 }

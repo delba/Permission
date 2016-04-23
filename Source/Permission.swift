@@ -26,6 +26,7 @@ public class Permission: NSObject {
     public typealias Callback = PermissionStatus -> Void
 
     /// The permission to access the user's contacts.
+    @available(iOS 9.0, *)
     public static let Contacts = Permission(.Contacts)
     
     /// The permission to access the user's address book. (Deprecated in iOS 9.0)
