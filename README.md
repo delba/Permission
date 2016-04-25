@@ -141,6 +141,10 @@ button.setTitles([
 // etc.
 ```
 
+#### Third-party libraries:
+
+- [sunshinejr/**RxPermission**](https://github.com/sunshinejr/RxPermission) RxSwift bindings for Permissions API in iOS.
+
 ## Example
 
 ```swift
