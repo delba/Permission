@@ -41,6 +41,7 @@ permission.request { status in
 > [`PermissionType.swift`](https://github.com/delba/Permission/blob/master/Source/PermissionType.swift)
 > [`PermissionTypes/`](https://github.com/delba/Permission/tree/master/Source/PermissionTypes)
 
+- [`AddressBook`](https://github.com/delba/Permission/blob/master/Source/PermissionTypes/AddressBook.swift) (Deprecated in iOS 9.0)
 - [`Bluetooth`](https://github.com/delba/Permission/blob/master/Source/PermissionTypes/Bluetooth.swift)
 - [`Camera`](https://github.com/delba/Permission/blob/master/Source/PermissionTypes/Camera.swift)
 - [`Contacts`](https://github.com/delba/Permission/blob/master/Source/PermissionTypes/Contacts.swift)

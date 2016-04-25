@@ -1,7 +1,7 @@
 //
-//  PermissionType.swift
+//  AddressBook.swift
 //
-//  Copyright (c) 2015 Damien (http://delba.io)
+//  Copyright (c) 2016 Damien (http://delba.io)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -22,17 +22,24 @@
 //  SOFTWARE.
 //
 
-public enum PermissionType {
-    @available(iOS 9.0, *) case Contacts
-    case AddressBook // Deprecated in iOS 9.0
-    case LocationAlways
-    case LocationWhenInUse
-    case Notifications
-    case Microphone
-    case Camera
-    case Photos
-    case Reminders
-    case Events
-    case Bluetooth
-    case Motion
+import AddressBook
+
+// MARK: - AddressBook
+
+internal extension Permission {
+    var statusAddressBook: PermissionStatus {
+        let status = ABAddressBookGetAuthorizationStatus()
+        
+        switch status {
+        case .Authorized:          return .Authorized
+        case .Restricted, .Denied: return .Denied
+        case .NotDetermined:       return .NotDetermined
+        }
+    }
+    
+    func requestAddressBook(callback: Callback) {
+        ABAddressBookRequestAccessWithCompletion(nil) { _,_ in
+            callback(self.statusAddressBook)
+        }
+    }
 }
