@@ -26,30 +26,20 @@ import CoreLocation
 
 internal let LocationManager = CLLocationManager()
 
+private var requestedLocation = false
+private var triggerCallbacks  = false
+
 extension Permission: CLLocationManagerDelegate {
     public func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        if requestedLocation {
+        switch (requestedLocation, triggerCallbacks) {
+        case (true, false):
+            triggerCallbacks = true
+        case (true, true):
+            requestedLocation = false
+            triggerCallbacks  = false
             callbacks(self.status)
-        } else {
-            requestedLocation = true
-        }
-    }
-    
-    private var requestedLocation: Bool {
-        get {
-            switch type {
-            case .LocationAlways: return Defaults.requestedLocationAlways
-            case .LocationWhenInUse: return Defaults.requestedLocationWhenInUse
-            default: return false
-            }
-        }
-        
-        set {
-            switch type {
-            case .LocationAlways: Defaults.requestedLocationAlways = newValue
-            case .LocationWhenInUse: Defaults.requestedLocationWhenInUse = newValue
-            default: break
-            }
+        default:
+            break
         }
     }
 }
@@ -57,6 +47,8 @@ extension Permission: CLLocationManagerDelegate {
 extension CLLocationManager {
     func request(permission: Permission) {
         delegate = permission
+        
+        requestedLocation = true
         
         switch permission.type {
         case .LocationAlways: requestAlwaysAuthorization()

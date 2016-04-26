@@ -47,8 +47,6 @@ internal extension String {
     static let nsLocationAlwaysUsageDescription = "NSLocationAlwaysUsageDescription"
     
     static let requestedNotifications               = "permission.requestedNotifications"
-    static let requestedLocationAlways              = "permission.requestedLocationAlways"
-    static let requestedLocationWhenInUse           = "permission.requestedLocationWhenInUse"
     static let requestedLocationAlwaysWithWhenInUse = "permission.requestedLocationAlwaysWithWhenInUse"
     static let requestedMotion                      = "permission.requestedMotion"
     static let requestedBluetooth                   = "permission.requestedBluetooth"
@@ -64,26 +62,6 @@ internal extension Selector {
 }
 
 extension NSUserDefaults {
-    var requestedLocationAlways: Bool {
-        get {
-            return boolForKey(.requestedLocationAlways)
-        }
-        set {
-            setBool(newValue, forKey: .requestedLocationAlways)
-            synchronize()
-        }
-    }
-    
-    var requestedLocationWhenInUse: Bool {
-        get {
-            return boolForKey(.requestedLocationWhenInUse)
-        }
-        set {
-            setBool(newValue, forKey: .requestedLocationWhenInUse)
-            synchronize()
-        }
-    }
-    
     var requestedLocationAlwaysWithWhenInUse: Bool {
         get {
             return boolForKey(.requestedLocationAlwaysWithWhenInUse)
