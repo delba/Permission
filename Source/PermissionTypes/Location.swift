@@ -30,7 +30,8 @@ extension Permission: CLLocationManagerDelegate {
     public func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if requestedLocation {
             callbacks(self.status)
-            requestedLocation = false
+        } else {
+            requestedLocation = true
         }
     }
     
@@ -55,8 +56,6 @@ extension Permission: CLLocationManagerDelegate {
 
 extension CLLocationManager {
     func request(permission: Permission) {
-        permission.requestedLocation = true
-        
         delegate = permission
         
         switch permission.type {
