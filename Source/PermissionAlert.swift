@@ -76,7 +76,7 @@ public class PermissionAlert {
     
     internal func present() {
         Queue.main {
-            if let vc = Application.rootViewController {
+            if let vc = Application.presentedViewController {
                 vc.presentViewController(self.controller, animated: true, completion: nil)
             }
         }

@@ -28,13 +28,14 @@ internal let NotificationCenter = NSNotificationCenter.defaultCenter()
 internal let Bundle = NSBundle.mainBundle()
 
 extension UIApplication {
-    var rootViewController: UIViewController? {
-        var topVC = delegate?.window??.rootViewController
-        while let presentedViewController = topVC?.presentedViewController {
-            topVC = presentedViewController
+    var presentedViewController: UIViewController? {
+        var vc = delegate?.window??.rootViewController
+        
+        while let presentedVC = vc?.presentedViewController {
+            vc = presentedVC
         }
 
-        return topVC
+        return vc
     }
 }
 
