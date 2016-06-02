@@ -90,7 +90,7 @@ The system alert will only be presented if the user taps "Give Access".
 
 > [`PermissionSet.swift`](https://github.com/delba/Permission/blob/master/Source/PermissionSet.swift)
 
-Use a `PermissionSet` to check the status of a group of `Permission` and to react a permission is requested.
+Use a `PermissionSet` to check the status of a group of `Permission` and to react when a permission is requested.
 
 ```swift
 let permissionSet = PermissionSet(.Contacts, .Camera, .Microphone, .Photos)
