@@ -28,7 +28,7 @@ internal let NotificationCenter = NSNotificationCenter.defaultCenter()
 internal let Bundle = NSBundle.mainBundle()
 
 extension UIApplication {
-    var presentedViewController: UIViewController? {
+    private var topViewController: UIViewController? {
         var vc = delegate?.window??.rootViewController
         
         while let presentedVC = vc?.presentedViewController {
@@ -36,6 +36,10 @@ extension UIApplication {
         }
 
         return vc
+    }
+    
+    internal func presentViewController(viewController: UIViewController, animated: Bool = true, completion: (() -> Void)? = nil) {
+        topViewController?.presentViewController(viewController, animated: animated, completion: completion)
     }
 }
 
