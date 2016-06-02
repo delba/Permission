@@ -29,8 +29,12 @@ internal let Bundle = NSBundle.mainBundle()
 
 extension UIApplication {
     var rootViewController: UIViewController? {
-        let root = delegate?.window??.rootViewController
-        return root?.presentedViewController ?? root // Handle presenting an alert over a modal screen
+        var topVC = delegate?.window??.rootViewController
+        while let presentedViewController = topVC?.presentedViewController {
+            topVC = presentedViewController
+        }
+
+        return topVC
     }
 }
 
