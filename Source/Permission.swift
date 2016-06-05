@@ -68,6 +68,7 @@ public class Permission: NSObject {
     }()
     
     /// The permission to send notifications.
+    @warn_unused_result
     public static func Notifications(types types: UIUserNotificationType, categories: Set<UIUserNotificationCategory>?) -> Permission {
         let permission = Permission(.Notifications)
         notifications = permission
