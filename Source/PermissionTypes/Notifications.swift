@@ -23,7 +23,7 @@
 //
 
 internal var notifications: Permission?
-internal var notificationCategories: Set<UIUserNotificationCategory>?
+internal var notificationSettings: UIUserNotificationSettings!
 
 private var notificationTimer: NSTimer?
 
@@ -40,12 +40,7 @@ internal extension Permission {
         NotificationCenter.addObserver(self, selector: .requestingNotifications, name: UIApplicationWillResignActiveNotification)
         notificationTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: .finishedRequestingNotifications, userInfo: nil, repeats: false)
         
-        Application.registerUserNotificationSettings(
-            UIUserNotificationSettings(
-                forTypes: [.Alert, .Sound, .Badge],
-                categories: notificationCategories
-            )
-        )
+        Application.registerUserNotificationSettings(notificationSettings)
     }
     
     @objc func requestingNotifications() {
