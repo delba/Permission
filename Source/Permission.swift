@@ -208,6 +208,8 @@ extension Permission {
         switch type {
         case .LocationAlways, .LocationWhenInUse:
             return "Location"
+        case .Notifications:
+            return "Notifications"
         default:
             return String(type)
         }
