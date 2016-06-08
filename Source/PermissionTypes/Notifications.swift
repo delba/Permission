@@ -22,14 +22,13 @@
 // SOFTWARE.
 //
 
-internal var notifications: Permission?
-internal var notificationSettings: UIUserNotificationSettings!
-
 private var notificationTimer: NSTimer?
 
 internal extension Permission {
     var statusNotifications: PermissionStatus {
-        if let types = Application.currentUserNotificationSettings()?.types where types != .None {
+        guard case .Notifications(let settings) = type else { fatalError() }
+        
+        if let types = Application.currentUserNotificationSettings()?.types where types.contains(settings.types) {
             return .Authorized
         }
         
@@ -37,10 +36,12 @@ internal extension Permission {
     }
     
     func requestNotifications(callback: Callback) {
+        guard case .Notifications(let settings) = type else { fatalError() }
+        
         NotificationCenter.addObserver(self, selector: .requestingNotifications, name: UIApplicationWillResignActiveNotification)
         notificationTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: .finishedRequestingNotifications, userInfo: nil, repeats: false)
         
-        Application.registerUserNotificationSettings(notificationSettings)
+        Application.registerUserNotificationSettings(settings)
     }
     
     @objc func requestingNotifications() {

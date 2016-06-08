@@ -27,7 +27,7 @@ public enum PermissionType {
     case AddressBook // Deprecated in iOS 9.0
     case LocationAlways
     case LocationWhenInUse
-    case Notifications
+    case Notifications(UIUserNotificationSettings)
     case Microphone
     case Camera
     case Photos

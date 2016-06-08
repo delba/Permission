@@ -61,37 +61,35 @@ public class Permission: NSObject {
     
     /// The permission to send notifications.
     public static let Notifications: Permission = {
-        let permission = Permission(.Notifications)
-        notifications = permission
-        notificationSettings = UIUserNotificationSettings(forTypes: [.Badge, .Sound, .Alert], categories: nil)
-        return permission
+        let settings = UIUserNotificationSettings(forTypes: [.Badge, .Sound, .Alert], categories: nil)
+        return Permission(.Notifications(settings))
     }()
+    
+    /// Variable used to retain the notifications permission.
+    private static var notifications: Permission?
     
     /// The permission to send notifications.
     @warn_unused_result
     public static func Notifications(types types: UIUserNotificationType, categories: Set<UIUserNotificationCategory>?) -> Permission {
-        let permission = Permission(.Notifications)
-        notifications = permission
-        notificationSettings = UIUserNotificationSettings(forTypes: types, categories: categories)
-        return permission
+        let settings  = UIUserNotificationSettings(forTypes: types, categories: categories)
+        notifications = Permission(.Notifications(settings))
+        return notifications!
     }
     
     /// The permission to send notifications.
     @warn_unused_result
     public static func Notifications(types types: UIUserNotificationType) -> Permission {
-        let permission = Permission(.Notifications)
-        notifications = permission
-        notificationSettings = UIUserNotificationSettings(forTypes: types, categories: nil)
-        return permission
+        let settings  = UIUserNotificationSettings(forTypes: types, categories: nil)
+        notifications = Permission(.Notifications(settings))
+        return notifications!
     }
     
     /// The permission to send notifications.
     @warn_unused_result
     public static func Notifications(categories categories: Set<UIUserNotificationCategory>?) -> Permission {
-        let permission = Permission(.Notifications)
-        notifications = permission
-        notificationSettings = UIUserNotificationSettings(forTypes: [.Badge, .Sound, .Alert], categories: categories)
-        return permission
+        let settings  = UIUserNotificationSettings(forTypes: [.Badge, .Sound, .Alert], categories: categories)
+        notifications = Permission(.Notifications(settings))
+        return notifications!
     }
     
     /// The permission domain.
