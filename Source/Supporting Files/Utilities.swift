@@ -115,14 +115,14 @@ extension UserDefaults {
 }
 
 extension DispatchTimeInterval {
-	init(_ interval: TimeInterval) {
-		self = DispatchTimeInterval.nanoseconds(Int(interval * 1_000_000_000.0))
-	}
+    init(_ interval: TimeInterval) {
+        self = DispatchTimeInterval.nanoseconds(Int(interval * 1_000_000_000.0))
+    }
 }
 
 extension DispatchQueue {
     func after(_ interval: DispatchTimeInterval, execute: () -> Void) {
-		after(when: DispatchTime.now() + interval, execute: execute)
+        after(when: DispatchTime.now() + interval, execute: execute)
     }
 }
 

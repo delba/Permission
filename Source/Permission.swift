@@ -161,7 +161,7 @@ public class Permission: NSObject {
         let status = self.status
         
         switch status {
-		case .authorized:    callbackAsync(with: status)
+        case .authorized:    callbackAsync(with: status)
         case .notDetermined: requestInitialAuthorization()
         case .denied:        deniedAlert.present()
         case .disabled:      disabledAlert.present()
@@ -169,7 +169,7 @@ public class Permission: NSObject {
     }
     
     private func requestInitialAuthorization() {
-		presentPrePermissionAlert ? prePermissionAlert.present() : requestAuthorization(callbackAsync(with:))
+        presentPrePermissionAlert ? prePermissionAlert.present() : requestAuthorization(callbackAsync(with:))
     }
     
     internal func requestAuthorization(_ callback: Callback) {
