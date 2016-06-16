@@ -30,7 +30,7 @@ private var requestedLocation = false
 private var triggerCallbacks  = false
 
 extension Permission: CLLocationManagerDelegate {
-    public func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+    public func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch (requestedLocation, triggerCallbacks) {
         case (true, false):
             triggerCallbacks = true
@@ -45,14 +45,14 @@ extension Permission: CLLocationManagerDelegate {
 }
 
 extension CLLocationManager {
-    func request(permission: Permission) {
+    func request(_ permission: Permission) {
         delegate = permission
         
         requestedLocation = true
         
         switch permission.type {
-        case .LocationAlways: requestAlwaysAuthorization()
-        case .LocationWhenInUse: requestWhenInUseAuthorization()
+        case .locationAlways: requestAlwaysAuthorization()
+        case .locationWhenInUse: requestWhenInUseAuthorization()
         default: break
         }
     }

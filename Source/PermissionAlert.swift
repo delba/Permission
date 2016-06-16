@@ -32,7 +32,7 @@ public class PermissionAlert {
     /// The domain of the permission.
     private var type: PermissionType { return permission.type }
     
-    private var callbacks: Permission.Callback { return permission.callbacks }
+    private var callbacks: Permission.Callback { return permission.callbackAsync(with:) }
     
     /// The title of the alert.
     public var title: String?
@@ -62,9 +62,9 @@ public class PermissionAlert {
     private var defaultActionTitle: String?
     
     var controller: UIAlertController {
-        let controller = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        let action = UIAlertAction(title: cancelActionTitle, style: .Cancel, handler: cancelHandler)
+        let action = UIAlertAction(title: cancelActionTitle, style: .cancel, handler: cancelHandler)
         controller.addAction(action)
         
         return controller
@@ -75,12 +75,12 @@ public class PermissionAlert {
     }
     
     internal func present() {
-        Queue.main {
+        DispatchQueue.main.async {
             Application.presentViewController(self.controller)
         }
     }
 
-    private func cancelHandler(action: UIAlertAction) {
+    private func cancelHandler(_ action: UIAlertAction) {
         callbacks(status)
     }
 }
@@ -99,7 +99,7 @@ internal class DeniedAlert: PermissionAlert {
     override var controller: UIAlertController {
         let controller = super.controller
         
-        let action = UIAlertAction(title: defaultActionTitle, style: .Default, handler: settingsHandler)
+        let action = UIAlertAction(title: defaultActionTitle, style: .default, handler: settingsHandler)
         controller.addAction(action)
         
         return controller
@@ -115,14 +115,14 @@ internal class DeniedAlert: PermissionAlert {
     }
     
     @objc func settingsHandler() {
-        NotificationCenter.removeObserver(self, name: UIApplicationDidBecomeActiveNotification)
+        NotificationCenter.removeObserver(self, name: NSNotification.Name.UIApplicationDidBecomeActive.rawValue)
         callbacks(status)
     }
     
-    private func settingsHandler(action: UIAlertAction) {
-        NotificationCenter.addObserver(self, selector: .settingsHandler, name: UIApplicationDidBecomeActiveNotification)
+    private func settingsHandler(_ action: UIAlertAction) {
+        NotificationCenter.addObserver(self, selector: .settingsHandler, name: NSNotification.Name.UIApplicationDidBecomeActive.rawValue)
         
-        if let URL = NSURL(string: UIApplicationOpenSettingsURLString) {
+        if let URL = URL(string: UIApplicationOpenSettingsURLString) {
             Application.openURL(URL)
         }
     }
@@ -132,7 +132,7 @@ internal class PrePermissionAlert: PermissionAlert {
     override var controller: UIAlertController {
         let controller = super.controller
         
-        let action = UIAlertAction(title: defaultActionTitle, style: .Default, handler: confirmHandler)
+        let action = UIAlertAction(title: defaultActionTitle, style: .default, handler: confirmHandler)
         controller.addAction(action)
         
         return controller
@@ -147,7 +147,7 @@ internal class PrePermissionAlert: PermissionAlert {
         confirm = "Confirm"
     }
     
-    private func confirmHandler(action: UIAlertAction) {
+    private func confirmHandler(_ action: UIAlertAction) {
         permission.requestAuthorization(callbacks)
     }
 }
