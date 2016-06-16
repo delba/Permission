@@ -22,11 +22,6 @@
 // SOFTWARE.
 //
 
-internal let Application = UIApplication.shared()
-internal let Defaults = UserDefaults.standard()
-internal let NotificationCenter = Foundation.NotificationCenter.default()
-internal let Bundle = Foundation.Bundle.main()
-
 extension UIApplication {
     private var topViewController: UIViewController? {
         var vc = delegate?.window??.rootViewController
@@ -43,7 +38,7 @@ extension UIApplication {
     }
 }
 
-extension Foundation.Bundle {
+extension Bundle {
     var name: String {
         return objectForInfoDictionaryKey("CFBundleName") as? String ?? ""
     }
@@ -133,7 +128,7 @@ extension OperationQueue {
     }
 }
 
-internal extension Foundation.NotificationCenter {
+internal extension NotificationCenter {
     func addObserver(_ observer: AnyObject, selector: Selector, name: String) {
         addObserver(observer, selector: selector, name: name, object: nil)
     }

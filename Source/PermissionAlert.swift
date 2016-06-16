@@ -76,7 +76,7 @@ public class PermissionAlert {
     
     internal func present() {
         DispatchQueue.main.async {
-            Application.presentViewController(self.controller)
+            UIApplication.shared().presentViewController(self.controller)
         }
     }
 
@@ -115,15 +115,15 @@ internal class DeniedAlert: PermissionAlert {
     }
     
     @objc func settingsHandler() {
-        NotificationCenter.removeObserver(self, name: NSNotification.Name.UIApplicationDidBecomeActive.rawValue)
+        NotificationCenter.default().removeObserver(self, name: NSNotification.Name.UIApplicationDidBecomeActive.rawValue)
         callbacks(status)
     }
     
     private func settingsHandler(_ action: UIAlertAction) {
-        NotificationCenter.addObserver(self, selector: .settingsHandler, name: NSNotification.Name.UIApplicationDidBecomeActive.rawValue)
+        NotificationCenter.default().addObserver(self, selector: .settingsHandler, name: NSNotification.Name.UIApplicationDidBecomeActive.rawValue)
         
         if let URL = URL(string: UIApplicationOpenSettingsURLString) {
-            Application.openURL(URL)
+            UIApplication.shared().openURL(URL)
         }
     }
 }
@@ -141,7 +141,7 @@ internal class PrePermissionAlert: PermissionAlert {
     override init(permission: Permission) {
         super.init(permission: permission)
         
-        title   = "\(Bundle.name) would like to access your \(permission.prettyDescription)"
+        title   = "\(Bundle.main().name) would like to access your \(permission.prettyDescription)"
         message = "Please enable access to \(permission.prettyDescription)."
         cancel  = "Cancel"
         confirm = "Confirm"
