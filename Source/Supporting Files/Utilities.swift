@@ -111,7 +111,7 @@ extension UserDefaults {
 
 extension DispatchTimeInterval {
     init(_ interval: TimeInterval) {
-        self = DispatchTimeInterval.nanoseconds(Int(interval * 1_000_000_000.0))
+        self = DispatchTimeInterval.nanoseconds(Int(interval * Double(NSEC_PER_SEC)))
     }
 }
 
