@@ -29,12 +29,12 @@ import Contacts
 internal extension Permission {
     var statusContacts: PermissionStatus {
         if #available(iOS 9.0, *) {
-            let status = CNContactStore.authorizationStatusForEntityType(.Contacts)
+            let status = CNContactStore.authorizationStatus(for: .contacts)
             
             switch status {
-            case .Authorized:          return .Authorized
-            case .Restricted, .Denied: return .Denied
-            case .NotDetermined:       return .NotDetermined
+            case .authorized:          return .authorized
+            case .restricted, .denied: return .denied
+            case .notDetermined:       return .notDetermined
             }
         } else {
             fatalError()
@@ -43,7 +43,7 @@ internal extension Permission {
     
     func requestContacts(callback: Callback) {
         if #available(iOS 9.0, *) {
-            CNContactStore().requestAccessForEntityType(.Contacts) { _,_ in
+            CNContactStore().requestAccess(for: .contacts) { _, _ in
                 callback(self.statusContacts)
             }
         } else {
