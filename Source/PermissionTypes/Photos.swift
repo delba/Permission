@@ -29,9 +29,9 @@ internal extension Permission {
         let status = PHPhotoLibrary.authorizationStatus()
         
         switch status {
-        case .Authorized:          return .Authorized
-        case .Denied, .Restricted: return .Denied
-        case .NotDetermined:       return .NotDetermined
+        case .authorized:          return .authorized
+        case .denied, .restricted: return .denied
+        case .notDetermined:       return .notDetermined
         }
     }
     

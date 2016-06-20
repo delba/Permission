@@ -26,17 +26,17 @@ import AVFoundation
 
 internal extension Permission {
     var statusCamera: PermissionStatus {
-        let status = AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)
+        let status = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
         
         switch status {
-        case .Authorized:          return .Authorized
-        case .Restricted, .Denied: return .Denied
-        case .NotDetermined:       return .NotDetermined
+        case .authorized:          return .authorized
+        case .restricted, .denied: return .denied
+        case .notDetermined:       return .notDetermined
         }
     }
     
     func requestCamera(callback: Callback) {
-        AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo) { _ in
+        AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo) { _ in
             callback(self.statusCamera)
         }
     }
