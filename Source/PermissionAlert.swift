@@ -64,7 +64,7 @@ public class PermissionAlert {
     var controller: UIAlertController {
         let controller = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         
-        let action = UIAlertAction(title: cancelActionTitle, style: .Cancel, handler: cancelHandler)
+        let action = UIAlertAction(title: cancelActionTitle, style: .Default, handler: cancelHandler)
         controller.addAction(action)
         
         return controller
@@ -132,7 +132,7 @@ internal class PrePermissionAlert: PermissionAlert {
     override var controller: UIAlertController {
         let controller = super.controller
         
-        let action = UIAlertAction(title: defaultActionTitle, style: .Default, handler: confirmHandler)
+        let action = UIAlertAction(title: defaultActionTitle, style: .Cancel, handler: confirmHandler)
         controller.addAction(action)
         
         return controller
