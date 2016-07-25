@@ -69,7 +69,6 @@ public class Permission: NSObject {
     private static var notifications: Permission?
     
     /// The permission to send notifications.
-    @warn_unused_result
     public static func Notifications(types: UIUserNotificationType, categories: Set<UIUserNotificationCategory>?) -> Permission {
         let settings  = UIUserNotificationSettings(types: types, categories: categories)
         notifications = Permission(type: .notifications(settings))
@@ -77,7 +76,6 @@ public class Permission: NSObject {
     }
     
     /// The permission to send notifications.
-    @warn_unused_result
     public static func Notifications(types: UIUserNotificationType) -> Permission {
         let settings  = UIUserNotificationSettings(types: types, categories: nil)
         notifications = Permission(type: .notifications(settings))
@@ -85,7 +83,6 @@ public class Permission: NSObject {
     }
     
     /// The permission to send notifications.
-    @warn_unused_result
     public static func Notifications(categories: Set<UIUserNotificationCategory>?) -> Permission {
         let settings  = UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: categories)
         notifications = Permission(type: .notifications(settings))
