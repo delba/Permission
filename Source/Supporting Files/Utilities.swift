@@ -129,11 +129,11 @@ extension OperationQueue {
 }
 
 internal extension NotificationCenter {
-    func addObserver(_ observer: AnyObject, selector: Selector, name: String) {
+    func addObserver(_ observer: AnyObject, selector: Selector, name: NSNotification.Name?) {
         addObserver(observer, selector: selector, name: name, object: nil)
     }
     
-    func removeObserver(_ observer: AnyObject, name: String) {
-        removeObserver(observer, name: NSNotification.Name(rawValue: name), object: nil)
+    func removeObserver(_ observer: AnyObject, name: NSNotification.Name?) {
+        removeObserver(observer, name: name, object: nil)
     }
 }
