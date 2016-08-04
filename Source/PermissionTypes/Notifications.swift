@@ -28,7 +28,7 @@ internal extension Permission {
     var statusNotifications: PermissionStatus {
         guard case .notifications(let settings) = type else { fatalError() }
         
-        if let types = UIApplication.shared().currentUserNotificationSettings()?.types, types.contains(settings.types) {
+        if let types = UIApplication.shared.currentUserNotificationSettings?.types, types.contains(settings.types) {
             return .authorized
         }
         
@@ -41,7 +41,7 @@ internal extension Permission {
         NotificationCenter.default.addObserver(self, selector: .requestingNotifications, name: .UIApplicationWillResignActive)
         notificationTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: .finishedRequestingNotifications, userInfo: nil, repeats: false)
         
-        UIApplication.shared().registerUserNotificationSettings(settings)
+        UIApplication.shared.registerUserNotificationSettings(settings)
     }
     
     @objc func requestingNotifications() {
