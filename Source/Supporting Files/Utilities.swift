@@ -115,12 +115,6 @@ extension DispatchTimeInterval {
     }
 }
 
-extension DispatchQueue {
-    func after(_ interval: DispatchTimeInterval, execute: () -> Void) {
-        after(interval, execute: execute)
-    }
-}
-
 extension OperationQueue {
     convenience init(_ qualityOfService: QualityOfService) {
         self.init()
