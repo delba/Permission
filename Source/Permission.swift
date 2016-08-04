@@ -65,6 +65,9 @@ public class Permission: NSObject {
         return Permission(.Notifications(settings))
     }()
     
+    /// The permission to access the user's motion.
+    public static let BackgroundRefresh = Permission(.BackgroundRefresh)
+    
     /// Variable used to retain the notifications permission.
     private static var notifications: Permission?
     
@@ -110,6 +113,7 @@ public class Permission: NSObject {
         case .Events:            return statusEvents
         case .Bluetooth:         return statusBluetooth
         case .Motion:            return statusMotion
+        case .BackgroundRefresh: return statusBackgroundRefresh
         }
     }
     
@@ -186,6 +190,7 @@ public class Permission: NSObject {
         case .Events:            requestEvents(callback)
         case .Bluetooth:         requestBluetooth(self.callback)
         case .Motion:            requestMotion(self.callback)
+        case .BackgroundRefresh: requestBackgroundRefresh(callback)
         }
     }
     

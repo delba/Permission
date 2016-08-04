@@ -35,4 +35,5 @@ public enum PermissionType {
     case Events
     case Bluetooth
     case Motion
+    case BackgroundRefresh
 }
