@@ -76,7 +76,7 @@ public class PermissionAlert {
     
     internal func present() {
         DispatchQueue.main.async {
-            UIApplication.shared().presentViewController(self.controller)
+            UIApplication.shared.presentViewController(self.controller)
         }
     }
 
@@ -123,7 +123,7 @@ internal class DeniedAlert: PermissionAlert {
         NotificationCenter.default.addObserver(self, selector: .settingsHandler, name: .UIApplicationDidBecomeActive)
         
         if let URL = URL(string: UIApplicationOpenSettingsURLString) {
-            UIApplication.shared().openURL(URL)
+            UIApplication.shared.openURL(URL)
         }
     }
 }

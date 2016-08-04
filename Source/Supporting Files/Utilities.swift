@@ -40,7 +40,7 @@ extension UIApplication {
 
 extension Bundle {
     var name: String {
-        return objectForInfoDictionaryKey("CFBundleName") as? String ?? ""
+        return object(forInfoDictionaryKey: "CFBundleName") as? String ?? ""
     }
 }
 
@@ -112,12 +112,6 @@ extension UserDefaults {
 extension DispatchTimeInterval {
     init(_ interval: TimeInterval) {
         self = DispatchTimeInterval.nanoseconds(Int(interval * Double(NSEC_PER_SEC)))
-    }
-}
-
-extension DispatchQueue {
-    func after(_ interval: DispatchTimeInterval, execute: () -> Void) {
-        after(when: DispatchTime.now() + interval, execute: execute)
     }
 }
 
