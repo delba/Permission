@@ -65,7 +65,7 @@ public class Permission: NSObject {
         return Permission(.Notifications(settings))
     }()
     
-    /// The permission to access the user's motion.
+    /// The permission to access the backround refresh permission.
     public static let BackgroundRefresh = Permission(.BackgroundRefresh)
     
     /// Variable used to retain the notifications permission.
