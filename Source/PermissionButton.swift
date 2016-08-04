@@ -34,7 +34,7 @@ public class PermissionButton: UIButton {
     public var status: PermissionStatus { return permission.status }
     
     private var titles: [UIControlState: [PermissionStatus: String]] = [:]
-    private var attributedTitles: [UIControlState: [PermissionStatus: AttributedString]] = [:]
+    private var attributedTitles: [UIControlState: [PermissionStatus: NSAttributedString]] = [:]
     private var titleColors: [UIControlState: [PermissionStatus: UIColor]] = [:]
     private var titleShadowColors: [UIControlState: [PermissionStatus: UIColor]] = [:]
     private var images: [UIControlState: [PermissionStatus: UIImage]] = [:]
