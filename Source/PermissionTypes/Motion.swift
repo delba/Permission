@@ -43,7 +43,7 @@ extension Permission {
         MotionManager.queryActivityStarting(from: now, to: now, to: .main) { activities, error in
             let status: PermissionStatus
             
-            if  let error = error, error.code == Int(CMErrorMotionActivityNotAuthorized.rawValue) {
+            if  let error = error, error._code == Int(CMErrorMotionActivityNotAuthorized.rawValue) {
                 status = .denied
             } else {
                 status = .authorized
@@ -63,7 +63,7 @@ extension Permission {
         let now = Date()
         
         MotionManager.queryActivityStarting(from: now, to: now, to: OperationQueue(.background)) { activities, error in
-            if  let error = error, error.code == Int(CMErrorMotionActivityNotAuthorized.rawValue) {
+            if  let error = error, error._code == Int(CMErrorMotionActivityNotAuthorized.rawValue) {
                 status = .denied
             } else {
                 status = .authorized
