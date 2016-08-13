@@ -35,4 +35,5 @@ public enum PermissionType {
     case events
     case bluetooth
     case motion
+    @available(iOS 10.0, *) case speechRecognizer
 }
