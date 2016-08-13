@@ -40,7 +40,7 @@ extension UIApplication {
 
 extension Bundle {
     var name: String {
-        return object(forInfoDictionaryKey: "CFBundleName") as? String ?? ""
+        return objectForInfoDictionaryKey("CFBundleName") as? String ?? ""
     }
 }
 
@@ -130,7 +130,7 @@ extension OperationQueue {
 
 internal extension NotificationCenter {
     func addObserver(_ observer: AnyObject, selector: Selector, name: NSNotification.Name?) {
-        addObserver(observer, selector: selector, name: name, object: nil)
+        addObserver(observer, selector: selector, name: name!, object: nil)
     }
     
     func removeObserver(_ observer: AnyObject, name: NSNotification.Name?) {

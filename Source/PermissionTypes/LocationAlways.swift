@@ -33,20 +33,20 @@ internal extension Permission {
         switch status {
         case .authorizedAlways: return .authorized
         case .authorizedWhenInUse:
-            return UserDefaults.standard.requestedLocationAlwaysWithWhenInUse ? .denied : .notDetermined
+            return UserDefaults.standard().requestedLocationAlwaysWithWhenInUse ? .denied : .notDetermined
         case .notDetermined: return .notDetermined
         case .restricted, .denied: return .denied
         }
     }
     
     func requestLocationAlways(callback: Callback) {
-        guard let _ = Foundation.Bundle.main.object(forInfoDictionaryKey: .nsLocationAlwaysUsageDescription) else {
+        guard let _ = Foundation.Bundle.main().objectForInfoDictionaryKey(.nsLocationAlwaysUsageDescription) else {
             print("WARNING: \(.nsLocationAlwaysUsageDescription) not found in Info.plist")
             return
         }
         
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-            UserDefaults.standard.requestedLocationAlwaysWithWhenInUse = true
+            UserDefaults.standard().requestedLocationAlwaysWithWhenInUse = true
         }
         
         LocationManager.request(self)
