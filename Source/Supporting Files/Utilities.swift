@@ -57,6 +57,9 @@ internal extension String {
     static let requestedMotion                      = "permission.requestedMotion"
     static let requestedBluetooth                   = "permission.requestedBluetooth"
     
+    static let requestedMicrophoneUsageDescription        = "NSMicrophoneUsageDescription"
+    static let requestedSpeechRecognitionUsageDescription = "NSSpeechRecognitionUsageDescription"
+    
 }
 
 internal extension Selector {
