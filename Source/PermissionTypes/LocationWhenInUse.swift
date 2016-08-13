@@ -26,19 +26,19 @@ import CoreLocation
 
 internal extension Permission {
     var statusLocationWhenInUse: PermissionStatus {
-        guard CLLocationManager.locationServicesEnabled() else { return .Disabled }
+        guard CLLocationManager.locationServicesEnabled() else { return .disabled }
         
         let status = CLLocationManager.authorizationStatus()
         
         switch status {
-        case .AuthorizedWhenInUse, .AuthorizedAlways: return .Authorized
-        case .Restricted, .Denied:                    return .Denied
-        case .NotDetermined:                          return .NotDetermined
+        case .authorizedWhenInUse, .authorizedAlways: return .authorized
+        case .restricted, .denied:                    return .denied
+        case .notDetermined:                          return .notDetermined
         }
     }
     
     func requestLocationWhenInUse(callback: Callback) {
-        guard let _ = NSBundle.mainBundle().objectForInfoDictionaryKey(.nsLocationWhenInUseUsageDescription) else {
+        guard let _ = Foundation.Bundle.main.object(forInfoDictionaryKey: .nsLocationWhenInUseUsageDescription) else {
             print("WARNING: \(.nsLocationWhenInUseUsageDescription) not found in Info.plist")
             return
         }
