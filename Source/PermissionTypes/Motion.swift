@@ -28,7 +28,7 @@ private let MotionManager = CMMotionActivityManager()
 
 extension Permission {
     var statusMotion: PermissionStatus {
-        if UserDefaults.standard().requestedMotion {
+        if UserDefaults.standard.requestedMotion {
             return synchronousStatusMotion
         }
         
@@ -36,14 +36,14 @@ extension Permission {
     }
     
     func requestMotion(callback: Callback?) {
-        UserDefaults.standard().requestedMotion = true
+        UserDefaults.standard.requestedMotion = true
         
         let now = Date()
         
-        MotionManager.queryActivityStarting(from: now, to: now, to: OperationQueue.main()) { activities, error in
+        MotionManager.queryActivityStarting(from: now, to: now, to: OperationQueue.main) { activities, error in
             let status: PermissionStatus
             
-            if  let error = error where error._code == Int(CMErrorMotionActivityNotAuthorized.rawValue) {
+            if  let error = error , error._code == Int(CMErrorMotionActivityNotAuthorized.rawValue) {
                 status = .denied
             } else {
                 status = .authorized
@@ -63,7 +63,7 @@ extension Permission {
         let now = Date()
         
         MotionManager.queryActivityStarting(from: now, to: now, to: OperationQueue(.background)) { activities, error in
-            if  let error = error where error._code == Int(CMErrorMotionActivityNotAuthorized.rawValue) {
+            if  let error = error , error._code == Int(CMErrorMotionActivityNotAuthorized.rawValue) {
                 status = .denied
             } else {
                 status = .authorized

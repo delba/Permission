@@ -40,7 +40,7 @@ extension UIApplication {
 
 extension Bundle {
     var name: String {
-        return objectForInfoDictionaryKey("CFBundleName") as? String ?? ""
+        return object(forInfoDictionaryKey: "CFBundleName") as? String ?? ""
     }
 }
 

@@ -34,7 +34,7 @@ public class PermissionButton: UIButton {
     public var status: PermissionStatus { return permission.status }
     
     private var titles: [UIControlState: [PermissionStatus: String]] = [:]
-    private var attributedTitles: [UIControlState: [PermissionStatus: AttributedString]] = [:]
+    private var attributedTitles: [UIControlState: [PermissionStatus: NSAttributedString]] = [:]
     private var titleColors: [UIControlState: [PermissionStatus: UIColor]] = [:]
     private var titleShadowColors: [UIControlState: [PermissionStatus: UIColor]] = [:]
     private var images: [UIControlState: [PermissionStatus: UIImage]] = [:]
@@ -154,7 +154,7 @@ public class PermissionButton: UIButton {
     
     - returns: The title for the specified permission status and state.
     */
-    public func attributedTitleForStatus(_ status: PermissionStatus, andState state: UIControlState = UIControlState()) -> AttributedString? {
+    public func attributedTitleForStatus(_ status: PermissionStatus, andState state: UIControlState = UIControlState()) -> NSAttributedString? {
         return attributedTitles[state]?[status]
     }
     
@@ -164,7 +164,7 @@ public class PermissionButton: UIButton {
     - parameter title: The styled text string to use for the title.
     - parameter state: The state that uses the specified title.
     */
-    public override func setAttributedTitle(_ title: AttributedString?, for state: UIControlState) {
+    public override func setAttributedTitle(_ title: NSAttributedString?, for state: UIControlState) {
         attributedTitles[state] = nil
         super.setAttributedTitle(title, for: state)
     }
@@ -176,7 +176,7 @@ public class PermissionButton: UIButton {
      - parameter status: The permission status that uses the specified title.
      - parameter state:  The state that uses the specified title.
      */
-    public func setAttributedTitle(_ title: AttributedString?, forStatus status: PermissionStatus, andState state: UIControlState = UIControlState()) {
+    public func setAttributedTitle(_ title: NSAttributedString?, forStatus status: PermissionStatus, andState state: UIControlState = UIControlState()) {
         guard [.highlighted].contains(state) else { return }
         
         if attributedTitles[state] == nil {
@@ -192,7 +192,7 @@ public class PermissionButton: UIButton {
      - parameter titles: The titles to use for the specified statuses.
      - parameter state:  The state that uses the specified titles.
      */
-    public func setAttributedTitles(_ titles: [PermissionStatus: AttributedString?], forState state: UIControlState = UIControlState()) {
+    public func setAttributedTitles(_ titles: [PermissionStatus: NSAttributedString?], forState state: UIControlState = UIControlState()) {
         guard [.highlighted].contains(state) else { return }
         
         if attributedTitles[state] == nil {
