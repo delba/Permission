@@ -60,6 +60,7 @@ internal extension String {
     static let requestedMicrophoneUsageDescription        = "NSMicrophoneUsageDescription"
     static let requestedSpeechRecognitionUsageDescription = "NSSpeechRecognitionUsageDescription"
     
+    static let requestedPhotoLibraryUsageDescription        = "NSPhotoLibraryUsageDescription"
 }
 
 internal extension Selector {
