@@ -36,6 +36,11 @@ internal extension Permission {
     }
     
     func requestCamera(callback: Callback) {
+        guard let _ = Bundle.main.object(forInfoDictionaryKey: .requestedCameraUsageDescription) else {
+            print("WARNING: \(.requestedCameraUsageDescription) not found in Info.plist")
+            return
+        }
+        
         AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo) { _ in
             callback(self.statusCamera)
         }
