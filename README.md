@@ -213,7 +213,7 @@ To integrate Permission into your Xcode project using Carthage, specify it in yo
 github "delba/Permission"
 ```
 
-### Cocoapods
+### CocoaPods
 
 [CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects.
 
