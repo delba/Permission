@@ -28,7 +28,7 @@ internal extension Permission {
         }
     }
     
-    func requestSpeechRecognizer(callback: Callback) {
+    func requestSpeechRecognizer(_ callback: Callback) {
         
         guard let _ = Bundle.main.object(forInfoDictionaryKey: .requestedMicrophoneUsageDescription) else {
             print("WARNING: \(.requestedMicrophoneUsageDescription) not found in Info.plist")

@@ -23,7 +23,7 @@
 //
 
 extension UIApplication {
-    private var topViewController: UIViewController? {
+    fileprivate var topViewController: UIViewController? {
         var vc = delegate?.window??.rootViewController
         
         while let presentedVC = vc?.presentedViewController {

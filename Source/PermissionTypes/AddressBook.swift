@@ -37,7 +37,7 @@ internal extension Permission {
         }
     }
     
-    func requestAddressBook(callback: Callback) {
+    func requestAddressBook(_ callback: Callback) {
         ABAddressBookRequestAccessWithCompletion(nil) { _, _ in
             callback(self.statusAddressBook)
         }

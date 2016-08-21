@@ -22,16 +22,16 @@
 // SOFTWARE.
 //
 
-public class PermissionSet {
+open class PermissionSet {
     
     /// The permissions in the set.
-    public let permissions: Set<Permission>
+    open let permissions: Set<Permission>
     
     /// The delegate of the permission set.
-    public var delegate: PermissionSetDelegate?
+    open var delegate: PermissionSetDelegate?
     
     /// The permission set status
-    public var status: PermissionStatus {
+    open var status: PermissionStatus {
         let statuses = permissions.map({ $0.status })
         
         for status in statuses where status == .denied {
@@ -93,13 +93,13 @@ public class PermissionSet {
         self.init(permissions: permissions)
     }
     
-    private convenience init(buttons: [PermissionButton]) {
+    fileprivate convenience init(buttons: [PermissionButton]) {
         let permissions = buttons.map({ $0.permission })
         
         self.init(permissions: permissions)
     }
     
-    private init(permissions: [Permission]) {
+    fileprivate init(permissions: [Permission]) {
         self.permissions = Set(permissions)
         self.permissions.forEach { $0.permissionSets.append(self) }
     }

@@ -41,7 +41,7 @@ internal extension Permission {
         }
     }
     
-    func requestContacts(callback: Callback) {
+    func requestContacts(_ callback: Callback) {
         if #available(iOS 9.0, *) {
             CNContactStore().requestAccess(for: .contacts) { _, _ in
                 callback(self.statusContacts)

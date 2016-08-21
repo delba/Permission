@@ -35,7 +35,7 @@ internal extension Permission {
         }
     }
     
-    func requestPhotos(callback: Callback) {
+    func requestPhotos(_ callback: Callback) {
         guard let _ = Bundle.main.object(forInfoDictionaryKey: .requestedPhotoLibraryUsageDescription) else {
             print("WARNING: \(.requestedPhotoLibraryUsageDescription) not found in Info.plist")
             return

@@ -46,7 +46,7 @@ extension Permission {
         }
     }
     
-    func requestBluetooth(callback: Callback?) {
+    func requestBluetooth(_ callback: Callback?) {
         UserDefaults.standard.requestedBluetooth = true
         
         BluetoothManager.request(self)

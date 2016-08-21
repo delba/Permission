@@ -35,7 +35,7 @@ extension Permission {
         return .notDetermined
     }
     
-    func requestMotion(callback: Callback?) {
+    func requestMotion(_ callback: Callback?) {
         UserDefaults.standard.requestedMotion = true
         
         let now = Date()
@@ -55,7 +55,7 @@ extension Permission {
         }
     }
     
-    private var synchronousStatusMotion: PermissionStatus {
+    fileprivate var synchronousStatusMotion: PermissionStatus {
         let semaphore = DispatchSemaphore(value: 0)
         
         var status: PermissionStatus = .notDetermined

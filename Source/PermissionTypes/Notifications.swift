@@ -35,7 +35,7 @@ internal extension Permission {
         return UserDefaults.standard.requestedNotifications ? .denied : .notDetermined
     }
     
-    func requestNotifications(callback: Callback) {
+    func requestNotifications(_ callback: Callback) {
         guard case .notifications(let settings) = type else { fatalError() }
         
         NotificationCenter.default.addObserver(self, selector: .requestingNotifications, name: .UIApplicationWillResignActive)
@@ -60,7 +60,7 @@ internal extension Permission {
         UserDefaults.standard.requestedNotifications = true
         
         DispatchQueue.main.after(DispatchTimeInterval(0.1)) {
-            self.callbackAsync(with: self.statusNotifications)
+            self.callbackAsync(self.statusNotifications)
         }
     }
 }

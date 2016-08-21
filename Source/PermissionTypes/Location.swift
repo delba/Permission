@@ -37,7 +37,7 @@ extension Permission: CLLocationManagerDelegate {
         case (true, true):
             requestedLocation = false
             triggerCallbacks  = false
-            callbackAsync(with: self.status)
+            callbackAsync(self.status)
         default:
             break
         }
