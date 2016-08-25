@@ -63,6 +63,10 @@ open class Permission: NSObject {
     @available(iOS 10.0, *)
     open static let SpeechRecognizer = Permission(type: .speechRecognizer)
     
+    /// The permission to access the user's MediaLibrary.
+    @available(iOS 10.0, *)
+    open static let MediaLibrary = Permission(type: .mediaLibrary)
+
     /// The permission to send notifications.
     open static let Notifications: Permission = {
         let settings = UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil)
@@ -112,6 +116,7 @@ open class Permission: NSObject {
         case .bluetooth:         return statusBluetooth
         case .motion:            return statusMotion
         case .speechRecognizer:  return statusSpeechRecognizer
+        case .mediaLibrary:      return statusMediaLibrary
 
         }
     }
@@ -190,7 +195,7 @@ open class Permission: NSObject {
         case .bluetooth:         requestBluetooth(self.callback)
         case .motion:            requestMotion(self.callback)
         case .speechRecognizer:  requestSpeechRecognizer(callback)
-
+        case .mediaLibrary:      requestMediaLibrary(callback)
         }
     }
     

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3D42A7DB1D5F66B300236ABA /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D42A7DA1D5F66B300236ABA /* SpeechRecognizer.swift */; };
+		3DC217D31D6EFD4A00600DFE /* MediaLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC217D21D6EFD4A00600DFE /* MediaLibrary.swift */; };
 		6C04FAF61CCA8F3A00B3F361 /* AddressBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C04FAF51CCA8F3A00B3F361 /* AddressBook.swift */; };
 		6D0069B41C1868E8002FDB42 /* PermissionSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0069B31C1868E8002FDB42 /* PermissionSet.swift */; };
 		6D0EBDBD1BFCF8B700C35F8E /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0EBDBC1BFCF8B700C35F8E /* Utilities.swift */; };
@@ -45,6 +46,7 @@
 
 /* Begin PBXFileReference section */
 		3D42A7DA1D5F66B300236ABA /* SpeechRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
+		3DC217D21D6EFD4A00600DFE /* MediaLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaLibrary.swift; sourceTree = "<group>"; };
 		6C04FAF51CCA8F3A00B3F361 /* AddressBook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressBook.swift; sourceTree = "<group>"; };
 		6D0069B31C1868E8002FDB42 /* PermissionSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionSet.swift; sourceTree = "<group>"; };
 		6D0EBDBC1BFCF8B700C35F8E /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				6DF9C2BD1C8F4FE5000710C1 /* Photos.swift */,
 				6DF9C2B51C8F4F69000710C1 /* Reminders.swift */,
 				3D42A7DA1D5F66B300236ABA /* SpeechRecognizer.swift */,
+				3DC217D21D6EFD4A00600DFE /* MediaLibrary.swift */,
 			);
 			path = PermissionTypes;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 				6DF9C2BA1C8F4FAC000710C1 /* Microphone.swift in Sources */,
 				6DF9C2BC1C8F4FDA000710C1 /* Camera.swift in Sources */,
 				6DF9C2B21C8F4F45000710C1 /* LocationAlways.swift in Sources */,
+				3DC217D31D6EFD4A00600DFE /* MediaLibrary.swift in Sources */,
 				6D86A9CD1BEBDC9000E3DD5A /* Permission.swift in Sources */,
 				6D0EBDBD1BFCF8B700C35F8E /* Utilities.swift in Sources */,
 			);
