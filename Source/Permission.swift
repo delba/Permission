@@ -22,120 +22,123 @@
 // SOFTWARE.
 //
 
-open class Permission: NSObject {
-    public typealias Callback = (PermissionStatus) -> Void
+public class Permission: NSObject {
+    public typealias Callback = PermissionStatus -> Void
 
     /// The permission to access the user's contacts.
     @available(iOS 9.0, *)
-    open static let Contacts = Permission(type: .contacts)
+    public static let Contacts = Permission(.Contacts)
     
     /// The permission to access the user's address book. (Deprecated in iOS 9.0)
-    open static let AddressBook = Permission(type: .addressBook)
+    public static let AddressBook = Permission(.AddressBook)
     
     /// The permission to access the user's location when the app is in background.
-    open static let LocationAlways = Permission(type: .locationAlways)
+    public static let LocationAlways = Permission(.LocationAlways)
     
     /// The permission to access the user's location when the app is in use.
-    open static let LocationWhenInUse = Permission(type: .locationWhenInUse)
+    public static let LocationWhenInUse = Permission(.LocationWhenInUse)
     
     /// The permission to access the microphone.
-    open static let Microphone = Permission(type: .microphone)
+    public static let Microphone = Permission(.Microphone)
     
     /// The permission to access the camera.
-    open static let Camera = Permission(type: .camera)
+    public static let Camera = Permission(.Camera)
     
     /// The permission to access the user's photos.
-    open static let Photos = Permission(type: .photos)
+    public static let Photos = Permission(.Photos)
     
     /// The permission to access the user's reminders.
-    open static let Reminders = Permission(type: .reminders)
+    public static let Reminders = Permission(.Reminders)
     
     /// The permission to access the user's events.
-    open static let Events = Permission(type: .events)
+    public static let Events = Permission(.Events)
     
     /// The permission to access the user's bluetooth.
-    open static let Bluetooth = Permission(type: .bluetooth)
+    public static let Bluetooth = Permission(.Bluetooth)
     
     /// The permission to access the user's motion.
-    open static let Motion = Permission(type: .motion)
+    public static let Motion = Permission(.Motion)
     
     /// The permission to access the user's SpeechRecognizer.
     @available(iOS 10.0, *)
-    open static let SpeechRecognizer = Permission(type: .speechRecognizer)
+    public static let SpeechRecognizer = Permission(.SpeechRecognizer)
     
     /// The permission to access the user's MediaLibrary.
     @available(iOS 10.0, *)
-    open static let MediaLibrary = Permission(type: .mediaLibrary)
-
+    public static let MediaLibrary = Permission(.MediaLibrary)
+    
     /// The permission to send notifications.
-    open static let Notifications: Permission = {
-        let settings = UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil)
-        return Permission(type: .notifications(settings))
+    public static let Notifications: Permission = {
+        let settings = UIUserNotificationSettings(forTypes: [.Badge, .Sound, .Alert], categories: nil)
+        return Permission(.Notifications(settings))
     }()
     
     /// Variable used to retain the notifications permission.
-    fileprivate static var notifications: Permission?
+    private static var notifications: Permission?
     
     /// The permission to send notifications.
-    open static func Notifications(_ types: UIUserNotificationType, categories: Set<UIUserNotificationCategory>?) -> Permission {
-        let settings  = UIUserNotificationSettings(types: types, categories: categories)
-        notifications = Permission(type: .notifications(settings))
+    @warn_unused_result
+    public static func Notifications(types types: UIUserNotificationType, categories: Set<UIUserNotificationCategory>?) -> Permission {
+        let settings  = UIUserNotificationSettings(forTypes: types, categories: categories)
+        notifications = Permission(.Notifications(settings))
         return notifications!
     }
     
     /// The permission to send notifications.
-    open static func Notifications(_ types: UIUserNotificationType) -> Permission {
-        let settings  = UIUserNotificationSettings(types: types, categories: nil)
-        notifications = Permission(type: .notifications(settings))
+    @warn_unused_result
+    public static func Notifications(types types: UIUserNotificationType) -> Permission {
+        let settings  = UIUserNotificationSettings(forTypes: types, categories: nil)
+        notifications = Permission(.Notifications(settings))
         return notifications!
     }
     
     /// The permission to send notifications.
-    open static func notifications(_ categories: Set<UIUserNotificationCategory>?) -> Permission {
-        let settings  = UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: categories)
-        notifications = Permission(type: .notifications(settings))
+    @warn_unused_result
+    public static func Notifications(categories categories: Set<UIUserNotificationCategory>?) -> Permission {
+        let settings  = UIUserNotificationSettings(forTypes: [.Badge, .Sound, .Alert], categories: categories)
+        notifications = Permission(.Notifications(settings))
         return notifications!
     }
     
     /// The permission domain.
-    open let type: PermissionType
+    public let type: PermissionType
     
     /// The permission status.
-    open var status: PermissionStatus {
+    public var status: PermissionStatus {
         switch type {
-        case .contacts:          return statusContacts
-        case .addressBook:       return statusAddressBook
-        case .locationAlways:    return statusLocationAlways
-        case .locationWhenInUse: return statusLocationWhenInUse
-        case .notifications:     return statusNotifications
-        case .microphone:        return statusMicrophone
-        case .camera:            return statusCamera
-        case .photos:            return statusPhotos
-        case .reminders:         return statusReminders
-        case .events:            return statusEvents
-        case .bluetooth:         return statusBluetooth
-        case .motion:            return statusMotion
-        case .speechRecognizer:  return statusSpeechRecognizer
-        case .mediaLibrary:      return statusMediaLibrary
+        case .Contacts:          return statusContacts
+        case .AddressBook:       return statusAddressBook
+        case .LocationAlways:    return statusLocationAlways
+        case .LocationWhenInUse: return statusLocationWhenInUse
+        case .Notifications:     return statusNotifications
+        case .Microphone:        return statusMicrophone
+        case .Camera:            return statusCamera
+        case .Photos:            return statusPhotos
+        case .Reminders:         return statusReminders
+        case .Events:            return statusEvents
+        case .Bluetooth:         return statusBluetooth
+        case .Motion:            return statusMotion
+        case .SpeechRecognizer:  return statusSpeechRecognizer
+        case .MediaLibrary:      return statusMediaLibrary
 
         }
     }
     
     /// Determines whether to present the pre-permission alert.
-    open var presentPrePermissionAlert = false
+    public var presentPrePermissionAlert = false
     
     /// The pre-permission alert.
-    open lazy var prePermissionAlert: PermissionAlert = {
+    public lazy var prePermissionAlert: PermissionAlert = {
         return PrePermissionAlert(permission: self)
     }()
     
     /// The alert when the permission was denied.
-    open lazy var deniedAlert: PermissionAlert = {
+    public lazy var deniedAlert: PermissionAlert = {
         return DeniedAlert(permission: self)
     }()
     
     /// The alert when the permission is disabled.
-    open lazy var disabledAlert: PermissionAlert = {
+    public lazy var disabledAlert: PermissionAlert = {
         return DisabledAlert(permission: self)
     }()
     
@@ -150,7 +153,7 @@ open class Permission: NSObject {
      
      - returns: A newly created permission.
      */
-    fileprivate init(type: PermissionType) {
+    private init(_ type: PermissionType) {
         self.type = type
     }
     
@@ -159,70 +162,70 @@ open class Permission: NSObject {
      
      - parameter callback: The function to be triggered after the user responded to the request.
      */
-    open func request(_ callback: Callback) {
+    public func request(callback: Callback) {
         self.callback = callback
         
-        DispatchQueue.main.async {
+        Queue.main {
             self.permissionSets.forEach { $0.willRequestPermission(self) }
         }
         
         let status = self.status
         
         switch status {
-        case .authorized:    callbackAsync(status)
-        case .notDetermined: requestInitialAuthorization()
-        case .denied:        deniedAlert.present()
-        case .disabled:      disabledAlert.present()
+        case .Authorized:    callbacks(status)
+        case .NotDetermined: requestInitialAuthorization()
+        case .Denied:        deniedAlert.present()
+        case .Disabled:      disabledAlert.present()
         }
     }
     
-    fileprivate func requestInitialAuthorization() {
-        presentPrePermissionAlert ? prePermissionAlert.present() : requestAuthorization(callback!)
+    private func requestInitialAuthorization() {
+        presentPrePermissionAlert ? prePermissionAlert.present() : requestAuthorization(callbacks)
     }
     
-    internal func requestAuthorization(_ callback: Callback) {
+    internal func requestAuthorization(callback: Callback) {
         switch type {
-        case .contacts:          requestContacts(callback)
-        case .addressBook:       requestAddressBook(callback)
-        case .locationAlways:    requestLocationAlways(callback)
-        case .locationWhenInUse: requestLocationWhenInUse(callback)
-        case .notifications:     requestNotifications(callback)
-        case .microphone:        requestMicrophone(callback)
-        case .camera:            requestCamera(callback)
-        case .photos:            requestPhotos(callback)
-        case .reminders:         requestReminders(callback)
-        case .events:            requestEvents(callback)
-        case .bluetooth:         requestBluetooth(self.callback)
-        case .motion:            requestMotion(self.callback)
-        case .speechRecognizer:  requestSpeechRecognizer(callback)
-        case .mediaLibrary:      requestMediaLibrary(callback)
+        case .Contacts:          requestContacts(callback)
+        case .AddressBook:       requestAddressBook(callback)
+        case .LocationAlways:    requestLocationAlways(callback)
+        case .LocationWhenInUse: requestLocationWhenInUse(callback)
+        case .Notifications:     requestNotifications(callback)
+        case .Microphone:        requestMicrophone(callback)
+        case .Camera:            requestCamera(callback)
+        case .Photos:            requestPhotos(callback)
+        case .Reminders:         requestReminders(callback)
+        case .Events:            requestEvents(callback)
+        case .Bluetooth:         requestBluetooth(self.callback)
+        case .Motion:            requestMotion(self.callback)
+        case .SpeechRecognizer:  requestSpeechRecognizer(callback)
+        case .MediaLibrary:      requestMediaLibrary(callback)
+
         }
     }
     
-    internal func callbackAsync(_ with: PermissionStatus) {
-        DispatchQueue.main.async {
-            self.callback?(self.status)
-            self.permissionSets.forEach { $0.didRequestPermission(self)
-            }
+    internal func callbacks(status: PermissionStatus) {
+        Queue.main {
+            self.callback?(status)
+            self.permissionSets.forEach { $0.didRequestPermission(self) }
         }
     }
 }
 
 extension Permission {
     /// The textual representation of self.
-    override open var description: String {
+    override public var description: String {
         return "\(type): \(status)"
     }
     
     /// The pretty textual representation of self. 
     internal var prettyDescription: String {
         switch type {
-        case .locationAlways, .locationWhenInUse:
+        case .LocationAlways, .LocationWhenInUse:
             return "Location"
-        case .notifications:
+        case .Notifications:
             return "Notifications"
         default:
-            return String(describing: type)
+            return String(type)
         }
     }
     

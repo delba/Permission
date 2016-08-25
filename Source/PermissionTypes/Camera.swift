@@ -26,22 +26,17 @@ import AVFoundation
 
 internal extension Permission {
     var statusCamera: PermissionStatus {
-        let status = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
+        let status = AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)
         
         switch status {
-        case .authorized:          return .authorized
-        case .restricted, .denied: return .denied
-        case .notDetermined:       return .notDetermined
+        case .Authorized:          return .Authorized
+        case .Restricted, .Denied: return .Denied
+        case .NotDetermined:       return .NotDetermined
         }
     }
     
-    func requestCamera(_ callback: Callback) {
-        guard let _ = Bundle.main.object(forInfoDictionaryKey: .requestedCameraUsageDescription) else {
-            print("WARNING: \(.requestedCameraUsageDescription) not found in Info.plist")
-            return
-        }
-        
-        AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo) { _ in
+    func requestCamera(callback: Callback) {
+        AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo) { _ in
             callback(self.statusCamera)
         }
     }

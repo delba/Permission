@@ -29,18 +29,13 @@ internal extension Permission {
         let status = PHPhotoLibrary.authorizationStatus()
         
         switch status {
-        case .authorized:          return .authorized
-        case .denied, .restricted: return .denied
-        case .notDetermined:       return .notDetermined
+        case .Authorized:          return .Authorized
+        case .Denied, .Restricted: return .Denied
+        case .NotDetermined:       return .NotDetermined
         }
     }
     
-    func requestPhotos(_ callback: Callback) {
-        guard let _ = Bundle.main.object(forInfoDictionaryKey: .requestedPhotoLibraryUsageDescription) else {
-            print("WARNING: \(.requestedPhotoLibraryUsageDescription) not found in Info.plist")
-            return
-        }
-
+    func requestPhotos(callback: Callback) {
         PHPhotoLibrary.requestAuthorization { _ in
             callback(self.statusPhotos)
         }

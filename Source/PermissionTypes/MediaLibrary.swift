@@ -7,8 +7,6 @@
 //
 
 
-
-
 import MediaPlayer
 
 internal extension Permission {
@@ -18,9 +16,9 @@ internal extension Permission {
             let status = MPMediaLibrary.authorizationStatus()
             
             switch status {
-            case .authorized:          return .authorized
-            case .restricted, .denied: return .denied
-            case .notDetermined:       return .notDetermined
+            case .Authorized:          return .Authorized
+            case .Restricted, .Denied: return .Denied
+            case .NotDetermined:       return .NotDetermined
             }
         }else{
             fatalError()
@@ -28,13 +26,13 @@ internal extension Permission {
         }
     }
     
-    func requestMediaLibrary(_ callback: Callback) {
+    func requestMediaLibrary(callback: Callback) {
         
-        guard let _ = Bundle.main.object(forInfoDictionaryKey: .requestedAppleMusicUsageDescription) else {
+        guard let _ = NSBundle.mainBundle().objectForInfoDictionaryKey(.requestedAppleMusicUsageDescription) else {
             print("WARNING: \(.requestedAppleMusicUsageDescription) not found in Info.plist")
             return
         }
-
+        
         if #available(iOS 10.0, *) {
             
             MPMediaLibrary.requestAuthorization { _ in

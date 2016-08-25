@@ -23,18 +23,19 @@
 //
 
 public enum PermissionType {
-    @available(iOS 9.0, *) case contacts
-    case addressBook // Deprecated in iOS 9.0
-    case locationAlways
-    case locationWhenInUse
-    case notifications(UIUserNotificationSettings)
-    case microphone
-    case camera
-    case photos
-    case reminders
-    case events
-    case bluetooth
-    case motion
-    @available(iOS 10.0, *) case speechRecognizer
-    @available(iOS 10.0, *) case mediaLibrary
+    @available(iOS 9.0, *) case Contacts
+    case AddressBook // Deprecated in iOS 9.0
+    case LocationAlways
+    case LocationWhenInUse
+    case Notifications(UIUserNotificationSettings)
+    case Microphone
+    case Camera
+    case Photos
+    case Reminders
+    case Events
+    case Bluetooth
+    case Motion
+    @available(iOS 10.0, *) case SpeechRecognizer
+    @available(iOS 10.0, *) case MediaLibrary
+
 }

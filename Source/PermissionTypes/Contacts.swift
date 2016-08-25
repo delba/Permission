@@ -29,21 +29,21 @@ import Contacts
 internal extension Permission {
     var statusContacts: PermissionStatus {
         if #available(iOS 9.0, *) {
-            let status = CNContactStore.authorizationStatus(for: .contacts)
+            let status = CNContactStore.authorizationStatusForEntityType(.Contacts)
             
             switch status {
-            case .authorized:          return .authorized
-            case .restricted, .denied: return .denied
-            case .notDetermined:       return .notDetermined
+            case .Authorized:          return .Authorized
+            case .Restricted, .Denied: return .Denied
+            case .NotDetermined:       return .NotDetermined
             }
         } else {
             fatalError()
         }
     }
     
-    func requestContacts(_ callback: Callback) {
+    func requestContacts(callback: Callback) {
         if #available(iOS 9.0, *) {
-            CNContactStore().requestAccess(for: .contacts) { _, _ in
+            CNContactStore().requestAccessForEntityType(.Contacts) { _,_ in
                 callback(self.statusContacts)
             }
         } else {

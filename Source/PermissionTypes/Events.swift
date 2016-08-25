@@ -26,17 +26,17 @@ import EventKit
 
 internal extension Permission {
     var statusEvents: PermissionStatus {
-        let status = EKEventStore.authorizationStatus(for: .event)
+        let status = EKEventStore.authorizationStatusForEntityType(.Event)
         
         switch status {
-        case .authorized:          return .authorized
-        case .restricted, .denied: return .denied
-        case .notDetermined:       return .notDetermined
+        case .Authorized:          return .Authorized
+        case .Restricted, .Denied: return .Denied
+        case .NotDetermined:       return .NotDetermined
         }
     }
     
-    func requestEvents(_ callback: Callback) {
-        EKEventStore().requestAccess(to: .event) { _,_ in
+    func requestEvents(callback: Callback) {
+        EKEventStore().requestAccessToEntityType(.Event) { _,_ in
             callback(self.statusEvents)
         }
     }

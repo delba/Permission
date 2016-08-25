@@ -22,49 +22,49 @@
 // SOFTWARE.
 //
 
-open class PermissionAlert {
+public class PermissionAlert {
     /// The permission.
-    fileprivate let permission: Permission
+    private let permission: Permission
     
     /// The status of the permission.
-    fileprivate var status: PermissionStatus { return permission.status }
+    private var status: PermissionStatus { return permission.status }
     
     /// The domain of the permission.
-    fileprivate var type: PermissionType { return permission.type }
+    private var type: PermissionType { return permission.type }
     
-    fileprivate var callbacks: Permission.Callback {return permission.callback! }
+    private var callbacks: Permission.Callback { return permission.callbacks }
     
     /// The title of the alert.
-    open var title: String?
+    public var title: String?
     
     /// Descriptive text that provides more details about the reason for the alert.
-    open var message: String?
+    public var message: String?
     
     /// The title of the cancel action.
-    open var cancel: String? {
+    public var cancel: String? {
         get { return cancelActionTitle }
         set { cancelActionTitle = newValue }
     }
     
     /// The title of the settings action.
-    open var settings: String? {
+    public var settings: String? {
         get { return defaultActionTitle }
         set { defaultActionTitle = newValue }
     }
     
     /// The title of the confirm action.
-    open var confirm: String? {
+    public var confirm: String? {
         get { return defaultActionTitle }
         set { defaultActionTitle = newValue }
     }
     
-    fileprivate var cancelActionTitle: String?
-    fileprivate var defaultActionTitle: String?
+    private var cancelActionTitle: String?
+    private var defaultActionTitle: String?
     
     var controller: UIAlertController {
-        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let controller = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         
-        let action = UIAlertAction(title: cancelActionTitle, style: .cancel, handler: cancelHandler)
+        let action = UIAlertAction(title: cancelActionTitle, style: .Cancel, handler: cancelHandler)
         controller.addAction(action)
         
         return controller
@@ -75,12 +75,12 @@ open class PermissionAlert {
     }
     
     internal func present() {
-        DispatchQueue.main.async {
-            UIApplication.shared.presentViewController(self.controller)
+        Queue.main {
+            Application.presentViewController(self.controller)
         }
     }
 
-    fileprivate func cancelHandler(_ action: UIAlertAction) {
+    private func cancelHandler(action: UIAlertAction) {
         callbacks(status)
     }
 }
@@ -99,7 +99,7 @@ internal class DeniedAlert: PermissionAlert {
     override var controller: UIAlertController {
         let controller = super.controller
         
-        let action = UIAlertAction(title: defaultActionTitle, style: .default, handler: settingsHandler)
+        let action = UIAlertAction(title: defaultActionTitle, style: .Default, handler: settingsHandler)
         controller.addAction(action)
         
         return controller
@@ -115,15 +115,15 @@ internal class DeniedAlert: PermissionAlert {
     }
     
     @objc func settingsHandler() {
-        NotificationCenter.default.removeObserver(self, name: .UIApplicationDidBecomeActive)
+        NotificationCenter.removeObserver(self, name: UIApplicationDidBecomeActiveNotification)
         callbacks(status)
     }
     
-    private func settingsHandler(_ action: UIAlertAction) {
-        NotificationCenter.default.addObserver(self, selector: .settingsHandler, name: .UIApplicationDidBecomeActive)
+    private func settingsHandler(action: UIAlertAction) {
+        NotificationCenter.addObserver(self, selector: .settingsHandler, name: UIApplicationDidBecomeActiveNotification)
         
-        if let URL = URL(string: UIApplicationOpenSettingsURLString) {
-            UIApplication.shared.openURL(URL)
+        if let URL = NSURL(string: UIApplicationOpenSettingsURLString) {
+            Application.openURL(URL)
         }
     }
 }
@@ -132,7 +132,7 @@ internal class PrePermissionAlert: PermissionAlert {
     override var controller: UIAlertController {
         let controller = super.controller
         
-        let action = UIAlertAction(title: defaultActionTitle, style: .default, handler: confirmHandler)
+        let action = UIAlertAction(title: defaultActionTitle, style: .Default, handler: confirmHandler)
         controller.addAction(action)
         
         return controller
@@ -141,13 +141,13 @@ internal class PrePermissionAlert: PermissionAlert {
     override init(permission: Permission) {
         super.init(permission: permission)
         
-        title   = "\(Bundle.main.name) would like to access your \(permission.prettyDescription)"
+        title   = "\(Bundle.name) would like to access your \(permission.prettyDescription)"
         message = "Please enable access to \(permission.prettyDescription)."
         cancel  = "Cancel"
         confirm = "Confirm"
     }
     
-    fileprivate func confirmHandler(_ action: UIAlertAction) {
+    private func confirmHandler(action: UIAlertAction) {
         permission.requestAuthorization(callbacks)
     }
 }

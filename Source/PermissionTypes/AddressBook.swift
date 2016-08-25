@@ -31,14 +31,14 @@ internal extension Permission {
         let status = ABAddressBookGetAuthorizationStatus()
         
         switch status {
-        case .authorized:          return .authorized
-        case .restricted, .denied: return .denied
-        case .notDetermined:       return .notDetermined
+        case .Authorized:          return .Authorized
+        case .Restricted, .Denied: return .Denied
+        case .NotDetermined:       return .NotDetermined
         }
     }
     
-    func requestAddressBook(_ callback: Callback) {
-        ABAddressBookRequestAccessWithCompletion(nil) { _, _ in
+    func requestAddressBook(callback: Callback) {
+        ABAddressBookRequestAccessWithCompletion(nil) { _,_ in
             callback(self.statusAddressBook)
         }
     }

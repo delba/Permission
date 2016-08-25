@@ -8,49 +8,25 @@
 
 
 
-
 import Speech
 
 internal extension Permission {
     var statusSpeechRecognizer: PermissionStatus {
-        if #available(iOS 10.0, *) {
-            
-            let status = SFSpeechRecognizer.authorizationStatus()
-            
-            switch status {
-            case .authorized:          return .authorized
-            case .restricted, .denied: return .denied
-            case .notDetermined:       return .notDetermined
-            }
-        }else{
-            fatalError()
-            
+
+        let status = SFSpeechRecognizer.authorizationStatus()
+        
+        switch status {
+        case .Authorized:          return .Authorized
+        case .Restricted, .Denied: return .Denied
+        case .NotDetermined:       return .NotDetermined
         }
     }
     
-    func requestSpeechRecognizer(_ callback: Callback) {
-        
-        guard let _ = Bundle.main.object(forInfoDictionaryKey: .requestedMicrophoneUsageDescription) else {
-            print("WARNING: \(.requestedMicrophoneUsageDescription) not found in Info.plist")
-            return
-        }
-        
-        
-        guard let _ = Bundle.main.object(forInfoDictionaryKey: .requestedSpeechRecognitionUsageDescription) else {
-            print("WARNING: \(.requestedSpeechRecognitionUsageDescription) not found in Info.plist")
-            return
-        }
-        
-        
-        if #available(iOS 10.0, *) {
-            
-            SFSpeechRecognizer.requestAuthorization { _ in
-                callback(self.statusSpeechRecognizer)
-                
+    func requestSpeechRecognizer(callback: Callback) {
+
+        SFSpeechRecognizer.requestAuthorization { _ in
+                    callback(self.statusSpeechRecognizer)
+
             }
-        } else {
-            fatalError()
-        }
     }
 }
-

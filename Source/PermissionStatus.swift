@@ -23,8 +23,8 @@
 //
 
 public enum PermissionStatus {
-    case authorized
-    case denied
-    case disabled
-    case notDetermined
+    case Authorized
+    case Denied
+    case Disabled
+    case NotDetermined
 }

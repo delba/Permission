@@ -29,13 +29,13 @@ internal extension Permission {
         let status = AVAudioSession.sharedInstance().recordPermission()
         
         switch status {
-        case AVAudioSessionRecordPermission.denied:  return .denied
-        case AVAudioSessionRecordPermission.granted: return .authorized
-        default:                                     return .notDetermined
+        case AVAudioSessionRecordPermission.Denied:  return .Denied
+        case AVAudioSessionRecordPermission.Granted: return .Authorized
+        default:                                     return .NotDetermined
         }
     }
     
-    func requestMicrophone(_ callback: Callback) {
+    func requestMicrophone(callback: Callback) {
         AVAudioSession.sharedInstance().requestRecordPermission { _ in
             callback(self.statusMicrophone)
         }
