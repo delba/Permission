@@ -49,22 +49,18 @@ extension UIControlState: Hashable {
 }
 
 internal extension String {
-    static let nsLocationWhenInUseUsageDescription        = "NSLocationWhenInUseUsageDescription"
-    static let nsLocationAlwaysUsageDescription           = "NSLocationAlwaysUsageDescription"
+    static let locationWhenInUseUsageDescription = "NSLocationWhenInUseUsageDescription"
+    static let locationAlwaysUsageDescription    = "NSLocationAlwaysUsageDescription"
+    static let microphoneUsageDescription        = "NSMicrophoneUsageDescription"
+    static let speechRecognitionUsageDescription = "NSSpeechRecognitionUsageDescription"
+    static let photoLibraryUsageDescription      = "NSPhotoLibraryUsageDescription"
+    static let cameraUsageDescription            = "NSCameraUsageDescription"
+    static let mediaLibraryUsageDescription      = "NSAppleMusicUsageDescription"
     
-    static let requestedNotifications                     = "permission.requestedNotifications"
-    static let requestedLocationAlwaysWithWhenInUse       = "permission.requestedLocationAlwaysWithWhenInUse"
-    static let requestedMotion                            = "permission.requestedMotion"
-    static let requestedBluetooth                         = "permission.requestedBluetooth"
-    
-    static let requestedMicrophoneUsageDescription        = "NSMicrophoneUsageDescription"
-    static let requestedSpeechRecognitionUsageDescription = "NSSpeechRecognitionUsageDescription"
-    
-    static let requestedPhotoLibraryUsageDescription      = "NSPhotoLibraryUsageDescription"
-    
-    static let requestedCameraUsageDescription            = "NSCameraUsageDescription"
-    
-    static let requestedAppleMusicUsageDescription        = "NSAppleMusicUsageDescription"
+    static let requestedNotifications               = "permission.requestedNotifications"
+    static let requestedLocationAlwaysWithWhenInUse = "permission.requestedLocationAlwaysWithWhenInUse"
+    static let requestedMotion                      = "permission.requestedMotion"
+    static let requestedBluetooth                   = "permission.requestedBluetooth"
 }
 
 internal extension Selector {

@@ -450,7 +450,7 @@ open class PermissionButton: UIButton {
     Tells the view that its superview changed.
     */
     open override func didMoveToSuperview() {
-        render(UIControlState())
+        render(.normal)
     }
 }
 

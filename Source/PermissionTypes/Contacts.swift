@@ -28,26 +28,22 @@ import Contacts
 
 internal extension Permission {
     var statusContacts: PermissionStatus {
-        if #available(iOS 9.0, *) {
-            let status = CNContactStore.authorizationStatus(for: .contacts)
+        guard #available(iOS 9.0, *) else { fatalError() }
+        
+        let status = CNContactStore.authorizationStatus(for: .contacts)
             
-            switch status {
-            case .authorized:          return .authorized
-            case .restricted, .denied: return .denied
-            case .notDetermined:       return .notDetermined
-            }
-        } else {
-            fatalError()
+        switch status {
+        case .authorized:          return .authorized
+        case .restricted, .denied: return .denied
+        case .notDetermined:       return .notDetermined
         }
     }
     
     func requestContacts(_ callback: Callback) {
-        if #available(iOS 9.0, *) {
-            CNContactStore().requestAccess(for: .contacts) { _, _ in
-                callback(self.statusContacts)
-            }
-        } else {
-            fatalError()
+        guard #available(iOS 9.0, *) else { fatalError() }
+        
+        CNContactStore().requestAccess(for: .contacts) { _, _ in
+            callback(self.statusContacts)
         }
     }
 }

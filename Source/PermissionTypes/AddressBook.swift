@@ -24,8 +24,6 @@
 
 import AddressBook
 
-// MARK: - AddressBook
-
 internal extension Permission {
     var statusAddressBook: PermissionStatus {
         let status = ABAddressBookGetAuthorizationStatus()

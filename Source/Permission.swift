@@ -64,7 +64,7 @@ open class Permission: NSObject {
     open static let SpeechRecognizer = Permission(type: .speechRecognizer)
     
     /// The permission to access the user's MediaLibrary.
-    @available(iOS 10.0, *)
+    @available(iOS 9.3, *)
     open static let MediaLibrary = Permission(type: .mediaLibrary)
 
     /// The permission to send notifications.
@@ -117,7 +117,6 @@ open class Permission: NSObject {
         case .motion:            return statusMotion
         case .speechRecognizer:  return statusSpeechRecognizer
         case .mediaLibrary:      return statusMediaLibrary
-
         }
     }
     
@@ -202,8 +201,7 @@ open class Permission: NSObject {
     internal func callbackAsync(_ with: PermissionStatus) {
         DispatchQueue.main.async {
             self.callback?(self.status)
-            self.permissionSets.forEach { $0.didRequestPermission(self)
-            }
+            self.permissionSets.forEach { $0.didRequestPermission(self) }
         }
     }
 }
