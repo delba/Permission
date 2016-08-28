@@ -22,16 +22,16 @@
 > [`PermissionStatus.swift`](https://github.com/delba/Permission/blob/master/Source/PermissionStatus.swift)
 
 ```swift
-let permission: Permission = .Contacts
+let permission: Permission = .contacts
 
 print(permission.status) // PermissionStatus.NotDetermined
 
 permission.request { status in
     switch status {
-    case .Authorized:    print("authorized")
-    case .Denied:        print("denied")
-    case .Disabled:      print("disabled")
-    case .NotDetermined: print("not determined")
+    case .authorized:    print("authorized")
+    case .denied:        print("denied")
+    case .disabled:      print("disabled")
+    case .notDetermined: print("not determined")
     }
 }
 ```
@@ -93,7 +93,7 @@ The system alert will only be presented if the user taps "Give Access".
 Use a `PermissionSet` to check the status of a group of `Permission` and to react when a permission is requested.
 
 ```swift
-let permissionSet = PermissionSet(.Contacts, .Camera, .Microphone, .Photos)
+let permissionSet = PermissionSet(.contacts, .camera, .microphone, .photos)
 permissionSet.delegate = self
 
 print(permissionSet.status) // PermissionStatus.NotDetermined
@@ -106,10 +106,10 @@ func permissionSet(permissionSet: PermissionSet, willRequestPermission permissio
 
 func permissionSet(permissionSet: PermissionSet, didRequestPermission permission: Permission) {
     switch permissionSet.status {
-    case .Authorized:    print("all the permissions are granted")
-    case .Denied:        print("at least one permission is denied")
-    case .Disabled:      print("at least one permission is disabled")
-    case .NotDetermined: print("at least one permission is not determined")
+    case .authorized:    print("all the permissions are granted")
+    case .denied:        print("at least one permission is denied")
+    case .disabled:      print("at least one permission is disabled")
+    case .notDetermined: print("at least one permission is not determined")
     }
 }
 ```
@@ -121,17 +121,17 @@ func permissionSet(permissionSet: PermissionSet, didRequestPermission permission
 A `PermissionButton` requests the permission when tapped and updates itself when its underlying permission status changes.
 
 ```swift
-let button = PermissionButton(.Photos)
+let button = PermissionButton(.photos)
 ```
 
 `PermissionButton` is a subclass of `UIButton`. All the getters and setters of `UIButton` have their equivalent in `PermissionButton`.
 
 ```swift
 button.setTitles([
-    .Authorized:    "Authorized",
-    .Denied:        "Denied",
-    .Disabled:      "Disabled",
-    .NotDetermined: "Not determined"
+    .authorized:    "Authorized",
+    .denied:        "Denied",
+    .disabled:      "Disabled",
+    .notDetermined: "Not determined"
 ])
 
 // button.setAttributedTitles
@@ -156,21 +156,21 @@ class PermissionsViewController: UIViewController, PermissionSetDelegate {
 
         let label = UILabel()
         
-        let contacts   = PermissionButton(.Contacts)
-        let camera     = PermissionButton(.Camera)
-        let microphone = PermissionButton(.Microphone)
-        let photos     = PermissionButton(.Photos)
+        let contacts   = PermissionButton(.contacts)
+        let camera     = PermissionButton(.camera)
+        let microphone = PermissionButton(.microphone)
+        let photos     = PermissionButton(.photos)
         
         contacts.setTitles([
-            .NotDetermined: "Contacts - NotDetermined"
-            .Authorized:    "Contacts - Authorized",
-            .Denied:        "Contacts - Denied"
+            .notDetermined: "Contacts - NotDetermined"
+            .authorized:    "Contacts - Authorized",
+            .denied:        "Contacts - Denied"
         ])
         
         contacts.setTitleColors([
-            .NotDetermined: .blackColor(),
-            .Authorized:    .greenColor(),
-            .Denied:        .redColor()
+            .notDetermined: .black,
+            .authorized:    .green,
+            .denied:        .red
         ])
         
         // ...
