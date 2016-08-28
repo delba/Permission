@@ -32,7 +32,7 @@ open class PermissionAlert {
     /// The domain of the permission.
     fileprivate var type: PermissionType { return permission.type }
     
-    fileprivate var callbacks: Permission.Callback {return permission.callback! }
+    fileprivate var callbacks: Permission.Callback { return permission.callbackAsync }
     
     /// The title of the alert.
     open var title: String?

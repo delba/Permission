@@ -176,7 +176,7 @@ open class Permission: NSObject {
     }
     
     fileprivate func requestInitialAuthorization() {
-        presentPrePermissionAlert ? prePermissionAlert.present() : requestAuthorization(callback!)
+        presentPrePermissionAlert ? prePermissionAlert.present() : requestAuthorization(callbackAsync)
     }
     
     internal func requestAuthorization(_ callback: Callback) {
