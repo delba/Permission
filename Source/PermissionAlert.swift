@@ -48,18 +48,18 @@ public class PermissionAlert {
     
     /// The title of the settings action.
     public var settings: String? {
-        get { return defaultActionTitle }
-        set { defaultActionTitle = newValue }
+        get { return primaryActionTitle }
+        set { primaryActionTitle = newValue }
     }
     
     /// The title of the confirm action.
     public var confirm: String? {
-        get { return defaultActionTitle }
-        set { defaultActionTitle = newValue }
+        get { return primaryActionTitle }
+        set { primaryActionTitle = newValue }
     }
     
     private var cancelActionTitle: String?
-    private var defaultActionTitle: String?
+    private var primaryActionTitle: String?
     
     var controller: UIAlertController {
         let controller = UIAlertController(title: title, message: message, preferredStyle: .Alert)
@@ -99,7 +99,7 @@ internal class DeniedAlert: PermissionAlert {
     override var controller: UIAlertController {
         let controller = super.controller
         
-        let action = UIAlertAction(title: defaultActionTitle, style: .Cancel, handler: settingsHandler)
+        let action = UIAlertAction(title: settings, style: .Cancel, handler: settingsHandler)
         controller.addAction(action)
         
         return controller
@@ -132,7 +132,7 @@ internal class PrePermissionAlert: PermissionAlert {
     override var controller: UIAlertController {
         let controller = super.controller
         
-        let action = UIAlertAction(title: defaultActionTitle, style: .Cancel, handler: confirmHandler)
+        let action = UIAlertAction(title: confirm, style: .Cancel, handler: confirmHandler)
         controller.addAction(action)
         
         return controller
