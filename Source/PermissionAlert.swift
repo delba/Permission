@@ -99,7 +99,7 @@ internal class DeniedAlert: PermissionAlert {
     override var controller: UIAlertController {
         let controller = super.controller
         
-        let action = UIAlertAction(title: defaultActionTitle, style: .Default, handler: settingsHandler)
+        let action = UIAlertAction(title: defaultActionTitle, style: .Cancel, handler: settingsHandler)
         controller.addAction(action)
         
         return controller
