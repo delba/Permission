@@ -27,74 +27,77 @@ open class Permission: NSObject {
 
     /// The permission to access the user's contacts.
     @available(iOS 9.0, *)
-    open static let Contacts = Permission(type: .contacts)
+    open static let contacts = Permission(type: .contacts)
     
     /// The permission to access the user's address book. (Deprecated in iOS 9.0)
-    open static let AddressBook = Permission(type: .addressBook)
+    open static let addressBook = Permission(type: .addressBook)
     
     /// The permission to access the user's location when the app is in background.
-    open static let LocationAlways = Permission(type: .locationAlways)
+    open static let locationAlways = Permission(type: .locationAlways)
     
     /// The permission to access the user's location when the app is in use.
-    open static let LocationWhenInUse = Permission(type: .locationWhenInUse)
+    open static let locationWhenInUse = Permission(type: .locationWhenInUse)
     
     /// The permission to access the microphone.
-    open static let Microphone = Permission(type: .microphone)
+    open static let microphone = Permission(type: .microphone)
     
     /// The permission to access the camera.
-    open static let Camera = Permission(type: .camera)
+    open static let camera = Permission(type: .camera)
     
     /// The permission to access the user's photos.
-    open static let Photos = Permission(type: .photos)
+    open static let photos = Permission(type: .photos)
     
     /// The permission to access the user's reminders.
-    open static let Reminders = Permission(type: .reminders)
+    open static let reminders = Permission(type: .reminders)
     
     /// The permission to access the user's events.
-    open static let Events = Permission(type: .events)
+    open static let events = Permission(type: .events)
     
     /// The permission to access the user's bluetooth.
-    open static let Bluetooth = Permission(type: .bluetooth)
+    open static let bluetooth = Permission(type: .bluetooth)
     
     /// The permission to access the user's motion.
-    open static let Motion = Permission(type: .motion)
+    open static let motion = Permission(type: .motion)
     
     /// The permission to access the user's SpeechRecognizer.
     @available(iOS 10.0, *)
-    open static let SpeechRecognizer = Permission(type: .speechRecognizer)
+    open static let speechRecognizer = Permission(type: .speechRecognizer)
     
     /// The permission to access the user's MediaLibrary.
     @available(iOS 9.3, *)
-    open static let MediaLibrary = Permission(type: .mediaLibrary)
+    open static let mediaLibrary = Permission(type: .mediaLibrary)
 
     /// The permission to send notifications.
-    open static let Notifications: Permission = {
+    open static let notifications: Permission = {
         let settings = UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil)
         return Permission(type: .notifications(settings))
     }()
     
     /// Variable used to retain the notifications permission.
-    fileprivate static var notifications: Permission?
+    fileprivate static var _notifications: Permission?
     
     /// The permission to send notifications.
-    open static func Notifications(_ types: UIUserNotificationType, categories: Set<UIUserNotificationCategory>?) -> Permission {
-        let settings  = UIUserNotificationSettings(types: types, categories: categories)
-        notifications = Permission(type: .notifications(settings))
-        return notifications!
+    open static func notifications(types: UIUserNotificationType, categories: Set<UIUserNotificationCategory>?) -> Permission {
+        let settings   = UIUserNotificationSettings(types: types, categories: categories)
+        let permission = Permission(type: .notifications(settings))
+        _notifications = permission
+        return permission
     }
     
     /// The permission to send notifications.
-    open static func Notifications(_ types: UIUserNotificationType) -> Permission {
-        let settings  = UIUserNotificationSettings(types: types, categories: nil)
-        notifications = Permission(type: .notifications(settings))
-        return notifications!
+    open static func notifications(types: UIUserNotificationType) -> Permission {
+        let settings   = UIUserNotificationSettings(types: types, categories: nil)
+        let permission = Permission(type: .notifications(settings))
+        _notifications = permission
+        return permission
     }
     
     /// The permission to send notifications.
-    open static func notifications(_ categories: Set<UIUserNotificationCategory>?) -> Permission {
+    open static func notifications(categories: Set<UIUserNotificationCategory>?) -> Permission {
         let settings  = UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: categories)
-        notifications = Permission(type: .notifications(settings))
-        return notifications!
+        let permission = Permission(type: .notifications(settings))
+        _notifications = permission
+        return permission
     }
     
     /// The permission domain.
