@@ -155,32 +155,32 @@ class PermissionsViewController: UIViewController, PermissionSetDelegate {
         super.viewDidLoad()
 
         let label = UILabel()
-        
+
         let contacts   = PermissionButton(.Contacts)
         let camera     = PermissionButton(.Camera)
         let microphone = PermissionButton(.Microphone)
         let photos     = PermissionButton(.Photos)
-        
+
         contacts.setTitles([
-            .NotDetermined: "Contacts - NotDetermined"
+            .NotDetermined: "Contacts - NotDetermined",
             .Authorized:    "Contacts - Authorized",
             .Denied:        "Contacts - Denied"
         ])
-        
+
         contacts.setTitleColors([
             .NotDetermined: .blackColor(),
             .Authorized:    .greenColor(),
             .Denied:        .redColor()
         ])
-        
+
         // ...
-      
+
         let permissionSet = PermissionSet(contacts, camera, microphone, photos)
-        
+
         permissionSet.delegate = self
-        
+
         label.text = String(permissionSet.status)
-        
+
         for subview in [label, contacts, camera, microphone, photos] {
             view.addSubview(subview)
         }
