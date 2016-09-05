@@ -59,6 +59,14 @@ public class Permission: NSObject {
     /// The permission to access the user's motion.
     public static let Motion = Permission(.Motion)
     
+    /// The permission to access the user's SpeechRecognizer.
+    @available(iOS 10.0, *)
+    public static let SpeechRecognizer = Permission(.SpeechRecognizer)
+    
+    /// The permission to access the user's MediaLibrary.
+    @available(iOS 10.0, *)
+    public static let MediaLibrary = Permission(.MediaLibrary)
+    
     /// The permission to send notifications.
     public static let Notifications: Permission = {
         let settings = UIUserNotificationSettings(forTypes: [.Badge, .Sound, .Alert], categories: nil)
@@ -110,6 +118,9 @@ public class Permission: NSObject {
         case .Events:            return statusEvents
         case .Bluetooth:         return statusBluetooth
         case .Motion:            return statusMotion
+        case .SpeechRecognizer:  return statusSpeechRecognizer
+        case .MediaLibrary:      return statusMediaLibrary
+
         }
     }
     
@@ -186,6 +197,9 @@ public class Permission: NSObject {
         case .Events:            requestEvents(callback)
         case .Bluetooth:         requestBluetooth(self.callback)
         case .Motion:            requestMotion(self.callback)
+        case .SpeechRecognizer:  requestSpeechRecognizer(callback)
+        case .MediaLibrary:      requestMediaLibrary(callback)
+
         }
     }
     
