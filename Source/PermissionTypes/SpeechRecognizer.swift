@@ -37,7 +37,7 @@ internal extension Permission {
         }
     }
     
-    func requestSpeechRecognizer(_ callback: Callback) {
+    func requestSpeechRecognizer(_ callback: @escaping Callback) {
         guard #available(iOS 10.0, *) else { fatalError() }
 
         guard let _ = Bundle.main.object(forInfoDictionaryKey: .microphoneUsageDescription) else {

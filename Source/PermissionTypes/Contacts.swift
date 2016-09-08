@@ -39,7 +39,7 @@ internal extension Permission {
         }
     }
     
-    func requestContacts(_ callback: Callback) {
+    func requestContacts(_ callback: @escaping Callback) {
         guard #available(iOS 9.0, *) else { fatalError() }
         
         CNContactStore().requestAccess(for: .contacts) { _, _ in
