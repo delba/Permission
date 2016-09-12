@@ -113,18 +113,6 @@ extension UserDefaults {
     }
 }
 
-extension DispatchTimeInterval {
-    init(_ interval: TimeInterval) {
-        self = DispatchTimeInterval.nanoseconds(Int(interval * Double(NSEC_PER_SEC)))
-    }
-}
-
-extension DispatchQueue {
-    func after(_ interval: DispatchTimeInterval, execute: () -> Void) {
-        after(interval, execute: execute)
-    }
-}
-
 extension OperationQueue {
     convenience init(_ qualityOfService: QualityOfService) {
         self.init()

@@ -58,9 +58,9 @@ internal extension Permission {
         notificationTimer?.invalidate()
         
         UserDefaults.standard.requestedNotifications = true
-        
-        DispatchQueue.main.after(DispatchTimeInterval(0.1)) {
-            self.callbackAsync(self.statusNotifications)
-        }
+
+		DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+			self.callbackAsync(self.statusNotifications)
+		}
     }
 }
