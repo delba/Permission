@@ -161,7 +161,7 @@ open class Permission: NSObject {
      
      - parameter callback: The function to be triggered after the user responded to the request.
      */
-    open func request(_ callback: Callback) {
+    open func request(_ callback: @escaping Callback) {
         self.callback = callback
         
         DispatchQueue.main.async {
@@ -182,7 +182,7 @@ open class Permission: NSObject {
         presentPrePermissionAlert ? prePermissionAlert.present() : requestAuthorization(callbackAsync)
     }
     
-    internal func requestAuthorization(_ callback: Callback) {
+    internal func requestAuthorization(_ callback: @escaping Callback) {
         switch type {
         case .contacts:          requestContacts(callback)
         case .addressBook:       requestAddressBook(callback)

@@ -37,7 +37,7 @@ internal extension Permission {
         }
     }
     
-    func requestMediaLibrary(_ callback: Callback) {
+    func requestMediaLibrary(_ callback: @escaping Callback) {
         guard #available(iOS 9.3, *) else { fatalError() }
         
         guard let _ = Bundle.main.object(forInfoDictionaryKey: .mediaLibraryUsageDescription) else {

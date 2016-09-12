@@ -35,7 +35,7 @@ internal extension Permission {
         }
     }
     
-    func requestEvents(_ callback: Callback) {
+    func requestEvents(_ callback: @escaping Callback) {
         EKEventStore().requestAccess(to: .event) { _,_ in
             callback(self.statusEvents)
         }
