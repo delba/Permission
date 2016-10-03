@@ -115,6 +115,9 @@ public class Permission: NSObject {
     
     /// Determines whether to present the pre-permission alert.
     public var presentPrePermissionAlert = false
+
+    /// Determines whether to present the permission alert.
+    public var presentPermissionAlert = true
     
     /// The pre-permission alert.
     public lazy var prePermissionAlert: PermissionAlert = {
@@ -163,8 +166,8 @@ public class Permission: NSObject {
         switch status {
         case .Authorized:    callbacks(status)
         case .NotDetermined: requestInitialAuthorization()
-        case .Denied:        deniedAlert.present()
-        case .Disabled:      disabledAlert.present()
+        case .Denied:        if presentPermissionAlert { deniedAlert.present() }
+        case .Disabled:      if presentPermissionAlert {  disabledAlert.present() }
         }
     }
     
