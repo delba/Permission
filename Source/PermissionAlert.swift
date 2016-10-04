@@ -99,6 +99,7 @@ internal class DeniedAlert: PermissionAlert {
     override var controller: UIAlertController {
         let controller = super.controller
         
+        /// Set the style to `cancel` to ensure that it is the bold option.
         let action = UIAlertAction(title: defaultActionTitle, style: .cancel, handler: settingsHandler)
         controller.addAction(action)
         
@@ -132,6 +133,7 @@ internal class PrePermissionAlert: PermissionAlert {
     override var controller: UIAlertController {
         let controller = super.controller
         
+        /// Set the style to `cancel` to ensure that it is the bold option.
         let action = UIAlertAction(title: defaultActionTitle, style: .cancel, handler: confirmHandler)
         controller.addAction(action)
         
