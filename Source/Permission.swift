@@ -118,7 +118,12 @@ open class Permission: NSObject {
         case .events:            return statusEvents
         case .bluetooth:         return statusBluetooth
         case .motion:            return statusMotion
-        case .speechRecognizer:  return statusSpeechRecognizer
+        case .speechRecognizer:
+            if #available(iOS 10.0, *) {
+                return statusSpeechRecognizer
+            } else {
+                return PermissionStatus.notDetermined
+            }
         case .mediaLibrary:      return statusMediaLibrary
         }
     }
@@ -196,7 +201,12 @@ open class Permission: NSObject {
         case .events:            requestEvents(callback)
         case .bluetooth:         requestBluetooth(self.callback)
         case .motion:            requestMotion(self.callback)
-        case .speechRecognizer:  requestSpeechRecognizer(callback)
+        case .speechRecognizer:
+            if #available(iOS 10.0, *) {
+                requestSpeechRecognizer(callback)
+            } else {
+                fatalError("Speech recognizer is only available in iOS 10+")
+            }
         case .mediaLibrary:      requestMediaLibrary(callback)
         }
     }
