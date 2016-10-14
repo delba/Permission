@@ -28,7 +28,7 @@ public enum PermissionStatus {
     case disabled
     case notDetermined
     
-    var description: String {
+    public var description: String {
         switch self {
         case .authorized: return "Authorized"
         case .denied: return "Denied"
