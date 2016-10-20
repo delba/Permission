@@ -28,7 +28,7 @@ public class PermissionSet {
     public let permissions: Set<Permission>
     
     /// The delegate of the permission set.
-    public var delegate: PermissionSetDelegate?
+    public weak var delegate: PermissionSetDelegate?
     
     /// The permission set status
     public var status: PermissionStatus {
@@ -124,7 +124,7 @@ extension PermissionSet: CustomStringConvertible {
     }
 }
 
-public protocol PermissionSetDelegate {
+public protocol PermissionSetDelegate: class {
     /**
      Tells the delegate that the specified permission has been requested.
      
