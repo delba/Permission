@@ -32,17 +32,26 @@ internal let BluetoothManager = CBPeripheralManager(
 
 extension Permission {
     var statusBluetooth: PermissionStatus {
-        let state = (BluetoothManager.state, CBPeripheralManager.authorizationStatus())
+        let status = CBPeripheralManager.authorizationStatus()
         
-        switch state {
-        case (.unsupported, _), (.poweredOff, _), (_, .restricted):
+        switch status {
+        case .notDetermined:
+            return .notDetermined;
+        case .restricted:
             return .disabled
-        case (.unauthorized, _), (_, .denied):
+        case .denied:
             return .denied
-        case (.poweredOn, .authorized):
-            return .authorized
-        default:
-            return .notDetermined
+        case .authorized:
+            let state = BluetoothManager.state
+            
+            switch state {
+            case .unknown, .resetting, .unsupported, .poweredOff:
+                return .disabled
+            case .unauthorized:
+                return .denied
+            case .poweredOn:
+                return .authorized
+            }
         }
     }
     
@@ -61,7 +70,9 @@ extension Permission: CBPeripheralManagerDelegate {
 
 extension CBPeripheralManager {
     func request(_ permission: Permission) {
-        startAdvertising(nil)
-        stopAdvertising()
+        if self.state == .poweredOn {
+            startAdvertising(nil)
+            stopAdvertising()
+        }
     }
 }
