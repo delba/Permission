@@ -233,7 +233,7 @@ extension Permission {
         case .notifications:
             return "Notifications"
         default:
-            return String(describing: type)
+            return String(describing: type).capitalized
         }
     }
     

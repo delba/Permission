@@ -27,4 +27,11 @@ public enum PermissionStatus {
     case denied
     case disabled
     case notDetermined
+    
+    public var description: String {
+        switch self {
+        case .notDetermined: return "Not Determined"
+        default: return String(describing: self).capitalized
+        }
+    }
 }
