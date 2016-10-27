@@ -38,3 +38,36 @@ public enum PermissionType {
     @available(iOS 10.0, *) case speechRecognizer
     @available(iOS 9.3, *) case mediaLibrary
 }
+
+extension PermissionType: CustomStringConvertible {
+    public var description: String {
+        switch self {
+        case .contacts:
+            return "Contacts"
+        case .addressBook:
+            return "Address Book"
+        case .locationAlways, .locationWhenInUse:
+            return "Location"
+        case .notifications:
+            return "Notifications"
+        case .microphone:
+            return "Microphone"
+        case .camera:
+            return "Camera"
+        case .photos:
+            return "Photos"
+        case .reminders:
+            return "Reminders"
+        case .events:
+            return "Events"
+        case .bluetooth:
+            return "Bluetooth"
+        case .motion:
+            return "Motion"
+        case .speechRecognizer:
+            return "Speech Recognizer"
+        case .mediaLibrary:
+            return "Media Library"
+        }
+    }
+}

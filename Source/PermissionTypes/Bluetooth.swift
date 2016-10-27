@@ -22,6 +22,7 @@
 // SOFTWARE.
 //
 
+#if PERMISSION_BLUETOOTH
 import CoreBluetooth
 
 internal let BluetoothManager = CBPeripheralManager(
@@ -29,9 +30,11 @@ internal let BluetoothManager = CBPeripheralManager(
     queue: nil,
     options: [CBPeripheralManagerOptionShowPowerAlertKey: false]
 )
+#endif
 
 extension Permission {
     var statusBluetooth: PermissionStatus {
+        #if PERMISSION_BLUETOOTH
         let state = (BluetoothManager.state, CBPeripheralManager.authorizationStatus())
         
         switch state {
@@ -44,15 +47,23 @@ extension Permission {
         default:
             return .notDetermined
         }
+        #else
+        invalidPermissionFatalError(type: .bluetooth)
+        #endif
     }
     
     func requestBluetooth(_ callback: Callback?) {
+        #if PERMISSION_BLUETOOTH
         UserDefaults.standard.requestedBluetooth = true
         
         BluetoothManager.request(self)
+        #else
+        callback?(statusBluetooth)
+        #endif
     }
 }
 
+#if PERMISSION_BLUETOOTH
 extension Permission: CBPeripheralManagerDelegate {
     public func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
         callback?(statusBluetooth)
@@ -65,3 +76,4 @@ extension CBPeripheralManager {
         stopAdvertising()
     }
 }
+#endif

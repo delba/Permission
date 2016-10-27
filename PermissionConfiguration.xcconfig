@@ -1,7 +1,7 @@
 //
-// AddressBook.swift
+// PermissionConfiguration.swift
 //
-// Copyright (c) 2015-2016 Damien (http://delba.io)
+// Copyright (c) 2015-2016 Justin Makaila (http://delba.io)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -22,32 +22,21 @@
 // SOFTWARE.
 //
 
-#if PERMISSION_ADDRESS_BOOK
-import AddressBook
-#endif
+PERMISSION_ADDRESS_BOOK= PERMISSION_ADDRESS_BOOK
+PERMISSION_BLUETOOH=
+PERMISSION_CAMERA=
+PERMISSION_CONTACTS=
+PERMISSION_EVENTS =
+PERMISSION_LOCATION=
+PERMISSION_MICROPHONE=
+PERMISSION_MOTION=
+PERMISSION_NOTIFICATIONS=
+PERMISSION_PHOTOS=
+PERMISSION_REMINDERS=
+PERMISSION_SPEECH=
+PERMISSION_MEDIA_LIBRARY=
 
-internal extension Permission {
-    var statusAddressBook: PermissionStatus {
-        #if PERMISSION_ADDRESS_BOOK
-        let status = ABAddressBookGetAuthorizationStatus()
-        
-        switch status {
-        case .authorized:          return .authorized
-        case .restricted, .denied: return .denied
-        case .notDetermined:       return .notDetermined
-        }
-        #else
-        fatalError()
-        #endif
-    }
-    
-    func requestAddressBook(_ callback: @escaping Callback) {
-        #if PERMISSION_ADDRESS_BOOK
-        ABAddressBookRequestAccessWithCompletion(nil) { _, _ in
-            callback(self.statusAddressBook)
-        }
-        #else
-        callback(self.statusAddressBook)
-        #endif
-    }
-}
+// Do not modify this line. Instead, remove comments above as needed to enable the categories your app uses.
+PERMISSION_FLAGS= $(inherited) $(PERMISSION_ADDRESS_BOOK) $(PERMISSION_BLUETOOTH) $(PERMISSION_CAMERA) $(PERMISSION_CONTACTS) $(PERMISSION_EVENTS) $(PERMISSION_LOCATION) $(PERMISSION_MICROPHONE) $(PERMISSION_MOTION) $(PERMISSION_NOTIFICATIONS) $(PERMISSION_PHOTOS) $(PERMISSION_REMINDERS) $(PERMISSION_SPEECH) $(PERMISSION_MEDIA_LIBRARY)
+
+SWIFT_ACTIVE_COMPILATION_CONDITIONS = $(PERMISSION_FLAGS)

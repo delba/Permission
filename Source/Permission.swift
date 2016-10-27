@@ -228,3 +228,7 @@ extension Permission {
     }
     
 }
+
+func invalidPermissionFatalError(type: PermissionType) -> Never {
+    fatalError("Attempt to request/acces permission for \"\(type.description)\", which is not allowed based on the configuration.")
+}
