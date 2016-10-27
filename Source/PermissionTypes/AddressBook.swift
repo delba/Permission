@@ -37,7 +37,7 @@ internal extension Permission {
         case .notDetermined:       return .notDetermined
         }
         #else
-        fatalError()
+        invalidPermissionFatalError(type: .addressBook)
         #endif
     }
     
