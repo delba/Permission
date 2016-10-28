@@ -67,8 +67,11 @@ internal extension Selector {
     static let tapped = #selector(PermissionButton.tapped(_:))
     static let highlight = #selector(PermissionButton.highlight(_:))
     static let settingsHandler = #selector(DeniedAlert.settingsHandler)
+    
+    #if PERMISSION_NOTIFICATION
     static let requestingNotifications = #selector(Permission.requestingNotifications)
     static let finishedRequestingNotifications = #selector(Permission.finishedRequestingNotifications)
+    #endif
 }
 
 extension UserDefaults {

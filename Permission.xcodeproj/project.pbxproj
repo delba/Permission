@@ -73,6 +73,7 @@
 		6DF9C2BD1C8F4FE5000710C1 /* Photos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
 		6DF9C2BF1C8F5003000710C1 /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		6DF9C2C51C8F5B4C000710C1 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		D08FF2891DC3AD2900F28088 /* PermissionFlags.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = PermissionFlags.xcconfig; path = ../PermissionFlags.xcconfig; sourceTree = "<group>"; };
 		D0C4C55B1DC2A5CA00225D1A /* PermissionConfiguration.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = PermissionConfiguration.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -171,6 +172,7 @@
 		6DF9C2C21C8F53C3000710C1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D08FF2891DC3AD2900F28088 /* PermissionFlags.xcconfig */,
 				6D86A9B71BEBDC7D00E3DD5A /* Info.plist */,
 				6D86A9B51BEBDC7D00E3DD5A /* Permission.h */,
 				6D0EBDBC1BFCF8B700C35F8E /* Utilities.swift */,
@@ -342,6 +344,7 @@
 /* Begin XCBuildConfiguration section */
 		6D86A9C41BEBDC7D00E3DD5A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D08FF2891DC3AD2900F28088 /* PermissionFlags.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -391,6 +394,7 @@
 		};
 		6D86A9C51BEBDC7D00E3DD5A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D08FF2891DC3AD2900F28088 /* PermissionFlags.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -433,7 +437,6 @@
 		};
 		6D86A9C71BEBDC7D00E3DD5A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D0C4C55B1DC2A5CA00225D1A /* PermissionConfiguration.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
@@ -474,7 +477,6 @@
 		};
 		6D86A9CA1BEBDC7D00E3DD5A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D0C4C55B1DC2A5CA00225D1A /* PermissionConfiguration.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "Tests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
