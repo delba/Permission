@@ -22,10 +22,13 @@
 // SOFTWARE.
 //
 
+#if PERMISSION_EVENT
 import EventKit
+#endif
 
 internal extension Permission {
     var statusEvents: PermissionStatus {
+        #if PERMISSION_EVENT
         let status = EKEventStore.authorizationStatus(for: .event)
         
         switch status {
@@ -33,11 +36,18 @@ internal extension Permission {
         case .restricted, .denied: return .denied
         case .notDetermined:       return .notDetermined
         }
+        #else
+        invalidPermissionFatalError(type: .events)
+        #endif
     }
     
     func requestEvents(_ callback: @escaping Callback) {
+        #if PERMISSION_EVENT
         EKEventStore().requestAccess(to: .event) { _,_ in
             callback(self.statusEvents)
         }
+        #else
+        callback(self.statusEvents)
+        #endif
     }
 }

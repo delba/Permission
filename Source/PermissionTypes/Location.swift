@@ -22,6 +22,7 @@
 // SOFTWARE.
 //
 
+#if PERMISSION_LOCATION
 import CoreLocation
 
 internal let LocationManager = CLLocationManager()
@@ -44,6 +45,7 @@ extension Permission: CLLocationManagerDelegate {
     }
 }
 
+
 extension CLLocationManager {
     func request(_ permission: Permission) {
         delegate = permission
@@ -57,3 +59,4 @@ extension CLLocationManager {
         }
     }
 }
+#endif

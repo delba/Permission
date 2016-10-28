@@ -22,10 +22,13 @@
 // SOFTWARE.
 //
 
+#if PERMISSION_MICROPHONE
 import AVFoundation
+#endif
 
 internal extension Permission {
     var statusMicrophone: PermissionStatus {
+        #if PERMISSION_MICROPHONE
         let status = AVAudioSession.sharedInstance().recordPermission()
         
         switch status {
@@ -33,11 +36,18 @@ internal extension Permission {
         case AVAudioSessionRecordPermission.granted: return .authorized
         default:                                     return .notDetermined
         }
+        #else
+        invalidPermissionFatalError(type: .microphone)
+        #endif
     }
     
     func requestMicrophone(_ callback: @escaping Callback) {
+        #if PERMISSION_MICROPHONE
         AVAudioSession.sharedInstance().requestRecordPermission { _ in
             callback(self.statusMicrophone)
         }
+        #else
+        callback(self.statusMicrophone)
+        #endif
     }
 }

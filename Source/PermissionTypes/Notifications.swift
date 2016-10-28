@@ -22,10 +22,13 @@
 // SOFTWARE.
 //
 
+#if PERMISSION_NOTIFICATION
 private var notificationTimer: Timer?
-
+#endif
+    
 internal extension Permission {
     var statusNotifications: PermissionStatus {
+        #if PERMISSION_NOTIFICATION
         guard case .notifications(let settings) = type else { fatalError() }
         
         if let types = UIApplication.shared.currentUserNotificationSettings?.types , types.contains(settings.types) {
@@ -33,17 +36,25 @@ internal extension Permission {
         }
         
         return UserDefaults.standard.requestedNotifications ? .denied : .notDetermined
+        #else
+        invalidPermissionFatalError(type: .notifications(UIUserNotificationSettings()))
+        #endif
     }
     
     func requestNotifications(_ callback: Callback) {
+        #if PERMISSION_NOTIFICATION
         guard case .notifications(let settings) = type else { fatalError() }
         
         NotificationCenter.default.addObserver(self, selector: .requestingNotifications, name: .UIApplicationWillResignActive)
         notificationTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: .finishedRequestingNotifications, userInfo: nil, repeats: false)
         
         UIApplication.shared.registerUserNotificationSettings(settings)
+        #else
+        callback(self.statusNotifications)
+        #endif
     }
     
+    #if PERMISSION_NOTIFICATION
     @objc func requestingNotifications() {
         let notificationCenter = NotificationCenter.default
         notificationCenter.removeObserver(self, name: .UIApplicationWillResignActive)
@@ -59,8 +70,9 @@ internal extension Permission {
         
         UserDefaults.standard.requestedNotifications = true
 
-	DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
-	    self.callbackAsync(self.statusNotifications)
-	}
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+            self.callbackAsync(self.statusNotifications)
+        }
     }
+    #endif
 }

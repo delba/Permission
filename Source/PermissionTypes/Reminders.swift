@@ -22,10 +22,13 @@
 // SOFTWARE.
 //
 
+#if PERMISSION_REMINDERS
 import EventKit
+#endif
 
 internal extension Permission {
     var statusReminders: PermissionStatus {
+        #if PERMISSION_REMINDERS
         let status = EKEventStore.authorizationStatus(for: .reminder)
         
         switch status {
@@ -33,11 +36,18 @@ internal extension Permission {
         case .restricted, .denied: return .denied
         case .notDetermined:       return .notDetermined
         }
+        #else
+        invalidPermissionFatalError(type: .reminders)
+        #endif
     }
     
     func requestReminders(_ callback: @escaping Callback) {
+        #if PERMISSION_REMINDERS
         EKEventStore().requestAccess(to: .reminder) { _,_ in
             callback(self.statusReminders)
         }
+        #else
+        callback(self.statusReminders)
+        #endif
     }
 }

@@ -22,20 +22,27 @@
 // SOFTWARE.
 //
 
+#if PERMISSION_MOTION
 import CoreMotion
 
 private let MotionManager = CMMotionActivityManager()
+#endif
 
 extension Permission {
     var statusMotion: PermissionStatus {
+        #if PERMISSION_MOTION
         if UserDefaults.standard.requestedMotion {
             return synchronousStatusMotion
         }
         
         return .notDetermined
+        #else
+        invalidPermissionFatalError(type: .motion)
+        #endif
     }
     
     func requestMotion(_ callback: Callback?) {
+        #if PERMISSION_MOTION
         UserDefaults.standard.requestedMotion = true
         
         let now = Date()
@@ -53,8 +60,12 @@ extension Permission {
             
             callback?(status)
         }
+        #else
+        callback?(self.statusMotion)
+        #endif
     }
     
+    #if PERMISSION_MOTION
     fileprivate var synchronousStatusMotion: PermissionStatus {
         let semaphore = DispatchSemaphore(value: 0)
         
@@ -79,5 +90,5 @@ extension Permission {
         
         return status
     }
-    
+    #endif
 }
