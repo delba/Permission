@@ -2,4 +2,6 @@
 #include? "../../PermissionConfiguration.xcconfig"
 
 // This secondary hook allows to provide a configuration two levels further up the directory hierarchy. It exists primarily for Carthage support to allow for config files outside of auto-generated directories that may not be under version control.
-#include? "../../../../PermissionConfiguration.xcconfig"
+// Carthage directories are typically structured:
+//    "Carthage/Build/iOS/Permission"
+#include? "../../../../../PermissionConfiguration.xcconfig"
