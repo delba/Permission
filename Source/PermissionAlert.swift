@@ -64,7 +64,7 @@ open class PermissionAlert {
     var controller: UIAlertController {
         let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        let action = UIAlertAction(title: cancelActionTitle, style: .cancel, handler: cancelHandler)
+        let action = UIAlertAction(title: cancelActionTitle, style: .default, handler: cancelHandler)
         controller.addAction(action)
         
         return controller
@@ -99,7 +99,8 @@ internal class DeniedAlert: PermissionAlert {
     override var controller: UIAlertController {
         let controller = super.controller
         
-        let action = UIAlertAction(title: defaultActionTitle, style: .default, handler: settingsHandler)
+        /// Set the style to `cancel` to ensure that it is the bold option.
+        let action = UIAlertAction(title: defaultActionTitle, style: .cancel, handler: settingsHandler)
         controller.addAction(action)
         
         return controller
@@ -132,7 +133,8 @@ internal class PrePermissionAlert: PermissionAlert {
     override var controller: UIAlertController {
         let controller = super.controller
         
-        let action = UIAlertAction(title: defaultActionTitle, style: .default, handler: confirmHandler)
+        /// Set the style to `cancel` to ensure that it is the bold option.
+        let action = UIAlertAction(title: defaultActionTitle, style: .cancel, handler: confirmHandler)
         controller.addAction(action)
         
         return controller

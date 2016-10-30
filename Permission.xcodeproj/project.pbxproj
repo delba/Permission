@@ -32,6 +32,7 @@
 		6DF9C2BE1C8F4FE5000710C1 /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF9C2BD1C8F4FE5000710C1 /* Photos.swift */; };
 		6DF9C2C01C8F5003000710C1 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF9C2BF1C8F5003000710C1 /* Events.swift */; };
 		6DF9C2C61C8F5B4C000710C1 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF9C2C51C8F5B4C000710C1 /* Location.swift */; };
+		D0CBD6621DAEA0F700CBE7F2 /* Speech.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0CBD6611DAEA0F700CBE7F2 /* Speech.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		6DF9C2BD1C8F4FE5000710C1 /* Photos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
 		6DF9C2BF1C8F5003000710C1 /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		6DF9C2C51C8F5B4C000710C1 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		D0CBD6611DAEA0F700CBE7F2 /* Speech.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Speech.framework; path = System/Library/Frameworks/Speech.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0CBD6621DAEA0F700CBE7F2 /* Speech.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +103,7 @@
 				6D86A9B31BEBDC7D00E3DD5A /* Products */,
 				6D86A9B41BEBDC7D00E3DD5A /* Source */,
 				6D86A9C01BEBDC7D00E3DD5A /* Tests */,
+				D0CBD6601DAEA0F700CBE7F2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -174,6 +178,14 @@
 				6D0EBDBC1BFCF8B700C35F8E /* Utilities.swift */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D0CBD6601DAEA0F700CBE7F2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D0CBD6611DAEA0F700CBE7F2 /* Speech.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
