@@ -74,7 +74,6 @@
 		6DF9C2BF1C8F5003000710C1 /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		6DF9C2C51C8F5B4C000710C1 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		D08FF2891DC3AD2900F28088 /* PermissionFlags.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = PermissionFlags.xcconfig; sourceTree = "<group>"; };
-		D0C4C55B1DC2A5CA00225D1A /* PermissionConfiguration.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = PermissionConfiguration.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,7 +98,6 @@
 		6D86A9A81BEBDC7C00E3DD5A = {
 			isa = PBXGroup;
 			children = (
-				D0C4C55C1DC2A5D300225D1A /* Configuration */,
 				6D86A9B31BEBDC7D00E3DD5A /* Products */,
 				6D86A9B41BEBDC7D00E3DD5A /* Source */,
 				6D86A9C01BEBDC7D00E3DD5A /* Tests */,
@@ -150,13 +148,13 @@
 				6DF9C2C51C8F5B4C000710C1 /* Location.swift */,
 				6DF9C2B11C8F4F45000710C1 /* LocationAlways.swift */,
 				6DF9C2B31C8F4F54000710C1 /* LocationWhenInUse.swift */,
+				3DC217D21D6EFD4A00600DFE /* MediaLibrary.swift */,
 				6DF9C2B91C8F4FAC000710C1 /* Microphone.swift */,
 				6D935F5E1C9A14AB00BB39E3 /* Motion.swift */,
 				6DF9C2B71C8F4F8F000710C1 /* Notifications.swift */,
 				6DF9C2BD1C8F4FE5000710C1 /* Photos.swift */,
 				6DF9C2B51C8F4F69000710C1 /* Reminders.swift */,
 				3D42A7DA1D5F66B300236ABA /* SpeechRecognizer.swift */,
-				3DC217D21D6EFD4A00600DFE /* MediaLibrary.swift */,
 			);
 			path = PermissionTypes;
 			sourceTree = "<group>";
@@ -172,20 +170,12 @@
 		6DF9C2C21C8F53C3000710C1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D08FF2891DC3AD2900F28088 /* PermissionFlags.xcconfig */,
 				6D86A9B71BEBDC7D00E3DD5A /* Info.plist */,
 				6D86A9B51BEBDC7D00E3DD5A /* Permission.h */,
+				D08FF2891DC3AD2900F28088 /* PermissionFlags.xcconfig */,
 				6D0EBDBC1BFCF8B700C35F8E /* Utilities.swift */,
 			);
 			path = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		D0C4C55C1DC2A5D300225D1A /* Configuration */ = {
-			isa = PBXGroup;
-			children = (
-				D0C4C55B1DC2A5CA00225D1A /* PermissionConfiguration.xcconfig */,
-			);
-			name = Configuration;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
