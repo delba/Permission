@@ -319,14 +319,7 @@ extension Permission {
     
     /// The pretty textual representation of self. 
     internal var prettyDescription: String {
-        switch type {
-        case .locationAlways, .locationWhenInUse:
-            return "Location"
-        case .notifications:
-            return "Notifications"
-        default:
-            return String(describing: type).capitalized
-        }
+        return type.description
     }
     
 }
