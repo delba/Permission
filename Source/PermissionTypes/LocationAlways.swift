@@ -24,11 +24,9 @@
 
 #if PERMISSION_LOCATION
 import CoreLocation
-#endif
 
 internal extension Permission {
     var statusLocationAlways: PermissionStatus {
-        #if PERMISSION_LOCATION
         guard CLLocationManager.locationServicesEnabled() else { return .disabled }
         
         let status = CLLocationManager.authorizationStatus()
@@ -40,13 +38,9 @@ internal extension Permission {
         case .notDetermined: return .notDetermined
         case .restricted, .denied: return .denied
         }
-        #else
-        invalidPermissionFatalError(type: .locationAlways)
-        #endif
     }
     
     func requestLocationAlways(_ callback: Callback) {
-        #if PERMISSION_LOCATION
         guard let _ = Foundation.Bundle.main.object(forInfoDictionaryKey: .locationAlwaysUsageDescription) else {
             print("WARNING: \(.locationAlwaysUsageDescription) not found in Info.plist")
             return
@@ -57,8 +51,6 @@ internal extension Permission {
         }
         
         LocationManager.request(self)
-        #else
-        callback(self.statusLocationAlways)
-        #endif
     }
 }
+#endif

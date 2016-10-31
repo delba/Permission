@@ -24,15 +24,11 @@
 
 #if PERMISSION_CONTACTS
 import Contacts
-#endif
-
-// MARK: - Contacts
 
 internal extension Permission {
     var statusContacts: PermissionStatus {
         guard #available(iOS 9.0, *) else { fatalError() }
         
-        #if PERMISSION_CONTACTS
         let status = CNContactStore.authorizationStatus(for: .contacts)
             
         switch status {
@@ -40,20 +36,14 @@ internal extension Permission {
         case .restricted, .denied: return .denied
         case .notDetermined:       return .notDetermined
         }
-        #else
-        invalidPermissionFatalError(type: .contacts)
-        #endif
     }
     
     func requestContacts(_ callback: @escaping Callback) {
         guard #available(iOS 9.0, *) else { fatalError() }
         
-        #if PERMISSION_CONTACTS
         CNContactStore().requestAccess(for: .contacts) { _, _ in
             callback(self.statusContacts)
         }
-        #else
-        callback(self.statusContacts)
-        #endif
     }
 }
+#endif

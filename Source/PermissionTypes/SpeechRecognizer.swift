@@ -22,15 +22,13 @@
 // SOFTWARE.
 //
 
-#if PERMISSION_SPEECH
+#if PERMISSION_SPEECH_RECOGNIZER
 import Speech
-#endif
 
 internal extension Permission {
     var statusSpeechRecognizer: PermissionStatus {
         guard #available(iOS 10.0, *) else { fatalError() }
         
-        #if PERMISSION_SPEECH
         let status = SFSpeechRecognizer.authorizationStatus()
         
         switch status {
@@ -38,15 +36,11 @@ internal extension Permission {
         case .restricted, .denied: return .denied
         case .notDetermined:       return .notDetermined
         }
-        #else
-        invalidPermissionFatalError(type: .speechRecognizer)
-        #endif
     }
     
     func requestSpeechRecognizer(_ callback: @escaping Callback) {
         guard #available(iOS 10.0, *) else { fatalError() }
-
-        #if PERMISSION_SPEECH
+        
         guard let _ = Bundle.main.object(forInfoDictionaryKey: .microphoneUsageDescription) else {
             print("WARNING: \(.microphoneUsageDescription) not found in Info.plist")
             return
@@ -60,9 +54,6 @@ internal extension Permission {
         SFSpeechRecognizer.requestAuthorization { _ in
             callback(self.statusSpeechRecognizer)
         }
-        #else
-        callback(self.statusSpeechRecognizer)
-        #endif
     }
 }
-
+#endif

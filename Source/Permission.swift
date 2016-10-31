@@ -25,48 +25,73 @@
 open class Permission: NSObject {
     public typealias Callback = (PermissionStatus) -> Void
 
+    #if PERMISSION_CONTACTS
     /// The permission to access the user's contacts.
     @available(iOS 9.0, *)
     open static let contacts = Permission(type: .contacts)
+    #endif
     
+    #if PERMISSION_ADDRESS_BOOK
     /// The permission to access the user's address book. (Deprecated in iOS 9.0)
     open static let addressBook = Permission(type: .addressBook)
+    #endif
     
+    #if PERMISSION_LOCATION
     /// The permission to access the user's location when the app is in background.
     open static let locationAlways = Permission(type: .locationAlways)
     
     /// The permission to access the user's location when the app is in use.
     open static let locationWhenInUse = Permission(type: .locationWhenInUse)
+    #endif
     
+    #if PERMISSION_MICROPHONE
     /// The permission to access the microphone.
     open static let microphone = Permission(type: .microphone)
+    #endif
     
+    #if PERMISSION_CAMERA
     /// The permission to access the camera.
     open static let camera = Permission(type: .camera)
+    #endif
     
+    #if PERMISSION_PHOTOS
     /// The permission to access the user's photos.
     open static let photos = Permission(type: .photos)
+    #endif
     
+    #if PERMISSION_REMINDERS
     /// The permission to access the user's reminders.
     open static let reminders = Permission(type: .reminders)
+    #endif
     
+    #if PERMISSION_EVENTS
     /// The permission to access the user's events.
     open static let events = Permission(type: .events)
+    #endif
     
+    #if PERMISSION_BLUETOOTH
     /// The permission to access the user's bluetooth.
     open static let bluetooth = Permission(type: .bluetooth)
+    #endif
     
+    #if PERMISSION_MOTION
     /// The permission to access the user's motion.
     open static let motion = Permission(type: .motion)
+    #endif
     
+    #if PERMISSION_SPEECH_RECOGNIZER
     /// The permission to access the user's SpeechRecognizer.
     @available(iOS 10.0, *)
     open static let speechRecognizer = Permission(type: .speechRecognizer)
+    #endif
     
+    #if PERMISSION_MEDIA_LIBRARY
     /// The permission to access the user's MediaLibrary.
     @available(iOS 9.3, *)
     open static let mediaLibrary = Permission(type: .mediaLibrary)
+    #endif
 
+    #if PERMISSION_NOTIFICATIONS
     /// The permission to send notifications.
     open static let notifications: Permission = {
         let settings = UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil)
@@ -99,28 +124,67 @@ open class Permission: NSObject {
         _notifications = permission
         return permission
     }
+    #endif
     
     /// The permission domain.
     open let type: PermissionType
     
     /// The permission status.
     open var status: PermissionStatus {
-        switch type {
-        case .contacts:          return statusContacts
-        case .addressBook:       return statusAddressBook
-        case .locationAlways:    return statusLocationAlways
-        case .locationWhenInUse: return statusLocationWhenInUse
-        case .notifications:     return statusNotifications
-        case .microphone:        return statusMicrophone
-        case .camera:            return statusCamera
-        case .photos:            return statusPhotos
-        case .reminders:         return statusReminders
-        case .events:            return statusEvents
-        case .bluetooth:         return statusBluetooth
-        case .motion:            return statusMotion
-        case .speechRecognizer:  return statusSpeechRecognizer
-        case .mediaLibrary:      return statusMediaLibrary
-        }
+        #if PERMISSION_CONTACTS
+        if case .contacts = type { return statusContacts }
+        #endif
+        
+        #if PERMISSION_ADDRESS_BOOK
+        if case .addressBook = type { return statusAddressBook }
+        #endif
+        
+        #if PERMISSION_LOCATION
+        if case .locationAlways    = type { return statusLocationAlways }
+        if case .locationWhenInUse = type { return statusLocationWhenInUse }
+        #endif
+        
+        #if PERMISSION_NOTIFICATIONS
+        if case .notifications = type { return statusNotifications }
+        #endif
+        
+        #if PERMISSION_MICROPHONE
+        if case .microphone = type { return statusMicrophone }
+        #endif
+        
+        #if PERMISSION_CAMERA
+        if case .camera = type { return statusCamera }
+        #endif
+        
+        #if PERMISSION_PHOTOS
+        if case .photos = type { return statusPhotos }
+        #endif
+        
+        #if PERMISSION_REMINDERS
+        if case .reminders = type { return statusReminders }
+        #endif
+        
+        #if PERMISSION_EVENTS
+        if case .events = type { return statusEvents }
+        #endif
+        
+        #if PERMISSION_BLUETOOTH
+        if case .bluetooth = type { return statusBluetooth }
+        #endif
+        
+        #if PERMISSION_MOTION
+        if case .motion = type { return statusMotion }
+        #endif
+        
+        #if PERMISSION_SPEECH_RECOGNIZER
+        if case .speechRecognizer = type { return statusSpeechRecognizer }
+        #endif
+        
+        #if PERMISSION_MEDIA_LIBRARY
+        if case .mediaLibrary = type { return statusMediaLibrary }
+        #endif
+        
+        fatalError()
     }
     
     /// Determines whether to present the pre-permission alert.
@@ -183,22 +247,60 @@ open class Permission: NSObject {
     }
     
     internal func requestAuthorization(_ callback: @escaping Callback) {
-        switch type {
-        case .contacts:          requestContacts(callback)
-        case .addressBook:       requestAddressBook(callback)
-        case .locationAlways:    requestLocationAlways(callback)
-        case .locationWhenInUse: requestLocationWhenInUse(callback)
-        case .notifications:     requestNotifications(callback)
-        case .microphone:        requestMicrophone(callback)
-        case .camera:            requestCamera(callback)
-        case .photos:            requestPhotos(callback)
-        case .reminders:         requestReminders(callback)
-        case .events:            requestEvents(callback)
-        case .bluetooth:         requestBluetooth(self.callback)
-        case .motion:            requestMotion(self.callback)
-        case .speechRecognizer:  requestSpeechRecognizer(callback)
-        case .mediaLibrary:      requestMediaLibrary(callback)
-        }
+        #if PERMISSION_CONTACTS
+        if case .contacts = type { requestContacts(callback) }
+        #endif
+        
+        #if PERMISSION_ADDRESS_BOOK
+        if case .addressBook = type { requestAddressBook(callback) }
+        #endif
+        
+        #if PERMISSION_LOCATION
+        if case .locationAlways    = type { requestLocationAlways(callback) }
+        if case .locationWhenInUse = type { requestLocationWhenInUse(callback) }
+        #endif
+        
+        #if PERMISSION_NOTIFICATIONS
+        if case .notifications = type { requestNotifications(callback) }
+        #endif
+        
+        #if PERMISSION_MICROPHONE
+        if case .microphone = type { requestMicrophone(callback) }
+        #endif
+        
+        #if PERMISSION_CAMERA
+        if case .camera = type { requestCamera(callback) }
+        #endif
+        
+        #if PERMISSION_PHOTOS
+        if case .photos = type { requestPhotos(callback) }
+        #endif
+        
+        #if PERMISSION_REMINDERS
+        if case .reminders = type { requestReminders(callback) }
+        #endif
+        
+        #if PERMISSION_EVENTS
+        if case .events = type { requestEvents(callback) }
+        #endif
+        
+        #if PERMISSION_BLUETOOTH
+        if case .bluetooth = type { requestBluetooth(self.callback) }
+        #endif
+        
+        #if PERMISSION_MOTION
+        if case .motion = type { requestMotion(self.callback) }
+        #endif
+        
+        #if PERMISSION_SPEECH_RECOGNIZER
+        if case .speechRecognizer = type { requestSpeechRecognizer(callback) }
+        #endif
+        
+        #if PERMISSION_MEDIA_LIBRARY
+        if case .mediaLibrary = type { requestMediaLibrary(callback) }
+        #endif
+        
+        fatalError()
     }
     
     internal func callbackAsync(_ with: PermissionStatus) {
@@ -227,8 +329,4 @@ extension Permission {
         }
     }
     
-}
-
-func invalidPermissionFatalError(type: PermissionType) -> Never {
-    fatalError("Attempt to request/acces permission for \"\(type.description)\", which is not allowed based on the configuration.")
 }

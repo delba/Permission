@@ -24,13 +24,11 @@
 
 #if PERMISSION_MEDIA_LIBRARY
 import MediaPlayer
-#endif
 
 internal extension Permission {
     var statusMediaLibrary: PermissionStatus {
         guard #available(iOS 9.3, *) else { fatalError() }
-
-        #if PERMISSION_MEDIA_LIBRARY
+        
         let status = MPMediaLibrary.authorizationStatus()
         
         switch status {
@@ -38,15 +36,11 @@ internal extension Permission {
         case .restricted, .denied: return .denied
         case .notDetermined:       return .notDetermined
         }
-        #else
-        invalidPermissionFatalError(type: .mediaLibrary)
-        #endif
     }
     
     func requestMediaLibrary(_ callback: @escaping Callback) {
         guard #available(iOS 9.3, *) else { fatalError() }
         
-        #if PERMISSION_MEDIA_LIBRARY
         guard let _ = Bundle.main.object(forInfoDictionaryKey: .mediaLibraryUsageDescription) else {
             print("WARNING: \(.mediaLibraryUsageDescription) not found in Info.plist")
             return
@@ -55,9 +49,6 @@ internal extension Permission {
         MPMediaLibrary.requestAuthorization { _ in
             callback(self.statusMediaLibrary)
         }
-        #else
-        callback(self.statusMediaLibrary)
-        #endif
     }
 }
-
+#endif
