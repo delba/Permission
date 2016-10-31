@@ -54,15 +54,15 @@ permission.request { status in
 - [`LocationAlways`](https://github.com/delba/Permission/blob/master/Source/PermissionTypes/LocationAlways.swift)
 - [`LocationWhenInUse`](https://github.com/delba/Permission/blob/master/Source/PermissionTypes/LocationWhenInUse.swift)
 
-##### Custom Permissions
+##### Configuration
 
 Due to Apple's new policy regarding permission access, binaries may be rejected due to a perceived attempt
 to access privacy-sensitive data without a usage key, and then further rejected for not actually requesting
 permissions.
 
 As a workaround, you can provide custom build flags _before_ building the dynamic framework to only compile
-with permissions you request. This is done by adding a configuration file named `PermissionFlags.xcconfig`
-to the root of your project (where the `Carthage/` directory is.) For convenience, you can use
+with permissions you request. This is done by adding a configuration file named `PermissionConfiguration.xcconfig`
+to the root of your project. For convenience, you can use
 `PermissionConfiguration.xcconfig` in the `Permission/` repo directory. Just comment out the permissions
 you want to use, and compile the framework.
 
@@ -83,9 +83,9 @@ PERMISSION_SPEECH_RECOGNIZER = // PERMISSION_SPEECH_RECOGNIZER
 PERMISSION_MEDIA_LIBRARY     = // PERMISSION_MEDIA_LIBRARY
 
 // Do not modify this line. Instead, remove comments above as needed to enable the categories your app uses.
-PERMISSION_FLAGS= $(inherited) $(PERMISSION_ADDRESS_BOOK) $(PERMISSION_BLUETOOTH) $(PERMISSION_CAMERA) $(PERMISSION_CONTACTS) $(PERMISSION_EVENTS) $(PERMISSION_LOCATION) $(PERMISSION_MICROPHONE) $(PERMISSION_MOTION) $(PERMISSION_NOTIFICATIONS) $(PERMISSION_PHOTOS) $(PERMISSION_REMINDERS) $(PERMISSION_SPEECH_RECOGNIZER) $(PERMISSION_MEDIA_LIBRARY)
+PERMISSION_FLAGS= $(PERMISSION_ADDRESS_BOOK) $(PERMISSION_BLUETOOTH) $(PERMISSION_CAMERA) $(PERMISSION_CONTACTS) $(PERMISSION_EVENTS) $(PERMISSION_LOCATION) $(PERMISSION_MICROPHONE) $(PERMISSION_MOTION) $(PERMISSION_NOTIFICATIONS) $(PERMISSION_PHOTOS) $(PERMISSION_REMINDERS) $(PERMISSION_SPEECH_RECOGNIZER) $(PERMISSION_MEDIA_LIBRARY)
 
-SWIFT_ACTIVE_COMPILATION_CONDITIONS = $(PERMISSION_FLAGS)
+SWIFT_ACTIVE_COMPILATION_CONDITIONS = $(inherited) $(PERMISSION_FLAGS)
 ```
 
 #### PermissionAlert
