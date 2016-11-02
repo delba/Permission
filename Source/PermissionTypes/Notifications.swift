@@ -39,8 +39,8 @@ internal extension Permission {
     func requestNotifications(_ callback: Callback) {
         guard case .notifications(let settings) = type else { fatalError() }
         
-        NotificationCenter.default.addObserver(self, selector: .requestingNotifications, name: .UIApplicationWillResignActive)
-        notificationTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: .finishedRequestingNotifications, userInfo: nil, repeats: false)
+        NotificationCenter.default.addObserver(self, selector: #selector(requestingNotifications), name: .UIApplicationWillResignActive)
+        notificationTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(finishedRequestingNotifications), userInfo: nil, repeats: false)
         
         UIApplication.shared.registerUserNotificationSettings(settings)
         callback(self.statusNotifications)
@@ -49,7 +49,7 @@ internal extension Permission {
     @objc func requestingNotifications() {
         let notificationCenter = NotificationCenter.default
         notificationCenter.removeObserver(self, name: .UIApplicationWillResignActive)
-        notificationCenter.addObserver(self, selector: .finishedRequestingNotifications, name: .UIApplicationDidBecomeActive)
+        notificationCenter.addObserver(self, selector: #selector(finishedRequestingNotifications), name: .UIApplicationDidBecomeActive)
         notificationTimer?.invalidate()
     }
     
