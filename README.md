@@ -54,43 +54,11 @@ permission.request { status in
 - [`LocationAlways`](https://github.com/delba/Permission/blob/master/Source/PermissionTypes/LocationAlways.swift)
 - [`LocationWhenInUse`](https://github.com/delba/Permission/blob/master/Source/PermissionTypes/LocationWhenInUse.swift)
 
-##### Configuration
-
-Due to Apple's new policy regarding permission access, binaries may be rejected due to a perceived attempt
-to access privacy-sensitive data without a usage key, and then further rejected for not actually requesting
-permissions.
-
-As a workaround, you can provide custom build flags _before_ building the dynamic framework to only compile
-with permissions you request. This is done by adding a configuration file named `PermissionConfiguration.xcconfig`
-to the root of your project. For convenience, you can use
-`PermissionConfiguration.xcconfig` in the `Permission/` repo directory. Just comment out the permissions
-you want to use, and compile the framework.
-
-To compile with only notifications and photos permissions:
-```
-PERMISSION_ADDRESS_BOOK      = // PERMISSION_ADDRESS_BOOK
-PERMISSION_BLUETOOTH         = // PERMISSION_BLUETOOTH
-PERMISSION_CAMERA            = PERMISSION_CAMERA
-PERMISSION_CONTACTS          = // PERMISSION_CONTACTS
-PERMISSION_EVENTS            = // PERMISSION_EVENTS
-PERMISSION_LOCATION          = // PERMISSION_LOCATION
-PERMISSION_MICROPHONE        = // PERMISSION_MICROPHONE
-PERMISSION_MOTION            = // PERMISSION_MOTION
-PERMISSION_NOTIFICATIONS     = PERMISSION_NOTIFICATION
-PERMISSION_PHOTOS            = // PERMISSION_PHOTOS
-PERMISSION_REMINDERS         = // PERMISSION_REMINDERS
-PERMISSION_SPEECH_RECOGNIZER = // PERMISSION_SPEECH_RECOGNIZER
-PERMISSION_MEDIA_LIBRARY     = // PERMISSION_MEDIA_LIBRARY
-
-// Do not modify this line. Instead, remove comments above as needed to enable the categories your app uses.
-PERMISSION_FLAGS= $(PERMISSION_ADDRESS_BOOK) $(PERMISSION_BLUETOOTH) $(PERMISSION_CAMERA) $(PERMISSION_CONTACTS) $(PERMISSION_EVENTS) $(PERMISSION_LOCATION) $(PERMISSION_MICROPHONE) $(PERMISSION_MOTION) $(PERMISSION_NOTIFICATIONS) $(PERMISSION_PHOTOS) $(PERMISSION_REMINDERS) $(PERMISSION_SPEECH_RECOGNIZER) $(PERMISSION_MEDIA_LIBRARY)
-
-SWIFT_ACTIVE_COMPILATION_CONDITIONS = $(inherited) $(PERMISSION_FLAGS)
-```
-
 #### PermissionAlert
 
 > [`PermissionAlert.swift`](https://github.com/delba/Permission/blob/master/Source/PermissionAlert.swift)
+
+##### Denied and disabled alerts
 
 When you first request a permission, a system alert is presented to the user.
 If you request a permission that was denied/disabled, a `PermissionAlert` will be presented.
@@ -104,6 +72,10 @@ alert.message  = nil
 alert.cancel   = "Cancel"
 alert.settings = "Settings"
 ```
+
+Set `permission.presentDeniedAlert = false` or `permission.presentDisabledAlert = false` if you don't want to present these alerts.
+
+##### Pre-permission alerts
 
 In order not to burn your only chance of displaying the system alert, you can present a **pre-permission alert**. See this [article](http://techcrunch.com/2014/04/04/the-right-way-to-ask-users-for-ios-permissions/) for more informations.
 
@@ -264,6 +236,41 @@ use_frameworks!
 
 pod 'Permission'
 ```
+
+### Configuration
+
+Due to Apple's new policy regarding permission access, binaries may be rejected due to a perceived attempt
+to access privacy-sensitive data without a usage key, and then further rejected for not actually requesting
+permissions.
+
+As a workaround, you can provide custom build flags _before_ building the dynamic framework to only compile
+with permissions you request. This is done by adding a configuration file named `PermissionConfiguration.xcconfig`
+to the root of your project. For convenience, you can use
+`PermissionConfiguration.xcconfig` in the `Permission/` repo directory. Just comment out the permissions
+you want to use, and compile the framework.
+
+To compile with only notifications and photos permissions:
+```
+PERMISSION_ADDRESS_BOOK      = // PERMISSION_ADDRESS_BOOK
+PERMISSION_BLUETOOTH         = // PERMISSION_BLUETOOTH
+PERMISSION_CAMERA            = PERMISSION_CAMERA
+PERMISSION_CONTACTS          = // PERMISSION_CONTACTS
+PERMISSION_EVENTS            = // PERMISSION_EVENTS
+PERMISSION_LOCATION          = // PERMISSION_LOCATION
+PERMISSION_MICROPHONE        = // PERMISSION_MICROPHONE
+PERMISSION_MOTION            = // PERMISSION_MOTION
+PERMISSION_NOTIFICATIONS     = PERMISSION_NOTIFICATION
+PERMISSION_PHOTOS            = // PERMISSION_PHOTOS
+PERMISSION_REMINDERS         = // PERMISSION_REMINDERS
+PERMISSION_SPEECH_RECOGNIZER = // PERMISSION_SPEECH_RECOGNIZER
+PERMISSION_MEDIA_LIBRARY     = // PERMISSION_MEDIA_LIBRARY
+
+// Do not modify this line. Instead, remove comments above as needed to enable the categories your app uses.
+PERMISSION_FLAGS= $(PERMISSION_ADDRESS_BOOK) $(PERMISSION_BLUETOOTH) $(PERMISSION_CAMERA) $(PERMISSION_CONTACTS) $(PERMISSION_EVENTS) $(PERMISSION_LOCATION) $(PERMISSION_MICROPHONE) $(PERMISSION_MOTION) $(PERMISSION_NOTIFICATIONS) $(PERMISSION_PHOTOS) $(PERMISSION_REMINDERS) $(PERMISSION_SPEECH_RECOGNIZER) $(PERMISSION_MEDIA_LIBRARY)
+
+SWIFT_ACTIVE_COMPILATION_CONDITIONS = $(inherited) $(PERMISSION_FLAGS)
+```
+
 
 ## License
 
