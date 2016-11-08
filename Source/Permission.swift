@@ -248,56 +248,99 @@ open class Permission: NSObject {
     
     internal func requestAuthorization(_ callback: @escaping Callback) {
         #if PERMISSION_CONTACTS
-        if case .contacts = type { requestContacts(callback) }
+        if case .contacts = type {
+            requestContacts(callback)
+            return
+        }
         #endif
         
         #if PERMISSION_ADDRESS_BOOK
-        if case .addressBook = type { requestAddressBook(callback) }
+        if case .addressBook = type {
+            requestAddressBook(callback)
+            return
+        }
         #endif
         
         #if PERMISSION_LOCATION
-        if case .locationAlways    = type { requestLocationAlways(callback) }
-        if case .locationWhenInUse = type { requestLocationWhenInUse(callback) }
+        if case .locationAlways    = type {
+            requestLocationAlways(callback)
+            return
+        }
+        
+        if case .locationWhenInUse = type {
+            requestLocationWhenInUse(callback)
+            return
+        }
         #endif
         
         #if PERMISSION_NOTIFICATIONS
-        if case .notifications = type { requestNotifications(callback) }
+        if case .notifications = type {
+            requestNotifications(callback)
+            return
+        }
         #endif
         
         #if PERMISSION_MICROPHONE
-        if case .microphone = type { requestMicrophone(callback) }
+        if case .microphone = type {
+            requestMicrophone(callback)
+            return
+        }
         #endif
         
         #if PERMISSION_CAMERA
-        if case .camera = type { requestCamera(callback) }
+        if case .camera = type {
+            requestCamera(callback)
+            return
+        }
         #endif
         
         #if PERMISSION_PHOTOS
-        if case .photos = type { requestPhotos(callback) }
+        if case .photos = type {
+            requestPhotos(callback)
+            return
+        }
         #endif
         
         #if PERMISSION_REMINDERS
-        if case .reminders = type { requestReminders(callback) }
+        if case .reminders = type {
+            requestReminders(callback)
+            return
+        }
         #endif
         
         #if PERMISSION_EVENTS
-        if case .events = type { requestEvents(callback) }
+        if case .events = type {
+            requestEvents(callback)
+            return
+        }
         #endif
         
         #if PERMISSION_BLUETOOTH
-        if case .bluetooth = type { requestBluetooth(self.callback) }
+        if case .bluetooth = type {
+            requestBluetooth(self.callback)
+            return
+        }
         #endif
         
         #if PERMISSION_MOTION
-        if case .motion = type { requestMotion(self.callback) }
+        if case .motion = type {
+            requestMotion(self.callback)
+            return
+        }
         #endif
         
         #if PERMISSION_SPEECH_RECOGNIZER
-        if case .speechRecognizer = type { requestSpeechRecognizer(callback) }
+        if case .speechRecognizer = type {
+            requestSpeechRecognizer(callback)
+            return
+        }
         #endif
         
         #if PERMISSION_MEDIA_LIBRARY
-        if case .mediaLibrary = type { requestMediaLibrary(callback) }
+        if case .mediaLibrary = type {
+            requestMediaLibrary(callback)
+            return
+        }
         #endif
         
         fatalError()
