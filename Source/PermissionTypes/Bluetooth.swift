@@ -62,6 +62,8 @@ extension Permission: CBPeripheralManagerDelegate {
 
 extension CBPeripheralManager {
     func request(_ permission: Permission) {
+        guard case .poweredOn = state else { return }
+        
         startAdvertising(nil)
         stopAdvertising()
     }
