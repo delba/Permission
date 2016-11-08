@@ -89,8 +89,8 @@ internal class DisabledAlert: PermissionAlert {
     override init(permission: Permission) {
         super.init(permission: permission)
         
-        title   = "\(permission.prettyDescription) is currently disabled"
-        message = "Please enable access to \(permission.prettyDescription) in the Settings app."
+        title   = "\(permission) is currently disabled"
+        message = "Please enable access to \(permission) in the Settings app."
         cancel  = "OK"
     }
 }
@@ -108,8 +108,8 @@ internal class DeniedAlert: PermissionAlert {
     override init(permission: Permission) {
         super.init(permission: permission)
         
-        title    = "Permission for \(permission.prettyDescription) was denied"
-        message  = "Please enable access to \(permission.prettyDescription) in the Settings app."
+        title    = "Permission for \(permission) was denied"
+        message  = "Please enable access to \(permission) in the Settings app."
         cancel   = "Cancel"
         settings = "Settings"
     }
@@ -141,8 +141,8 @@ internal class PrePermissionAlert: PermissionAlert {
     override init(permission: Permission) {
         super.init(permission: permission)
         
-        title   = "\(Bundle.main.name) would like to access your \(permission.prettyDescription)"
-        message = "Please enable access to \(permission.prettyDescription)."
+        title   = "\(Bundle.main.name) would like to access your \(permission)"
+        message = "Please enable access to \(permission)."
         cancel  = "Cancel"
         confirm = "Confirm"
     }

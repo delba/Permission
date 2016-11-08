@@ -357,12 +357,11 @@ open class Permission: NSObject {
 extension Permission {
     /// The textual representation of self.
     override open var description: String {
-        return "\(type): \(status)"
-    }
-    
-    /// The pretty textual representation of self. 
-    internal var prettyDescription: String {
         return type.description
     }
     
+    /// A textual representation of this instance, suitable for debugging.
+    override open var debugDescription: String {
+        return "\(type): \(status)"
+    }
 }
