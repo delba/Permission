@@ -235,7 +235,7 @@ open class Permission: NSObject {
         let status = self.status
         
         switch status {
-        case .authorized:    callbackAsync(status)
+        case .authorized:    callbacks(status)
         case .notDetermined: requestInitialAuthorization()
         case .denied:        deniedAlert.present()
         case .disabled:      disabledAlert.present()
@@ -243,7 +243,7 @@ open class Permission: NSObject {
     }
     
     fileprivate func requestInitialAuthorization() {
-        presentPrePermissionAlert ? prePermissionAlert.present() : requestAuthorization(callbackAsync)
+        presentPrePermissionAlert ? prePermissionAlert.present() : requestAuthorization(callbacks)
     }
     
     internal func requestAuthorization(_ callback: @escaping Callback) {
@@ -346,7 +346,7 @@ open class Permission: NSObject {
         fatalError()
     }
     
-    internal func callbackAsync(_ with: PermissionStatus) {
+    internal func callbacks(_ with: PermissionStatus) {
         DispatchQueue.main.async {
             self.callback?(self.status)
             self.permissionSets.forEach { $0.didRequestPermission(self) }
