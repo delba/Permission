@@ -32,6 +32,7 @@ internal let BluetoothManager = CBPeripheralManager(
 )
 
 extension Permission {
+    var statusBluetooth: PermissionStatus {
         let status = CBPeripheralManager.authorizationStatus()
         
         switch status {
@@ -53,6 +54,7 @@ extension Permission {
                 return .authorized
             }
         }
+    }
     
     func requestBluetooth(_ callback: Callback?) {
         UserDefaults.standard.requestedBluetooth = true
