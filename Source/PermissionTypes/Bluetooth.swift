@@ -56,7 +56,10 @@ extension Permission {
 
 extension Permission: CBPeripheralManagerDelegate {
     public func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
+        guard UserDefaults.standard.requestedBluetooth else { return }
+        
         callback?(statusBluetooth)
+        UserDefaults.standard.requestedBluetooth = false
     }
 }
 
