@@ -22,11 +22,11 @@
 // SOFTWARE.
 //
 
-public enum PermissionStatus {
-    case authorized
-    case denied
-    case disabled
-    case notDetermined
+public enum PermissionStatus: String {
+    case authorized = "authorized"
+    case denied = "denied"
+    case disabled = "disabled"
+    case notDetermined = "notDetermined"
     
     public var description: String {
         switch self {

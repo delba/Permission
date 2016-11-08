@@ -61,6 +61,8 @@ internal extension String {
     static let requestedLocationAlwaysWithWhenInUse = "permission.requestedLocationAlwaysWithWhenInUse"
     static let requestedMotion                      = "permission.requestedMotion"
     static let requestedBluetooth                   = "permission.requestedBluetooth"
+    static let statusBluetooth                      = "permission.statusBluetooth"
+    static let stateBluetoothManagerDetermined      = "permission.stateBluetoothManagerDetermined"
 }
 
 internal extension Selector {
@@ -106,6 +108,28 @@ extension UserDefaults {
         }
         set {
             set(newValue, forKey: .requestedBluetooth)
+            synchronize()
+        }
+    }
+    
+    var statusBluetooth: PermissionStatus? {
+        get {
+            guard let rawValue = string(forKey: .statusBluetooth) else { return nil }
+            return PermissionStatus(rawValue: rawValue)
+        }
+        
+        set {
+            set(newValue?.rawValue, forKey: .statusBluetooth)
+            synchronize()
+        }
+    }
+    
+    var stateBluetoothManagerDetermined: Bool {
+        get {
+            return bool(forKey: .stateBluetoothManagerDetermined)
+        }
+        set {
+            set(newValue, forKey: .stateBluetoothManagerDetermined)
             synchronize()
         }
     }
