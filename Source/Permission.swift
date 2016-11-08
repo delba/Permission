@@ -195,10 +195,16 @@ open class Permission: NSObject {
         return PrePermissionAlert(permission: self)
     }()
     
+    /// Determines whether to present the denied alert.
+    open var presentDeniedAlert = true
+    
     /// The alert when the permission was denied.
     open lazy var deniedAlert: PermissionAlert = {
         return DeniedAlert(permission: self)
     }()
+    
+    /// Determines whether to present the disabled alert.
+    open var presentDisabledAlert = true
     
     /// The alert when the permission is disabled.
     open lazy var disabledAlert: PermissionAlert = {
@@ -236,14 +242,10 @@ open class Permission: NSObject {
         
         switch status {
         case .authorized:    callbacks(status)
-        case .notDetermined: requestInitialAuthorization()
-        case .denied:        deniedAlert.present()
-        case .disabled:      disabledAlert.present()
+        case .notDetermined: presentPrePermissionAlert ? prePermissionAlert.present() : requestAuthorization(callbacks)
+        case .denied:        presentDeniedAlert ? deniedAlert.present() : callbacks(status)
+        case .disabled:      presentDisabledAlert ? disabledAlert.present() : callbacks(status)
         }
-    }
-    
-    fileprivate func requestInitialAuthorization() {
-        presentPrePermissionAlert ? prePermissionAlert.present() : requestAuthorization(callbacks)
     }
     
     internal func requestAuthorization(_ callback: @escaping Callback) {
