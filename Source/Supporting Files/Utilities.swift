@@ -73,65 +73,33 @@ internal extension Selector {
 
 extension UserDefaults {
     var requestedLocationAlwaysWithWhenInUse: Bool {
-        get {
-            return bool(forKey: .requestedLocationAlwaysWithWhenInUse)
-        }
-        set {
-            set(newValue, forKey: .requestedLocationAlwaysWithWhenInUse)
-            synchronize()
-        }
+        get { return bool(forKey: .requestedLocationAlwaysWithWhenInUse) }
+        set { set(newValue, forKey: .requestedLocationAlwaysWithWhenInUse) }
     }
     
     var requestedNotifications: Bool {
-        get {
-            return bool(forKey: .requestedNotifications)
-        }
-        set {
-            set(newValue, forKey: .requestedNotifications)
-            synchronize()
-        }
+        get { return bool(forKey: .requestedNotifications) }
+        set { set(newValue, forKey: .requestedNotifications) }
     }
     
     var requestedMotion: Bool {
-        get {
-            return bool(forKey: .requestedMotion)
-        }
-        set {
-            set(newValue, forKey: .requestedMotion)
-            synchronize()
-        }
+        get { return bool(forKey: .requestedMotion) }
+        set { set(newValue, forKey: .requestedMotion) }
     }
     
     var requestedBluetooth: Bool {
-        get {
-            return bool(forKey: .requestedBluetooth)
-        }
-        set {
-            set(newValue, forKey: .requestedBluetooth)
-            synchronize()
-        }
+        get { return bool(forKey: .requestedBluetooth) }
+        set { set(newValue, forKey: .requestedBluetooth) }
     }
     
     var statusBluetooth: PermissionStatus? {
-        get {
-            guard let rawValue = string(forKey: .statusBluetooth) else { return nil }
-            return PermissionStatus(rawValue: rawValue)
-        }
-        
-        set {
-            set(newValue?.rawValue, forKey: .statusBluetooth)
-            synchronize()
-        }
+        get { return PermissionStatus(string: string(forKey: .statusBluetooth)) }
+        set { set(newValue?.rawValue, forKey: .statusBluetooth) }
     }
     
     var stateBluetoothManagerDetermined: Bool {
-        get {
-            return bool(forKey: .stateBluetoothManagerDetermined)
-        }
-        set {
-            set(newValue, forKey: .stateBluetoothManagerDetermined)
-            synchronize()
-        }
+        get { return bool(forKey: .stateBluetoothManagerDetermined) }
+        set { set(newValue, forKey: .stateBluetoothManagerDetermined) }
     }
 }
 

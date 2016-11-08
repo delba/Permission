@@ -28,6 +28,14 @@ public enum PermissionStatus: String {
     case disabled = "disabled"
     case notDetermined = "notDetermined"
     
+    internal init?(string: String?) {
+        guard let string = string else { return nil }
+        self.init(rawValue: string)
+    }
+}
+
+extension PermissionStatus: CustomStringConvertible {
+    /// The textual representation of self.
     public var description: String {
         switch self {
         case .notDetermined: return "Not Determined"
