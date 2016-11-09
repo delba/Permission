@@ -231,13 +231,16 @@ You can install it with the following command:
 $ gem install cocoapods
 ```
 
-To integrate Permission into your Xcode project using CocoaPods, specify it in your `Podfile`:
+To integrate Permission into your Xcode project using CocoaPods, specify it in your `Podfile`. Due to Apple's new policy regarding permission access you need to specifically define what kind of permissions you want to access using subspecs. For example if you want to access the Camera and the Notifications you define the following:
 
 ```ruby
 use_frameworks!
 
-pod 'Permission'
+pod 'Permission/Camera'
+pod 'Permission/Notifications'
 ```
+
+Please see `Permission.podspec` for more information about which subspecs are available.
 
 ### Configuration
 
