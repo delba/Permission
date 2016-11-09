@@ -19,16 +19,6 @@ Pod::Spec.new do |s|
     co.source_files = "Source/**/*.{swift, h}"
   end
 
-  s.subspec 'Contacts' do |cn|
-    cn.dependency 'Permission/Core'
-    cn.pod_target_xcconfig = { "SWIFT_ACTIVE_COMPILATION_CONDITIONS"  => "PERMISSION_CONTACTS" }
-  end
-
-  s.subspec 'Notifications' do |no|
-    no.dependency 'Permission/Core'
-    no.pod_target_xcconfig = { "SWIFT_ACTIVE_COMPILATION_CONDITIONS"  => "PERMISSION_NOTIFICATIONS" }
-  end
-
   s.subspec 'AddressBook' do |ab|
     ab.dependency 'Permission/Core'
     ab.pod_target_xcconfig = { "SWIFT_ACTIVE_COMPILATION_CONDITIONS"  => "PERMISSION_ADDRESS_BOOK" }
@@ -37,6 +27,16 @@ Pod::Spec.new do |s|
   s.subspec 'Bluetooth' do |bl|
     bl.dependency 'Permission/Core'
     bl.pod_target_xcconfig = { "SWIFT_ACTIVE_COMPILATION_CONDITIONS"  => "PERMISSION_BLUETOOTH" }
+  end
+
+  s.subspec 'Camera' do |cm|
+    cm.dependency 'Permission/Core'
+    cm.pod_target_xcconfig = { "SWIFT_ACTIVE_COMPILATION_CONDITIONS"  => "PERMISSION_CAMERA" }
+  end
+
+  s.subspec 'Contacts' do |cn|
+    cn.dependency 'Permission/Core'
+    cn.pod_target_xcconfig = { "SWIFT_ACTIVE_COMPILATION_CONDITIONS"  => "PERMISSION_CONTACTS" }
   end
 
   s.subspec 'Events' do |ev|
@@ -57,6 +57,11 @@ Pod::Spec.new do |s|
   s.subspec 'Motion' do |mo|
     mo.dependency 'Permission/Core'
     mo.pod_target_xcconfig = { "SWIFT_ACTIVE_COMPILATION_CONDITIONS"  => "PERMISSION_MOTION" }
+  end
+
+  s.subspec 'Notifications' do |no|
+    no.dependency 'Permission/Core'
+    no.pod_target_xcconfig = { "SWIFT_ACTIVE_COMPILATION_CONDITIONS"  => "PERMISSION_NOTIFICATIONS" }
   end
 
   s.subspec 'Photos' do |ph|
