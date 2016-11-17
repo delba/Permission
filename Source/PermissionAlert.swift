@@ -22,6 +22,8 @@
 // SOFTWARE.
 //
 
+import UIKit
+
 open class PermissionAlert {
     /// The permission.
     fileprivate let permission: Permission
@@ -70,7 +72,7 @@ open class PermissionAlert {
         return controller
     }
     
-    internal init(permission: Permission) {
+    internal init(permission: Permission,alertClass: Permissionable.Type = UIAlertController.self) {
         self.permission = permission
     }
     
