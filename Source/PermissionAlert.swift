@@ -74,9 +74,9 @@ open class PermissionAlert {
         return controller
     }
     
-    internal init(permission: Permission,alertClass: Permissionable.Type) {
+    internal init(permission: Permission) {
         self.permission = permission
-        self.alertClass = alertClass
+        self.alertClass = permission.alertClass
     }
     
     internal func present() {
@@ -91,8 +91,8 @@ open class PermissionAlert {
 }
 
 internal class DisabledAlert: PermissionAlert {
-    override init(permission: Permission,alertClass: Permissionable.Type) {
-        super.init(permission: permission,alertClass: alertClass)
+    override init(permission: Permission) {
+        super.init(permission: permission)
         
         title   = "\(permission) is currently disabled"
         message = "Please enable access to \(permission) in the Settings app."
@@ -109,8 +109,8 @@ internal class DeniedAlert: PermissionAlert {
         return controller
     }
     
-    override init(permission: Permission,alertClass: Permissionable.Type) {
-        super.init(permission: permission,alertClass: alertClass)
+    override init(permission: Permission) {
+        super.init(permission: permission)
         
         title    = "Permission for \(permission) was denied"
         message  = "Please enable access to \(permission) in the Settings app."
@@ -141,8 +141,8 @@ internal class PrePermissionAlert: PermissionAlert {
         return controller
     }
     
-    override init(permission: Permission,alertClass: Permissionable.Type) {
-        super.init(permission: permission,alertClass: alertClass)
+    override init(permission: Permission) {
+        super.init(permission: permission)
         
         title   = "\(Bundle.main.name) would like to access your \(permission)"
         message = "Please enable access to \(permission)."

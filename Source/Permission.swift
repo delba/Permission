@@ -195,7 +195,7 @@ open class Permission: NSObject {
     
     /// The pre-permission alert.
     open lazy var prePermissionAlert: PermissionAlert = {
-        return PrePermissionAlert(permission: self,alertClass: self.alertClass)
+        return PrePermissionAlert(permission: self)
     }()
     
     /// Determines whether to present the denied alert.
@@ -203,7 +203,7 @@ open class Permission: NSObject {
     
     /// The alert when the permission was denied.
     open lazy var deniedAlert: PermissionAlert = {
-        return DeniedAlert(permission: self,alertClass: self.alertClass)
+        return DeniedAlert(permission: self)
     }()
     
     /// Determines whether to present the disabled alert.
@@ -211,7 +211,7 @@ open class Permission: NSObject {
     
     /// The alert when the permission is disabled.
     open lazy var disabledAlert: PermissionAlert = {
-        return DisabledAlert(permission: self,alertClass: self.alertClass)
+        return DisabledAlert(permission: self)
     }()
     
     internal var callback: Callback?
