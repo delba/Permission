@@ -9,14 +9,12 @@
 import UIKit
 
 
-extension UIAlertController {
-    
-    convenience init(title: String?, message: String?) {
-        self.init(title: title, message: message, preferredStyle: .alert)
-    }
-}
-
 extension UIAlertController: Permissionable {
+    
+    public static func alertController(title: String?,message: String?,type: PermissionType,status: PermissionStatus) -> Permissionable {
+        let alertViewController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        return alertViewController
+    }
     
     public func addAction(title: String?, style: UIAlertActionStyle, handler: @escaping () -> Void) {
         let action = UIAlertAction(title: title, style: style) { _ in
@@ -24,5 +22,4 @@ extension UIAlertController: Permissionable {
         }
         addAction(action)
     }
-    
 }

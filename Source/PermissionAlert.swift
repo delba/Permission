@@ -67,7 +67,7 @@ open class PermissionAlert {
     fileprivate var defaultActionTitle: String?
     
     var controller: Permissionable {
-        let controller = alertClass.init(title: title, message: message, preferredStyle: .alert)
+        let controller = alertClass.alertController(title: title, message: message, type: self.type, status: self.status)
         
         controller.addAction(title: cancelActionTitle, style: .default, handler: cancelHandler)
         

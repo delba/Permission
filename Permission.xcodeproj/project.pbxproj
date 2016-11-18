@@ -32,8 +32,8 @@
 		6DF9C2BE1C8F4FE5000710C1 /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF9C2BD1C8F4FE5000710C1 /* Photos.swift */; };
 		6DF9C2C01C8F5003000710C1 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF9C2BF1C8F5003000710C1 /* Events.swift */; };
 		6DF9C2C61C8F5B4C000710C1 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF9C2C51C8F5B4C000710C1 /* Location.swift */; };
+		C23C024F1DDF2EA100E8448A /* UIAlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23C024E1DDF2EA100E8448A /* UIAlertController+Extension.swift */; };
 		C2ED3A741DDE2401001071FF /* Permissionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2ED3A731DDE2401001071FF /* Permissionable.swift */; };
-		C2ED3A761DDE2493001071FF /* UIAlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2ED3A751DDE2493001071FF /* UIAlertController+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,8 +75,8 @@
 		6DF9C2BD1C8F4FE5000710C1 /* Photos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
 		6DF9C2BF1C8F5003000710C1 /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		6DF9C2C51C8F5B4C000710C1 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		C23C024E1DDF2EA100E8448A /* UIAlertController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extension.swift"; sourceTree = "<group>"; };
 		C2ED3A731DDE2401001071FF /* Permissionable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Permissionable.swift; sourceTree = "<group>"; };
-		C2ED3A751DDE2493001071FF /* UIAlertController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extension.swift"; sourceTree = "<group>"; };
 		D08FF2891DC3AD2900F28088 /* PermissionFlags.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = PermissionFlags.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -128,8 +128,8 @@
 				6D0069B31C1868E8002FDB42 /* PermissionSet.swift */,
 				6D491E771C9CA90B00611006 /* PermissionStatus.swift */,
 				6D491E751C9CA7DE00611006 /* PermissionType.swift */,
+				C23C024E1DDF2EA100E8448A /* UIAlertController+Extension.swift */,
 				C2ED3A731DDE2401001071FF /* Permissionable.swift */,
-				C2ED3A751DDE2493001071FF /* UIAlertController+Extension.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -295,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D491E781C9CA90B00611006 /* PermissionStatus.swift in Sources */,
+				C23C024F1DDF2EA100E8448A /* UIAlertController+Extension.swift in Sources */,
 				6D935F5F1C9A14AB00BB39E3 /* Motion.swift in Sources */,
 				6D935F5D1C9A0FEA00BB39E3 /* Bluetooth.swift in Sources */,
 				6DF9C2B81C8F4F8F000710C1 /* Notifications.swift in Sources */,
@@ -312,7 +313,6 @@
 				3D42A7DB1D5F66B300236ABA /* SpeechRecognizer.swift in Sources */,
 				6DF9C2BE1C8F4FE5000710C1 /* Photos.swift in Sources */,
 				6DF9C2BA1C8F4FAC000710C1 /* Microphone.swift in Sources */,
-				C2ED3A761DDE2493001071FF /* UIAlertController+Extension.swift in Sources */,
 				6DF9C2BC1C8F4FDA000710C1 /* Camera.swift in Sources */,
 				6DF9C2B21C8F4F45000710C1 /* LocationAlways.swift in Sources */,
 				3DC217D31D6EFD4A00600DFE /* MediaLibrary.swift in Sources */,

@@ -8,8 +8,8 @@
 
 import UIKit
 
-public protocol Permissionable: class {
-    init(title: String?, message: String?, preferredStyle: UIAlertControllerStyle)
+public protocol Permissionable: class {    
+    static func alertController(title: String?,message: String?,type: PermissionType,status: PermissionStatus) -> Permissionable
     
     func addAction(title: String?, style: UIAlertActionStyle, handler: @escaping () -> Void)
 }
