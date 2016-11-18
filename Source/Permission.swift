@@ -126,6 +126,9 @@ open class Permission: NSObject {
     }
     #endif
     
+    /// The alert Class type, conforming to Protocol Permissionable
+    open var alertClass: Permissionable.Type = UIAlertController.self
+    
     /// The permission domain.
     open let type: PermissionType
     
@@ -200,7 +203,7 @@ open class Permission: NSObject {
     
     /// The alert when the permission was denied.
     open lazy var deniedAlert: PermissionAlert = {
-        return DeniedAlert(permission: self)
+        return DeniedAlert(permission: self,alertClass: self.alertClass)
     }()
     
     /// Determines whether to present the disabled alert.
@@ -208,7 +211,7 @@ open class Permission: NSObject {
     
     /// The alert when the permission is disabled.
     open lazy var disabledAlert: PermissionAlert = {
-        return DisabledAlert(permission: self)
+        return DisabledAlert(permission: self,alertClass: self.alertClass)
     }()
     
     internal var callback: Callback?

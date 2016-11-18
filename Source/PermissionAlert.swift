@@ -91,7 +91,7 @@ open class PermissionAlert {
 }
 
 internal class DisabledAlert: PermissionAlert {
-    override init(permission: Permission,alertClass: Permissionable.Type = UIAlertController.self) {
+    override init(permission: Permission,alertClass: Permissionable.Type) {
         super.init(permission: permission,alertClass: alertClass)
         
         title   = "\(permission) is currently disabled"
@@ -109,7 +109,7 @@ internal class DeniedAlert: PermissionAlert {
         return controller
     }
     
-    override init(permission: Permission,alertClass: Permissionable.Type = UIAlertController.self) {
+    override init(permission: Permission,alertClass: Permissionable.Type) {
         super.init(permission: permission,alertClass: alertClass)
         
         title    = "Permission for \(permission) was denied"

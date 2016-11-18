@@ -18,7 +18,7 @@ extension UIAlertController {
 
 extension UIAlertController: Permissionable {
     
-    func addAction(title: String?, style: UIAlertActionStyle, handler: @escaping () -> Void) {
+    public func addAction(title: String?, style: UIAlertActionStyle, handler: @escaping () -> Void) {
         let action = UIAlertAction(title: title, style: style) { _ in
             handler()
         }
