@@ -67,7 +67,6 @@ open class PermissionAlert {
     fileprivate var defaultActionTitle: String?
     
     var controller: Permissionable {
-        print("alertClass in permission \(alertClass)")
         let controller = alertClass.alertController(title: title, message: message, type: self.type, status: self.status)
         
         controller.addAction(title: cancelActionTitle, style: .default, handler: cancelHandler)
@@ -142,7 +141,7 @@ internal class PrePermissionAlert: PermissionAlert {
         return controller
     }
     
-    override init(permission: Permission,alertClass: Permissionable.Type = UIAlertController.self) {
+    override init(permission: Permission,alertClass: Permissionable.Type) {
         super.init(permission: permission,alertClass: alertClass)
         
         title   = "\(Bundle.main.name) would like to access your \(permission)"
