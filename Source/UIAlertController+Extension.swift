@@ -8,6 +8,14 @@
 
 import UIKit
 
+
+extension UIAlertController {
+    
+    convenience init(title: String?, message: String?) {
+        self.init(title: title, message: message, preferredStyle: .alert)
+    }
+}
+
 extension UIAlertController: Permissionable {
     
     func addAction(title: String?, style: UIAlertActionStyle, handler: @escaping () -> Void) {
