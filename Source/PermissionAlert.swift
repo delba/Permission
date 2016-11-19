@@ -22,9 +22,14 @@
 // SOFTWARE.
 //
 
+import UIKit
+
 open class PermissionAlert {
     /// The permission.
     fileprivate let permission: Permission
+    
+    //the alert controller class
+    fileprivate let alertClass: Permissionable.Type
     
     /// The status of the permission.
     fileprivate var status: PermissionStatus { return permission.status }
@@ -61,26 +66,26 @@ open class PermissionAlert {
     fileprivate var cancelActionTitle: String?
     fileprivate var defaultActionTitle: String?
     
-    var controller: UIAlertController {
-        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    var controller: Permissionable {
+        let controller = alertClass.alertController(title: title, message: message, type: self.type, status: self.status)
         
-        let action = UIAlertAction(title: cancelActionTitle, style: .default, handler: cancelHandler)
-        controller.addAction(action)
+        controller.addAction(title: cancelActionTitle, style: .default, handler: cancelHandler)
         
         return controller
     }
     
     internal init(permission: Permission) {
         self.permission = permission
+        self.alertClass = permission.alertClass
     }
     
     internal func present() {
         DispatchQueue.main.async {
-            UIApplication.shared.presentViewController(self.controller)
+            UIApplication.shared.presentViewController(self.controller as! UIViewController)
         }
     }
 
-    fileprivate func cancelHandler(_ action: UIAlertAction) {
+    fileprivate func cancelHandler() {
         callbacks(status)
     }
 }
@@ -96,11 +101,10 @@ internal class DisabledAlert: PermissionAlert {
 }
 
 internal class DeniedAlert: PermissionAlert {
-    override var controller: UIAlertController {
+    override var controller: Permissionable {
         let controller = super.controller
         
-        let action = UIAlertAction(title: defaultActionTitle, style: .cancel, handler: settingsHandler)
-        controller.addAction(action)
+        controller.addAction(title: defaultActionTitle, style: .cancel, handler: settingHandler)
         
         return controller
     }
@@ -119,7 +123,7 @@ internal class DeniedAlert: PermissionAlert {
         callbacks(status)
     }
     
-    private func settingsHandler(_ action: UIAlertAction) {
+    private func settingHandler() {
         NotificationCenter.default.addObserver(self, selector: .settingsHandler, name: .UIApplicationDidBecomeActive)
         
         if let URL = URL(string: UIApplicationOpenSettingsURLString) {
@@ -129,11 +133,10 @@ internal class DeniedAlert: PermissionAlert {
 }
 
 internal class PrePermissionAlert: PermissionAlert {
-    override var controller: UIAlertController {
+    override var controller: Permissionable {
         let controller = super.controller
         
-        let action = UIAlertAction(title: defaultActionTitle, style: .cancel, handler: confirmHandler)
-        controller.addAction(action)
+        controller.addAction(title: defaultActionTitle, style: .cancel, handler: confirmHandler)
         
         return controller
     }
@@ -147,7 +150,7 @@ internal class PrePermissionAlert: PermissionAlert {
         confirm = "Confirm"
     }
     
-    fileprivate func confirmHandler(_ action: UIAlertAction) {
+    fileprivate func confirmHandler() {
         permission.requestAuthorization(callbacks)
     }
 }

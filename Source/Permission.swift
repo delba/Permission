@@ -126,6 +126,9 @@ open class Permission: NSObject {
     }
     #endif
     
+    /// The alert Class type, conforming to Protocol Permissionable
+    open var alertClass: Permissionable.Type = UIAlertController.self
+    
     /// The permission domain.
     open let type: PermissionType
     
