@@ -66,6 +66,10 @@ open class PermissionAlert {
         
         let action = UIAlertAction(title: cancelActionTitle, style: .cancel, handler: cancelHandler)
         controller.addAction(action)
+
+        if #available(iOS 9.0, *) {
+            controller.preferredAction = action
+        }
         
         return controller
     }
@@ -101,6 +105,10 @@ internal class DeniedAlert: PermissionAlert {
         
         let action = UIAlertAction(title: defaultActionTitle, style: .default, handler: settingsHandler)
         controller.addAction(action)
+
+        if #available(iOS 9.0, *) {
+            controller.preferredAction = action
+        }
         
         return controller
     }
@@ -134,6 +142,10 @@ internal class PrePermissionAlert: PermissionAlert {
         
         let action = UIAlertAction(title: defaultActionTitle, style: .default, handler: confirmHandler)
         controller.addAction(action)
+
+        if #available(iOS 9.0, *) {
+            controller.preferredAction = action
+        }
         
         return controller
     }
