@@ -66,10 +66,6 @@ open class PermissionAlert {
         
         let action = UIAlertAction(title: cancelActionTitle, style: .cancel, handler: cancelHandler)
         controller.addAction(action)
-
-        if #available(iOS 9.0, *) {
-            controller.preferredAction = action
-        }
         
         return controller
     }
