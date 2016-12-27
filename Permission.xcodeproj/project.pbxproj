@@ -21,7 +21,7 @@
 		6D935F5D1C9A0FEA00BB39E3 /* Bluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D935F5C1C9A0FEA00BB39E3 /* Bluetooth.swift */; };
 		6D935F5F1C9A14AB00BB39E3 /* Motion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D935F5E1C9A14AB00BB39E3 /* Motion.swift */; };
 		6DA8B4B01BFB80E9007A94FC /* PermissionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA8B4AF1BFB80E9007A94FC /* PermissionButton.swift */; };
-		6DA8B4B21BFB8AD8007A94FC /* PermissionAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA8B4B11BFB8AD8007A94FC /* PermissionAlert.swift */; };
+		6DA8B4B21BFB8AD8007A94FC /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA8B4B11BFB8AD8007A94FC /* Alert.swift */; };
 		6DF9C2AF1C8F4F2A000710C1 /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF9C2AE1C8F4F2A000710C1 /* Contacts.swift */; };
 		6DF9C2B21C8F4F45000710C1 /* LocationAlways.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF9C2B11C8F4F45000710C1 /* LocationAlways.swift */; };
 		6DF9C2B41C8F4F54000710C1 /* LocationWhenInUse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF9C2B31C8F4F54000710C1 /* LocationWhenInUse.swift */; };
@@ -58,11 +58,11 @@
 		6D86A9B71BEBDC7D00E3DD5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6D86A9BC1BEBDC7D00E3DD5A /* Permission.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Permission.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D86A9C31BEBDC7D00E3DD5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6D86A9CC1BEBDC9000E3DD5A /* Permission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Permission.swift; sourceTree = "<group>"; };
+		6D86A9CC1BEBDC9000E3DD5A /* Permission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Permission.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		6D935F5C1C9A0FEA00BB39E3 /* Bluetooth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bluetooth.swift; sourceTree = "<group>"; };
 		6D935F5E1C9A14AB00BB39E3 /* Motion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Motion.swift; sourceTree = "<group>"; };
-		6DA8B4AF1BFB80E9007A94FC /* PermissionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionButton.swift; sourceTree = "<group>"; };
-		6DA8B4B11BFB8AD8007A94FC /* PermissionAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionAlert.swift; sourceTree = "<group>"; };
+		6DA8B4AF1BFB80E9007A94FC /* PermissionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PermissionButton.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		6DA8B4B11BFB8AD8007A94FC /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Alert.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		6DF9C2AE1C8F4F2A000710C1 /* Contacts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
 		6DF9C2B11C8F4F45000710C1 /* LocationAlways.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationAlways.swift; sourceTree = "<group>"; };
 		6DF9C2B31C8F4F54000710C1 /* LocationWhenInUse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationWhenInUse.swift; sourceTree = "<group>"; };
@@ -118,8 +118,8 @@
 			children = (
 				6DF9C2B01C8F4F30000710C1 /* PermissionTypes */,
 				6DF9C2C21C8F53C3000710C1 /* Supporting Files */,
+				6DA8B4B11BFB8AD8007A94FC /* Alert.swift */,
 				6D86A9CC1BEBDC9000E3DD5A /* Permission.swift */,
-				6DA8B4B11BFB8AD8007A94FC /* PermissionAlert.swift */,
 				6DA8B4AF1BFB80E9007A94FC /* PermissionButton.swift */,
 				6D0069B31C1868E8002FDB42 /* PermissionSet.swift */,
 				6D491E771C9CA90B00611006 /* PermissionStatus.swift */,
@@ -300,7 +300,7 @@
 				6DF9C2B61C8F4F69000710C1 /* Reminders.swift in Sources */,
 				6DF9C2AF1C8F4F2A000710C1 /* Contacts.swift in Sources */,
 				6DF9C2C61C8F5B4C000710C1 /* Location.swift in Sources */,
-				6DA8B4B21BFB8AD8007A94FC /* PermissionAlert.swift in Sources */,
+				6DA8B4B21BFB8AD8007A94FC /* Alert.swift in Sources */,
 				6C04FAF61CCA8F3A00B3F361 /* AddressBook.swift in Sources */,
 				3D42A7DB1D5F66B300236ABA /* SpeechRecognizer.swift in Sources */,
 				6DF9C2BE1C8F4FE5000710C1 /* Photos.swift in Sources */,

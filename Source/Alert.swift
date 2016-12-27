@@ -1,5 +1,5 @@
 //
-// PermissionAlert.swift
+// Alert.swift
 //
 // Copyright (c) 2015-2016 Damien (http://delba.io)
 //
@@ -22,7 +22,7 @@
 // SOFTWARE.
 //
 
-open class PermissionAlert {
+open class Alert {
     /// The permission.
     fileprivate let permission: Permission
     
@@ -85,7 +85,7 @@ open class PermissionAlert {
     }
 }
 
-internal class DisabledAlert: PermissionAlert {
+internal class DisabledAlert: Alert {
     override init(permission: Permission) {
         super.init(permission: permission)
         
@@ -95,7 +95,7 @@ internal class DisabledAlert: PermissionAlert {
     }
 }
 
-internal class DeniedAlert: PermissionAlert {
+internal class DeniedAlert: Alert {
     override var controller: UIAlertController {
         let controller = super.controller
         
@@ -132,7 +132,7 @@ internal class DeniedAlert: PermissionAlert {
     }
 }
 
-internal class PrePermissionAlert: PermissionAlert {
+internal class PrePermissionAlert: Alert {
     override var controller: UIAlertController {
         let controller = super.controller
         
