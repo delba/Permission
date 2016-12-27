@@ -23,7 +23,7 @@
 //
 
 open class Permission: NSObject {
-    public typealias Callback = (PermissionStatus) -> Void
+    public typealias Callback = (Status) -> Void
 
     #if PERMISSION_CONTACTS
     /// The permission to access the user's contacts.
@@ -130,7 +130,7 @@ open class Permission: NSObject {
     open let type: PermissionType
     
     /// The permission status.
-    open var status: PermissionStatus {
+    open var status: Status {
         #if PERMISSION_CONTACTS
         if case .contacts = type { return statusContacts }
         #endif
@@ -348,7 +348,7 @@ open class Permission: NSObject {
         fatalError()
     }
     
-    internal func callbacks(_ with: PermissionStatus) {
+    internal func callbacks(_ with: Status) {
         DispatchQueue.main.async {
             self.callback?(self.status)
             self.permissionSets.forEach { $0.didRequestPermission(self) }

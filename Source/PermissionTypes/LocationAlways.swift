@@ -26,7 +26,7 @@
 import CoreLocation
 
 internal extension Permission {
-    var statusLocationAlways: PermissionStatus {
+    var statusLocationAlways: Status {
         guard CLLocationManager.locationServicesEnabled() else { return .disabled }
         
         let status = CLLocationManager.authorizationStatus()

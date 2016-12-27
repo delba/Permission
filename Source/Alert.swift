@@ -27,7 +27,7 @@ open class Alert {
     fileprivate let permission: Permission
     
     /// The status of the permission.
-    fileprivate var status: PermissionStatus { return permission.status }
+    fileprivate var status: Status { return permission.status }
     
     /// The domain of the permission.
     fileprivate var type: PermissionType { return permission.type }

@@ -26,7 +26,7 @@
 import AddressBook
 
 internal extension Permission {
-    var statusAddressBook: PermissionStatus {
+    var statusAddressBook: Status {
         let status = ABAddressBookGetAuthorizationStatus()
         
         switch status {

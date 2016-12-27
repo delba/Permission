@@ -26,7 +26,7 @@
 import MediaPlayer
 
 internal extension Permission {
-    var statusMediaLibrary: PermissionStatus {
+    var statusMediaLibrary: Status {
         guard #available(iOS 9.3, *) else { fatalError() }
         
         let status = MPMediaLibrary.authorizationStatus()

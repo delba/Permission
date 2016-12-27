@@ -92,8 +92,8 @@ extension UserDefaults {
         set { set(newValue, forKey: .requestedBluetooth) }
     }
     
-    var statusBluetooth: PermissionStatus? {
-        get { return PermissionStatus(string: string(forKey: .statusBluetooth)) }
+    var statusBluetooth: Status? {
+        get { return Status(string: string(forKey: .statusBluetooth)) }
         set { set(newValue?.rawValue, forKey: .statusBluetooth) }
     }
     

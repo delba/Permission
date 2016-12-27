@@ -31,7 +31,7 @@ open class PermissionSet {
     open weak var delegate: PermissionSetDelegate?
     
     /// The permission set status
-    open var status: PermissionStatus {
+    open var status: Status {
         let statuses = permissions.map({ $0.status })
         
         for status in statuses where status == .denied {

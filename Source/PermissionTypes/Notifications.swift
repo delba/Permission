@@ -24,7 +24,7 @@
 
 #if PERMISSION_NOTIFICATIONS
 internal extension Permission {
-    var statusNotifications: PermissionStatus {
+    var statusNotifications: Status {
         if UIApplication.shared.currentUserNotificationSettings?.types.isEmpty == false {
             return .authorized
         }
