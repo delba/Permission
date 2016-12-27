@@ -1,5 +1,5 @@
 //
-// PermissionType.swift
+// Type.swift
 //
 // Copyright (c) 2015-2016 Damien (http://delba.io)
 //
@@ -22,7 +22,7 @@
 // SOFTWARE.
 //
 
-public enum PermissionType {
+public enum Type {
     #if PERMISSION_CONTACTS
     @available(iOS 9.0, *) case contacts
     #endif
@@ -77,7 +77,7 @@ public enum PermissionType {
     #endif
 }
 
-extension PermissionType: CustomStringConvertible {
+extension Type: CustomStringConvertible {
     public var description: String {
         #if PERMISSION_CONTACTS
         if case .contacts = self { return "Contacts" }

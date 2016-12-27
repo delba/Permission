@@ -127,7 +127,7 @@ open class Permission: NSObject {
     #endif
     
     /// The permission domain.
-    open let type: PermissionType
+    open let type: Type
     
     /// The permission status.
     open var status: Status {
@@ -222,7 +222,7 @@ open class Permission: NSObject {
      
      - returns: A newly created permission.
      */
-    fileprivate init(type: PermissionType) {
+    fileprivate init(type: Type) {
         self.type = type
     }
     
