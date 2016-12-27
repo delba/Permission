@@ -1,5 +1,5 @@
 //
-// PermissionButton.swift
+// Button.swift
 //
 // Copyright (c) 2015-2016 Damien (http://delba.io)
 //
@@ -22,7 +22,7 @@
 // SOFTWARE.
 //
 
-open class PermissionButton: UIButton {
+open class Button: UIButton {
 
     /// The permission of the button.
     open let permission: Permission
@@ -454,19 +454,19 @@ open class PermissionButton: UIButton {
     }
 }
 
-internal extension PermissionButton {
-    @objc func highlight(_ button: PermissionButton) {
+internal extension Button {
+    @objc func highlight(_ button: Button) {
         render(.highlighted)
     }
     
-    @objc func tapped(_ button: PermissionButton) {
+    @objc func tapped(_ button: Button) {
         permission.request { [weak self] status in
             self?.render()
         }
     }
 }
 
-private extension PermissionButton {
+private extension Button {
     func render(_ state: UIControlState = UIControlState()) {
         if let title = titleForStatus(status, andState: state) {
             super.setTitle(title, for: state)

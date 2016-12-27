@@ -66,8 +66,8 @@ internal extension String {
 }
 
 internal extension Selector {
-    static let tapped = #selector(PermissionButton.tapped(_:))
-    static let highlight = #selector(PermissionButton.highlight(_:))
+    static let tapped = #selector(Button.tapped(_:))
+    static let highlight = #selector(Button.highlight(_:))
     static let settingsHandler = #selector(DeniedAlert.settingsHandler)
 }
 

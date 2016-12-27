@@ -56,7 +56,7 @@ open class PermissionSet {
      
      - returns: A newly created set.
      */
-    public convenience init(_ buttons: PermissionButton...) {
+    public convenience init(_ buttons: Button...) {
         self.init(buttons: buttons)
     }
     
@@ -67,7 +67,7 @@ open class PermissionSet {
      
      - returns: A newly created set.
      */
-    public convenience init(_ buttons: [PermissionButton]) {
+    public convenience init(_ buttons: [Button]) {
         self.init(buttons: buttons)
     }
     
@@ -93,7 +93,7 @@ open class PermissionSet {
         self.init(permissions: permissions)
     }
     
-    fileprivate convenience init(buttons: [PermissionButton]) {
+    fileprivate convenience init(buttons: [Button]) {
         let permissions = buttons.map({ $0.permission })
         
         self.init(permissions: permissions)
