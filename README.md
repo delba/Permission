@@ -19,12 +19,12 @@
 #### Permission
 
 > [`Permission.swift`](https://github.com/delba/Permission/blob/master/Source/Permission.swift)
-> [`PermissionStatus.swift`](https://github.com/delba/Permission/blob/master/Source/PermissionStatus.swift)
+> [`Status.swift`](https://github.com/delba/Permission/blob/master/Source/Status.swift)
 
 ```swift
 let permission: Permission = .contacts
 
-print(permission.status) // PermissionStatus.NotDetermined
+print(permission.status) // Status.notDetermined
 
 permission.request { status in
     switch status {
@@ -38,8 +38,8 @@ permission.request { status in
 
 ##### Supported Permissions
 
-> [`PermissionType.swift`](https://github.com/delba/Permission/blob/master/Source/PermissionType.swift)
-> [`PermissionTypes/`](https://github.com/delba/Permission/tree/master/Source/PermissionTypes)
+> [`Type.swift`](https://github.com/delba/Permission/blob/master/Source/Type.swift)
+> [`Types/`](https://github.com/delba/Permission/tree/master/Source/Types)
 
 - [`AddressBook`](https://github.com/delba/Permission/blob/master/Source/PermissionTypes/AddressBook.swift) (Deprecated in iOS 9.0)
 - [`Bluetooth`](https://github.com/delba/Permission/blob/master/Source/PermissionTypes/Bluetooth.swift)
@@ -56,14 +56,14 @@ permission.request { status in
 - [`MediaLibrary`](https://github.com/delba/Permission/blob/master/Source/PermissionTypes/MediaLibrary.swift)
 - [`SpeechRecognizer`](https://github.com/delba/Permission/blob/master/Source/PermissionTypes/SpeechRecognizer.swift)
 
-#### PermissionAlert
+#### Permission Alerts
 
-> [`PermissionAlert.swift`](https://github.com/delba/Permission/blob/master/Source/PermissionAlert.swift)
+> [`Alert.swift`](https://github.com/delba/Permission/blob/master/Source/Alert.swift)
 
 ##### Denied and disabled alerts
 
 When you first request a permission, a system alert is presented to the user.
-If you request a permission that was denied/disabled, a `PermissionAlert` will be presented.
+If you request a permission that was denied/disabled, an `Alert` will be presented.
 You might want to change the default `title`, `message`, `cancel` and `settings` text:
 
 ```swift
@@ -122,17 +122,17 @@ func permissionSet(permissionSet: PermissionSet, didRequestPermission permission
 }
 ```
 
-#### PermissionButton
+#### Permission Buttons
 
-> [`PermissionButton`](https://github.com/delba/Permission/blob/master/Source/PermissionButton.swift)
+> [`Button`](https://github.com/delba/Permission/blob/master/Source/Button.swift)
 
-A `PermissionButton` requests the permission when tapped and updates itself when its underlying permission status changes.
+A `Permission.Button` requests the permission when tapped and updates itself when its underlying permission status changes.
 
 ```swift
-let button = PermissionButton(.photos)
+let button = Permission.Button(.photos)
 ```
 
-`PermissionButton` is a subclass of `UIButton`. All the getters and setters of `UIButton` have their equivalent in `PermissionButton`.
+`Button` is a subclass of `UIButton`. All the getters and setters of `UIButton` have their equivalent in `PermissionButton`.
 
 ```swift
 button.setTitles([
@@ -164,10 +164,10 @@ class PermissionsViewController: UIViewController, PermissionSetDelegate {
 
         let label = UILabel()
 
-        let contacts   = PermissionButton(.contacts)
-        let camera     = PermissionButton(.camera)
-        let microphone = PermissionButton(.microphone)
-        let photos     = PermissionButton(.photos)
+        let contacts   = Button(.contacts)
+        let camera     = Button(.camera)
+        let microphone = Button(.microphone)
+        let photos     = Button(.photos)
 
         contacts.setTitles([
             .notDetermined: "Contacts - NotDetermined"
