@@ -221,28 +221,7 @@ To integrate Permission into your Xcode project using Carthage, specify it in yo
 github "delba/Permission"
 ```
 
-### Cocoapods
-
-[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects.
-
-You can install it with the following command:
-
-```bash
-$ gem install cocoapods
-```
-
-To integrate Permission into your Xcode project using CocoaPods, specify it in your `Podfile`. Due to Apple's new policy regarding permission access you need to specifically define what kind of permissions you want to access using subspecs. For example if you want to access the Camera and the Notifications you define the following:
-
-```ruby
-use_frameworks!
-
-pod 'Permission/Camera'
-pod 'Permission/Notifications'
-```
-
-Please see `Permission.podspec` for more information about which subspecs are available.
-
-### Configuration
+##### Configuration
 
 Due to Apple's new policy regarding permission access, binaries may be rejected due to a perceived attempt
 to access privacy-sensitive data without a usage key, and then further rejected for not actually requesting
@@ -276,6 +255,26 @@ PERMISSION_FLAGS= $(PERMISSION_ADDRESS_BOOK) $(PERMISSION_BLUETOOTH) $(PERMISSIO
 SWIFT_ACTIVE_COMPILATION_CONDITIONS = $(inherited) $(PERMISSION_FLAGS)
 ```
 
+### Cocoapods
+
+[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects.
+
+You can install it with the following command:
+
+```bash
+$ gem install cocoapods
+```
+
+To integrate Permission into your Xcode project using CocoaPods, specify it in your `Podfile`. Due to Apple's new policy regarding permission access you need to specifically define what kind of permissions you want to access using subspecs. For example if you want to access the Camera and the Notifications you define the following:
+
+```ruby
+use_frameworks!
+
+pod 'Permission/Camera'
+pod 'Permission/Notifications'
+```
+
+Please see `Permission.podspec` for more information about which subspecs are available.
 
 ## License
 
