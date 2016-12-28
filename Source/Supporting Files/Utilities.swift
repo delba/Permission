@@ -66,12 +66,6 @@ internal extension String {
     static let requestedUserNotifications           = "permission.requestedUserNotifications"
 }
 
-internal extension Selector {
-    static let tapped = #selector(Button.tapped(_:))
-    static let highlight = #selector(Button.highlight(_:))
-    static let settingsHandler = #selector(DeniedAlert.settingsHandler)
-}
-
 extension UserDefaults {
     var requestedLocationAlwaysWithWhenInUse: Bool {
         get { return bool(forKey: .requestedLocationAlwaysWithWhenInUse) }

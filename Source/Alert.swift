@@ -64,7 +64,11 @@ open class Alert {
     var controller: UIAlertController {
         let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        let action = UIAlertAction(title: cancelActionTitle, style: .cancel, handler: cancelHandler)
+        let action = UIAlertAction(title: cancelActionTitle, style: .cancel) { [weak self] _ in
+            guard let this = self else { return }
+            this.callbacks(this.status)
+        }
+        
         controller.addAction(action)
         
         return controller
@@ -78,10 +82,6 @@ open class Alert {
         DispatchQueue.main.async {
             UIApplication.shared.presentViewController(self.controller)
         }
-    }
-
-    fileprivate func cancelHandler(_ action: UIAlertAction) {
-        callbacks(status)
     }
 }
 
@@ -99,7 +99,16 @@ internal class DeniedAlert: Alert {
     override var controller: UIAlertController {
         let controller = super.controller
         
-        let action = UIAlertAction(title: defaultActionTitle, style: .default, handler: settingsHandler)
+        let action = UIAlertAction(title: defaultActionTitle, style: .default) { [weak self] _ in
+            guard let this = self else { return }
+            
+            NotificationCenter.default.addObserver(this, selector: #selector(DeniedAlert.settingsHandler), name: .UIApplicationDidBecomeActive)
+            
+            if let URL = URL(string: UIApplicationOpenSettingsURLString) {
+                UIApplication.shared.openURL(URL)
+            }
+        }
+        
         controller.addAction(action)
 
         if #available(iOS 9.0, *) {
@@ -122,21 +131,18 @@ internal class DeniedAlert: Alert {
         NotificationCenter.default.removeObserver(self, name: .UIApplicationDidBecomeActive)
         callbacks(status)
     }
-    
-    private func settingsHandler(_ action: UIAlertAction) {
-        NotificationCenter.default.addObserver(self, selector: .settingsHandler, name: .UIApplicationDidBecomeActive)
-        
-        if let URL = URL(string: UIApplicationOpenSettingsURLString) {
-            UIApplication.shared.openURL(URL)
-        }
-    }
 }
 
 internal class PrePermissionAlert: Alert {
     override var controller: UIAlertController {
         let controller = super.controller
         
-        let action = UIAlertAction(title: defaultActionTitle, style: .default, handler: confirmHandler)
+        let action = UIAlertAction(title: defaultActionTitle, style: .default) { [weak self] _ in
+            guard let this = self else { return }
+            
+            this.permission.requestAuthorization(this.callbacks)
+        }
+        
         controller.addAction(action)
 
         if #available(iOS 9.0, *) {
@@ -153,9 +159,5 @@ internal class PrePermissionAlert: Alert {
         message = "Please enable access to \(permission)."
         cancel  = "Cancel"
         confirm = "Confirm"
-    }
-    
-    fileprivate func confirmHandler(_ action: UIAlertAction) {
-        permission.requestAuthorization(callbacks)
     }
 }
