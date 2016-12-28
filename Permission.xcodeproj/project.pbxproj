@@ -120,14 +120,13 @@
 		6D86A9B41BEBDC7D00E3DD5A /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				6DF9C2B01C8F4F30000710C1 /* Permission Types */,
 				6DF9C2C21C8F53C3000710C1 /* Supporting Files */,
-				6DF9C2B01C8F4F30000710C1 /* Types */,
+				6DEFC1ED1E13610300D42A1E /* UI Components */,
 				6DA8B4B11BFB8AD8007A94FC /* Alert.swift */,
-				6DA8B4AF1BFB80E9007A94FC /* Button.swift */,
 				6D86A9CC1BEBDC9000E3DD5A /* Permission.swift */,
 				6D0069B31C1868E8002FDB42 /* PermissionSet.swift */,
 				6D491E771C9CA90B00611006 /* Status.swift */,
-				6DEFC1EB1E13588800D42A1E /* Switch.swift */,
 				6D491E751C9CA7DE00611006 /* Type.swift */,
 			);
 			path = Source;
@@ -142,7 +141,16 @@
 			path = Tests;
 			sourceTree = "<group>";
 		};
-		6DF9C2B01C8F4F30000710C1 /* Types */ = {
+		6DEFC1ED1E13610300D42A1E /* UI Components */ = {
+			isa = PBXGroup;
+			children = (
+				6DA8B4AF1BFB80E9007A94FC /* Button.swift */,
+				6DEFC1EB1E13588800D42A1E /* Switch.swift */,
+			);
+			path = "UI Components";
+			sourceTree = "<group>";
+		};
+		6DF9C2B01C8F4F30000710C1 /* Permission Types */ = {
 			isa = PBXGroup;
 			children = (
 				6C04FAF51CCA8F3A00B3F361 /* AddressBook.swift */,
@@ -162,7 +170,8 @@
 				3D42A7DA1D5F66B300236ABA /* SpeechRecognizer.swift */,
 				6DEFC1E91E13489500D42A1E /* UserNotifications.swift */,
 			);
-			path = Types;
+			name = "Permission Types";
+			path = "Permission Types";
 			sourceTree = "<group>";
 		};
 		6DF9C2C11C8F53B7000710C1 /* Supporting Files */ = {
