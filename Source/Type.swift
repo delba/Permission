@@ -22,9 +22,14 @@
 // SOFTWARE.
 //
 
+#if PERMISSION_USER_NOTIFICATIONS
+import UserNotifications
+#endif
+
 public enum Type {
     #if PERMISSION_CONTACTS
-    @available(iOS 9.0, *) case contacts
+    @available(iOS 9.0, *)
+    case contacts
     #endif
     
     #if PERMISSION_ADDRESS_BOOK
@@ -38,6 +43,11 @@ public enum Type {
     
     #if PERMISSION_NOTIFICATIONS
     case notifications(UIUserNotificationSettings)
+    #endif
+    
+    #if PERMISSION_USER_NOTIFICATIONS
+    @available(iOS 10, *)
+    case userNotifications(UNAuthorizationOptions)
     #endif
     
     #if PERMISSION_MICROPHONE
@@ -69,11 +79,13 @@ public enum Type {
     #endif
     
     #if PERMISSION_SPEECH_RECOGNIZER
-    @available(iOS 10.0, *) case speechRecognizer
+    @available(iOS 10.0, *)
+    case speechRecognizer
     #endif
     
     #if PERMISSION_MEDIA_LIBRARY
-    @available(iOS 9.3, *) case mediaLibrary
+    @available(iOS 9.3, *)
+    case mediaLibrary
     #endif
 }
 
@@ -94,6 +106,10 @@ extension Type: CustomStringConvertible {
         
         #if PERMISSION_NOTIFICATIONS
         if case .notifications = self { return "Notifications" }
+        #endif
+        
+        #if PERMISSION_USER_NOTIFICATIONS
+        if case .userNotifications = self { return "Notifications" }
         #endif
         
         #if PERMISSION_MICROPHONE

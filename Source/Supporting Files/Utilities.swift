@@ -63,6 +63,7 @@ internal extension String {
     static let requestedBluetooth                   = "permission.requestedBluetooth"
     static let statusBluetooth                      = "permission.statusBluetooth"
     static let stateBluetoothManagerDetermined      = "permission.stateBluetoothManagerDetermined"
+    static let requestedUserNotifications           = "permission.requestedUserNotifications"
 }
 
 internal extension Selector {
@@ -100,6 +101,11 @@ extension UserDefaults {
     var stateBluetoothManagerDetermined: Bool {
         get { return bool(forKey: .stateBluetoothManagerDetermined) }
         set { set(newValue, forKey: .stateBluetoothManagerDetermined) }
+    }
+    
+    var requestedUserNotifications: Bool {
+        get { return bool(forKey: .requestedUserNotifications) }
+        set { set(newValue, forKey: .requestedUserNotifications) }
     }
 }
 

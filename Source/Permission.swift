@@ -22,6 +22,10 @@
 // SOFTWARE.
 //
 
+#if PERMISSION_USER_NOTIFICATIONS
+import UserNotifications
+#endif
+
 open class Permission: NSObject {
     public typealias Callback = (Status) -> Void
 
@@ -126,6 +130,26 @@ open class Permission: NSObject {
     }
     #endif
     
+    #if PERMISSION_USER_NOTIFICATIONS
+    /// The permission to send notifications.
+    @available(iOS 10, *)
+    open static let userNotifications: Permission = {
+        let options:  UNAuthorizationOptions = [.badge, .sound, .alert, .carPlay]
+        return Permission(type: .userNotifications(options))
+    }()
+    
+    /// Variable used to retain the notifications permission.
+    fileprivate static var _userNotifications: Permission?
+    
+    /// The permission to send notifications.
+    @available(iOS 10, *)
+    open static func userNotifications(options: UNAuthorizationOptions) -> Permission {
+        let permission = Permission(type: .userNotifications(options))
+        _userNotifications = permission
+        return permission
+    }
+    #endif
+    
     /// The permission domain.
     open let type: Type
     
@@ -146,6 +170,10 @@ open class Permission: NSObject {
         
         #if PERMISSION_NOTIFICATIONS
         if case .notifications = type { return statusNotifications }
+        #endif
+        
+        #if PERMISSION_USER_NOTIFICATIONS
+        if case .userNotifications = type { return statusUserNotifications }
         #endif
         
         #if PERMISSION_MICROPHONE
@@ -278,6 +306,13 @@ open class Permission: NSObject {
         #if PERMISSION_NOTIFICATIONS
         if case .notifications = type {
             requestNotifications(callback)
+            return
+        }
+        #endif
+        
+        #if PERMISSION_USER_NOTIFICATIONS
+        if case .userNotifications = type {
+            requestUserNotifications(callback)
             return
         }
         #endif
