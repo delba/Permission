@@ -73,7 +73,7 @@
 		6DF9C2BD1C8F4FE5000710C1 /* Photos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Photos.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		6DF9C2BF1C8F5003000710C1 /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Events.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		6DF9C2C51C8F5B4C000710C1 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
-		D08FF2891DC3AD2900F28088 /* PermissionFlags.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = PermissionFlags.xcconfig; sourceTree = "<group>"; };
+		D08FF2891DC3AD2900F28088 /* Permission.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Permission.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,7 +156,6 @@
 				6DF9C2B51C8F4F69000710C1 /* Reminders.swift */,
 				3D42A7DA1D5F66B300236ABA /* SpeechRecognizer.swift */,
 			);
-			name = Types;
 			path = Types;
 			sourceTree = "<group>";
 		};
@@ -173,7 +172,7 @@
 			children = (
 				6D86A9B71BEBDC7D00E3DD5A /* Info.plist */,
 				6D86A9B51BEBDC7D00E3DD5A /* Permission.h */,
-				D08FF2891DC3AD2900F28088 /* PermissionFlags.xcconfig */,
+				D08FF2891DC3AD2900F28088 /* Permission.xcconfig */,
 				6D0EBDBC1BFCF8B700C35F8E /* Utilities.swift */,
 			);
 			path = "Supporting Files";
@@ -335,7 +334,7 @@
 /* Begin XCBuildConfiguration section */
 		6D86A9C41BEBDC7D00E3DD5A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D08FF2891DC3AD2900F28088 /* PermissionFlags.xcconfig */;
+			baseConfigurationReference = D08FF2891DC3AD2900F28088 /* Permission.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -387,7 +386,7 @@
 		};
 		6D86A9C51BEBDC7D00E3DD5A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D08FF2891DC3AD2900F28088 /* PermissionFlags.xcconfig */;
+			baseConfigurationReference = D08FF2891DC3AD2900F28088 /* Permission.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -432,7 +431,7 @@
 		};
 		6D86A9C71BEBDC7D00E3DD5A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D08FF2891DC3AD2900F28088 /* PermissionFlags.xcconfig */;
+			baseConfigurationReference = D08FF2891DC3AD2900F28088 /* Permission.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -455,7 +454,7 @@
 		};
 		6D86A9C81BEBDC7D00E3DD5A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D08FF2891DC3AD2900F28088 /* PermissionFlags.xcconfig */;
+			baseConfigurationReference = D08FF2891DC3AD2900F28088 /* Permission.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -477,7 +476,7 @@
 		};
 		6D86A9CA1BEBDC7D00E3DD5A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D08FF2891DC3AD2900F28088 /* PermissionFlags.xcconfig */;
+			baseConfigurationReference = D08FF2891DC3AD2900F28088 /* Permission.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "Tests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -489,7 +488,7 @@
 		};
 		6D86A9CB1BEBDC7D00E3DD5A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D08FF2891DC3AD2900F28088 /* PermissionFlags.xcconfig */;
+			baseConfigurationReference = D08FF2891DC3AD2900F28088 /* Permission.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "Tests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

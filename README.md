@@ -228,9 +228,9 @@ to access privacy-sensitive data without a usage key, and then further rejected 
 permissions.
 
 As a workaround, you can provide custom build flags _before_ building the dynamic framework to only compile
-with permissions you request. This is done by adding a configuration file named `PermissionConfiguration.xcconfig`
+with permissions you request. This is done by adding a configuration file named `Permission.xcconfig`
 to the root of your project. For convenience, you can use
-`PermissionConfiguration.xcconfig` in the `Permission/` repo directory. Just comment out the permissions
+`Permission.xcconfig` in the `Permission/` repo directory. Just comment out the permissions
 you want to use, and compile the framework.
 
 To compile with only notifications and photos permissions:
