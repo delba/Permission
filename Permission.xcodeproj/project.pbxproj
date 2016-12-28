@@ -23,6 +23,7 @@
 		6DA8B4B01BFB80E9007A94FC /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA8B4AF1BFB80E9007A94FC /* Button.swift */; };
 		6DA8B4B21BFB8AD8007A94FC /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA8B4B11BFB8AD8007A94FC /* Alert.swift */; };
 		6DEFC1EA1E13489500D42A1E /* UserNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEFC1E91E13489500D42A1E /* UserNotifications.swift */; };
+		6DEFC1EC1E13588800D42A1E /* Switch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEFC1EB1E13588800D42A1E /* Switch.swift */; };
 		6DF9C2AF1C8F4F2A000710C1 /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF9C2AE1C8F4F2A000710C1 /* Contacts.swift */; };
 		6DF9C2B21C8F4F45000710C1 /* LocationAlways.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF9C2B11C8F4F45000710C1 /* LocationAlways.swift */; };
 		6DF9C2B41C8F4F54000710C1 /* LocationWhenInUse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF9C2B31C8F4F54000710C1 /* LocationWhenInUse.swift */; };
@@ -65,6 +66,7 @@
 		6DA8B4AF1BFB80E9007A94FC /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Button.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		6DA8B4B11BFB8AD8007A94FC /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Alert.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		6DEFC1E91E13489500D42A1E /* UserNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotifications.swift; sourceTree = "<group>"; };
+		6DEFC1EB1E13588800D42A1E /* Switch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Switch.swift; sourceTree = "<group>"; };
 		6DF9C2AE1C8F4F2A000710C1 /* Contacts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Contacts.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		6DF9C2B11C8F4F45000710C1 /* LocationAlways.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = LocationAlways.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		6DF9C2B31C8F4F54000710C1 /* LocationWhenInUse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = LocationWhenInUse.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -125,6 +127,7 @@
 				6D86A9CC1BEBDC9000E3DD5A /* Permission.swift */,
 				6D0069B31C1868E8002FDB42 /* PermissionSet.swift */,
 				6D491E771C9CA90B00611006 /* Status.swift */,
+				6DEFC1EB1E13588800D42A1E /* Switch.swift */,
 				6D491E751C9CA7DE00611006 /* Type.swift */,
 			);
 			path = Source;
@@ -300,6 +303,7 @@
 				6D491E761C9CA7DE00611006 /* Type.swift in Sources */,
 				6DF9C2B41C8F4F54000710C1 /* LocationWhenInUse.swift in Sources */,
 				6DA8B4B01BFB80E9007A94FC /* Button.swift in Sources */,
+				6DEFC1EC1E13588800D42A1E /* Switch.swift in Sources */,
 				6DF9C2C01C8F5003000710C1 /* Events.swift in Sources */,
 				6DF9C2B61C8F4F69000710C1 /* Reminders.swift in Sources */,
 				6DF9C2AF1C8F4F2A000710C1 /* Contacts.swift in Sources */,
