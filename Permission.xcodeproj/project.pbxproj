@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3D42A7DB1D5F66B300236ABA /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D42A7DA1D5F66B300236ABA /* SpeechRecognizer.swift */; };
 		3DC217D31D6EFD4A00600DFE /* MediaLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC217D21D6EFD4A00600DFE /* MediaLibrary.swift */; };
+		5641D9AA1E292FB20010AF89 /* Permission.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5641D9A91E292FB20010AF89 /* Permission.bundle */; };
 		6C04FAF61CCA8F3A00B3F361 /* AddressBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C04FAF51CCA8F3A00B3F361 /* AddressBook.swift */; };
 		6D0069B41C1868E8002FDB42 /* PermissionSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0069B31C1868E8002FDB42 /* PermissionSet.swift */; };
 		6D0EBDBD1BFCF8B700C35F8E /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0EBDBC1BFCF8B700C35F8E /* Utilities.swift */; };
@@ -47,6 +48,7 @@
 /* Begin PBXFileReference section */
 		3D42A7DA1D5F66B300236ABA /* SpeechRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
 		3DC217D21D6EFD4A00600DFE /* MediaLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaLibrary.swift; sourceTree = "<group>"; };
+		5641D9A91E292FB20010AF89 /* Permission.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Permission.bundle; sourceTree = "<group>"; };
 		6C04FAF51CCA8F3A00B3F361 /* AddressBook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressBook.swift; sourceTree = "<group>"; };
 		6D0069B31C1868E8002FDB42 /* PermissionSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionSet.swift; sourceTree = "<group>"; };
 		6D0EBDBC1BFCF8B700C35F8E /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				6D0069B31C1868E8002FDB42 /* PermissionSet.swift */,
 				6D491E771C9CA90B00611006 /* PermissionStatus.swift */,
 				6D491E751C9CA7DE00611006 /* PermissionType.swift */,
+				5641D9A91E292FB20010AF89 /* Permission.bundle */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -254,6 +257,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				fr,
 			);
 			mainGroup = 6D86A9A81BEBDC7C00E3DD5A;
 			productRefGroup = 6D86A9B31BEBDC7D00E3DD5A /* Products */;
@@ -271,6 +275,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5641D9AA1E292FB20010AF89 /* Permission.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,6 +342,7 @@
 			baseConfigurationReference = D08FF2891DC3AD2900F28088 /* PermissionFlags.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -389,6 +395,7 @@
 			baseConfigurationReference = D08FF2891DC3AD2900F28088 /* PermissionFlags.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;

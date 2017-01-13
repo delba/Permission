@@ -1,0 +1,36 @@
+/* 
+  Localizable.strings
+  Permission
+
+  Created by Gwendal Roué on 13/01/2017.
+  Copyright © 2017 delba. All rights reserved.
+*/
+
+"OK" = "OK";
+"Cancel" = "Annuler";
+"Settings" = "Réglages";
+"Confirm" = "OK";
+
+"Location is currently disabled" = "L’accès à votre position est désactivé";
+"Permission for Location was denied" = "L’accès à votre position est refusé.";
+"Please enable access to Location in the Settings app." = "Veuillez autoriser l'accès à votre position dans l’application Réglages.";
+"%@ would like to access your Location" = "%@ voudrait accéder à votre position";
+"Please enable access to Location." = "Veuillez autoriser l'accès à votre position.";
+
+"Motion is currently disabled" = "L’accès à vos mouvements est désactivé";
+"Permission for Motion was denied" = "L’accès à vos mouvements est refusé.";
+"Please enable access to Motion in the Settings app." = "Veuillez autoriser l'accès à vos mouvements dans l’application Réglages.";
+"%@ would like to access your Motion" = "%@ voudrait accéder à vos mouvements";
+"Please enable access to Motion." = "Veuillez autoriser l'accès à vos mouvements.";
+
+"Notifications is currently disabled" = "Les notifications sont désactivées";
+"Permission for Notifications was denied" = "Les notifications sont désactivées";
+"Please enable access to Notifications in the Settings app." = "Veuillez accepter les notifications dans l’application Réglages.";
+"%@ would like to access your Notifications" = "%@ voudrait vous envoyer des notifications";
+"Please enable access to Notifications." = "Veuillez accepter les notifications.";
+
+"Bluetooth is currently disabled" = "L’accès à Bluetooth est désactivé";
+"Permission for Bluetooth was denied" = "L’accès à Bluetooth est refusé.";
+"Please enable access to Bluetooth in the Settings app." = "Veuillez activer Bluetooth dans l’application Réglages.";
+"%@ would like to access your Bluetooth" = "%@ voudrait utiliser Bluetooth";
+"Please enable access to Bluetooth." = "Veuillez activer Bluetooth.";

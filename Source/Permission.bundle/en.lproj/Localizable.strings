@@ -1,0 +1,36 @@
+/* 
+  Localizable.strings
+  Permission
+
+  Created by Gwendal Roué on 13/01/2017.
+  Copyright © 2017 delba. All rights reserved.
+*/
+
+"OK" = "OK";
+"Cancel" = "Cancel";
+"Settings" = "Settings";
+"Confirm" = "Confirm";
+
+"Location is currently disabled" = "Location is currently disabled";
+"Permission for Location was denied" = "Permission for your location was denied";
+"Please enable access to Location in the Settings app." = "Please enable access to your location in the Settings app.";
+"%@ would like to access your Location" = "%@ would like to access your location";
+"Please enable access to Location." = "Please enable access to your location.";
+
+"Motion is currently disabled" = "Motion is currently disabled";
+"Permission for Motion was denied" = "Permission to access your motions was denied";
+"Please enable access to Motion in the Settings app." = "Please enable access to your motions in the Settings app.";
+"%@ would like to access your Motion" = "%@ would like to access your motions";
+"Please enable access to Motion." = "Please enable access to your motions.";
+
+"Notifications is currently disabled" = "Notifications is currently disabled";
+"Permission for Notifications was denied" = "Permission for notifications was denied";
+"Please enable access to Notifications in the Settings app." = "Please enable notifications in the Settings app.";
+"%@ would like to access your Notifications" = "%@ would like to display notifications";
+"Please enable access to Notifications." = "Please allow notifications.";
+
+"Bluetooth is currently disabled" = "Bluetooth is currently disabled";
+"Permission for Bluetooth was denied" = "Permission for Bluetooth was denied";
+"Please enable access to Bluetooth in the Settings app." = "Please enable Bluetooth in the Settings app.";
+"%@ would like to access your Bluetooth" = "%@ would like to use Bluetooth";
+"Please enable access to Bluetooth." = "Please enable Bluetooth.";
