@@ -29,7 +29,7 @@
 "%@ would like to access your Notifications" = "%@ voudrait vous envoyer des notifications";
 "Please enable access to Notifications." = "Veuillez accepter les notifications.";
 
-"Bluetooth is currently disabled" = "L’accès à Bluetooth est désactivé";
+"Bluetooth is currently disabled" = "Bluetooth est désactivé";
 "Permission for Bluetooth was denied" = "L’accès à Bluetooth est refusé.";
 "Please enable access to Bluetooth in the Settings app." = "Veuillez activer Bluetooth dans l’application Réglages.";
 "%@ would like to access your Bluetooth" = "%@ voudrait utiliser Bluetooth";
