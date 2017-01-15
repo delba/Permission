@@ -117,8 +117,8 @@ open class PermissionButton: UIButton {
      - parameter state:  The state that uses the specified title.
      */
     open func setTitle(_ title: String?, forStatus status: PermissionStatus, andState state: UIControlState = UIControlState()) {
-        guard [.highlighted].contains(state) else { return }
-        
+//        guard [.highlighted].contains(state) else { return }
+
         if titles[state] == nil {
             titles[state] = [:]
         }
@@ -133,8 +133,8 @@ open class PermissionButton: UIButton {
      - parameter state:  The state that uses the specifed titles.
      */
     open func setTitles(_ titles: [PermissionStatus: String?], forState state: UIControlState = UIControlState()) {
-        guard [.highlighted].contains(state) else { return }
-        
+//        guard [.highlighted].contains(state) else { return }
+
         if self.titles[state] == nil {
             self.titles[state] = [:]
         }
@@ -177,8 +177,8 @@ open class PermissionButton: UIButton {
      - parameter state:  The state that uses the specified title.
      */
     open func setAttributedTitle(_ title: NSAttributedString?, forStatus status: PermissionStatus, andState state: UIControlState = UIControlState()) {
-        guard [.highlighted].contains(state) else { return }
-        
+//        guard [.highlighted].contains(state) else { return }
+
         if attributedTitles[state] == nil {
             attributedTitles[state] = [:]
         }
@@ -193,8 +193,8 @@ open class PermissionButton: UIButton {
      - parameter state:  The state that uses the specified titles.
      */
     open func setAttributedTitles(_ titles: [PermissionStatus: NSAttributedString?], forState state: UIControlState = UIControlState()) {
-        guard [.highlighted].contains(state) else { return }
-        
+//        guard [.highlighted].contains(state) else { return }
+
         if attributedTitles[state] == nil {
             attributedTitles[state] = [:]
         }
@@ -237,8 +237,8 @@ open class PermissionButton: UIButton {
      - parameter state:  The state that uses the specified color.
      */
     open func setTitleColor(_ color: UIColor?, forStatus status: PermissionStatus, andState state: UIControlState = UIControlState()) {
-        guard [.highlighted].contains(state) else { return }
-        
+//        guard [.highlighted].contains(state) else { return }
+
         if titleColors[state] == nil {
             titleColors[state] = [:]
         }
@@ -253,8 +253,8 @@ open class PermissionButton: UIButton {
      - parameter state:  The state that uses the specified colors.
      */
     open func setTitleColors(_ colors: [PermissionStatus: UIColor?], forState state: UIControlState = UIControlState()) {
-        guard [.highlighted].contains(state) else { return }
-        
+//        guard [.highlighted].contains(state) else { return }
+
         if titleColors[state] == nil {
             titleColors[state] = [:]
         }
@@ -297,8 +297,8 @@ open class PermissionButton: UIButton {
      - parameter state:  The state that uses the specified color.
      */
     open func setTitleShadowColor(_ color: UIColor?, forStatus status: PermissionStatus, andState state: UIControlState = UIControlState()) {
-        guard [.highlighted].contains(state) else { return }
-        
+//        guard [.highlighted].contains(state) else { return }
+
         if titleShadowColors[state] == nil {
             titleShadowColors[state] = [:]
         }
@@ -313,8 +313,8 @@ open class PermissionButton: UIButton {
     - parameter state:  The state that uses the specified colors.
     */
     open func setTitleShadowColors(_ colors: [PermissionStatus: UIColor?], forState state: UIControlState = UIControlState()) {
-        guard [.highlighted].contains(state) else { return }
-        
+//        guard [.highlighted].contains(state) else { return }
+
         if titleShadowColors[state] == nil {
             titleShadowColors[state] = [:]
         }
@@ -357,8 +357,8 @@ open class PermissionButton: UIButton {
      - parameter state:  The state that uses the specified image.
      */
     open func setImage(_ image: UIImage?, forStatus status: PermissionStatus, andState state: UIControlState = UIControlState()) {
-        guard [.highlighted].contains(state) else { return }
-        
+//        guard [.highlighted].contains(state) else { return }
+
         if images[state] == nil {
             images[state] = [:]
         }
@@ -373,8 +373,8 @@ open class PermissionButton: UIButton {
      - parameter state:  The state that uses the specified images.
      */
     open func setImages(_ images: [PermissionStatus: UIImage], forState state: UIControlState = UIControlState()) {
-        guard [.highlighted].contains(state) else { return }
-        
+//        guard [.highlighted].contains(state) else { return }
+
         if self.images[state] == nil {
             self.images[state] = [:]
         }
@@ -417,8 +417,8 @@ open class PermissionButton: UIButton {
      - parameter state:  The state that uses the specified image.
      */
     open func setBackgroundImage(_ image: UIImage?, forStatus status: PermissionStatus, andState state: UIControlState = UIControlState()) {
-        guard [.highlighted].contains(state) else { return }
-        
+//        guard [.highlighted].contains(state) else { return }
+
         if backgroundImages[state] == nil {
             backgroundImages[state] = [:]
         }
@@ -433,8 +433,8 @@ open class PermissionButton: UIButton {
      - parameter state:  The state that uses the specified images.
      */
     open func setBackgroundImages(_ images: [PermissionStatus: UIImage], forState state: UIControlState = UIControlState()) {
-        guard [.highlighted].contains(state) else { return }
-        
+//        guard [.highlighted].contains(state) else { return }
+
         if backgroundImages[state] == nil {
             backgroundImages[state] = [:]
         }
