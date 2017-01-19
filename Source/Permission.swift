@@ -90,6 +90,12 @@ open class Permission: NSObject {
     @available(iOS 9.3, *)
     open static let mediaLibrary = Permission(type: .mediaLibrary)
     #endif
+    
+    #if PERMISSION_SIRI
+    /// The permission to access the user's Siri.
+    @available(iOS 10.0, *)
+    open static let siri = Permission(type: .siri)
+    #endif
 
     #if PERMISSION_NOTIFICATIONS
     /// The permission to send notifications.
@@ -182,6 +188,10 @@ open class Permission: NSObject {
         
         #if PERMISSION_MEDIA_LIBRARY
         if case .mediaLibrary = type { return statusMediaLibrary }
+        #endif
+        
+        #if PERMISSION_SIRI
+        if case .siri = type { return statusSiri }
         #endif
         
         fatalError()
@@ -341,6 +351,13 @@ open class Permission: NSObject {
         #if PERMISSION_MEDIA_LIBRARY
         if case .mediaLibrary = type {
             requestMediaLibrary(callback)
+            return
+        }
+        #endif
+        
+        #if PERMISSION_SIRI
+        if case .siri = type {
+            requestSiri(callback)
             return
         }
         #endif

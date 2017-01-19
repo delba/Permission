@@ -56,6 +56,8 @@ internal extension String {
     static let photoLibraryUsageDescription      = "NSPhotoLibraryUsageDescription"
     static let cameraUsageDescription            = "NSCameraUsageDescription"
     static let mediaLibraryUsageDescription      = "NSAppleMusicUsageDescription"
+    static let siriUsageDescription              = "NSSiriUsageDescription"
+    
     
     static let requestedNotifications               = "permission.requestedNotifications"
     static let requestedLocationAlwaysWithWhenInUse = "permission.requestedLocationAlwaysWithWhenInUse"

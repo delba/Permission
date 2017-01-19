@@ -75,6 +75,10 @@ public enum PermissionType {
     #if PERMISSION_MEDIA_LIBRARY
     @available(iOS 9.3, *) case mediaLibrary
     #endif
+    
+    #if PERMISSION_SIRI
+    @available(iOS 10.0, *) case siri
+    #endif
 }
 
 extension PermissionType: CustomStringConvertible {
@@ -126,6 +130,10 @@ extension PermissionType: CustomStringConvertible {
         
         #if PERMISSION_SPEECH_RECOGNIZER
         if case .speechRecognizer = self { return "Speech Recognizer" }
+        #endif
+        
+        #if PERMISSION_SIRI
+        if case .siri = self { return "SiriKit" }
         #endif
         
         #if PERMISSION_MEDIA_LIBRARY
