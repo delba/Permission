@@ -21,6 +21,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 //
+#if PERMISSION_USER_NOTIFICATIONS
+import UserNotifications
+#endif
 
 public enum PermissionType {
     #if PERMISSION_CONTACTS
@@ -36,8 +39,12 @@ public enum PermissionType {
     case locationWhenInUse
     #endif
     
+    #if PERMISSION_USER_NOTIFICATIONS
+    @available(iOS 10.0, *) case userNotifications(UNAuthorizationOptions)
+    #endif
+    
     #if PERMISSION_NOTIFICATIONS
-    case notifications(UIUserNotificationSettings)
+    case notifications(UIUserNotificationSettings) // Deprecated in iOS 10.0
     #endif
     
     #if PERMISSION_MICROPHONE

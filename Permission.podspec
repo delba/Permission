@@ -64,6 +64,11 @@ Pod::Spec.new do |s|
     no.pod_target_xcconfig = { "SWIFT_ACTIVE_COMPILATION_CONDITIONS"  => "PERMISSION_NOTIFICATIONS" }
   end
 
+  s.subspec 'UserNotifications' do |no|
+    no.dependency 'Permission/Core'
+    no.pod_target_xcconfig = { "SWIFT_ACTIVE_COMPILATION_CONDITIONS"  => "PERMISSION_USER_NOTIFICATIONS" }
+  end
+
   s.subspec 'Photos' do |ph|
     ph.dependency 'Permission/Core'
     ph.pod_target_xcconfig = { "SWIFT_ACTIVE_COMPILATION_CONDITIONS"  => "PERMISSION_PHOTOS" }
