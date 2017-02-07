@@ -468,6 +468,8 @@ internal extension PermissionButton {
 
 private extension PermissionButton {
     func render(_ state: UIControlState = .normal) {
+        self.isEnabled = status != .authorized
+
         if let title = titleForStatus(status, andState: state) {
             super.setTitle(title, for: state)
         }
