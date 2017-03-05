@@ -1,11 +1,11 @@
 Pod::Spec.new do |s|
   s.name         = "Permission"
-  s.version      = "2.0.2"
+  s.version      = "2.0.3"
   s.license      = { :type => "MIT" }
   s.homepage     = "https://github.com/delba/Permission"
   s.author       = { "Damien" => "damien@delba.io" }
   s.summary      = "A unified API to ask for permissions on iOS"
-  s.source       = { :git => "https://github.com/delba/Permission.git", :tag => "v2.0.2" }
+  s.source       = { :git => "https://github.com/delba/Permission.git", :tag => "v2.0.3" }
 
   s.weak_framework = 'Speech'
 
@@ -85,4 +85,8 @@ Pod::Spec.new do |s|
     ml.pod_target_xcconfig = { "SWIFT_ACTIVE_COMPILATION_CONDITIONS"  => "PERMISSION_MEDIA_LIBRARY" }
   end
 
+  s.subspec 'Siri' do |ab|
+    ab.dependency 'Permission/Core'
+    ab.pod_target_xcconfig = { "SWIFT_ACTIVE_COMPILATION_CONDITIONS"  => "PERMISSION_SIRI" }
+  end
 end

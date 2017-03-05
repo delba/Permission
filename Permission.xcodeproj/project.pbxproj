@@ -10,6 +10,7 @@
 		3D42A7DB1D5F66B300236ABA /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D42A7DA1D5F66B300236ABA /* SpeechRecognizer.swift */; };
 		3DC217D31D6EFD4A00600DFE /* MediaLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC217D21D6EFD4A00600DFE /* MediaLibrary.swift */; };
 		5641D9AA1E292FB20010AF89 /* Permission.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5641D9A91E292FB20010AF89 /* Permission.bundle */; };
+		3F21DC7E1E30E0B900B3EF65 /* Siri.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21DC7C1E30B6DB00B3EF65 /* Siri.swift */; };
 		6C04FAF61CCA8F3A00B3F361 /* AddressBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C04FAF51CCA8F3A00B3F361 /* AddressBook.swift */; };
 		6D0069B41C1868E8002FDB42 /* PermissionSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0069B31C1868E8002FDB42 /* PermissionSet.swift */; };
 		6D0EBDBD1BFCF8B700C35F8E /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0EBDBC1BFCF8B700C35F8E /* Utilities.swift */; };
@@ -49,6 +50,7 @@
 		3D42A7DA1D5F66B300236ABA /* SpeechRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
 		3DC217D21D6EFD4A00600DFE /* MediaLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaLibrary.swift; sourceTree = "<group>"; };
 		5641D9A91E292FB20010AF89 /* Permission.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Permission.bundle; sourceTree = "<group>"; };
+		3F21DC7C1E30B6DB00B3EF65 /* Siri.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Siri.swift; sourceTree = "<group>"; };
 		6C04FAF51CCA8F3A00B3F361 /* AddressBook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressBook.swift; sourceTree = "<group>"; };
 		6D0069B31C1868E8002FDB42 /* PermissionSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionSet.swift; sourceTree = "<group>"; };
 		6D0EBDBC1BFCF8B700C35F8E /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				6DF9C2B71C8F4F8F000710C1 /* Notifications.swift */,
 				6DF9C2BD1C8F4FE5000710C1 /* Photos.swift */,
 				6DF9C2B51C8F4F69000710C1 /* Reminders.swift */,
+				3F21DC7C1E30B6DB00B3EF65 /* Siri.swift */,
 				3D42A7DA1D5F66B300236ABA /* SpeechRecognizer.swift */,
 			);
 			path = PermissionTypes;
@@ -305,6 +308,7 @@
 				6DF9C2B61C8F4F69000710C1 /* Reminders.swift in Sources */,
 				6DF9C2AF1C8F4F2A000710C1 /* Contacts.swift in Sources */,
 				6DF9C2C61C8F5B4C000710C1 /* Location.swift in Sources */,
+				3F21DC7E1E30E0B900B3EF65 /* Siri.swift in Sources */,
 				6DA8B4B21BFB8AD8007A94FC /* PermissionAlert.swift in Sources */,
 				6C04FAF61CCA8F3A00B3F361 /* AddressBook.swift in Sources */,
 				3D42A7DB1D5F66B300236ABA /* SpeechRecognizer.swift in Sources */,
