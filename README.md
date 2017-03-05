@@ -55,6 +55,7 @@ permission.request { status in
 - [`LocationWhenInUse`](https://github.com/delba/Permission/blob/master/Source/PermissionTypes/LocationWhenInUse.swift)
 - [`MediaLibrary`](https://github.com/delba/Permission/blob/master/Source/PermissionTypes/MediaLibrary.swift)
 - [`SpeechRecognizer`](https://github.com/delba/Permission/blob/master/Source/PermissionTypes/SpeechRecognizer.swift)
+- [`Siri`](https://github.com/delba/Permission/blob/master/Source/PermissionTypes/Siri.swift)
 
 #### PermissionAlert
 
