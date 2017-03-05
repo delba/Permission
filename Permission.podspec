@@ -84,4 +84,8 @@ Pod::Spec.new do |s|
     ml.pod_target_xcconfig = { "SWIFT_ACTIVE_COMPILATION_CONDITIONS"  => "PERMISSION_MEDIA_LIBRARY" }
   end
 
+  s.subspec 'Siri' do |ab|
+    ab.dependency 'Permission/Core'
+    ab.pod_target_xcconfig = { "SWIFT_ACTIVE_COMPILATION_CONDITIONS"  => "PERMISSION_SIRI" }
+  end
 end
