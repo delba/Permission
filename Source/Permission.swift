@@ -99,45 +99,58 @@ open class Permission: NSObject {
     @available(iOS 10.0, *)
     open static let siri = Permission(type: .siri)
     #endif
-    
+
     #if PERMISSION_USER_NOTIFICATIONS
+    /// Variable used to retain the notifications permission.
+    @available(iOS 10.0, *)
+    fileprivate static var _userNotifications: Permission?
+    
     /// The permission to send notifications.
     @available(iOS 10.0, *)
     open static let userNotifications: Permission = {
         let settings: UNAuthorizationOptions = [.alert, .badge, .sound]
-        return Permission(type: .userNotifications(settings))
+        _userNotifications = Permission(type: .userNotifications(settings))
+        return _userNotifications!
     }()
     
     /// The permission to send notifications.
     @available(iOS 10.0, *)
     open static func userNotifications(options: UNAuthorizationOptions) -> Permission {
-        return Permission(type: .userNotifications(options))
+        _userNotifications = Permission(type: .userNotifications(options))
+        return _userNotifications!
     }
     #endif
 
     #if PERMISSION_NOTIFICATIONS
+    /// Variable used to retain the notifications permission.
+    fileprivate static var _notifications: Permission?
+    
     /// The permission to send notifications.
     open static let notifications: Permission = {
         let settings = UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil)
-        return Permission(type: .notifications(settings))
+        _notifications = Permission(type: .notifications(settings))
+        return _notifications!
     }()
     
     /// The permission to send notifications.
     open static func notifications(types: UIUserNotificationType, categories: Set<UIUserNotificationCategory>?) -> Permission {
         let settings = UIUserNotificationSettings(types: types, categories: categories)
-        return Permission(type: .notifications(settings))
+        _notifications = Permission(type: .notifications(settings))
+        return _notifications!
     }
     
     /// The permission to send notifications.
     open static func notifications(types: UIUserNotificationType) -> Permission {
         let settings   = UIUserNotificationSettings(types: types, categories: nil)
-        return Permission(type: .notifications(settings))
+        _notifications = Permission(type: .notifications(settings))
+        return _notifications!
     }
     
     /// The permission to send notifications.
     open static func notifications(categories: Set<UIUserNotificationCategory>?) -> Permission {
         let settings  = UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: categories)
-        return Permission(type: .notifications(settings))
+        _notifications = Permission(type: .notifications(settings))
+        return _notifications!
     }
     #endif
     
