@@ -21,7 +21,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 //
-#if PERMISSION_USERNOTIFICATIONS
+#if PERMISSION_USER_NOTIFICATIONS
 import UserNotifications
 #endif
 
@@ -100,7 +100,7 @@ open class Permission: NSObject {
     open static let siri = Permission(type: .siri)
     #endif
     
-    #if PERMISSION_USERNOTIFICATIONS
+    #if PERMISSION_USER_NOTIFICATIONS
     /// The permission to send notifications.
     @available(iOS 10.0, *)
     open static let userNotifications: Permission = {
@@ -163,7 +163,7 @@ open class Permission: NSObject {
         if case .notifications = type { return statusNotifications }
         #endif
         
-        #if PERMISSION_USERNOTIFICATIONS
+        #if PERMISSION_USER_NOTIFICATIONS
         if case .userNotifications = type { return statusUserNotifications }
         #endif
         
@@ -305,7 +305,7 @@ open class Permission: NSObject {
         }
         #endif
         
-        #if PERMISSION_USERNOTIFICATIONS
+        #if PERMISSION_USER_NOTIFICATIONS
         if case .userNotifications = type {
             requestUserNotifications(callback)
             return

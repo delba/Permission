@@ -6,7 +6,7 @@
 //  Copyright © 2017 delba. All rights reserved.
 //
 
-#if PERMISSION_USERNOTIFICATIONS
+#if PERMISSION_USER_NOTIFICATIONS
 import UserNotifications
 
 internal extension Permission {
