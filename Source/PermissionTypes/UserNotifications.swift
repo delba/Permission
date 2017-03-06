@@ -9,51 +9,54 @@
 #if PERMISSION_USER_NOTIFICATIONS
 import UserNotifications
 
+
 internal extension Permission {
+    
     var statusUserNotifications: PermissionStatus {
         guard #available(iOS 10.0, *) else { fatalError() }
-        var authorizationStatus: UNAuthorizationStatus?
-        let group = DispatchGroup()
-        
-        group.enter()
-        UNUserNotificationCenter.current().getNotificationSettings() {
-            authorizationStatus = $0.authorizationStatus
-            group.leave()
+        if UserDefaults.standard.requestedNotifications {
+            return synchronousStatusUserNotifications
         }
-        
-        let _ = group.wait(timeout: DispatchTime.distantFuture)
-        if let authorizationStatus = authorizationStatus {
-            switch authorizationStatus {
-            case .authorized: return .authorized
-            case .denied: return .denied
-            case .notDetermined: return .notDetermined
-            }
-        }
-        return UserDefaults.standard.requestedNotifications ? .denied : .notDetermined
+        return .notDetermined
     }
     
-    func requestUserNotifications(_ callback: Callback) {
+    func requestUserNotifications(_ callback: @escaping Callback) {
         guard #available(iOS 10.0, *) else { fatalError() }
         guard case .userNotifications(let settings) = type else { fatalError() }
         
-        NotificationCenter.default.addObserver(self, selector: #selector(requestingUserNotifications), name: .UIApplicationWillResignActive)
-        UNUserNotificationCenter.current().requestAuthorization(options: settings, completionHandler: {_, _ in })
-    }
-    
-    @objc func requestingUserNotifications() {
-        NotificationCenter.default.removeObserver(self, name: .UIApplicationWillResignActive)
-        NotificationCenter.default.addObserver(self, selector: #selector(finishedRequestingUserNotifications), name: .UIApplicationDidBecomeActive)
-    }
-    
-    @objc func finishedRequestingUserNotifications() {
-        NotificationCenter.default.removeObserver(self, name: .UIApplicationWillResignActive)
-        NotificationCenter.default.removeObserver(self, name: .UIApplicationDidBecomeActive)
-        
         UserDefaults.standard.requestedNotifications = true
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
-            self.callbacks(self.statusUserNotifications)
+        var status: PermissionStatus = .notDetermined
+        UNUserNotificationCenter.current().requestAuthorization(options: settings) { (isSuccessful, error) in
+            if let error = error {
+                status = .denied
+            } else {
+                status = .authorized
+            }
+            callback(status)
         }
+    }
+    
+    fileprivate var synchronousStatusUserNotifications: PermissionStatus {
+        guard #available(iOS 10.0, *) else { fatalError() }
+        let semaphore = DispatchSemaphore(value: 0)
+        
+        var status: PermissionStatus = .notDetermined
+
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            switch settings.authorizationStatus {
+            case .authorized:
+                status = .authorized
+            case .denied:
+                status = .denied
+            case .notDetermined:
+                status = .notDetermined
+            }
+            semaphore.signal()
+        }
+        _ = semaphore.wait(timeout: DispatchTime.distantFuture)
+        
+        return status
     }
 }
 #endif
