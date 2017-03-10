@@ -9,26 +9,20 @@
 #if PERMISSION_USER_NOTIFICATIONS
 import UserNotifications
 
-
 internal extension Permission {
     
     var statusUserNotifications: PermissionStatus {
         guard #available(iOS 10.0, *) else { fatalError() }
-        if UserDefaults.standard.requestedNotifications {
-            return synchronousStatusUserNotifications
-        }
-        return .notDetermined
+        return synchronousStatusUserNotifications
     }
     
     func requestUserNotifications(_ callback: @escaping Callback) {
         guard #available(iOS 10.0, *) else { fatalError() }
         guard case .userNotifications(let settings) = type else { fatalError() }
         
-        UserDefaults.standard.requestedNotifications = true
-        
         var status: PermissionStatus = .notDetermined
         UNUserNotificationCenter.current().requestAuthorization(options: settings) { (isSuccessful, error) in
-            if let error = error {
+            if error != nil {
                 status = .denied
             } else {
                 status = .authorized
