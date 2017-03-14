@@ -21,11 +21,11 @@ internal extension Permission {
         guard case .userNotifications(let settings) = type else { fatalError() }
         
         var status: PermissionStatus = .notDetermined
-        UNUserNotificationCenter.current().requestAuthorization(options: settings) { (isSuccessful, error) in
+        UNUserNotificationCenter.current().requestAuthorization(options: settings) { (isGranted, error) in
             if error != nil {
                 status = .denied
             } else {
-                status = .authorized
+                status = isGranted ? .authorized : .denied
             }
             callback(status)
         }
