@@ -42,7 +42,7 @@ internal extension Permission {
         guard #available(iOS 9.3, *) else { fatalError() }
         
         guard let _ = Bundle.main.object(forInfoDictionaryKey: .mediaLibraryUsageDescription) else {
-            print("WARNING: \(.mediaLibraryUsageDescription) not found in Info.plist")
+            print("WARNING: \(String.mediaLibraryUsageDescription) not found in Info.plist")
             return
         }
 

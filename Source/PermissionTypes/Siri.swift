@@ -38,7 +38,7 @@ internal extension Permission {
     func requestSiri(_ callback: @escaping Callback) {
         guard #available(iOS 10.0, *) else { fatalError() }
         guard let _ = Bundle.main.object(forInfoDictionaryKey: .siriUsageDescription) else {
-            print("WARNING: \(.siriUsageDescription) not found in Info.plist")
+            print("WARNING: \(String.siriUsageDescription) not found in Info.plist")
             return
         }
         INPreferences.requestSiriAuthorization({ (status) in

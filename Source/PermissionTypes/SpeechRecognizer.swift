@@ -42,12 +42,12 @@ internal extension Permission {
         guard #available(iOS 10.0, *) else { fatalError() }
         
         guard let _ = Bundle.main.object(forInfoDictionaryKey: .microphoneUsageDescription) else {
-            print("WARNING: \(.microphoneUsageDescription) not found in Info.plist")
+            print("WARNING: \(String.microphoneUsageDescription) not found in Info.plist")
             return
         }
         
         guard let _ = Bundle.main.object(forInfoDictionaryKey: .speechRecognitionUsageDescription) else {
-            print("WARNING: \(.speechRecognitionUsageDescription) not found in Info.plist")
+            print("WARNING: \(String.speechRecognitionUsageDescription) not found in Info.plist")
             return
         }
         
