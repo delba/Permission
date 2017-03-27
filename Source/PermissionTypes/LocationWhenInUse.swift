@@ -40,7 +40,7 @@ internal extension Permission {
     
     func requestLocationWhenInUse(_ callback: Callback) {
         guard let _ = Foundation.Bundle.main.object(forInfoDictionaryKey: .locationWhenInUseUsageDescription) else {
-            print("WARNING: \(.locationWhenInUseUsageDescription) not found in Info.plist")
+            print("WARNING: \(String.locationWhenInUseUsageDescription) not found in Info.plist")
             return
         }
         
