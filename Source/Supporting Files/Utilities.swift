@@ -67,6 +67,17 @@ internal extension String {
     static let stateBluetoothManagerDetermined      = "permission.stateBluetoothManagerDetermined"
 }
 
+let permissionBundle: Bundle = {
+    let path = Bundle(for: Permission.self).path(forResource: "Permission", ofType: "bundle")!
+    return Bundle(path: path)!
+}()
+
+internal extension String {
+    func localized() -> String {
+        return NSLocalizedString(self, tableName: "Localizable", bundle: permissionBundle, value: self, comment: "")
+    }
+}
+
 internal extension Selector {
     static let tapped = #selector(PermissionButton.tapped(_:))
     static let highlight = #selector(PermissionButton.highlight(_:))

@@ -1,0 +1,42 @@
+/*
+  Localizable.strings
+  Permission
+
+  Created by Yaroslav Erohin on 15/01/2017.
+  Copyright © 2017 delba. All rights reserved.
+*/
+
+"OK" = "ОК";
+"Cancel" = "Отмена";
+"Settings" = "Настройки";
+"Confirm" = "Подтвердить";
+
+"Location is currently disabled" = "Местоположение в данный момент недоступно.";
+"Permission for Location was denied" = "Доступ к местоположению был запрещён.";
+"Please enable access to Location in the Settings app." = "Пожалуйста, разрешите доступ к местоположению в настройках.";
+"%@ would like to access your Location" = "%@ пытается запросить ваше местоположение.";
+"Please enable access to Location." = "Пожалуйста, разрешите доступ к местоположению.";
+
+"Motion is currently disabled" = "Данные движения в данный момент недоступны.";
+"Permission for Motion was denied" = "Доступ к данным движения был запрещён.";
+"Please enable access to Motion in the Settings app." = "Пожалуйста, разрешите доступ к данным движения в настройках.";
+"%@ would like to access your Motion" = "%@ пытается запросить данные движения.";
+"Please enable access to Motion." = "Пожалуйста, разрешите доступ к вашим данным движения.";
+
+"Notifications is currently disabled" = "Уведомления в данный момент недоступны.";
+"Permission for Notifications was denied" = "Отправка уведомлений была запрещёна.";
+"Please enable access to Notifications in the Settings app." = "Пожалуйста, разрешите доступ к уведомлениям в настройках.";
+"%@ would like to access your Notifications" = "%@ хочет отправлять вам уведомления.";
+"Please enable access to Notifications." = "Пожалуйста, разрешите отправлять вам уведомления.";
+
+"Bluetooth is currently disabled" = "Bluetooth в данный момент недоступен.";
+"Permission for Bluetooth was denied" = "Доступ к Bluetooth был запрещён.";
+"Please enable access to Bluetooth in the Settings app." = "Пожалуйста, разрешите доступ к Bluetooth в настройках.";
+"%@ would like to access your Bluetooth" = "%@ хочет использовать Bluetooth.";
+"Please enable access to Bluetooth." = "Пожалуйста, разрешите доступ к Bluetooth.";
+
+"Photos is currently disabled" = "Библиотека фото в данный момент недоступна.";
+"Permission for Photos was denied" = "Доступ к библиотеке фото был запрещён.";
+"Please enable access to Photos in the Settings app." = "Пожалуйста, разрешите доступ к фото в настройках.";
+"%@ would like to access your Photos" = "%@ запрашивает доступ к вашим фото.";
+"Please enable access to Photos." = "Пожалуйста, разрешите доступ к вашим фото.";

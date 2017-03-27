@@ -89,9 +89,9 @@ internal class DisabledAlert: PermissionAlert {
     override init(permission: Permission) {
         super.init(permission: permission)
         
-        title   = "\(permission) is currently disabled"
-        message = "Please enable access to \(permission) in the Settings app."
-        cancel  = "OK"
+        title   = "\(permission) is currently disabled".localized()
+        message = "Please enable access to \(permission) in the Settings app.".localized()
+        cancel  = "OK".localized()
     }
 }
 
@@ -112,10 +112,10 @@ internal class DeniedAlert: PermissionAlert {
     override init(permission: Permission) {
         super.init(permission: permission)
         
-        title    = "Permission for \(permission) was denied"
-        message  = "Please enable access to \(permission) in the Settings app."
-        cancel   = "Cancel"
-        settings = "Settings"
+        title    = "Permission for \(permission) was denied".localized()
+        message  = "Please enable access to \(permission) in the Settings app.".localized()
+        cancel   = "Cancel".localized()
+        settings = "Settings".localized()
     }
     
     @objc func settingsHandler() {
@@ -149,10 +149,10 @@ internal class PrePermissionAlert: PermissionAlert {
     override init(permission: Permission) {
         super.init(permission: permission)
         
-        title   = "\(Bundle.main.name) would like to access your \(permission)"
-        message = "Please enable access to \(permission)."
-        cancel  = "Cancel"
-        confirm = "Confirm"
+        title   = String(format: "%@ would like to access your \(permission)".localized(), Bundle.main.name)
+        message = "Please enable access to \(permission).".localized()
+        cancel  = "Cancel".localized()
+        confirm = "Confirm".localized()
     }
     
     fileprivate func confirmHandler(_ action: UIAlertAction) {

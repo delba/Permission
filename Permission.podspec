@@ -17,6 +17,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Core' do |co|
     co.source_files = "Source/**/*.{swift, h}"
+    co.resources = "Source/Permission.bundle"
   end
 
   s.subspec 'AddressBook' do |ab|
