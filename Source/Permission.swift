@@ -300,7 +300,7 @@ open class Permission: NSObject {
         #endif
         
         #if PERMISSION_LOCATION
-        if case .locationAlways    = type {
+        if case .locationAlways = type {
             requestLocationAlways(callback)
             return
         }

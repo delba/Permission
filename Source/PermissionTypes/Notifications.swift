@@ -52,14 +52,14 @@ internal extension Permission {
         UIApplication.shared.registerUserNotificationSettings(settings)
     }
     
-    @objc func requestingNotifications() {
+    @objc private dynamic func requestingNotifications() {
         timer?.invalidate()
         
         NotificationCenter.default.removeObserver(self, name: .UIApplicationWillResignActive)
         NotificationCenter.default.addObserver(self, selector: #selector(finishedRequestingNotifications), name: .UIApplicationDidBecomeActive)
     }
     
-    @objc func finishedRequestingNotifications() {
+    @objc private dynamic func finishedRequestingNotifications() {
         NotificationCenter.default.removeObserver(self, name: .UIApplicationWillResignActive)
         NotificationCenter.default.removeObserver(self, name: .UIApplicationDidBecomeActive)
         

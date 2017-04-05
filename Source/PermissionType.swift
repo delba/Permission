@@ -107,6 +107,10 @@ extension PermissionType: CustomStringConvertible {
         if case .notifications = self { return "Notifications" }
         #endif
         
+        #if PERMISSION_USER_NOTIFICATIONS
+        if case .userNotifications = self { return "UserNotifications" }
+        #endif
+        
         #if PERMISSION_MICROPHONE
         if case .microphone = self { return "Microphone" }
         #endif
