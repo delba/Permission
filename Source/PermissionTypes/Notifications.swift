@@ -23,6 +23,9 @@
 //
 
 #if PERMISSION_NOTIFICATIONS
+
+import UserNotifications
+    
 internal extension Permission {
     var statusNotifications: PermissionStatus {
         if UIApplication.shared.currentUserNotificationSettings?.types.isEmpty == false {
@@ -33,11 +36,25 @@ internal extension Permission {
     }
     
     func requestNotifications(_ callback: Callback) {
-        guard case .notifications(let settings) = type else { fatalError() }
-        
         NotificationCenter.default.addObserver(self, selector: #selector(requestingNotifications), name: .UIApplicationWillResignActive)
-        
-        UIApplication.shared.registerUserNotificationSettings(settings)
+
+        if #available(iOS 10.0, *) {
+            guard case .userNotifications(let options, let categories) = type else { fatalError() }
+            let center = UNUserNotificationCenter.current()
+            if let categories = categories {
+                center.setNotificationCategories(categories)
+            }
+            center.requestAuthorization(options: options) { (granted, error) in
+                if error == nil{
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+                        self.callbacks(self.statusNotifications)
+                    }
+                }
+            }
+        } else {
+            guard case .notifications(let settings) = type else { fatalError() }
+            UIApplication.shared.registerUserNotificationSettings(settings)
+        } 
     }
     
     @objc func requestingNotifications() {

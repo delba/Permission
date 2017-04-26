@@ -22,6 +22,8 @@
 // SOFTWARE.
 //
 
+import UserNotifications
+
 public enum PermissionType {
     #if PERMISSION_CONTACTS
     @available(iOS 9.0, *) case contacts
@@ -37,7 +39,8 @@ public enum PermissionType {
     #endif
     
     #if PERMISSION_NOTIFICATIONS
-    case notifications(UIUserNotificationSettings)
+        @available(iOS 10.0, *) case userNotifications(options: UNAuthorizationOptions, categories: Set<UNNotificationCategory>?)
+        @available(iOS 8.0, *) case notifications(UIUserNotificationSettings)
     #endif
     
     #if PERMISSION_MICROPHONE
@@ -97,7 +100,11 @@ extension PermissionType: CustomStringConvertible {
         #endif
         
         #if PERMISSION_NOTIFICATIONS
-        if case .notifications = self { return "Notifications" }
+            if #available(iOS 10.0, *) {
+                if case .userNotifications = self { return "Notifications" }
+            } else {
+                if case .notifications = self { return "Notifications" }
+            }        
         #endif
         
         #if PERMISSION_MICROPHONE

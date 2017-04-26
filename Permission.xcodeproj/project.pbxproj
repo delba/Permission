@@ -10,6 +10,7 @@
 		3D42A7DB1D5F66B300236ABA /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D42A7DA1D5F66B300236ABA /* SpeechRecognizer.swift */; };
 		3DC217D31D6EFD4A00600DFE /* MediaLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC217D21D6EFD4A00600DFE /* MediaLibrary.swift */; };
 		3F21DC7E1E30E0B900B3EF65 /* Siri.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21DC7C1E30B6DB00B3EF65 /* Siri.swift */; };
+		5B993BF01EB04B730078F9FC /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B993BEF1EB04B730078F9FC /* UserNotifications.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		6C04FAF61CCA8F3A00B3F361 /* AddressBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C04FAF51CCA8F3A00B3F361 /* AddressBook.swift */; };
 		6D0069B41C1868E8002FDB42 /* PermissionSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0069B31C1868E8002FDB42 /* PermissionSet.swift */; };
 		6D0EBDBD1BFCF8B700C35F8E /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0EBDBC1BFCF8B700C35F8E /* Utilities.swift */; };
@@ -49,6 +50,7 @@
 		3D42A7DA1D5F66B300236ABA /* SpeechRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
 		3DC217D21D6EFD4A00600DFE /* MediaLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaLibrary.swift; sourceTree = "<group>"; };
 		3F21DC7C1E30B6DB00B3EF65 /* Siri.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Siri.swift; sourceTree = "<group>"; };
+		5B993BEF1EB04B730078F9FC /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		6C04FAF51CCA8F3A00B3F361 /* AddressBook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressBook.swift; sourceTree = "<group>"; };
 		6D0069B31C1868E8002FDB42 /* PermissionSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionSet.swift; sourceTree = "<group>"; };
 		6D0EBDBC1BFCF8B700C35F8E /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B993BF01EB04B730078F9FC /* UserNotifications.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,12 +100,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B993BEE1EB04B730078F9FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5B993BEF1EB04B730078F9FC /* UserNotifications.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		6D86A9A81BEBDC7C00E3DD5A = {
 			isa = PBXGroup;
 			children = (
 				6D86A9B31BEBDC7D00E3DD5A /* Products */,
 				6D86A9B41BEBDC7D00E3DD5A /* Source */,
 				6D86A9C01BEBDC7D00E3DD5A /* Tests */,
+				5B993BEE1EB04B730078F9FC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
