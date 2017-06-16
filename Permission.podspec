@@ -64,6 +64,11 @@ Pod::Spec.new do |s|
     no.pod_target_xcconfig = { "OTHER_SWIFT_FLAGS"  => "-DPERMISSION_NOTIFICATIONS" }
   end
 
+  s.subspec 'UserNotifications' do |no|
+    no.dependency 'Permission/Core'
+    no.pod_target_xcconfig = { "OTHER_SWIFT_FLAGS"  => "-DPERMISSION_USER_NOTIFICATIONS" }
+  end
+
   s.subspec 'Photos' do |ph|
     ph.dependency 'Permission/Core'
     ph.pod_target_xcconfig = { "OTHER_SWIFT_FLAGS"  => "-DPERMISSION_PHOTOS" }
