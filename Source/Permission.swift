@@ -109,28 +109,28 @@ open class Permission: NSObject {
     open static let notifications: Permission = {
         let settings = UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil)
         _notifications = Permission(type: .notifications(settings))
-        return _notifications
+        return _notifications!
     }()
     
     /// The permission to send notifications.
     open static func notifications(types: UIUserNotificationType, categories: Set<UIUserNotificationCategory>?) -> Permission {
         let settings   = UIUserNotificationSettings(types: types, categories: categories)
         _notifications = Permission(type: .notifications(settings))
-        return _notifications
+        return _notifications!
     }
     
     /// The permission to send notifications.
     open static func notifications(types: UIUserNotificationType) -> Permission {
         let settings   = UIUserNotificationSettings(types: types, categories: nil)
         _notifications = Permission(type: .notifications(settings))
-        return _notifications
+        return _notifications!
     }
     
     /// The permission to send notifications.
     open static func notifications(categories: Set<UIUserNotificationCategory>?) -> Permission {
         let settings  = UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: categories)
         _notifications = Permission(type: .notifications(settings))
-        return _notifications
+        return _notifications!
     }
     #endif
     
