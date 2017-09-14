@@ -450,7 +450,15 @@ open class PermissionButton: UIButton {
     Tells the view that its superview changed.
     */
     open override func didMoveToSuperview() {
-        render(.normal)
+        render()
+    }
+
+    /**
+     Tells the view that it needs to update.
+     Use this then an app comes to foreground and you have a PermissionButton on screen.
+    */
+    public func update() {
+        render()
     }
 }
 
@@ -468,6 +476,8 @@ internal extension PermissionButton {
 
 private extension PermissionButton {
     func render(_ state: UIControlState = .normal) {
+        self.isEnabled = status != .authorized
+
         if let title = titleForStatus(status, andState: state) {
             super.setTitle(title, for: state)
         }
