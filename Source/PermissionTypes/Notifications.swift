@@ -23,12 +23,23 @@
 //
 
 #if PERMISSION_NOTIFICATIONS
+import ObjectiveC
+private var timerKey: UInt8 = 0
+    
 internal extension Permission {
+    private var timer: Timer? {
+        get {
+            return objc_getAssociatedObject(self, &timerKey) as? Timer
+        }
+        set(newValue) {
+            objc_setAssociatedObject(self, &timerKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+        }
+    }
+    
     var statusNotifications: PermissionStatus {
-        if UIApplication.shared.currentUserNotificationSettings?.types.isEmpty == false {
+        if let settings = UIApplication.shared.currentUserNotificationSettings, settings.types.isEmpty == false {
             return .authorized
         }
-        
         return UserDefaults.standard.requestedNotifications ? .denied : .notDetermined
     }
     
@@ -36,16 +47,19 @@ internal extension Permission {
         guard case .notifications(let settings) = type else { fatalError() }
         
         NotificationCenter.default.addObserver(self, selector: #selector(requestingNotifications), name: .UIApplicationWillResignActive)
+        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(finishedRequestingNotifications), userInfo: nil, repeats: false)
         
         UIApplication.shared.registerUserNotificationSettings(settings)
     }
     
-    @objc func requestingNotifications() {
+    @objc private dynamic func requestingNotifications() {
+        timer?.invalidate()
+        
         NotificationCenter.default.removeObserver(self, name: .UIApplicationWillResignActive)
         NotificationCenter.default.addObserver(self, selector: #selector(finishedRequestingNotifications), name: .UIApplicationDidBecomeActive)
     }
     
-    @objc func finishedRequestingNotifications() {
+    @objc private dynamic func finishedRequestingNotifications() {
         NotificationCenter.default.removeObserver(self, name: .UIApplicationWillResignActive)
         NotificationCenter.default.removeObserver(self, name: .UIApplicationDidBecomeActive)
         
