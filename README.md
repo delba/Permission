@@ -171,7 +171,7 @@ class PermissionsViewController: UIViewController, PermissionSetDelegate {
         let photos     = PermissionButton(.photos)
 
         contacts.setTitles([
-            .notDetermined: "Contacts - NotDetermined"
+            .notDetermined: "Contacts - NotDetermined",
             .authorized:    "Contacts - Authorized",
             .denied:        "Contacts - Denied"
         ])
