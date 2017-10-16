@@ -103,16 +103,7 @@ open class Permission: NSObject {
     
     /// Variable used to retain the notifications permission.
     fileprivate static var _notifications: Permission?
-    
-    /// The permission to send notifications.
-    open static func notifications(types: UIUserNotificationType, categories: Set<UIUserNotificationCategory>? = nil) -> Permission {
-        let type: PermissionType = .notifications(UIUserNotificationSettings(types: types, categories: categories))
-        let permission = Permission(type: type)
-        _notifications = permission
-        return permission
-    }
-    
-    @available(iOS 10.0, *)
+
     /// The permission to send notifications.
     open static func notifications(options: UNAuthorizationOptions, categories: Set<UNNotificationCategory>? = nil) -> Permission {
         let type: PermissionType = .userNotifications(options: options, categories: categories)
@@ -141,11 +132,7 @@ open class Permission: NSObject {
         #endif
         
         #if PERMISSION_NOTIFICATIONS
-            if #available(iOS 10.0, *) {
-                if case .userNotifications = type { return statusNotifications }
-            } else {
-                if case .notifications = type { return statusNotifications }
-            }
+        if case .userNotifications = type { return statusNotifications }
         #endif
         
         #if PERMISSION_MICROPHONE
@@ -280,16 +267,9 @@ open class Permission: NSObject {
         #endif
         
         #if PERMISSION_NOTIFICATIONS
-            if #available(iOS 10.0, *) {
-                if case .userNotifications = type {
-                    requestNotifications(callback)
-                    return
-                }
-            } else {
-                if case .notifications = type {
-                    requestNotifications(callback)
-                    return
-                }
+            if case .userNotifications = type {
+                requestNotifications(callback)
+                return
             }
         #endif
         

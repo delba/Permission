@@ -38,23 +38,18 @@ internal extension Permission {
     func requestNotifications(_ callback: Callback) {
         NotificationCenter.default.addObserver(self, selector: #selector(requestingNotifications), name: .UIApplicationWillResignActive)
 
-        if #available(iOS 10.0, *) {
-            guard case .userNotifications(let options, let categories) = type else { fatalError() }
-            let center = UNUserNotificationCenter.current()
-            if let categories = categories {
-                center.setNotificationCategories(categories)
-            }
-            center.requestAuthorization(options: options) { (granted, error) in
-                if error == nil{
-                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
-                        self.callbacks(self.statusNotifications)
-                    }
+        guard case .userNotifications(let options, let categories) = type else { fatalError() }
+        let center = UNUserNotificationCenter.current()
+        if let categories = categories {
+            center.setNotificationCategories(categories)
+        }
+        center.requestAuthorization(options: options) { (granted, error) in
+            if error == nil{
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+                    self.callbacks(self.statusNotifications)
                 }
             }
-        } else {
-            guard case .notifications(let settings) = type else { fatalError() }
-            UIApplication.shared.registerUserNotificationSettings(settings)
-        } 
+        }
     }
     
     @objc func requestingNotifications() {
