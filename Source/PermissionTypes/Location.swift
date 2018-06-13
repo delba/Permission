@@ -25,7 +25,7 @@
 #if PERMISSION_LOCATION
 import CoreLocation
 
-internal let LocationManager = CLLocationManager()
+internal var LocationManager: CLLocationManager?
 
 private var requestedLocation = false
 private var triggerCallbacks  = false
@@ -51,6 +51,7 @@ extension CLLocationManager {
         delegate = permission
         
         requestedLocation = true
+        triggerCallbacks  = false
         
         if case .locationAlways = permission.type {
             requestAlwaysAuthorization()

@@ -44,7 +44,8 @@ internal extension Permission {
             return
         }
         
-        LocationManager.request(self)
+        LocationManager = CLLocationManager()
+        LocationManager?.request(self)
     }
 }
 #endif
