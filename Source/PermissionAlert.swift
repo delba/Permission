@@ -79,7 +79,7 @@ open class PermissionAlert {
             UIApplication.shared.presentViewController(self.controller)
         }
     }
-
+    
     fileprivate func cancelHandler(_ action: UIAlertAction) {
         callbacks(status)
     }
@@ -101,7 +101,7 @@ internal class DeniedAlert: PermissionAlert {
         
         let action = UIAlertAction(title: defaultActionTitle, style: .default, handler: settingsHandler)
         controller.addAction(action)
-
+        
         if #available(iOS 9.0, *) {
             controller.preferredAction = action
         }
@@ -119,14 +119,14 @@ internal class DeniedAlert: PermissionAlert {
     }
     
     @objc func settingsHandler() {
-        NotificationCenter.default.removeObserver(self, name: .UIApplicationDidBecomeActive)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification)
         callbacks(status)
     }
     
     private func settingsHandler(_ action: UIAlertAction) {
-        NotificationCenter.default.addObserver(self, selector: .settingsHandler, name: .UIApplicationDidBecomeActive)
+        NotificationCenter.default.addObserver(self, selector: .settingsHandler, name: UIApplication.didBecomeActiveNotification)
         
-        if let URL = URL(string: UIApplicationOpenSettingsURLString) {
+        if let URL = URL(string: UIApplication.openSettingsURLString) {
             UIApplication.shared.openURL(URL)
         }
     }
@@ -138,7 +138,7 @@ internal class PrePermissionAlert: PermissionAlert {
         
         let action = UIAlertAction(title: defaultActionTitle, style: .default, handler: confirmHandler)
         controller.addAction(action)
-
+        
         if #available(iOS 9.0, *) {
             controller.preferredAction = action
         }
