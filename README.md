@@ -1,3 +1,5 @@
+**Swift 4.2 support**
+
 <p align="center">
   <img src="https://github.com/delba/Permission/raw/assets/Permission@2x.png">
 </p>
