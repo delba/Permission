@@ -22,84 +22,84 @@
 // SOFTWARE.
 //
 
-open class Permission: NSObject {
+public class Permission: NSObject {
     public typealias Callback = (PermissionStatus) -> Void
 
     #if PERMISSION_CONTACTS
     /// The permission to access the user's contacts.
     @available(iOS 9.0, *)
-    open static let contacts = Permission(type: .contacts)
+    public static let contacts = Permission(type: .contacts)
     #endif
     
     #if PERMISSION_ADDRESS_BOOK
     /// The permission to access the user's address book. (Deprecated in iOS 9.0)
-    open static let addressBook = Permission(type: .addressBook)
+    public static let addressBook = Permission(type: .addressBook)
     #endif
     
     #if PERMISSION_LOCATION
     /// The permission to access the user's location when the app is in background.
-    open static let locationAlways = Permission(type: .locationAlways)
+    public static let locationAlways = Permission(type: .locationAlways)
     
     /// The permission to access the user's location when the app is in use.
-    open static let locationWhenInUse = Permission(type: .locationWhenInUse)
+    public static let locationWhenInUse = Permission(type: .locationWhenInUse)
     #endif
     
     #if PERMISSION_MICROPHONE
     /// The permission to access the microphone.
-    open static let microphone = Permission(type: .microphone)
+    public static let microphone = Permission(type: .microphone)
     #endif
     
     #if PERMISSION_CAMERA
     /// The permission to access the camera.
-    open static let camera = Permission(type: .camera)
+    public static let camera = Permission(type: .camera)
     #endif
     
     #if PERMISSION_PHOTOS
     /// The permission to access the user's photos.
-    open static let photos = Permission(type: .photos)
+    public static let photos = Permission(type: .photos)
     #endif
     
     #if PERMISSION_REMINDERS
     /// The permission to access the user's reminders.
-    open static let reminders = Permission(type: .reminders)
+    public static let reminders = Permission(type: .reminders)
     #endif
     
     #if PERMISSION_EVENTS
     /// The permission to access the user's events.
-    open static let events = Permission(type: .events)
+    public static let events = Permission(type: .events)
     #endif
     
     #if PERMISSION_BLUETOOTH
     /// The permission to access the user's bluetooth.
-    open static let bluetooth = Permission(type: .bluetooth)
+    public static let bluetooth = Permission(type: .bluetooth)
     #endif
     
     #if PERMISSION_MOTION
     /// The permission to access the user's motion.
-    open static let motion = Permission(type: .motion)
+    public static let motion = Permission(type: .motion)
     #endif
     
     #if PERMISSION_SPEECH_RECOGNIZER
     /// The permission to access the user's SpeechRecognizer.
     @available(iOS 10.0, *)
-    open static let speechRecognizer = Permission(type: .speechRecognizer)
+    public static let speechRecognizer = Permission(type: .speechRecognizer)
     #endif
     
     #if PERMISSION_MEDIA_LIBRARY
     /// The permission to access the user's MediaLibrary.
     @available(iOS 9.3, *)
-    open static let mediaLibrary = Permission(type: .mediaLibrary)
+    public static let mediaLibrary = Permission(type: .mediaLibrary)
     #endif
     
     #if PERMISSION_SIRI
     /// The permission to access the user's Siri.
     @available(iOS 10.0, *)
-    open static let siri = Permission(type: .siri)
+    public static let siri = Permission(type: .siri)
     #endif
 
     #if PERMISSION_NOTIFICATIONS
     /// The permission to send notifications.
-    open static let notifications: Permission = {
+    public static let notifications: Permission = {
         let settings = UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil)
         return Permission(type: .notifications(settings))
     }()
@@ -108,7 +108,7 @@ open class Permission: NSObject {
     fileprivate static var _notifications: Permission?
     
     /// The permission to send notifications.
-    open static func notifications(types: UIUserNotificationType, categories: Set<UIUserNotificationCategory>?) -> Permission {
+    public static func notifications(types: UIUserNotificationType, categories: Set<UIUserNotificationCategory>?) -> Permission {
         let settings   = UIUserNotificationSettings(types: types, categories: categories)
         let permission = Permission(type: .notifications(settings))
         _notifications = permission
@@ -116,7 +116,7 @@ open class Permission: NSObject {
     }
     
     /// The permission to send notifications.
-    open static func notifications(types: UIUserNotificationType) -> Permission {
+    public static func notifications(types: UIUserNotificationType) -> Permission {
         let settings   = UIUserNotificationSettings(types: types, categories: nil)
         let permission = Permission(type: .notifications(settings))
         _notifications = permission
@@ -124,7 +124,7 @@ open class Permission: NSObject {
     }
     
     /// The permission to send notifications.
-    open static func notifications(categories: Set<UIUserNotificationCategory>?) -> Permission {
+    public static func notifications(categories: Set<UIUserNotificationCategory>?) -> Permission {
         let settings  = UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: categories)
         let permission = Permission(type: .notifications(settings))
         _notifications = permission
@@ -133,10 +133,10 @@ open class Permission: NSObject {
     #endif
     
     /// The permission domain.
-    open let type: PermissionType
+    public let type: PermissionType
     
     /// The permission status.
-    open var status: PermissionStatus {
+    public var status: PermissionStatus {
         #if PERMISSION_CONTACTS
         if case .contacts = type { return statusContacts }
         #endif
@@ -198,26 +198,26 @@ open class Permission: NSObject {
     }
     
     /// Determines whether to present the pre-permission alert.
-    open var presentPrePermissionAlert = false
+    public var presentPrePermissionAlert = false
     
     /// The pre-permission alert.
-    open lazy var prePermissionAlert: PermissionAlert = {
+    public lazy var prePermissionAlert: PermissionAlert = {
         return PrePermissionAlert(permission: self)
     }()
     
     /// Determines whether to present the denied alert.
-    open var presentDeniedAlert = true
+    public var presentDeniedAlert = true
     
     /// The alert when the permission was denied.
-    open lazy var deniedAlert: PermissionAlert = {
+    public lazy var deniedAlert: PermissionAlert = {
         return DeniedAlert(permission: self)
     }()
     
     /// Determines whether to present the disabled alert.
-    open var presentDisabledAlert = true
+    public var presentDisabledAlert = true
     
     /// The alert when the permission is disabled.
-    open lazy var disabledAlert: PermissionAlert = {
+    public lazy var disabledAlert: PermissionAlert = {
         return DisabledAlert(permission: self)
     }()
     
@@ -241,7 +241,7 @@ open class Permission: NSObject {
      
      - parameter callback: The function to be triggered after the user responded to the request.
      */
-    open func request(_ callback: @escaping Callback) {
+    public func request(_ callback: @escaping Callback) {
         self.callback = callback
         
         DispatchQueue.main.async {
@@ -375,12 +375,12 @@ open class Permission: NSObject {
 
 extension Permission {
     /// The textual representation of self.
-    override open var description: String {
+    override public var description: String {
         return type.description
     }
     
     /// A textual representation of this instance, suitable for debugging.
-    override open var debugDescription: String {
+    override public var debugDescription: String {
         return "\(type): \(status)"
     }
 }
