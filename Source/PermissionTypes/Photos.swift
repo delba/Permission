@@ -33,6 +33,7 @@ internal extension Permission {
         case .authorized:          return .authorized
         case .denied, .restricted: return .denied
         case .notDetermined:       return .notDetermined
+        default: return .disabled
         }
     }
     
