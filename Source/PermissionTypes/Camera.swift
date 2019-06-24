@@ -27,12 +27,15 @@ import AVFoundation
 
 internal extension Permission {
     var statusCamera: PermissionStatus {
-        let status = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
+        let status = AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
         
         switch status {
         case .authorized:          return .authorized
         case .restricted, .denied: return .denied
         case .notDetermined:       return .notDetermined
+        @unknown default:
+            // won't happen
+            return .notDetermined
         }
     }
     
@@ -42,7 +45,7 @@ internal extension Permission {
             return
         }
         
-        AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo) { _ in
+        AVCaptureDevice.requestAccess(for: AVMediaType.video) { _ in
             callback(self.statusCamera)
         }
     }

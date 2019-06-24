@@ -44,7 +44,7 @@ extension Bundle {
     }
 }
 
-extension UIControlState: Hashable {
+extension UIControl.State: Hashable {
     public var hashValue: Int { return Int(rawValue) }
 }
 
