@@ -30,7 +30,7 @@ open class PermissionAlert {
     fileprivate var status: PermissionStatus { return permission.status }
 
     /// The domain of the permission.
-    fileprivate var type: PermissionType { return permission.type }
+    private var type: PermissionType { return permission.type }
 
     fileprivate var callbacks: Permission.Callback { return permission.callbacks }
 
@@ -80,7 +80,7 @@ open class PermissionAlert {
         }
     }
 
-    fileprivate func cancelHandler(_ action: UIAlertAction) {
+    private func cancelHandler(_ action: UIAlertAction) {
         callbacks(status)
     }
 }
@@ -155,7 +155,7 @@ internal class PrePermissionAlert: PermissionAlert {
         confirm = "Confirm"
     }
 
-    fileprivate func confirmHandler(_ action: UIAlertAction) {
+    private func confirmHandler(_ action: UIAlertAction) {
         permission.requestAuthorization(callbacks)
     }
 }

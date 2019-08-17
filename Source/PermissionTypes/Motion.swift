@@ -56,7 +56,7 @@ extension Permission {
         }
     }
 
-    fileprivate var synchronousStatusMotion: PermissionStatus {
+    private var synchronousStatusMotion: PermissionStatus {
         let semaphore = DispatchSemaphore(value: 0)
 
         var status: PermissionStatus = .notDetermined

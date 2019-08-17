@@ -33,12 +33,12 @@ open class PermissionButton: UIButton {
     /// The permission status of the button.
     open var status: PermissionStatus { return permission.status }
 
-    fileprivate var titles: [UIControl.State: [PermissionStatus: String]] = [:]
-    fileprivate var attributedTitles: [UIControl.State: [PermissionStatus: NSAttributedString]] = [:]
-    fileprivate var titleColors: [UIControl.State: [PermissionStatus: UIColor]] = [:]
-    fileprivate var titleShadowColors: [UIControl.State: [PermissionStatus: UIColor]] = [:]
-    fileprivate var images: [UIControl.State: [PermissionStatus: UIImage]] = [:]
-    fileprivate var backgroundImages: [UIControl.State: [PermissionStatus: UIImage]] = [:]
+    private var titles: [UIControl.State: [PermissionStatus: String]] = [:]
+    private var attributedTitles: [UIControl.State: [PermissionStatus: NSAttributedString]] = [:]
+    private var titleColors: [UIControl.State: [PermissionStatus: UIColor]] = [:]
+    private var titleShadowColors: [UIControl.State: [PermissionStatus: UIColor]] = [:]
+    private var images: [UIControl.State: [PermissionStatus: UIImage]] = [:]
+    private var backgroundImages: [UIControl.State: [PermissionStatus: UIImage]] = [:]
 
     /// The alert when the permission was denied.
     open var deniedAlert: PermissionAlert {

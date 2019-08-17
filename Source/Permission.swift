@@ -105,7 +105,7 @@ open class Permission: NSObject {
     }()
 
     /// Variable used to retain the notifications permission.
-    fileprivate static var _notifications: Permission?
+    private static var _notifications: Permission?
 
     /// The permission to send notifications.
     public static func notifications(types: UIUserNotificationType, categories: Set<UIUserNotificationCategory>?) -> Permission {
@@ -232,7 +232,7 @@ open class Permission: NSObject {
      
      - returns: A newly created permission.
      */
-    fileprivate init(type: PermissionType) {
+    private init(type: PermissionType) {
         self.type = type
     }
 
@@ -337,4 +337,5 @@ extension Permission {
     override open var debugDescription: String {
         return "\(type): \(status)"
     }
+
 }

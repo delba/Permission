@@ -93,13 +93,13 @@ open class PermissionSet {
         self.init(permissions: permissions)
     }
 
-    fileprivate convenience init(buttons: [PermissionButton]) {
+    private convenience init(buttons: [PermissionButton]) {
         let permissions = buttons.map({ $0.permission })
 
         self.init(permissions: permissions)
     }
 
-    fileprivate init(permissions: [Permission]) {
+    private init(permissions: [Permission]) {
         self.permissions = Set(permissions)
         self.permissions.forEach { $0.permissionSets.append(self) }
     }
