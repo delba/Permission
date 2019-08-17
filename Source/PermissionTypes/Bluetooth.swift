@@ -34,9 +34,10 @@ internal let BluetoothManager = CBPeripheralManager(
 extension Permission {
     var statusBluetooth: PermissionStatus {
         switch CBPeripheralManager.authorizationStatus() {
-        case .restricted: return .disabled
-        case .denied: return .denied
+        case .restricted:                 return .disabled
+        case .denied:                     return .denied
         case .notDetermined, .authorized: break
+        @unknown default:                 return .notDetermined
         }
         
         guard UserDefaults.standard.stateBluetoothManagerDetermined else { return .notDetermined }
@@ -47,6 +48,7 @@ extension Permission {
         case .poweredOn: return .authorized
         case .resetting, .unknown:
             return UserDefaults.standard.statusBluetooth ?? .notDetermined
+        @unknown default: return .notDetermined
         }
     }
     
