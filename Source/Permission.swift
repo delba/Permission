@@ -226,9 +226,9 @@ open class Permission: NSObject {
     var permissionSets: [Set] = []
 
     /**
-     Creates and return a new permission for the specified domain.
+     Creates and return a new permission for the specified type.
      
-     - parameter domain: The permission domain.
+     - parameter type: The permission type.
      
      - returns: A newly created permission.
      */

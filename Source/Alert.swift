@@ -29,7 +29,7 @@ open class Alert {
     /// The status of the permission.
     fileprivate var status: Status { return permission.status }
 
-    /// The domain of the permission.
+    /// The type of the permission.
     private var type: Type { return permission.type }
 
     fileprivate var callbacks: Permission.Callback { return permission.callbacks }
