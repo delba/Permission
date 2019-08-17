@@ -23,7 +23,7 @@
 //
 
 open class Permission: NSObject {
-    public typealias Callback = (PermissionStatus) -> Void
+    public typealias Callback = (Status) -> Void
 
     #if PERMISSION_CONTACTS
     /// The permission to access the user's contacts.
@@ -108,7 +108,7 @@ open class Permission: NSObject {
     private static var _notifications: Permission?
 
     /// The permission to send notifications.
-    public static func notifications(types: UIUserNotificationType, categories: Set<UIUserNotificationCategory>?) -> Permission {
+    public static func notifications(types: UIUserNotificationType, categories: Swift.Set<UIUserNotificationCategory>?) -> Permission {
         let settings   = UIUserNotificationSettings(types: types, categories: categories)
         let permission = Permission(type: .notifications(settings))
         _notifications = permission
@@ -124,7 +124,7 @@ open class Permission: NSObject {
     }
 
     /// The permission to send notifications.
-    public static func notifications(categories: Set<UIUserNotificationCategory>?) -> Permission {
+    public static func notifications(categories: Swift.Set<UIUserNotificationCategory>?) -> Permission {
         let settings  = UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: categories)
         let permission = Permission(type: .notifications(settings))
         _notifications = permission
@@ -133,10 +133,10 @@ open class Permission: NSObject {
     #endif
 
     /// The permission domain.
-    public let type: PermissionType
+    public let type: Type
 
     /// The permission status.
-    open var status: PermissionStatus {
+    open var status: Status {
         switch type {
         #if PERMISSION_CONTACTS
         case .contacts: return statusContacts
@@ -201,7 +201,7 @@ open class Permission: NSObject {
     open var presentPrePermissionAlert = false
 
     /// The pre-permission alert.
-    open lazy var prePermissionAlert: PermissionAlert = {
+    open lazy var prePermissionAlert: Alert = {
         return PrePermissionAlert(permission: self)
     }()
 
@@ -209,7 +209,7 @@ open class Permission: NSObject {
     open var presentDeniedAlert = true
 
     /// The alert when the permission was denied.
-    open lazy var deniedAlert: PermissionAlert = {
+    open lazy var deniedAlert: Alert = {
         return DeniedAlert(permission: self)
     }()
 
@@ -217,13 +217,13 @@ open class Permission: NSObject {
     open var presentDisabledAlert = true
 
     /// The alert when the permission is disabled.
-    open lazy var disabledAlert: PermissionAlert = {
+    open lazy var disabledAlert: Alert = {
         return DisabledAlert(permission: self)
     }()
 
     var callback: Callback?
 
-    var permissionSets: [PermissionSet] = []
+    var permissionSets: [Set] = []
 
     /**
      Creates and return a new permission for the specified domain.
@@ -232,7 +232,7 @@ open class Permission: NSObject {
      
      - returns: A newly created permission.
      */
-    private init(type: PermissionType) {
+    private init(type: Type) {
         self.type = type
     }
 
@@ -319,7 +319,7 @@ open class Permission: NSObject {
         }
     }
 
-    func callbacks(_ with: PermissionStatus) {
+    func callbacks(_ with: Status) {
         DispatchQueue.main.async {
             self.callback?(self.status)
             self.permissionSets.forEach { $0.didRequestPermission(self) }

@@ -1,7 +1,7 @@
 //
-// Siri.swift
+// Status.swift
 //
-// Copyright (c) 2015-2017 Damien (http://delba.io)
+// Copyright (c) 2015-2016 Damien (http://delba.io)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -22,29 +22,21 @@
 // SOFTWARE.
 //
 
-#if PERMISSION_SIRI
-import Intents
+public enum Status: String {
+    case authorized    = "Authorized"
+    case denied        = "Denied"
+    case disabled      = "Disabled"
+    case notDetermined = "Not Determined"
 
-extension Permission {
-    var statusSiri: PermissionStatus {
-        guard #available(iOS 10.0, *) else { fatalError() }
-        let status = INPreferences.siriAuthorizationStatus()
-        switch status {
-        case .authorized:          return .authorized
-        case .restricted, .denied: return .denied
-        case .notDetermined:       return .notDetermined
-        @unknown default:          return .notDetermined
-        }
-    }
-    func requestSiri(_ callback: @escaping Callback) {
-        guard #available(iOS 10.0, *) else { fatalError() }
-        guard let _ = Bundle.main.object(forInfoDictionaryKey: .siriUsageDescription) else {
-            print("WARNING: \(String.siriUsageDescription) not found in Info.plist")
-            return
-        }
-        INPreferences.requestSiriAuthorization({ (_) in
-            callback(self.statusSiri)
-        })
+    init?(string: String?) {
+        guard let string = string else { return nil }
+        self.init(rawValue: string)
     }
 }
-#endif
+
+extension Status: CustomStringConvertible {
+    /// The textual representation of self.
+    public var description: String {
+        return rawValue
+    }
+}

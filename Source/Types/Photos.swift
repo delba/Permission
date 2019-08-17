@@ -1,5 +1,5 @@
 //
-// Contacts.swift
+// Photos.swift
 //
 // Copyright (c) 2015-2016 Damien (http://delba.io)
 //
@@ -22,28 +22,29 @@
 // SOFTWARE.
 //
 
-#if PERMISSION_CONTACTS
-import Contacts
+#if PERMISSION_PHOTOS
+import Photos
 
 extension Permission {
-    var statusContacts: PermissionStatus {
-        guard #available(iOS 9.0, *) else { fatalError() }
-
-        let status = CNContactStore.authorizationStatus(for: .contacts)
+    var statusPhotos: Status {
+        let status = PHPhotoLibrary.authorizationStatus()
 
         switch status {
         case .authorized:          return .authorized
-        case .restricted, .denied: return .denied
+        case .denied, .restricted: return .denied
         case .notDetermined:       return .notDetermined
         @unknown default:          return .notDetermined
         }
     }
 
-    func requestContacts(_ callback: @escaping Callback) {
-        guard #available(iOS 9.0, *) else { fatalError() }
+    func requestPhotos(_ callback: @escaping Callback) {
+        guard let _ = Bundle.main.object(forInfoDictionaryKey: .photoLibraryUsageDescription) else {
+            print("WARNING: \(String.photoLibraryUsageDescription) not found in Info.plist")
+            return
+        }
 
-        CNContactStore().requestAccess(for: .contacts) { _, _ in
-            callback(self.statusContacts)
+        PHPhotoLibrary.requestAuthorization { _ in
+            callback(self.statusPhotos)
         }
     }
 }

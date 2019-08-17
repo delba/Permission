@@ -1,5 +1,5 @@
 //
-// LocationWhenInUse.swift
+// Microphone.swift
 //
 // Copyright (c) 2015-2016 Damien (http://delba.io)
 //
@@ -22,30 +22,24 @@
 // SOFTWARE.
 //
 
-#if PERMISSION_LOCATION
-import CoreLocation
+#if PERMISSION_MICROPHONE
+import AVFoundation
 
 extension Permission {
-    var statusLocationWhenInUse: PermissionStatus {
-        guard CLLocationManager.locationServicesEnabled() else { return .disabled }
-
-        let status = CLLocationManager.authorizationStatus()
+    var statusMicrophone: Status {
+        let status = AVAudioSession.sharedInstance().recordPermission
 
         switch status {
-        case .authorizedWhenInUse, .authorizedAlways: return .authorized
-        case .restricted, .denied:                    return .denied
-        case .notDetermined:                          return .notDetermined
-        @unknown default:                             return .notDetermined
+        case AVAudioSessionRecordPermission.denied:  return .denied
+        case AVAudioSessionRecordPermission.granted: return .authorized
+        default:                                     return .notDetermined
         }
     }
 
-    func requestLocationWhenInUse(_ callback: Callback) {
-        guard let _ = Foundation.Bundle.main.object(forInfoDictionaryKey: .locationWhenInUseUsageDescription) else {
-            print("WARNING: \(String.locationWhenInUseUsageDescription) not found in Info.plist")
-            return
+    func requestMicrophone(_ callback: @escaping Callback) {
+        AVAudioSession.sharedInstance().requestRecordPermission { _ in
+            callback(self.statusMicrophone)
         }
-
-        LocationManager.request(self)
     }
 }
 #endif

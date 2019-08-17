@@ -1,5 +1,5 @@
 //
-// Photos.swift
+// LocationAlways.swift
 //
 // Copyright (c) 2015-2016 Damien (http://delba.io)
 //
@@ -22,30 +22,36 @@
 // SOFTWARE.
 //
 
-#if PERMISSION_PHOTOS
-import Photos
+#if PERMISSION_LOCATION
+import CoreLocation
 
 extension Permission {
-    var statusPhotos: PermissionStatus {
-        let status = PHPhotoLibrary.authorizationStatus()
+    var statusLocationAlways: Status {
+        guard CLLocationManager.locationServicesEnabled() else { return .disabled }
+
+        let status = CLLocationManager.authorizationStatus()
 
         switch status {
-        case .authorized:          return .authorized
-        case .denied, .restricted: return .denied
-        case .notDetermined:       return .notDetermined
-        @unknown default:          return .notDetermined
+        case .authorizedAlways: return .authorized
+        case .authorizedWhenInUse:
+            return UserDefaults.standard.requestedLocationAlwaysWithWhenInUse ? .denied : .notDetermined
+        case .notDetermined: return .notDetermined
+        case .restricted, .denied: return .denied
+        @unknown default: return .notDetermined
         }
     }
 
-    func requestPhotos(_ callback: @escaping Callback) {
-        guard let _ = Bundle.main.object(forInfoDictionaryKey: .photoLibraryUsageDescription) else {
-            print("WARNING: \(String.photoLibraryUsageDescription) not found in Info.plist")
+    func requestLocationAlways(_ callback: Callback) {
+        guard let _ = Foundation.Bundle.main.object(forInfoDictionaryKey: .locationAlwaysUsageDescription) else {
+            print("WARNING: \(String.locationAlwaysUsageDescription) not found in Info.plist")
             return
         }
 
-        PHPhotoLibrary.requestAuthorization { _ in
-            callback(self.statusPhotos)
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            UserDefaults.standard.requestedLocationAlwaysWithWhenInUse = true
         }
+
+        LocationManager.request(self)
     }
 }
 #endif

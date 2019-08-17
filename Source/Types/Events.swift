@@ -1,5 +1,5 @@
 //
-// Microphone.swift
+// Events.swift
 //
 // Copyright (c) 2015-2016 Damien (http://delba.io)
 //
@@ -22,23 +22,24 @@
 // SOFTWARE.
 //
 
-#if PERMISSION_MICROPHONE
-import AVFoundation
+#if PERMISSION_EVENTS
+import EventKit
 
 extension Permission {
-    var statusMicrophone: PermissionStatus {
-        let status = AVAudioSession.sharedInstance().recordPermission
+    var statusEvents: Status {
+        let status = EKEventStore.authorizationStatus(for: .event)
 
         switch status {
-        case AVAudioSessionRecordPermission.denied:  return .denied
-        case AVAudioSessionRecordPermission.granted: return .authorized
-        default:                                     return .notDetermined
+        case .authorized:          return .authorized
+        case .restricted, .denied: return .denied
+        case .notDetermined:       return .notDetermined
+        @unknown default:          return .notDetermined
         }
     }
 
-    func requestMicrophone(_ callback: @escaping Callback) {
-        AVAudioSession.sharedInstance().requestRecordPermission { _ in
-            callback(self.statusMicrophone)
+    func requestEvents(_ callback: @escaping Callback) {
+        EKEventStore().requestAccess(to: .event) { _, _ in
+            callback(self.statusEvents)
         }
     }
 }

@@ -67,8 +67,8 @@ extension String {
 }
 
 extension Selector {
-    static let tapped = #selector(PermissionButton.tapped(_:))
-    static let highlight = #selector(PermissionButton.highlight(_:))
+    static let tapped = #selector(Button.tapped(_:))
+    static let highlight = #selector(Button.highlight(_:))
     static let settingsHandler = #selector(DeniedAlert.settingsHandler)
 }
 
@@ -93,8 +93,8 @@ extension UserDefaults {
         set { set(newValue, forKey: .requestedBluetooth) }
     }
 
-    var statusBluetooth: PermissionStatus? {
-        get { return PermissionStatus(string: string(forKey: .statusBluetooth)) }
+    var statusBluetooth: Status? {
+        get { return Status(string: string(forKey: .statusBluetooth)) }
         set { set(newValue?.rawValue, forKey: .statusBluetooth) }
     }
 

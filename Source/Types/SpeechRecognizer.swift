@@ -1,5 +1,5 @@
 //
-// Reminders.swift
+// SpeechRecognizer.swift
 //
 // Copyright (c) 2015-2016 Damien (http://delba.io)
 //
@@ -22,12 +22,14 @@
 // SOFTWARE.
 //
 
-#if PERMISSION_REMINDERS
-import EventKit
+#if PERMISSION_SPEECH_RECOGNIZER
+import Speech
 
 extension Permission {
-    var statusReminders: PermissionStatus {
-        let status = EKEventStore.authorizationStatus(for: .reminder)
+    var statusSpeechRecognizer: Status {
+        guard #available(iOS 10.0, *) else { fatalError() }
+
+        let status = SFSpeechRecognizer.authorizationStatus()
 
         switch status {
         case .authorized:          return .authorized
@@ -37,9 +39,21 @@ extension Permission {
         }
     }
 
-    func requestReminders(_ callback: @escaping Callback) {
-        EKEventStore().requestAccess(to: .reminder) { _, _ in
-            callback(self.statusReminders)
+    func requestSpeechRecognizer(_ callback: @escaping Callback) {
+        guard #available(iOS 10.0, *) else { fatalError() }
+
+        guard let _ = Bundle.main.object(forInfoDictionaryKey: .microphoneUsageDescription) else {
+            print("WARNING: \(String.microphoneUsageDescription) not found in Info.plist")
+            return
+        }
+
+        guard let _ = Bundle.main.object(forInfoDictionaryKey: .speechRecognitionUsageDescription) else {
+            print("WARNING: \(String.speechRecognitionUsageDescription) not found in Info.plist")
+            return
+        }
+
+        SFSpeechRecognizer.requestAuthorization { _ in
+            callback(self.statusSpeechRecognizer)
         }
     }
 }

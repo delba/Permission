@@ -1,7 +1,7 @@
 //
-// LocationAlways.swift
+// Siri.swift
 //
-// Copyright (c) 2015-2016 Damien (http://delba.io)
+// Copyright (c) 2015-2017 Damien (http://delba.io)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -22,36 +22,29 @@
 // SOFTWARE.
 //
 
-#if PERMISSION_LOCATION
-import CoreLocation
+#if PERMISSION_SIRI
+import Intents
 
 extension Permission {
-    var statusLocationAlways: PermissionStatus {
-        guard CLLocationManager.locationServicesEnabled() else { return .disabled }
-
-        let status = CLLocationManager.authorizationStatus()
-
+    var statusSiri: Status {
+        guard #available(iOS 10.0, *) else { fatalError() }
+        let status = INPreferences.siriAuthorizationStatus()
         switch status {
-        case .authorizedAlways: return .authorized
-        case .authorizedWhenInUse:
-            return UserDefaults.standard.requestedLocationAlwaysWithWhenInUse ? .denied : .notDetermined
-        case .notDetermined: return .notDetermined
+        case .authorized:          return .authorized
         case .restricted, .denied: return .denied
-        @unknown default: return .notDetermined
+        case .notDetermined:       return .notDetermined
+        @unknown default:          return .notDetermined
         }
     }
-
-    func requestLocationAlways(_ callback: Callback) {
-        guard let _ = Foundation.Bundle.main.object(forInfoDictionaryKey: .locationAlwaysUsageDescription) else {
-            print("WARNING: \(String.locationAlwaysUsageDescription) not found in Info.plist")
+    func requestSiri(_ callback: @escaping Callback) {
+        guard #available(iOS 10.0, *) else { fatalError() }
+        guard let _ = Bundle.main.object(forInfoDictionaryKey: .siriUsageDescription) else {
+            print("WARNING: \(String.siriUsageDescription) not found in Info.plist")
             return
         }
-
-        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-            UserDefaults.standard.requestedLocationAlwaysWithWhenInUse = true
-        }
-
-        LocationManager.request(self)
+        INPreferences.requestSiriAuthorization({ (_) in
+            callback(self.statusSiri)
+        })
     }
 }
 #endif

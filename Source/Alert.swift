@@ -1,5 +1,5 @@
 //
-// PermissionAlert.swift
+// Alert.swift
 //
 // Copyright (c) 2015-2016 Damien (http://delba.io)
 //
@@ -22,15 +22,15 @@
 // SOFTWARE.
 //
 
-open class PermissionAlert {
+open class Alert {
     /// The permission.
     fileprivate let permission: Permission
 
     /// The status of the permission.
-    fileprivate var status: PermissionStatus { return permission.status }
+    fileprivate var status: Status { return permission.status }
 
     /// The domain of the permission.
-    private var type: PermissionType { return permission.type }
+    private var type: Type { return permission.type }
 
     fileprivate var callbacks: Permission.Callback { return permission.callbacks }
 
@@ -85,7 +85,7 @@ open class PermissionAlert {
     }
 }
 
-class DisabledAlert: PermissionAlert {
+class DisabledAlert: Alert {
     override init(permission: Permission) {
         super.init(permission: permission)
 
@@ -95,7 +95,7 @@ class DisabledAlert: PermissionAlert {
     }
 }
 
-class DeniedAlert: PermissionAlert {
+class DeniedAlert: Alert {
     override var controller: UIAlertController {
         let controller = super.controller
 
@@ -132,7 +132,7 @@ class DeniedAlert: PermissionAlert {
     }
 }
 
-class PrePermissionAlert: PermissionAlert {
+class PrePermissionAlert: Alert {
     override var controller: UIAlertController {
         let controller = super.controller
 

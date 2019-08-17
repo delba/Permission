@@ -1,5 +1,5 @@
 //
-// MediaLibrary.swift
+// Reminders.swift
 //
 // Copyright (c) 2015-2016 Damien (http://delba.io)
 //
@@ -22,14 +22,12 @@
 // SOFTWARE.
 //
 
-#if PERMISSION_MEDIA_LIBRARY
-import MediaPlayer
+#if PERMISSION_REMINDERS
+import EventKit
 
 extension Permission {
-    var statusMediaLibrary: PermissionStatus {
-        guard #available(iOS 9.3, *) else { fatalError() }
-
-        let status = MPMediaLibrary.authorizationStatus()
+    var statusReminders: Status {
+        let status = EKEventStore.authorizationStatus(for: .reminder)
 
         switch status {
         case .authorized:          return .authorized
@@ -39,16 +37,9 @@ extension Permission {
         }
     }
 
-    func requestMediaLibrary(_ callback: @escaping Callback) {
-        guard #available(iOS 9.3, *) else { fatalError() }
-
-        guard let _ = Bundle.main.object(forInfoDictionaryKey: .mediaLibraryUsageDescription) else {
-            print("WARNING: \(String.mediaLibraryUsageDescription) not found in Info.plist")
-            return
-        }
-
-        MPMediaLibrary.requestAuthorization { _ in
-            callback(self.statusMediaLibrary)
+    func requestReminders(_ callback: @escaping Callback) {
+        EKEventStore().requestAccess(to: .reminder) { _, _ in
+            callback(self.statusReminders)
         }
     }
 }

@@ -1,5 +1,5 @@
 //
-// SpeechRecognizer.swift
+// LocationWhenInUse.swift
 //
 // Copyright (c) 2015-2016 Damien (http://delba.io)
 //
@@ -22,39 +22,30 @@
 // SOFTWARE.
 //
 
-#if PERMISSION_SPEECH_RECOGNIZER
-import Speech
+#if PERMISSION_LOCATION
+import CoreLocation
 
 extension Permission {
-    var statusSpeechRecognizer: PermissionStatus {
-        guard #available(iOS 10.0, *) else { fatalError() }
+    var statusLocationWhenInUse: Status {
+        guard CLLocationManager.locationServicesEnabled() else { return .disabled }
 
-        let status = SFSpeechRecognizer.authorizationStatus()
+        let status = CLLocationManager.authorizationStatus()
 
         switch status {
-        case .authorized:          return .authorized
-        case .restricted, .denied: return .denied
-        case .notDetermined:       return .notDetermined
-        @unknown default:          return .notDetermined
+        case .authorizedWhenInUse, .authorizedAlways: return .authorized
+        case .restricted, .denied:                    return .denied
+        case .notDetermined:                          return .notDetermined
+        @unknown default:                             return .notDetermined
         }
     }
 
-    func requestSpeechRecognizer(_ callback: @escaping Callback) {
-        guard #available(iOS 10.0, *) else { fatalError() }
-
-        guard let _ = Bundle.main.object(forInfoDictionaryKey: .microphoneUsageDescription) else {
-            print("WARNING: \(String.microphoneUsageDescription) not found in Info.plist")
+    func requestLocationWhenInUse(_ callback: Callback) {
+        guard let _ = Foundation.Bundle.main.object(forInfoDictionaryKey: .locationWhenInUseUsageDescription) else {
+            print("WARNING: \(String.locationWhenInUseUsageDescription) not found in Info.plist")
             return
         }
 
-        guard let _ = Bundle.main.object(forInfoDictionaryKey: .speechRecognitionUsageDescription) else {
-            print("WARNING: \(String.speechRecognitionUsageDescription) not found in Info.plist")
-            return
-        }
-
-        SFSpeechRecognizer.requestAuthorization { _ in
-            callback(self.statusSpeechRecognizer)
-        }
+        LocationManager.request(self)
     }
 }
 #endif

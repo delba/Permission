@@ -1,5 +1,5 @@
 //
-// PermissionButton.swift
+// Button.swift
 //
 // Copyright (c) 2015-2016 Damien (http://delba.io)
 //
@@ -22,31 +22,31 @@
 // SOFTWARE.
 //
 
-open class PermissionButton: UIButton {
+open class Button: UIButton {
 
     /// The permission of the button.
     public let permission: Permission
 
     /// The permission domain of the button.
-    open var domain: PermissionType { return permission.type }
+    open var domain: Type { return permission.type }
 
     /// The permission status of the button.
-    open var status: PermissionStatus { return permission.status }
+    open var status: Status { return permission.status }
 
-    private var titles: [UIControl.State: [PermissionStatus: String]] = [:]
-    private var attributedTitles: [UIControl.State: [PermissionStatus: NSAttributedString]] = [:]
-    private var titleColors: [UIControl.State: [PermissionStatus: UIColor]] = [:]
-    private var titleShadowColors: [UIControl.State: [PermissionStatus: UIColor]] = [:]
-    private var images: [UIControl.State: [PermissionStatus: UIImage]] = [:]
-    private var backgroundImages: [UIControl.State: [PermissionStatus: UIImage]] = [:]
+    private var titles: [UIControl.State: [Status: String]] = [:]
+    private var attributedTitles: [UIControl.State: [Status: NSAttributedString]] = [:]
+    private var titleColors: [UIControl.State: [Status: UIColor]] = [:]
+    private var titleShadowColors: [UIControl.State: [Status: UIColor]] = [:]
+    private var images: [UIControl.State: [Status: UIImage]] = [:]
+    private var backgroundImages: [UIControl.State: [Status: UIImage]] = [:]
 
     /// The alert when the permission was denied.
-    open var deniedAlert: PermissionAlert {
+    open var deniedAlert: Alert {
         return permission.deniedAlert
     }
 
     /// The alert when the permission is disabled.
-    open var disabledAlert: PermissionAlert {
+    open var disabledAlert: Alert {
         return permission.disabledAlert
     }
 
@@ -94,7 +94,7 @@ open class PermissionButton: UIButton {
     
     - returns: The title for the specified permission status and state.
     */
-    open func titleForStatus(_ status: PermissionStatus, andState state: UIControl.State = .normal) -> String? {
+    open func titleForStatus(_ status: Status, andState state: UIControl.State = .normal) -> String? {
         return titles[state]?[status]
     }
 
@@ -116,7 +116,7 @@ open class PermissionButton: UIButton {
      - parameter status: The permission status that uses the specified title.
      - parameter state:  The state that uses the specified title.
      */
-    open func setTitle(_ title: String?, forStatus status: PermissionStatus, andState state: UIControl.State = .normal) {
+    open func setTitle(_ title: String?, forStatus status: Status, andState state: UIControl.State = .normal) {
         guard [.normal, .highlighted].contains(state) else { return }
 
         if titles[state] == nil {
@@ -132,7 +132,7 @@ open class PermissionButton: UIButton {
      - parameter titles: The titles to use for the specified statuses.
      - parameter state:  The state that uses the specifed titles.
      */
-    open func setTitles(_ titles: [PermissionStatus: String?], forState state: UIControl.State = .normal) {
+    open func setTitles(_ titles: [Status: String?], forState state: UIControl.State = .normal) {
         guard [.normal, .highlighted].contains(state) else { return }
 
         if self.titles[state] == nil {
@@ -154,7 +154,7 @@ open class PermissionButton: UIButton {
     
     - returns: The title for the specified permission status and state.
     */
-    open func attributedTitleForStatus(_ status: PermissionStatus, andState state: UIControl.State = .normal) -> NSAttributedString? {
+    open func attributedTitleForStatus(_ status: Status, andState state: UIControl.State = .normal) -> NSAttributedString? {
         return attributedTitles[state]?[status]
     }
 
@@ -176,7 +176,7 @@ open class PermissionButton: UIButton {
      - parameter status: The permission status that uses the specified title.
      - parameter state:  The state that uses the specified title.
      */
-    open func setAttributedTitle(_ title: NSAttributedString?, forStatus status: PermissionStatus, andState state: UIControl.State = .normal) {
+    open func setAttributedTitle(_ title: NSAttributedString?, forStatus status: Status, andState state: UIControl.State = .normal) {
         guard [.normal, .highlighted].contains(state) else { return }
 
         if attributedTitles[state] == nil {
@@ -192,7 +192,7 @@ open class PermissionButton: UIButton {
      - parameter titles: The titles to use for the specified statuses.
      - parameter state:  The state that uses the specified titles.
      */
-    open func setAttributedTitles(_ titles: [PermissionStatus: NSAttributedString?], forState state: UIControl.State = .normal) {
+    open func setAttributedTitles(_ titles: [Status: NSAttributedString?], forState state: UIControl.State = .normal) {
         guard [.normal, .highlighted].contains(state) else { return }
 
         if attributedTitles[state] == nil {
@@ -214,7 +214,7 @@ open class PermissionButton: UIButton {
     
     - returns: The color of the title for the specified permission status and state.
     */
-    open func titleColorForStatus(_ status: PermissionStatus, andState state: UIControl.State = .normal) -> UIColor? {
+    open func titleColorForStatus(_ status: Status, andState state: UIControl.State = .normal) -> UIColor? {
         return titleColors[state]?[status]
     }
 
@@ -236,7 +236,7 @@ open class PermissionButton: UIButton {
      - parameter status: The permission status that uses the specified color.
      - parameter state:  The state that uses the specified color.
      */
-    open func setTitleColor(_ color: UIColor?, forStatus status: PermissionStatus, andState state: UIControl.State = .normal) {
+    open func setTitleColor(_ color: UIColor?, forStatus status: Status, andState state: UIControl.State = .normal) {
         guard [.normal, .highlighted].contains(state) else { return }
 
         if titleColors[state] == nil {
@@ -252,7 +252,7 @@ open class PermissionButton: UIButton {
      - parameter colors: The colors to use for the specified permission statuses.
      - parameter state:  The state that uses the specified colors.
      */
-    open func setTitleColors(_ colors: [PermissionStatus: UIColor?], forState state: UIControl.State = .normal) {
+    open func setTitleColors(_ colors: [Status: UIColor?], forState state: UIControl.State = .normal) {
         guard [.normal, .highlighted].contains(state) else { return }
 
         if titleColors[state] == nil {
@@ -274,7 +274,7 @@ open class PermissionButton: UIButton {
     
     - returns: The color of the title's shadow for the specified permission status and state.
     */
-    open func titleShadowColorForStatus(_ status: PermissionStatus, andState state: UIControl.State = .normal) -> UIColor? {
+    open func titleShadowColorForStatus(_ status: Status, andState state: UIControl.State = .normal) -> UIColor? {
         return titleShadowColors[state]?[status]
     }
 
@@ -296,7 +296,7 @@ open class PermissionButton: UIButton {
      - parameter status: The permission status that uses the specified color.
      - parameter state:  The state that uses the specified color.
      */
-    open func setTitleShadowColor(_ color: UIColor?, forStatus status: PermissionStatus, andState state: UIControl.State = .normal) {
+    open func setTitleShadowColor(_ color: UIColor?, forStatus status: Status, andState state: UIControl.State = .normal) {
         guard [.normal, .highlighted].contains(state) else { return }
 
         if titleShadowColors[state] == nil {
@@ -312,7 +312,7 @@ open class PermissionButton: UIButton {
     - parameter colors: The colors to use for the specified permission statuses.
     - parameter state:  The state that uses the specified colors.
     */
-    open func setTitleShadowColors(_ colors: [PermissionStatus: UIColor?], forState state: UIControl.State = .normal) {
+    open func setTitleShadowColors(_ colors: [Status: UIColor?], forState state: UIControl.State = .normal) {
         guard [.normal, .highlighted].contains(state) else { return }
 
         if titleShadowColors[state] == nil {
@@ -334,7 +334,7 @@ open class PermissionButton: UIButton {
     
     - returns: The image used for the specified permission status and state.
     */
-    open func imageForStatus(_ status: PermissionStatus, andState state: UIControl.State = .normal) -> UIImage? {
+    open func imageForStatus(_ status: Status, andState state: UIControl.State = .normal) -> UIImage? {
         return images[state]?[status]
     }
 
@@ -356,7 +356,7 @@ open class PermissionButton: UIButton {
      - parameter status: The permission status that uses the specified image.
      - parameter state:  The state that uses the specified image.
      */
-    open func setImage(_ image: UIImage?, forStatus status: PermissionStatus, andState state: UIControl.State = .normal) {
+    open func setImage(_ image: UIImage?, forStatus status: Status, andState state: UIControl.State = .normal) {
         guard [.normal, .highlighted].contains(state) else { return }
 
         if images[state] == nil {
@@ -372,7 +372,7 @@ open class PermissionButton: UIButton {
      - parameter images: The images to use for the specified permission statuses.
      - parameter state:  The state that uses the specified images.
      */
-    open func setImages(_ images: [PermissionStatus: UIImage], forState state: UIControl.State = .normal) {
+    open func setImages(_ images: [Status: UIImage], forState state: UIControl.State = .normal) {
         guard [.normal, .highlighted].contains(state) else { return }
 
         if self.images[state] == nil {
@@ -394,7 +394,7 @@ open class PermissionButton: UIButton {
     
     - returns: The background image used for the specified permission status and state.
     */
-    open func backgroundImageForStatus(_ status: PermissionStatus, andState state: UIControl.State = .normal) -> UIImage? {
+    open func backgroundImageForStatus(_ status: Status, andState state: UIControl.State = .normal) -> UIImage? {
         return backgroundImages[state]?[status]
     }
 
@@ -416,7 +416,7 @@ open class PermissionButton: UIButton {
      - parameter status: The permission status that uses the specified image.
      - parameter state:  The state that uses the specified image.
      */
-    open func setBackgroundImage(_ image: UIImage?, forStatus status: PermissionStatus, andState state: UIControl.State = .normal) {
+    open func setBackgroundImage(_ image: UIImage?, forStatus status: Status, andState state: UIControl.State = .normal) {
         guard [.normal, .highlighted].contains(state) else { return }
 
         if backgroundImages[state] == nil {
@@ -432,7 +432,7 @@ open class PermissionButton: UIButton {
      - parameter images: The background images to use for the specified permission statuses.
      - parameter state:  The state that uses the specified images.
      */
-    open func setBackgroundImages(_ images: [PermissionStatus: UIImage], forState state: UIControl.State = .normal) {
+    open func setBackgroundImages(_ images: [Status: UIImage], forState state: UIControl.State = .normal) {
         guard [.normal, .highlighted].contains(state) else { return }
 
         if backgroundImages[state] == nil {
@@ -454,19 +454,19 @@ open class PermissionButton: UIButton {
     }
 }
 
-extension PermissionButton {
-    @objc func highlight(_ button: PermissionButton) {
+extension Button {
+    @objc func highlight(_ button: Button) {
         render(.highlighted)
     }
 
-    @objc func tapped(_ button: PermissionButton) {
+    @objc func tapped(_ button: Button) {
         permission.request { [weak self] _ in
             self?.render()
         }
     }
 }
 
-private extension PermissionButton {
+private extension Button {
     func render(_ state: UIControl.State = .normal) {
         if let title = titleForStatus(status, andState: state) {
             super.setTitle(title, for: state)
