@@ -83,63 +83,63 @@ public enum PermissionType {
 
 extension PermissionType: CustomStringConvertible {
     public var description: String {
+        switch self {
         #if PERMISSION_CONTACTS
-        if case .contacts = self { return "Contacts" }
+        case .contacts: return "Contacts"
         #endif
 
         #if PERMISSION_ADDRESS_BOOK
-        if case .addressBook = self { return "Address Book" }
+        case .addressBook: return "Address Book"
         #endif
 
         #if PERMISSION_LOCATION
-        if case .locationAlways    = self { return "Location" }
-        if case .locationWhenInUse = self { return "Location" }
+        case .locationAlways: return "Location"
+        case .locationWhenInUse: return "Location"
         #endif
 
         #if PERMISSION_NOTIFICATIONS
-        if case .notifications = self { return "Notifications" }
+        case .notifications: return "Notifications"
         #endif
 
         #if PERMISSION_MICROPHONE
-        if case .microphone = self { return "Microphone" }
+        case .microphone: return "Microphone"
         #endif
 
         #if PERMISSION_CAMERA
-        if case .camera = self { return "Camera" }
+        case .camera: return "Camera"
         #endif
 
         #if PERMISSION_PHOTOS
-        if case .photos = self { return "Photos" }
+        case .photos: return "Photos"
         #endif
 
         #if PERMISSION_REMINDERS
-        if case .reminders = self { return "Reminders" }
+        case .reminders: return "Reminders"
         #endif
 
         #if PERMISSION_EVENTS
-        if case .events = self { return "Events" }
+        case .events: return "Events"
         #endif
 
         #if PERMISSION_BLUETOOTH
-        if case .bluetooth = self { return "Bluetooth" }
+        case .bluetooth: return "Bluetooth"
         #endif
 
         #if PERMISSION_MOTION
-        if case .motion = self { return "Motion" }
+        case .motion: return "Motion"
         #endif
 
         #if PERMISSION_SPEECH_RECOGNIZER
-        if case .speechRecognizer = self { return "Speech Recognizer" }
+        case .speechRecognizer: return "Speech Recognizer"
         #endif
 
         #if PERMISSION_SIRI
-        if case .siri = self { return "SiriKit" }
+        case .siri: return "SiriKit"
         #endif
 
         #if PERMISSION_MEDIA_LIBRARY
-        if case .mediaLibrary = self { return "Media Library" }
+        case .mediaLibrary: return "Media Library"
         #endif
-
-        fatalError()
+        }
     }
 }

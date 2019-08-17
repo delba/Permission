@@ -137,64 +137,64 @@ open class Permission: NSObject {
 
     /// The permission status.
     open var status: PermissionStatus {
+        switch type {
         #if PERMISSION_CONTACTS
-        if case .contacts = type { return statusContacts }
+        case .contacts: return statusContacts
         #endif
 
         #if PERMISSION_ADDRESS_BOOK
-        if case .addressBook = type { return statusAddressBook }
+        case .addressBook: return statusAddressBook
         #endif
 
         #if PERMISSION_LOCATION
-        if case .locationAlways    = type { return statusLocationAlways }
-        if case .locationWhenInUse = type { return statusLocationWhenInUse }
+        case .locationAlways: return statusLocationAlways
+        case .locationWhenInUse: return statusLocationWhenInUse
         #endif
 
         #if PERMISSION_NOTIFICATIONS
-        if case .notifications = type { return statusNotifications }
+        case .notifications: return statusNotifications
         #endif
 
         #if PERMISSION_MICROPHONE
-        if case .microphone = type { return statusMicrophone }
+        case .microphone: return statusMicrophone
         #endif
 
         #if PERMISSION_CAMERA
-        if case .camera = type { return statusCamera }
+        case .camera: return statusCamera
         #endif
 
         #if PERMISSION_PHOTOS
-        if case .photos = type { return statusPhotos }
+        case .photos: return statusPhotos
         #endif
 
         #if PERMISSION_REMINDERS
-        if case .reminders = type { return statusReminders }
+        case .reminders: return statusReminders
         #endif
 
         #if PERMISSION_EVENTS
-        if case .events = type { return statusEvents }
+        case .events: return statusEvents
         #endif
 
         #if PERMISSION_BLUETOOTH
-        if case .bluetooth = type { return statusBluetooth }
+        case .bluetooth: return statusBluetooth
         #endif
 
         #if PERMISSION_MOTION
-        if case .motion = type { return statusMotion }
+        case .motion: return statusMotion
         #endif
 
         #if PERMISSION_SPEECH_RECOGNIZER
-        if case .speechRecognizer = type { return statusSpeechRecognizer }
+        case .speechRecognizer: return statusSpeechRecognizer
         #endif
 
         #if PERMISSION_MEDIA_LIBRARY
-        if case .mediaLibrary = type { return statusMediaLibrary }
+        case .mediaLibrary: return statusMediaLibrary
         #endif
 
         #if PERMISSION_SIRI
-        if case .siri = type { return statusSiri }
+        case .siri: return statusSiri
         #endif
-
-        fatalError()
+        }
     }
 
     /// Determines whether to present the pre-permission alert.
@@ -259,110 +259,64 @@ open class Permission: NSObject {
     }
 
     internal func requestAuthorization(_ callback: @escaping Callback) {
+        switch type {
         #if PERMISSION_CONTACTS
-        if case .contacts = type {
-            requestContacts(callback)
-            return
-        }
+        case .contacts: requestContacts(callback)
         #endif
 
         #if PERMISSION_ADDRESS_BOOK
-        if case .addressBook = type {
-            requestAddressBook(callback)
-            return
-        }
+        case .addressBook: requestAddressBook(callback)
         #endif
 
         #if PERMISSION_LOCATION
-        if case .locationAlways    = type {
-            requestLocationAlways(callback)
-            return
-        }
-
-        if case .locationWhenInUse = type {
-            requestLocationWhenInUse(callback)
-            return
-        }
+        case .locationAlways: requestLocationAlways(callback)
+        case .locationWhenInUse: requestLocationWhenInUse(callback)
         #endif
 
         #if PERMISSION_NOTIFICATIONS
-        if case .notifications = type {
-            requestNotifications(callback)
-            return
-        }
+        case .notifications: requestNotifications(callback)
         #endif
 
         #if PERMISSION_MICROPHONE
-        if case .microphone = type {
-            requestMicrophone(callback)
-            return
-        }
+        case .microphone: requestMicrophone(callback)
         #endif
 
         #if PERMISSION_CAMERA
-        if case .camera = type {
-            requestCamera(callback)
-            return
-        }
+        case .camera: requestCamera(callback)
         #endif
 
         #if PERMISSION_PHOTOS
-        if case .photos = type {
-            requestPhotos(callback)
-            return
-        }
+        case .photos: requestPhotos(callback)
         #endif
 
         #if PERMISSION_REMINDERS
-        if case .reminders = type {
-            requestReminders(callback)
-            return
-        }
+        case .reminders: requestReminders(callback)
         #endif
 
         #if PERMISSION_EVENTS
-        if case .events = type {
-            requestEvents(callback)
-            return
-        }
+        case .events: requestEvents(callback)
         #endif
 
         #if PERMISSION_BLUETOOTH
-        if case .bluetooth = type {
-            requestBluetooth(self.callback)
-            return
-        }
+        case .bluetooth: requestBluetooth(self.callback)
         #endif
 
         #if PERMISSION_MOTION
-        if case .motion = type {
-            requestMotion(self.callback)
-            return
-        }
+        case .motion: requestMotion(self.callback)
         #endif
 
         #if PERMISSION_SPEECH_RECOGNIZER
-        if case .speechRecognizer = type {
-            requestSpeechRecognizer(callback)
-            return
-        }
+        case .speechRecognizer: requestSpeechRecognizer(callback)
         #endif
 
         #if PERMISSION_MEDIA_LIBRARY
-        if case .mediaLibrary = type {
-            requestMediaLibrary(callback)
-            return
-        }
+        case .mediaLibrary: requestMediaLibrary(callback)
         #endif
 
         #if PERMISSION_SIRI
-        if case .siri = type {
-            requestSiri(callback)
-            return
-        }
+        case .siri: requestSiri(callback)
         #endif
-
-        fatalError()
+        }
     }
 
     internal func callbacks(_ with: PermissionStatus) {
