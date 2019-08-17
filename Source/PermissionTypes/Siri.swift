@@ -24,7 +24,7 @@
 
 #if PERMISSION_SIRI
 import Intents
-    
+
 internal extension Permission {
     var statusSiri: PermissionStatus {
         guard #available(iOS 10.0, *) else { fatalError() }
@@ -42,7 +42,7 @@ internal extension Permission {
             print("WARNING: \(String.siriUsageDescription) not found in Info.plist")
             return
         }
-        INPreferences.requestSiriAuthorization({ (status) in
+        INPreferences.requestSiriAuthorization({ (_) in
             callback(self.statusSiri)
         })
     }

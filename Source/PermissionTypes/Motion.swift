@@ -32,52 +32,51 @@ extension Permission {
         if UserDefaults.standard.requestedMotion {
             return synchronousStatusMotion
         }
-        
+
         return .notDetermined
     }
-    
+
     func requestMotion(_ callback: Callback?) {
         UserDefaults.standard.requestedMotion = true
-        
+
         let now = Date()
-        
-        MotionManager.queryActivityStarting(from: now, to: now, to: OperationQueue.main) { activities, error in
+
+        MotionManager.queryActivityStarting(from: now, to: now, to: OperationQueue.main) { _, error in
             let status: PermissionStatus
-            
-            if  let error = error , error._code == Int(CMErrorMotionActivityNotAuthorized.rawValue) {
+
+            if  let error = error, error._code == Int(CMErrorMotionActivityNotAuthorized.rawValue) {
                 status = .denied
             } else {
                 status = .authorized
             }
-            
+
             MotionManager.stopActivityUpdates()
-            
+
             callback?(status)
         }
     }
-    
+
     fileprivate var synchronousStatusMotion: PermissionStatus {
         let semaphore = DispatchSemaphore(value: 0)
-        
+
         var status: PermissionStatus = .notDetermined
-        
+
         let now = Date()
-        
-        MotionManager.queryActivityStarting(from: now, to: now, to: OperationQueue(.background)) { activities, error in
-            if  let error = error , error._code == Int(CMErrorMotionActivityNotAuthorized.rawValue) {
+
+        MotionManager.queryActivityStarting(from: now, to: now, to: OperationQueue(.background)) { _, error in
+            if  let error = error, error._code == Int(CMErrorMotionActivityNotAuthorized.rawValue) {
                 status = .denied
             } else {
                 status = .authorized
             }
-            
+
             MotionManager.stopActivityUpdates()
-            
+
             semaphore.signal()
         }
-        
-        
+
         _ = semaphore.wait(timeout: DispatchTime.distantFuture)
-        
+
         return status
     }
 }

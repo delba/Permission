@@ -28,7 +28,7 @@ import AddressBook
 internal extension Permission {
     var statusAddressBook: PermissionStatus {
         let status = ABAddressBookGetAuthorizationStatus()
-        
+
         switch status {
         case .authorized:          return .authorized
         case .restricted, .denied: return .denied
@@ -36,7 +36,7 @@ internal extension Permission {
         @unknown default:          return .notDetermined
         }
     }
-    
+
     func requestAddressBook(_ callback: @escaping Callback) {
         ABAddressBookRequestAccessWithCompletion(nil) { _, _ in
             callback(self.statusAddressBook)

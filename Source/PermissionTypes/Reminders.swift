@@ -28,7 +28,7 @@ import EventKit
 internal extension Permission {
     var statusReminders: PermissionStatus {
         let status = EKEventStore.authorizationStatus(for: .reminder)
-        
+
         switch status {
         case .authorized:          return .authorized
         case .restricted, .denied: return .denied
@@ -36,9 +36,9 @@ internal extension Permission {
         @unknown default:          return .notDetermined
         }
     }
-    
+
     func requestReminders(_ callback: @escaping Callback) {
-        EKEventStore().requestAccess(to: .reminder) { _,_ in
+        EKEventStore().requestAccess(to: .reminder) { _, _ in
             callback(self.statusReminders)
         }
     }

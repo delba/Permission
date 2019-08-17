@@ -39,9 +39,9 @@ extension Permission {
         case .notDetermined, .authorized: break
         @unknown default:                 return .notDetermined
         }
-        
+
         guard UserDefaults.standard.stateBluetoothManagerDetermined else { return .notDetermined }
-        
+
         switch BluetoothManager.state {
         case .unsupported, .poweredOff: return .disabled
         case .unauthorized: return .denied
@@ -51,10 +51,10 @@ extension Permission {
         @unknown default: return .notDetermined
         }
     }
-    
+
     func requestBluetooth(_ callback: Callback?) {
         UserDefaults.standard.requestedBluetooth = true
-        
+
         BluetoothManager.request(self)
     }
 }
@@ -63,11 +63,11 @@ extension Permission: CBPeripheralManagerDelegate {
     public func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
         UserDefaults.standard.stateBluetoothManagerDetermined = true
         UserDefaults.standard.statusBluetooth = statusBluetooth
-        
+
         guard UserDefaults.standard.requestedBluetooth else { return }
-        
+
         callback?(statusBluetooth)
-        
+
         UserDefaults.standard.requestedBluetooth = false
     }
 }
@@ -75,7 +75,7 @@ extension Permission: CBPeripheralManagerDelegate {
 extension CBPeripheralManager {
     func request(_ permission: Permission) {
         guard case .poweredOn = state else { return }
-        
+
         startAdvertising(nil)
         stopAdvertising()
     }

@@ -25,14 +25,14 @@
 extension UIApplication {
     fileprivate var topViewController: UIViewController? {
         var vc = delegate?.window??.rootViewController
-        
+
         while let presentedVC = vc?.presentedViewController {
             vc = presentedVC
         }
 
         return vc
     }
-    
+
     internal func presentViewController(_ viewController: UIViewController, animated: Bool = true, completion: (() -> Void)? = nil) {
         topViewController?.present(viewController, animated: animated, completion: completion)
     }
@@ -57,8 +57,7 @@ internal extension String {
     static let cameraUsageDescription            = "NSCameraUsageDescription"
     static let mediaLibraryUsageDescription      = "NSAppleMusicUsageDescription"
     static let siriUsageDescription              = "NSSiriUsageDescription"
-    
-    
+
     static let requestedNotifications               = "permission.requestedNotifications"
     static let requestedLocationAlwaysWithWhenInUse = "permission.requestedLocationAlwaysWithWhenInUse"
     static let requestedMotion                      = "permission.requestedMotion"
@@ -78,27 +77,27 @@ extension UserDefaults {
         get { return bool(forKey: .requestedLocationAlwaysWithWhenInUse) }
         set { set(newValue, forKey: .requestedLocationAlwaysWithWhenInUse) }
     }
-    
+
     var requestedNotifications: Bool {
         get { return bool(forKey: .requestedNotifications) }
         set { set(newValue, forKey: .requestedNotifications) }
     }
-    
+
     var requestedMotion: Bool {
         get { return bool(forKey: .requestedMotion) }
         set { set(newValue, forKey: .requestedMotion) }
     }
-    
+
     var requestedBluetooth: Bool {
         get { return bool(forKey: .requestedBluetooth) }
         set { set(newValue, forKey: .requestedBluetooth) }
     }
-    
+
     var statusBluetooth: PermissionStatus? {
         get { return PermissionStatus(string: string(forKey: .statusBluetooth)) }
         set { set(newValue?.rawValue, forKey: .statusBluetooth) }
     }
-    
+
     var stateBluetoothManagerDetermined: Bool {
         get { return bool(forKey: .stateBluetoothManagerDetermined) }
         set { set(newValue, forKey: .stateBluetoothManagerDetermined) }
@@ -116,7 +115,7 @@ internal extension NotificationCenter {
     func addObserver(_ observer: AnyObject, selector: Selector, name: NSNotification.Name?) {
         addObserver(observer, selector: selector, name: name!, object: nil)
     }
-    
+
     func removeObserver(_ observer: AnyObject, name: NSNotification.Name?) {
         removeObserver(observer, name: name, object: nil)
     }

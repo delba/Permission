@@ -28,9 +28,9 @@ import Contacts
 internal extension Permission {
     var statusContacts: PermissionStatus {
         guard #available(iOS 9.0, *) else { fatalError() }
-        
+
         let status = CNContactStore.authorizationStatus(for: .contacts)
-            
+
         switch status {
         case .authorized:          return .authorized
         case .restricted, .denied: return .denied
@@ -38,10 +38,10 @@ internal extension Permission {
         @unknown default:          return .notDetermined
         }
     }
-    
+
     func requestContacts(_ callback: @escaping Callback) {
         guard #available(iOS 9.0, *) else { fatalError() }
-        
+
         CNContactStore().requestAccess(for: .contacts) { _, _ in
             callback(self.statusContacts)
         }

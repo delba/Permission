@@ -45,18 +45,17 @@ extension Permission: CLLocationManagerDelegate {
     }
 }
 
-
 extension CLLocationManager {
     func request(_ permission: Permission) {
         delegate = permission
-        
+
         requestedLocation = true
-        
+
         if case .locationAlways = permission.type {
             requestAlwaysAuthorization()
             return
         }
-        
+
         if case .locationWhenInUse = permission.type {
             requestWhenInUseAuthorization()
             return

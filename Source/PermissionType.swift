@@ -26,56 +26,56 @@ public enum PermissionType {
     #if PERMISSION_CONTACTS
     @available(iOS 9.0, *) case contacts
     #endif
-    
+
     #if PERMISSION_ADDRESS_BOOK
     case addressBook // Deprecated in iOS 9.0
     #endif
-    
+
     #if PERMISSION_LOCATION
     case locationAlways
     case locationWhenInUse
     #endif
-    
+
     #if PERMISSION_NOTIFICATIONS
     case notifications(UIUserNotificationSettings)
     #endif
-    
+
     #if PERMISSION_MICROPHONE
     case microphone
     #endif
-    
+
     #if PERMISSION_CAMERA
     case camera
     #endif
-    
+
     #if PERMISSION_PHOTOS
     case photos
     #endif
-    
+
     #if PERMISSION_REMINDERS
     case reminders
     #endif
-    
+
     #if PERMISSION_EVENTS
     case events
     #endif
-    
+
     #if PERMISSION_BLUETOOTH
     case bluetooth
     #endif
-    
+
     #if PERMISSION_MOTION
     case motion
     #endif
-    
+
     #if PERMISSION_SPEECH_RECOGNIZER
     @available(iOS 10.0, *) case speechRecognizer
     #endif
-    
+
     #if PERMISSION_MEDIA_LIBRARY
     @available(iOS 9.3, *) case mediaLibrary
     #endif
-    
+
     #if PERMISSION_SIRI
     @available(iOS 10.0, *) case siri
     #endif
@@ -86,60 +86,60 @@ extension PermissionType: CustomStringConvertible {
         #if PERMISSION_CONTACTS
         if case .contacts = self { return "Contacts" }
         #endif
-        
+
         #if PERMISSION_ADDRESS_BOOK
         if case .addressBook = self { return "Address Book" }
         #endif
-        
+
         #if PERMISSION_LOCATION
         if case .locationAlways    = self { return "Location" }
         if case .locationWhenInUse = self { return "Location" }
         #endif
-        
+
         #if PERMISSION_NOTIFICATIONS
         if case .notifications = self { return "Notifications" }
         #endif
-        
+
         #if PERMISSION_MICROPHONE
         if case .microphone = self { return "Microphone" }
         #endif
-        
+
         #if PERMISSION_CAMERA
         if case .camera = self { return "Camera" }
         #endif
-        
+
         #if PERMISSION_PHOTOS
         if case .photos = self { return "Photos" }
         #endif
-        
+
         #if PERMISSION_REMINDERS
         if case .reminders = self { return "Reminders" }
         #endif
-        
+
         #if PERMISSION_EVENTS
         if case .events = self { return "Events" }
         #endif
-        
+
         #if PERMISSION_BLUETOOTH
         if case .bluetooth = self { return "Bluetooth" }
         #endif
-        
+
         #if PERMISSION_MOTION
         if case .motion = self { return "Motion" }
         #endif
-        
+
         #if PERMISSION_SPEECH_RECOGNIZER
         if case .speechRecognizer = self { return "Speech Recognizer" }
         #endif
-        
+
         #if PERMISSION_SIRI
         if case .siri = self { return "SiriKit" }
         #endif
-        
+
         #if PERMISSION_MEDIA_LIBRARY
         if case .mediaLibrary = self { return "Media Library" }
         #endif
-        
+
         fatalError()
     }
 }

@@ -25,5 +25,5 @@
 import XCTest
 
 class PermissionTests: XCTestCase {
-    
+
 }
