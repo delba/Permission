@@ -69,8 +69,8 @@ open class Button: UIButton {
 
         super.init(frame: .zero)
 
-        self.addTarget(self, action: .tapped, for: .touchUpInside)
-        self.addTarget(self, action: .highlight, for: .touchDown)
+        addTarget(self, action: .tapped, for: .touchUpInside)
+        addTarget(self, action: .highlight, for: .touchDown)
     }
 
     /**

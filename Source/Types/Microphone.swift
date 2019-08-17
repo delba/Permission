@@ -30,9 +30,9 @@ extension Permission {
         let status = AVAudioSession.sharedInstance().recordPermission
 
         switch status {
-        case AVAudioSessionRecordPermission.denied:  return .denied
-        case AVAudioSessionRecordPermission.granted: return .authorized
-        default:                                     return .notDetermined
+        case .denied:  return .denied
+        case .granted: return .authorized
+        default:       return .notDetermined
         }
     }
 

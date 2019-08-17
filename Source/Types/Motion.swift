@@ -41,7 +41,7 @@ extension Permission {
 
         let now = Date()
 
-        MotionManager.queryActivityStarting(from: now, to: now, to: OperationQueue.main) { _, error in
+        MotionManager.queryActivityStarting(from: now, to: now, to: .main) { _, error in
             let status: Status
 
             if  let error = error, error._code == Int(CMErrorMotionActivityNotAuthorized.rawValue) {
@@ -75,7 +75,7 @@ extension Permission {
             semaphore.signal()
         }
 
-        _ = semaphore.wait(timeout: DispatchTime.distantFuture)
+        _ = semaphore.wait(timeout: .distantFuture)
 
         return status
     }
