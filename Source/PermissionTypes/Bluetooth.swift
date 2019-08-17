@@ -25,7 +25,7 @@
 #if PERMISSION_BLUETOOTH
 import CoreBluetooth
 
-internal let BluetoothManager = CBPeripheralManager(
+let BluetoothManager = CBPeripheralManager(
     delegate: Permission.bluetooth,
     queue: nil,
     options: [CBPeripheralManagerOptionShowPowerAlertKey: false]

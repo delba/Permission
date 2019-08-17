@@ -454,7 +454,7 @@ open class PermissionButton: UIButton {
     }
 }
 
-internal extension PermissionButton {
+extension PermissionButton {
     @objc func highlight(_ button: PermissionButton) {
         render(.highlighted)
     }

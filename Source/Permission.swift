@@ -221,9 +221,9 @@ open class Permission: NSObject {
         return DisabledAlert(permission: self)
     }()
 
-    internal var callback: Callback?
+    var callback: Callback?
 
-    internal var permissionSets: [PermissionSet] = []
+    var permissionSets: [PermissionSet] = []
 
     /**
      Creates and return a new permission for the specified domain.
@@ -258,7 +258,7 @@ open class Permission: NSObject {
         }
     }
 
-    internal func requestAuthorization(_ callback: @escaping Callback) {
+    func requestAuthorization(_ callback: @escaping Callback) {
         switch type {
         #if PERMISSION_CONTACTS
         case .contacts: requestContacts(callback)
@@ -319,7 +319,7 @@ open class Permission: NSObject {
         }
     }
 
-    internal func callbacks(_ with: PermissionStatus) {
+    func callbacks(_ with: PermissionStatus) {
         DispatchQueue.main.async {
             self.callback?(self.status)
             self.permissionSets.forEach { $0.didRequestPermission(self) }

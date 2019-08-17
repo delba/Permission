@@ -28,7 +28,7 @@ public enum PermissionStatus: String {
     case disabled      = "Disabled"
     case notDetermined = "Not Determined"
 
-    internal init?(string: String?) {
+    init?(string: String?) {
         guard let string = string else { return nil }
         self.init(rawValue: string)
     }

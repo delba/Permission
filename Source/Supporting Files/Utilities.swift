@@ -33,7 +33,7 @@ extension UIApplication {
         return vc
     }
 
-    internal func presentViewController(_ viewController: UIViewController, animated: Bool = true, completion: (() -> Void)? = nil) {
+    func presentViewController(_ viewController: UIViewController, animated: Bool = true, completion: (() -> Void)? = nil) {
         topViewController?.present(viewController, animated: animated, completion: completion)
     }
 }
@@ -48,7 +48,7 @@ extension UIControl.State: Hashable {
     public var hashValue: Int { return Int(rawValue) }
 }
 
-internal extension String {
+extension String {
     static let locationWhenInUseUsageDescription = "NSLocationWhenInUseUsageDescription"
     static let locationAlwaysUsageDescription    = "NSLocationAlwaysUsageDescription"
     static let microphoneUsageDescription        = "NSMicrophoneUsageDescription"
@@ -66,7 +66,7 @@ internal extension String {
     static let stateBluetoothManagerDetermined      = "permission.stateBluetoothManagerDetermined"
 }
 
-internal extension Selector {
+extension Selector {
     static let tapped = #selector(PermissionButton.tapped(_:))
     static let highlight = #selector(PermissionButton.highlight(_:))
     static let settingsHandler = #selector(DeniedAlert.settingsHandler)
@@ -111,7 +111,7 @@ extension OperationQueue {
     }
 }
 
-internal extension NotificationCenter {
+extension NotificationCenter {
     func addObserver(_ observer: AnyObject, selector: Selector, name: NSNotification.Name?) {
         addObserver(observer, selector: selector, name: name!, object: nil)
     }

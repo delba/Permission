@@ -70,11 +70,11 @@ open class PermissionAlert {
         return controller
     }
 
-    internal init(permission: Permission) {
+    init(permission: Permission) {
         self.permission = permission
     }
 
-    internal func present() {
+    func present() {
         DispatchQueue.main.async {
             UIApplication.shared.presentViewController(self.controller)
         }
@@ -85,7 +85,7 @@ open class PermissionAlert {
     }
 }
 
-internal class DisabledAlert: PermissionAlert {
+class DisabledAlert: PermissionAlert {
     override init(permission: Permission) {
         super.init(permission: permission)
 
@@ -95,7 +95,7 @@ internal class DisabledAlert: PermissionAlert {
     }
 }
 
-internal class DeniedAlert: PermissionAlert {
+class DeniedAlert: PermissionAlert {
     override var controller: UIAlertController {
         let controller = super.controller
 
@@ -132,7 +132,7 @@ internal class DeniedAlert: PermissionAlert {
     }
 }
 
-internal class PrePermissionAlert: PermissionAlert {
+class PrePermissionAlert: PermissionAlert {
     override var controller: UIAlertController {
         let controller = super.controller
 

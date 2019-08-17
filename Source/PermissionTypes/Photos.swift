@@ -25,7 +25,7 @@
 #if PERMISSION_PHOTOS
 import Photos
 
-internal extension Permission {
+extension Permission {
     var statusPhotos: PermissionStatus {
         let status = PHPhotoLibrary.authorizationStatus()
 

@@ -104,11 +104,11 @@ open class PermissionSet {
         self.permissions.forEach { $0.permissionSets.append(self) }
     }
 
-    internal func willRequestPermission(_ permission: Permission) {
+    func willRequestPermission(_ permission: Permission) {
         delegate?.permissionSet(self, willRequestPermission: permission)
     }
 
-    internal func didRequestPermission(_ permission: Permission) {
+    func didRequestPermission(_ permission: Permission) {
         delegate?.permissionSet(self, didRequestPermission: permission)
     }
 }

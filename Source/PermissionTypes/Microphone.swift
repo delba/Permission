@@ -25,7 +25,7 @@
 #if PERMISSION_MICROPHONE
 import AVFoundation
 
-internal extension Permission {
+extension Permission {
     var statusMicrophone: PermissionStatus {
         let status = AVAudioSession.sharedInstance().recordPermission
 
