@@ -76,7 +76,7 @@ open class Alert {
 
     func present() {
         DispatchQueue.main.async {
-            UIApplication.shared.presentViewController(self.controller)
+            UIApplication.shared.present(self.controller)
         }
     }
 

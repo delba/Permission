@@ -33,7 +33,7 @@ extension UIApplication {
         return vc
     }
 
-    func presentViewController(_ viewController: UIViewController, animated: Bool = true, completion: (() -> Void)? = nil) {
+    func present(_ viewController: UIViewController, animated: Bool = true, completion: (() -> Void)? = nil) {
         topViewController?.present(viewController, animated: animated, completion: completion)
     }
 }
