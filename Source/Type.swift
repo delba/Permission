@@ -33,7 +33,7 @@ public enum Type {
     #endif
 
     #if PERMISSION_NOTIFICATIONS
-    case notifications(UIUserNotificationSettings)
+    case notifications(UNAuthorizationOptions)
     #endif
 
     #if PERMISSION_MICROPHONE

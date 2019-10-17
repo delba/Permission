@@ -25,35 +25,45 @@
 #if PERMISSION_NOTIFICATIONS
 extension Permission {
     var statusNotifications: Status {
-        if UIApplication.shared.currentUserNotificationSettings?.types.isEmpty == false {
-            return .authorized
+        if Defaults.requestedNotifications {
+            return synchronousStatusNotifications
         }
 
-        return Defaults.requestedNotifications ? .denied : .notDetermined
+        return .notDetermined
     }
 
     func requestNotifications(_ callback: Callback) {
-        guard case .notifications(let settings) = type else { fatalError() }
+        guard case .notifications(let options) = type else { fatalError() }
 
-        NotificationCenter.default.addObserver(self, selector: #selector(requestingNotifications), name: UIApplication.willResignActiveNotification)
+        UNUserNotificationCenter.current().requestAuthorization(options: options) { granted, error in
+            Defaults.requestedNotifications = true
 
-        UIApplication.shared.registerUserNotificationSettings(settings)
-    }
-
-    @objc func requestingNotifications() {
-        NotificationCenter.default.removeObserver(self, name: UIApplication.willResignActiveNotification)
-        NotificationCenter.default.addObserver(self, selector: #selector(finishedRequestingNotifications), name: UIApplication.didBecomeActiveNotification)
-    }
-
-    @objc func finishedRequestingNotifications() {
-        NotificationCenter.default.removeObserver(self, name: UIApplication.willResignActiveNotification)
-        NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification)
-
-        Defaults.requestedNotifications = true
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            self.callbacks(self.statusNotifications)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.callbacks(self.statusNotifications)
+            }
         }
+    }
+
+    private var synchronousStatusNotifications: Status {
+        let semaphore = DispatchSemaphore(value: 0)
+
+        var status: Status = .notDetermined
+
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            switch settings.authorizationStatus {
+            case .authorized: status = .authorized
+            case .denied: status = .denied
+            case .notDetermined: status = .notDetermined
+            case .provisional: status = .authorized
+            @unknown default: status = .notDetermined
+            }
+
+            semaphore.signal()
+        }
+
+        _ = semaphore.wait(timeout: .distantFuture)
+
+        return status
     }
 }
 #endif

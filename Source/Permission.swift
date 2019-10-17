@@ -94,33 +94,16 @@ open class Permission: NSObject {
     #if PERMISSION_NOTIFICATIONS
     /// The permission to send notifications.
     public static let notifications: Permission = {
-        let settings = UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil)
-        return Permission(type: .notifications(settings))
+        let options: UNAuthorizationOptions = [.badge, .sound, .alert]
+        return Permission(type: .notifications(options))
     }()
 
     /// Variable used to retain the notifications permission.
     private static var _notifications: Permission?
 
     /// The permission to send notifications.
-    public static func notifications(types: UIUserNotificationType, categories: Swift.Set<UIUserNotificationCategory>?) -> Permission {
-        let settings   = UIUserNotificationSettings(types: types, categories: categories)
-        let permission = Permission(type: .notifications(settings))
-        _notifications = permission
-        return permission
-    }
-
-    /// The permission to send notifications.
-    public static func notifications(types: UIUserNotificationType) -> Permission {
-        let settings   = UIUserNotificationSettings(types: types, categories: nil)
-        let permission = Permission(type: .notifications(settings))
-        _notifications = permission
-        return permission
-    }
-
-    /// The permission to send notifications.
-    public static func notifications(categories: Swift.Set<UIUserNotificationCategory>?) -> Permission {
-        let settings  = UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: categories)
-        let permission = Permission(type: .notifications(settings))
+    public static func notifications(options: UNAuthorizationOptions) -> Permission {
+        let permission = Permission(type: .notifications(options))
         _notifications = permission
         return permission
     }
