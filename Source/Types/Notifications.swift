@@ -29,7 +29,7 @@ extension Permission {
             return .authorized
         }
 
-        return UserDefaults.standard.requestedNotifications ? .denied : .notDetermined
+        return Defaults.requestedNotifications ? .denied : .notDetermined
     }
 
     func requestNotifications(_ callback: Callback) {
@@ -49,7 +49,7 @@ extension Permission {
         NotificationCenter.default.removeObserver(self, name: UIApplication.willResignActiveNotification)
         NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification)
 
-        UserDefaults.standard.requestedNotifications = true
+        Defaults.requestedNotifications = true
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             self.callbacks(self.statusNotifications)

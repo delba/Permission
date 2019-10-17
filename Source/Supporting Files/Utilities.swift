@@ -48,6 +48,46 @@ extension UIControl.State: Hashable {
     public var hashValue: Int { return Int(rawValue) }
 }
 
+@propertyWrapper
+struct UserDefault<T> {
+    let key: String
+    let defaultValue: T
+
+    init(_ key: String, defaultValue: T) {
+        self.key = key
+        self.defaultValue = defaultValue
+    }
+
+    var wrappedValue: T {
+        get {
+            return UserDefaults.standard.object(forKey: key) as? T ?? defaultValue
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: key)
+        }
+    }
+}
+
+struct Defaults {
+    @UserDefault("permission.requestedNotifications", defaultValue: false)
+    static var requestedNotifications: Bool
+
+    @UserDefault("permission.requestedLocationAlwaysWithWhenInUse", defaultValue: false)
+    static var requestedLocationAlwaysWithWhenInUse: Bool
+
+    @UserDefault("permission.requestedMotion", defaultValue: false)
+    static var requestedMotion: Bool
+
+    @UserDefault("permission.requestedBluetooth", defaultValue: false)
+    static var requestedBluetooth: Bool
+
+    @UserDefault("permission.statusBluetooth", defaultValue: nil)
+    static var statusBluetooth: Status?
+
+    @UserDefault("permission.stateBluetoothManagerDetermined", defaultValue: false)
+    static var stateBluetoothManagerDetermined: Bool
+}
+
 extension String {
     static let locationWhenInUseUsageDescription = "NSLocationWhenInUseUsageDescription"
     static let locationAlwaysUsageDescription    = "NSLocationAlwaysUsageDescription"
@@ -57,51 +97,12 @@ extension String {
     static let cameraUsageDescription            = "NSCameraUsageDescription"
     static let mediaLibraryUsageDescription      = "NSAppleMusicUsageDescription"
     static let siriUsageDescription              = "NSSiriUsageDescription"
-
-    static let requestedNotifications               = "permission.requestedNotifications"
-    static let requestedLocationAlwaysWithWhenInUse = "permission.requestedLocationAlwaysWithWhenInUse"
-    static let requestedMotion                      = "permission.requestedMotion"
-    static let requestedBluetooth                   = "permission.requestedBluetooth"
-    static let statusBluetooth                      = "permission.statusBluetooth"
-    static let stateBluetoothManagerDetermined      = "permission.stateBluetoothManagerDetermined"
 }
 
 extension Selector {
     static let tapped = #selector(Button.tapped(_:))
     static let highlight = #selector(Button.highlight(_:))
     static let settingsHandler = #selector(DeniedAlert.settingsHandler)
-}
-
-extension UserDefaults {
-    var requestedLocationAlwaysWithWhenInUse: Bool {
-        get { return bool(forKey: .requestedLocationAlwaysWithWhenInUse) }
-        set { set(newValue, forKey: .requestedLocationAlwaysWithWhenInUse) }
-    }
-
-    var requestedNotifications: Bool {
-        get { return bool(forKey: .requestedNotifications) }
-        set { set(newValue, forKey: .requestedNotifications) }
-    }
-
-    var requestedMotion: Bool {
-        get { return bool(forKey: .requestedMotion) }
-        set { set(newValue, forKey: .requestedMotion) }
-    }
-
-    var requestedBluetooth: Bool {
-        get { return bool(forKey: .requestedBluetooth) }
-        set { set(newValue, forKey: .requestedBluetooth) }
-    }
-
-    var statusBluetooth: Status? {
-        get { return Status(string: string(forKey: .statusBluetooth)) }
-        set { set(newValue?.rawValue, forKey: .statusBluetooth) }
-    }
-
-    var stateBluetoothManagerDetermined: Bool {
-        get { return bool(forKey: .stateBluetoothManagerDetermined) }
-        set { set(newValue, forKey: .stateBluetoothManagerDetermined) }
-    }
 }
 
 extension OperationQueue {

@@ -29,7 +29,7 @@ private let MotionManager = CMMotionActivityManager()
 
 extension Permission {
     var statusMotion: Status {
-        if UserDefaults.standard.requestedMotion {
+        if Defaults.requestedMotion {
             return synchronousStatusMotion
         }
 
@@ -37,7 +37,7 @@ extension Permission {
     }
 
     func requestMotion(_ callback: Callback?) {
-        UserDefaults.standard.requestedMotion = true
+        Defaults.requestedMotion = true
 
         let now = Date()
 

@@ -34,7 +34,7 @@ extension Permission {
         switch status {
         case .authorizedAlways: return .authorized
         case .authorizedWhenInUse:
-            return UserDefaults.standard.requestedLocationAlwaysWithWhenInUse ? .denied : .notDetermined
+            return Defaults.requestedLocationAlwaysWithWhenInUse ? .denied : .notDetermined
         case .notDetermined: return .notDetermined
         case .restricted, .denied: return .denied
         @unknown default: return .notDetermined
@@ -48,7 +48,7 @@ extension Permission {
         }
 
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-            UserDefaults.standard.requestedLocationAlwaysWithWhenInUse = true
+            Defaults.requestedLocationAlwaysWithWhenInUse = true
         }
 
         LocationManager.request(self)
