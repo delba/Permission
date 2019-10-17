@@ -41,7 +41,6 @@ permission.request { status in
 > [`Type.swift`](https://github.com/delba/Permission/blob/master/Source/Type.swift)
 > [`Types/`](https://github.com/delba/Permission/tree/master/Source/Types)
 
-- [`AddressBook`](https://github.com/delba/Permission/blob/master/Source/Types/AddressBook.swift) (Deprecated in iOS 9.0)
 - [`Bluetooth`](https://github.com/delba/Permission/blob/master/Source/Types/Bluetooth.swift)
 - [`Camera`](https://github.com/delba/Permission/blob/master/Source/Types/Camera.swift)
 - [`Contacts`](https://github.com/delba/Permission/blob/master/Source/Types/Contacts.swift)
@@ -236,7 +235,6 @@ you want to use, and compile the framework.
 
 To compile with only notifications and photos permissions:
 ```
-PERMISSION_ADDRESS_BOOK      = // PERMISSION_ADDRESS_BOOK
 PERMISSION_BLUETOOTH         = // PERMISSION_BLUETOOTH
 PERMISSION_CAMERA            = PERMISSION_CAMERA
 PERMISSION_CONTACTS          = // PERMISSION_CONTACTS
@@ -251,7 +249,7 @@ PERMISSION_SPEECH_RECOGNIZER = // PERMISSION_SPEECH_RECOGNIZER
 PERMISSION_MEDIA_LIBRARY     = // PERMISSION_MEDIA_LIBRARY
 
 // Do not modify this line. Instead, remove comments above as needed to enable the categories your app uses.
-PERMISSION_FLAGS= $(PERMISSION_ADDRESS_BOOK) $(PERMISSION_BLUETOOTH) $(PERMISSION_CAMERA) $(PERMISSION_CONTACTS) $(PERMISSION_EVENTS) $(PERMISSION_LOCATION) $(PERMISSION_MICROPHONE) $(PERMISSION_MOTION) $(PERMISSION_NOTIFICATIONS) $(PERMISSION_PHOTOS) $(PERMISSION_REMINDERS) $(PERMISSION_SPEECH_RECOGNIZER) $(PERMISSION_MEDIA_LIBRARY)
+PERMISSION_FLAGS= $(PERMISSION_BLUETOOTH) $(PERMISSION_CAMERA) $(PERMISSION_CONTACTS) $(PERMISSION_EVENTS) $(PERMISSION_LOCATION) $(PERMISSION_MICROPHONE) $(PERMISSION_MOTION) $(PERMISSION_NOTIFICATIONS) $(PERMISSION_PHOTOS) $(PERMISSION_REMINDERS) $(PERMISSION_SPEECH_RECOGNIZER) $(PERMISSION_MEDIA_LIBRARY)
 
 SWIFT_ACTIVE_COMPILATION_CONDITIONS = $(inherited) $(PERMISSION_FLAGS)
 ```
