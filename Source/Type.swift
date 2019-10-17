@@ -24,11 +24,7 @@
 
 public enum Type {
     #if PERMISSION_CONTACTS
-    @available(iOS 9.0, *) case contacts
-    #endif
-
-    #if PERMISSION_ADDRESS_BOOK
-    case addressBook // Deprecated in iOS 9.0
+    case contacts
     #endif
 
     #if PERMISSION_LOCATION
@@ -86,10 +82,6 @@ extension Type: CustomStringConvertible {
         switch self {
         #if PERMISSION_CONTACTS
         case .contacts: return "Contacts"
-        #endif
-
-        #if PERMISSION_ADDRESS_BOOK
-        case .addressBook: return "Address Book"
         #endif
 
         #if PERMISSION_LOCATION

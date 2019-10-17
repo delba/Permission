@@ -27,13 +27,7 @@ open class Permission: NSObject {
 
     #if PERMISSION_CONTACTS
     /// The permission to access the user's contacts.
-    @available(iOS 9.0, *)
     public static let contacts = Permission(type: .contacts)
-    #endif
-
-    #if PERMISSION_ADDRESS_BOOK
-    /// The permission to access the user's address book. (Deprecated in iOS 9.0)
-    public static let addressBook = Permission(type: .addressBook)
     #endif
 
     #if PERMISSION_LOCATION
@@ -140,10 +134,6 @@ open class Permission: NSObject {
         switch type {
         #if PERMISSION_CONTACTS
         case .contacts: return statusContacts
-        #endif
-
-        #if PERMISSION_ADDRESS_BOOK
-        case .addressBook: return statusAddressBook
         #endif
 
         #if PERMISSION_LOCATION
@@ -262,10 +252,6 @@ open class Permission: NSObject {
         switch type {
         #if PERMISSION_CONTACTS
         case .contacts: requestContacts(callback)
-        #endif
-
-        #if PERMISSION_ADDRESS_BOOK
-        case .addressBook: requestAddressBook(callback)
         #endif
 
         #if PERMISSION_LOCATION

@@ -19,11 +19,6 @@ Pod::Spec.new do |s|
     co.source_files = 'Source/**/*.{swift, h}'
   end
 
-  s.subspec 'AddressBook' do |ab|
-    ab.dependency 'Permission/Core'
-    ab.pod_target_xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS'  => 'PERMISSION_ADDRESS_BOOK' }
-  end
-
   s.subspec 'Bluetooth' do |bl|
     bl.dependency 'Permission/Core'
     bl.pod_target_xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS'  => 'PERMISSION_BLUETOOTH' }
