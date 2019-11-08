@@ -1,4 +1,4 @@
-language: objective-c
+language: swift
 
 branches:
   only:
@@ -7,7 +7,6 @@ branches:
 xcode_project: Permission.xcodeproj
 xcode_scheme: PermissionTests
 osx_image: xcode11.2
-xcode_sdk: iphonesimulator12.4
 
 script:
   - xcodebuild test -project Permission.xcodeproj -scheme PermissionTests -destination "platform=iOS Simulator,name=iPhone 11"
