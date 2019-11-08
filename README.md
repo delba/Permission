@@ -19,12 +19,12 @@
 #### Permission
 
 > [`Permission.swift`](https://github.com/delba/Permission/blob/master/Source/Permission.swift)
-> [`Status.swift`](https://github.com/delba/Permission/blob/master/Source/Status.swift)
+> [`PermissionStatus.swift`](https://github.com/delba/Permission/blob/master/Source/PermissionStatus.swift)
 
 ```swift
 let permission: Permission = .contacts
 
-print(permission.status) // Permission.Status.notDetermined
+print(permission.status) // .notDetermined
 
 permission.request { status in
     switch status {
@@ -38,7 +38,7 @@ permission.request { status in
 
 ##### Supported Permissions
 
-> [`Type.swift`](https://github.com/delba/Permission/blob/master/Source/Type.swift)
+> [`PermissionType.swift`](https://github.com/delba/Permission/blob/master/Source/PermissionType.swift)
 > [`Types/`](https://github.com/delba/Permission/tree/master/Source/Types)
 
 - [`Bluetooth`](https://github.com/delba/Permission/blob/master/Source/Types/Bluetooth.swift)
@@ -58,12 +58,12 @@ permission.request { status in
 
 #### PermissionAlert
 
-> [`Alert.swift`](https://github.com/delba/Permission/blob/master/Source/Alert.swift)
+> [`PermissionAlert.swift`](https://github.com/delba/Permission/blob/master/Source/PermissionAlert.swift)
 
 ##### Denied and disabled alerts
 
 When you first request a permission, a system alert is presented to the user.
-If you request a permission that was denied/disabled, a `Permission.Alert` will be presented.
+If you request a permission that was denied/disabled, a `PermissionAlert` will be presented.
 You might want to change the default `title`, `message`, `cancel` and `settings` text:
 
 ```swift
@@ -96,23 +96,23 @@ The system alert will only be presented if the user taps "Give Access".
 
 #### PermissionSet
 
-> [`Set.swift`](https://github.com/delba/Permission/blob/master/Source/Set.swift)
+> [`PermissionSet.swift`](https://github.com/delba/Permission/blob/master/Source/PermissionSet.swift)
 
-Use a `Permission.Set` to check the status of a group of `Permission` and to react when a permission is requested.
+Use a `PermissionSet` to check the status of a group of `Permission` and to react when a permission is requested.
 
 ```swift
-let permissionSet = Permission.Set(.contacts, .camera, .microphone, .photos)
+let permissionSet = PermissionSet(.contacts, .camera, .microphone, .photos)
 permissionSet.delegate = self
 
-print(permissionSet.status) // Status.notDetermined
+print(permissionSet.status) // .notDetermined
 
 // ...
 
-func permissionSet(permissionSet: Permission.Set, willRequestPermission permission: Permission) {
+func permissionSet(permissionSet: PermissionSet, willRequestPermission permission: Permission) {
     print("Will request \(permission)")
 }
 
-func permissionSet(permissionSet: Permission.Set, didRequestPermission permission: Permission) {
+func permissionSet(permissionSet: PermissionSet, didRequestPermission permission: Permission) {
     switch permissionSet.status {
     case .authorized:    print("all the permissions are granted")
     case .denied:        print("at least one permission is denied")
@@ -124,15 +124,15 @@ func permissionSet(permissionSet: Permission.Set, didRequestPermission permissio
 
 #### PermissionButton
 
-> [`Button`](https://github.com/delba/Permission/blob/master/Source/Button.swift)
+> [`PermissionButton`](https://github.com/delba/Permission/blob/master/Source/PermissionButton.swift)
 
-A `Permission.Button` requests the permission when tapped and updates itself when its underlying permission status changes.
+A `PermissionButton` requests the permission when tapped and updates itself when its underlying permission status changes.
 
 ```swift
-let button = Permission.Button(.photos)
+let button = PermissionButton(.photos)
 ```
 
-`Permission.Button` is a subclass of `UIButton`. All the getters and setters of `UIButton` have their equivalent in `Permission.Button`.
+`PermissionButton` is a subclass of `UIButton`. All the getters and setters of `UIButton` have their equivalent in `PermissionButton`.
 
 ```swift
 button.setTitles([
@@ -164,10 +164,10 @@ class PermissionsViewController: UIViewController, PermissionSetDelegate {
 
         let label = UILabel()
 
-        let contacts   = Permission.Button(.contacts)
-        let camera     = Permission.Button(.camera)
-        let microphone = Permission.Button(.microphone)
-        let photos     = Permission.Button(.photos)
+        let contacts   = PermissionButton(.contacts)
+        let camera     = PermissionButton(.camera)
+        let microphone = PermissionButton(.microphone)
+        let photos     = PermissionButton(.photos)
 
         contacts.setTitles([
             .notDetermined: "Contacts - NotDetermined"
@@ -183,7 +183,7 @@ class PermissionsViewController: UIViewController, PermissionSetDelegate {
 
         // ...
 
-        let permissionSet = Permission.Set(contacts, camera, microphone, photos)
+        let permissionSet = PermissionSet(contacts, camera, microphone, photos)
 
         permissionSet.delegate = self
 
@@ -194,7 +194,7 @@ class PermissionsViewController: UIViewController, PermissionSetDelegate {
         }
     }
 
-    func permissionSet(permissionSet: Permission.Set, didRequestPermission permission: Permission) {
+    func permissionSet(permissionSet: PermissionSet, didRequestPermission permission: Permission) {
         label.text = String(permissionSet.status)
     }
 }

@@ -32,7 +32,7 @@ let BluetoothManager = CBPeripheralManager(
 )
 
 extension Permission {
-    var statusBluetooth: Status {
+    var statusBluetooth: PermissionStatus {
         switch CBPeripheralManager.authorizationStatus() {
         case .restricted:                 return .disabled
         case .denied:                     return .denied

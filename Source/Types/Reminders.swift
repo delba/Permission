@@ -26,7 +26,7 @@
 import EventKit
 
 extension Permission {
-    var statusReminders: Status {
+    var statusReminders: PermissionStatus {
         let status = EKEventStore.authorizationStatus(for: .reminder)
 
         switch status {

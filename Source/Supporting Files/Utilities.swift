@@ -82,7 +82,7 @@ struct Defaults {
     static var requestedBluetooth: Bool
 
     @UserDefault("permission.statusBluetooth", defaultValue: nil)
-    static var statusBluetooth: Status?
+    static var statusBluetooth: PermissionStatus?
 
     @UserDefault("permission.stateBluetoothManagerDetermined", defaultValue: false)
     static var stateBluetoothManagerDetermined: Bool
@@ -100,8 +100,8 @@ extension String {
 }
 
 extension Selector {
-    static let tapped = #selector(Button.tapped(_:))
-    static let highlight = #selector(Button.highlight(_:))
+    static let tapped = #selector(PermissionButton.tapped(_:))
+    static let highlight = #selector(PermissionButton.highlight(_:))
     static let settingsHandler = #selector(DeniedAlert.settingsHandler)
 }
 

@@ -1,5 +1,5 @@
 //
-// Status.swift
+// PermissionStatus.swift
 //
 // Copyright (c) 2015-2019 Damien (http://delba.io)
 //
@@ -22,7 +22,7 @@
 // SOFTWARE.
 //
 
-public enum Status: String {
+public enum PermissionStatus: String {
     case authorized    = "Authorized"
     case denied        = "Denied"
     case disabled      = "Disabled"
@@ -34,7 +34,7 @@ public enum Status: String {
     }
 }
 
-extension Status: CustomStringConvertible {
+extension PermissionStatus: CustomStringConvertible {
     /// The textual representation of self.
     public var description: String {
         return rawValue

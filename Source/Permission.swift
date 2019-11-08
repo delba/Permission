@@ -23,7 +23,7 @@
 //
 
 open class Permission: NSObject {
-    public typealias Callback = (Status) -> Void
+    public typealias Callback = (PermissionStatus) -> Void
 
     #if PERMISSION_CONTACTS
     /// The permission to access the user's contacts.
@@ -110,10 +110,10 @@ open class Permission: NSObject {
     #endif
 
     /// The permission domain.
-    public let type: Type
+    public let type: PermissionType
 
     /// The permission status.
-    open var status: Status {
+    open var status: PermissionStatus {
         switch type {
         #if PERMISSION_CONTACTS
         case .contacts: return statusContacts
@@ -174,7 +174,7 @@ open class Permission: NSObject {
     open var presentPrePermissionAlert = false
 
     /// The pre-permission alert.
-    open lazy var prePermissionAlert: Alert = {
+    open lazy var prePermissionAlert: PermissionAlert = {
         return PrePermissionAlert(permission: self)
     }()
 
@@ -182,7 +182,7 @@ open class Permission: NSObject {
     open var presentDeniedAlert = true
 
     /// The alert when the permission was denied.
-    open lazy var deniedAlert: Alert = {
+    open lazy var deniedAlert: PermissionAlert = {
         return DeniedAlert(permission: self)
     }()
 
@@ -190,13 +190,13 @@ open class Permission: NSObject {
     open var presentDisabledAlert = true
 
     /// The alert when the permission is disabled.
-    open lazy var disabledAlert: Alert = {
+    open lazy var disabledAlert: PermissionAlert = {
         return DisabledAlert(permission: self)
     }()
 
     var callback: Callback?
 
-    var permissionSets: [Set] = []
+    var permissionSets: [PermissionSet] = []
 
     /**
      Creates and return a new permission for the specified type.
@@ -205,7 +205,7 @@ open class Permission: NSObject {
      
      - returns: A newly created permission.
      */
-    private init(type: Type) {
+    private init(type: PermissionType) {
         self.type = type
     }
 
@@ -288,7 +288,7 @@ open class Permission: NSObject {
         }
     }
 
-    func callbacks(_ with: Status) {
+    func callbacks(_ with: PermissionStatus) {
         DispatchQueue.main.async {
             self.callback?(self.status)
             self.permissionSets.forEach { $0.didRequestPermission(self) }

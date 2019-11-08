@@ -1,5 +1,5 @@
 //
-// Set.swift
+// PermissionSet.swift
 //
 // Copyright (c) 2015-2019 Damien (http://delba.io)
 //
@@ -22,7 +22,7 @@
 // SOFTWARE.
 //
 
-open class Set {
+open class PermissionSet {
 
     /// The permissions in the set.
     public let permissions: Swift.Set<Permission>
@@ -31,7 +31,7 @@ open class Set {
     open weak var delegate: PermissionSetDelegate?
 
     /// The permission set status
-    open var status: Status {
+    open var status: PermissionStatus {
         let statuses = permissions.map({ $0.status })
 
         for status in statuses where status == .denied {
@@ -56,7 +56,7 @@ open class Set {
      
      - returns: A newly created set.
      */
-    public convenience init(_ buttons: Button...) {
+    public convenience init(_ buttons: PermissionButton...) {
         self.init(buttons: buttons)
     }
 
@@ -67,7 +67,7 @@ open class Set {
      
      - returns: A newly created set.
      */
-    public convenience init(_ buttons: [Button]) {
+    public convenience init(_ buttons: [PermissionButton]) {
         self.init(buttons: buttons)
     }
 
@@ -93,7 +93,7 @@ open class Set {
         self.init(permissions: permissions)
     }
 
-    private convenience init(buttons: [Button]) {
+    private convenience init(buttons: [PermissionButton]) {
         let permissions = buttons.map({ $0.permission })
 
         self.init(permissions: permissions)
@@ -113,7 +113,7 @@ open class Set {
     }
 }
 
-extension Set: CustomStringConvertible {
+extension PermissionSet: CustomStringConvertible {
     /// The textual representation of self.
     public var description: String {
         return [
@@ -131,7 +131,7 @@ public protocol PermissionSetDelegate: class {
      - parameter permissionSet: The permission set containing the requested permission.
      - parameter permission:    The requested permission.
      */
-    func permissionSet(_ permissionSet: Set, didRequestPermission permission: Permission)
+    func permissionSet(_ permissionSet: PermissionSet, didRequestPermission permission: Permission)
 
     /**
      Tells the delegate that the specified permission will be requested.
@@ -139,7 +139,7 @@ public protocol PermissionSetDelegate: class {
      - parameter permissionSet: The permission set containing the requested permission.
      - parameter permission:    The requested permission.
      */
-    func permissionSet(_ permissionSet: Set, willRequestPermission permission: Permission)
+    func permissionSet(_ permissionSet: PermissionSet, willRequestPermission permission: Permission)
 }
 
 public extension PermissionSetDelegate {
@@ -149,7 +149,7 @@ public extension PermissionSetDelegate {
      - parameter permissionSet: The permission set containing the requested permission.
      - parameter permission:    The requested permission.
      */
-    func permissionSet(_ permissionSet: Set, didRequestPermission permission: Permission) {}
+    func permissionSet(_ permissionSet: PermissionSet, didRequestPermission permission: Permission) {}
 
     /**
      Tells the delegate that the specified permission will be requested.
@@ -157,5 +157,5 @@ public extension PermissionSetDelegate {
      - parameter permissionSet: The permission set containing the requested permission.
      - parameter permission:    The requested permission.
      */
-    func permissionSet(_ permissionSet: Set, willRequestPermission permission: Permission) {}
+    func permissionSet(_ permissionSet: PermissionSet, willRequestPermission permission: Permission) {}
 }

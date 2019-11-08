@@ -26,7 +26,7 @@
 import Photos
 
 extension Permission {
-    var statusPhotos: Status {
+    var statusPhotos: PermissionStatus {
         let status = PHPhotoLibrary.authorizationStatus()
 
         switch status {

@@ -23,8 +23,10 @@
 //
 
 #if PERMISSION_NOTIFICATIONS
+import UserNotifications
+
 extension Permission {
-    var statusNotifications: Status {
+    var statusNotifications: PermissionStatus {
         if Defaults.requestedNotifications {
             return synchronousStatusNotifications
         }
@@ -44,10 +46,10 @@ extension Permission {
         }
     }
 
-    private var synchronousStatusNotifications: Status {
+    private var synchronousStatusNotifications: PermissionStatus {
         let semaphore = DispatchSemaphore(value: 0)
 
-        var status: Status = .notDetermined
+        var status: PermissionStatus = .notDetermined
 
         UNUserNotificationCenter.current().getNotificationSettings { settings in
             switch settings.authorizationStatus {

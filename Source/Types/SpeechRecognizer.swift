@@ -26,7 +26,7 @@
 import Speech
 
 extension Permission {
-    var statusSpeechRecognizer: Status {
+    var statusSpeechRecognizer: PermissionStatus {
         guard #available(iOS 10.0, *) else { fatalError() }
 
         let status = SFSpeechRecognizer.authorizationStatus()

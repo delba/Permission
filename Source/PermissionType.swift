@@ -1,5 +1,5 @@
 //
-// Type.swift
+// PermissionType.swift
 //
 // Copyright (c) 2015-2019 Damien (http://delba.io)
 //
@@ -22,7 +22,7 @@
 // SOFTWARE.
 //
 
-public enum Type {
+public enum PermissionType {
     #if PERMISSION_CONTACTS
     case contacts
     #endif
@@ -77,7 +77,7 @@ public enum Type {
     #endif
 }
 
-extension Type: CustomStringConvertible {
+extension PermissionType: CustomStringConvertible {
     public var description: String {
         switch self {
         #if PERMISSION_CONTACTS

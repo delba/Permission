@@ -26,7 +26,7 @@
 import Intents
 
 extension Permission {
-    var statusSiri: Status {
+    var statusSiri: PermissionStatus {
         guard #available(iOS 10.0, *) else { fatalError() }
 
         let status = INPreferences.siriAuthorizationStatus()

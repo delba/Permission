@@ -26,7 +26,7 @@
 import Contacts
 
 extension Permission {
-    var statusContacts: Status {
+    var statusContacts: PermissionStatus {
         guard #available(iOS 9.0, *) else { fatalError() }
 
         let status = CNContactStore.authorizationStatus(for: .contacts)
