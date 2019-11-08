@@ -167,6 +167,8 @@ open class Permission: NSObject {
         #if PERMISSION_SIRI
         case .siri: return statusSiri
         #endif
+
+        case .never: fatalError()
         }
     }
 
@@ -285,6 +287,8 @@ open class Permission: NSObject {
         #if PERMISSION_SIRI
         case .siri: requestSiri(callback)
         #endif
+
+        case .never: fatalError()
         }
     }
 
