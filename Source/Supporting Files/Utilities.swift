@@ -24,7 +24,7 @@
 
 extension UIApplication {
     private var topViewController: UIViewController? {
-        var vc = delegate?.window??.rootViewController
+        var vc = keyWindow?.rootViewController
 
         while let presentedVC = vc?.presentedViewController {
             vc = presentedVC
