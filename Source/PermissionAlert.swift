@@ -22,7 +22,25 @@
 // SOFTWARE.
 //
 
-open class PermissionAlert {
+public struct PermissionAlertConfig {
+    var title: String
+    var message: String
+    var name: String
+    var cancel: String?
+    var settings: String?
+    var confirm: String?
+
+    public init(title: String, message: String, name: String, cancel: String? = nil, settings: String? = nil, confirm: String? = nil) {
+        self.title = title
+        self.message = message
+        self.name = name
+        self.cancel = cancel
+        self.settings = settings
+        self.confirm = confirm
+    }
+}
+
+public class PermissionAlert {
     /// The permission.
     fileprivate let permission: Permission
 
@@ -61,6 +79,8 @@ open class PermissionAlert {
     fileprivate var cancelActionTitle: String?
     fileprivate var defaultActionTitle: String?
 
+    var config: PermissionAlertConfig
+
     var controller: UIAlertController {
         let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
 
@@ -70,8 +90,9 @@ open class PermissionAlert {
         return controller
     }
 
-    init(permission: Permission) {
+    public init(permission: Permission, config: PermissionAlertConfig? = nil) {
         self.permission = permission
+        self.config = config ?? PermissionAlertConfig(title: "", message: "", name: permission.description)
     }
 
     func present() {
@@ -85,17 +106,34 @@ open class PermissionAlert {
     }
 }
 
-class DisabledAlert: PermissionAlert {
-    override init(permission: Permission) {
-        super.init(permission: permission)
+/// DisabledAlert
+/// config:
+///         - title
+///         - message
+///         - cancel
+public class DisabledAlert: PermissionAlert {
+    override public init(permission: Permission, config: PermissionAlertConfig? = nil) {
+        super.init(permission: permission, config: config)
 
-        title   = "\(permission) is currently disabled"
-        message = "Please enable access to \(permission) in the Settings app."
-        cancel  = "OK"
+        self.config = config ?? PermissionAlertConfig(
+            title: "%@ is currently disabled",
+            message: "Please enable access to %@ in the Settings app.",
+            name: permission.description,
+            cancel: "OK")
+
+        title   = String.init(format: self.config.title, self.config.name)
+        message = String.init(format: self.config.message, self.config.name)
+        cancel  = self.config.cancel
     }
 }
 
-class DeniedAlert: PermissionAlert {
+/// DeniedAlert
+/// config:
+///         - title
+///         - message
+///         - cancel
+///         - settings
+public class DeniedAlert: PermissionAlert {
     override var controller: UIAlertController {
         let controller = super.controller
 
@@ -109,13 +147,20 @@ class DeniedAlert: PermissionAlert {
         return controller
     }
 
-    override init(permission: Permission) {
-        super.init(permission: permission)
+    override public init(permission: Permission, config: PermissionAlertConfig? = nil) {
+        super.init(permission: permission, config: config)
 
-        title    = "Permission for \(permission) was denied"
-        message  = "Please enable access to \(permission) in the Settings app."
-        cancel   = "Cancel"
-        settings = "Settings"
+        self.config = config ?? PermissionAlertConfig(
+            title: "Permission for %@ was denied",
+            message: "Please enable access to %@ in the Settings app.",
+            name: permission.description,
+            cancel: "Cancel",
+            settings: "Settings")
+
+        title    = String.init(format: self.config.title, self.config.name)
+        message  = String.init(format: self.config.message,  self.config.name)
+        cancel   = self.config.cancel
+        settings = self.config.settings
     }
 
     @objc func settingsHandler() {
@@ -132,7 +177,13 @@ class DeniedAlert: PermissionAlert {
     }
 }
 
-class PrePermissionAlert: PermissionAlert {
+/// PrePermissionAlert
+/// config:
+///         - title
+///         - message
+///         - cancel
+///         - confirm
+public class PrePermissionAlert: PermissionAlert {
     override var controller: UIAlertController {
         let controller = super.controller
 
@@ -146,13 +197,20 @@ class PrePermissionAlert: PermissionAlert {
         return controller
     }
 
-    override init(permission: Permission) {
-        super.init(permission: permission)
+    override public init(permission: Permission, config: PermissionAlertConfig? = nil) {
+        super.init(permission: permission, config: config)
 
-        title   = "\(Bundle.main.name) would like to access your \(permission)"
-        message = "Please enable access to \(permission)."
-        cancel  = "Cancel"
-        confirm = "Confirm"
+        self.config = config ?? PermissionAlertConfig(
+            title: "%@ would like to access your %@",
+            message: "Please enable access to %@.",
+            name: permission.description,
+            cancel: "Cancel",
+            confirm: "Confirm")
+
+        title   = String.init(format: self.config.title, Bundle.main.name, self.config.name)
+        message = String.init(format: self.config.message, self.config.name)
+        cancel  = self.config.cancel
+        confirm = self.config.confirm
     }
 
     private func confirmHandler(_ action: UIAlertAction) {
