@@ -22,6 +22,10 @@
 // SOFTWARE.
 //
 
+#if canImport(UIKit)
+import UIKit
+#endif
+
 extension UIApplication {
     private var topViewController: UIViewController? {
         var vc = keyWindow?.rootViewController
