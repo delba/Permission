@@ -49,7 +49,7 @@ extension UIControl.State: Hashable {
 }
 
 @propertyWrapper
-struct UserDefault<T> {
+struct UserDefault<T: Codable> {
     let key: String
     let defaultValue: T
 
@@ -60,10 +60,17 @@ struct UserDefault<T> {
 
     var wrappedValue: T {
         get {
-            return UserDefaults.standard.object(forKey: key) as? T ?? defaultValue
+            if let data = UserDefaults.standard.object(forKey: key) as? Data,
+                let user = try? JSONDecoder().decode(T.self, from: data) {
+                return user
+
+            }
+            return  defaultValue
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: key)
+            if let encoded = try? JSONEncoder().encode(newValue) {
+                UserDefaults.standard.set(encoded, forKey: key)
+            }
         }
     }
 }

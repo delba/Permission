@@ -22,7 +22,7 @@
 // SOFTWARE.
 //
 
-public enum PermissionStatus: String {
+public enum PermissionStatus: String, Codable {
     case authorized    = "Authorized"
     case denied        = "Denied"
     case disabled      = "Disabled"
