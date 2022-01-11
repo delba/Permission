@@ -97,6 +97,8 @@ extension String {
     static let cameraUsageDescription            = "NSCameraUsageDescription"
     static let mediaLibraryUsageDescription      = "NSAppleMusicUsageDescription"
     static let siriUsageDescription              = "NSSiriUsageDescription"
+    static let calendarsUsageDescription         = "NSCalendarsUsageDescription"
+    static let userTrackingUsageDescription      = "NSUserTrackingUsageDescription"
 }
 
 extension Selector {

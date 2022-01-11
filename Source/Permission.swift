@@ -36,6 +36,11 @@ open class Permission: NSObject {
 
     /// The permission to access the user's location when the app is in use.
     public static let locationWhenInUse = Permission(type: .locationWhenInUse)
+
+    public static let locationAlwaysPrecise = Permission(type: .locationAlwaysPrecise)
+
+    public static let locationWhenInUsePrecise = Permission(type: .locationWhenInUsePrecise)
+
     #endif
 
     #if PERMISSION_MICROPHONE
@@ -109,6 +114,15 @@ open class Permission: NSObject {
     }
     #endif
 
+    #if PERMISSION_CALENDAR
+    public static let calendar = Permission(type: .calendar)
+    #endif
+
+    #if PERMISSION_TRACKING
+    @available(iOS 14.5, *)
+    public static let tracking = Permission(type: .tracking)
+    #endif
+
     /// The permission domain.
     public let type: PermissionType
 
@@ -122,6 +136,8 @@ open class Permission: NSObject {
         #if PERMISSION_LOCATION
         case .locationAlways: return statusLocationAlways
         case .locationWhenInUse: return statusLocationWhenInUse
+        case .locationAlwaysPrecise: return statusLocationAlwaysPrecise
+        case .locationWhenInUsePrecise: return statusLocationWhenInUsePrecise
         #endif
 
         #if PERMISSION_NOTIFICATIONS
@@ -166,6 +182,14 @@ open class Permission: NSObject {
 
         #if PERMISSION_SIRI
         case .siri: return statusSiri
+        #endif
+
+        #if PERMISSION_CALENDAR
+        case .calendar: return statusCalendar
+        #endif
+
+        #if PERMISSION_TRACKING
+        case .tracking: return statusTracking
         #endif
 
         case .never: fatalError()
@@ -242,6 +266,8 @@ open class Permission: NSObject {
         #if PERMISSION_LOCATION
         case .locationAlways: requestLocationAlways(callback)
         case .locationWhenInUse: requestLocationWhenInUse(callback)
+        case .locationAlwaysPrecise: break
+        case .locationWhenInUsePrecise: break
         #endif
 
         #if PERMISSION_NOTIFICATIONS
@@ -286,6 +312,14 @@ open class Permission: NSObject {
 
         #if PERMISSION_SIRI
         case .siri: requestSiri(callback)
+        #endif
+
+        #if PERMISSION_CALENDAR
+        case .calendar: requestCalendar(callback)
+        #endif
+
+        #if PERMISSION_TRACKING
+        case .tracking: requestTracking(callback)
         #endif
 
         case .never: fatalError()
