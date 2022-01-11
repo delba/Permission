@@ -29,7 +29,14 @@ extension Permission {
     var statusLocationWhenInUse: PermissionStatus {
         guard CLLocationManager.locationServicesEnabled() else { return .disabled }
 
-        let status = CLLocationManager.authorizationStatus()
+        let status: CLAuthorizationStatus = {
+            let locationManager = CLLocationManager()
+            if #available(iOS 14.0, *) {
+                return locationManager.authorizationStatus
+            } else {
+                return CLLocationManager.authorizationStatus()
+            }
+        }()
 
         switch status {
         case .authorizedWhenInUse, .authorizedAlways: return .authorized

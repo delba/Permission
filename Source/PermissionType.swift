@@ -30,6 +30,8 @@ public enum PermissionType {
     #if PERMISSION_LOCATION
     case locationAlways
     case locationWhenInUse
+    case locationAlwaysPrecise
+    case locationWhenInUsePrecise
     #endif
 
     #if PERMISSION_NOTIFICATIONS
@@ -76,6 +78,22 @@ public enum PermissionType {
     @available(iOS 10.0, *) case siri
     #endif
 
+    #if PERMISSION_TRACKING
+    @available(iOS 14.5, *) case tracking
+    #endif
+
+    #if PERMISSION_CALENDAR
+    case calendar
+    #endif
+//
+//    #if PERMISSION_FACEID
+//    case faceID
+//    #endif
+//
+//    #if PERMISSION_HEALTH
+//    case health
+//    #endif
+
     case never
 }
 
@@ -89,6 +107,8 @@ extension PermissionType: CustomStringConvertible {
         #if PERMISSION_LOCATION
         case .locationAlways: return "Location"
         case .locationWhenInUse: return "Location"
+        case .locationAlwaysPrecise: return "Location"
+        case .locationWhenInUsePrecise: return "Location"
         #endif
 
         #if PERMISSION_NOTIFICATIONS
@@ -134,6 +154,22 @@ extension PermissionType: CustomStringConvertible {
         #if PERMISSION_MEDIA_LIBRARY
         case .mediaLibrary: return "Media Library"
         #endif
+
+        #if PERMISSION_TRACKING
+        case .tracking: return "Tracking"
+        #endif
+
+        #if PERMISSION_CALENDAR
+        case .calendar: return "Calendar"
+        #endif
+//
+//        #if PERMISSION_FACEID
+//        case .faceID: return "FaceID"
+//        #endif
+//
+//        #if PERMISSION_HEALTH
+//        case .health: return "Health"
+//        #endif
 
         case .never: fatalError()
         }
