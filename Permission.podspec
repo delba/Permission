@@ -84,4 +84,15 @@ Pod::Spec.new do |s|
     ab.dependency 'Permission/Core'
     ab.pod_target_xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS'  => 'PERMISSION_SIRI' }
   end
+
+  s.subspec 'Tracking' do |tr|
+    tr.dependency 'Permission/Core'
+    tr.pod_target_xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS'  => 'PERMISSION_TRACKING' }
+  end
+
+  s.subspec 'Calendar' do |ca|
+    ca.dependency 'Permission/Core'
+    ca.pod_target_xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS'  => 'PERMISSION_CALENDAR' }
+  end
+
 end
