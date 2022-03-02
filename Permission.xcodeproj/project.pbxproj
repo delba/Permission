@@ -32,6 +32,7 @@
 		6DF9C2C61C8F5B4C000710C1 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF9C2C51C8F5B4C000710C1 /* Location.swift */; };
 		84742782230896D2007A7922 /* PermissionSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84742781230896D2007A7922 /* PermissionSet.swift */; };
 		8474278423089751007A7922 /* PermissionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8474278323089751007A7922 /* PermissionType.swift */; };
+		CA2F2F0327CF1E1200808CF6 /* AppTrackingTransparency.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2F2F0227CF1E1200808CF6 /* AppTrackingTransparency.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		6DF9C2C51C8F5B4C000710C1 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		84742781230896D2007A7922 /* PermissionSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionSet.swift; sourceTree = "<group>"; };
 		8474278323089751007A7922 /* PermissionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionType.swift; sourceTree = "<group>"; };
+		CA2F2F0227CF1E1200808CF6 /* AppTrackingTransparency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTrackingTransparency.swift; sourceTree = "<group>"; };
 		D08FF2891DC3AD2900F28088 /* PermissionFlags.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = PermissionFlags.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -155,6 +157,7 @@
 				6DF9C2B51C8F4F69000710C1 /* Reminders.swift */,
 				3F21DC7C1E30B6DB00B3EF65 /* Siri.swift */,
 				3D42A7DA1D5F66B300236ABA /* SpeechRecognizer.swift */,
+				CA2F2F0227CF1E1200808CF6 /* AppTrackingTransparency.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -235,7 +238,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0710;
-				LastUpgradeCheck = 1030;
+				LastUpgradeCheck = 1320;
 				ORGANIZATIONNAME = delba;
 				TargetAttributes = {
 					6D86A9B11BEBDC7C00E3DD5A = {
@@ -291,6 +294,7 @@
 			files = (
 				6D491E781C9CA90B00611006 /* PermissionStatus.swift in Sources */,
 				6D935F5F1C9A14AB00BB39E3 /* Motion.swift in Sources */,
+				CA2F2F0327CF1E1200808CF6 /* AppTrackingTransparency.swift in Sources */,
 				6D935F5D1C9A0FEA00BB39E3 /* Bluetooth.swift in Sources */,
 				6DF9C2B81C8F4F8F000710C1 /* Notifications.swift in Sources */,
 				6DF9C2B41C8F4F54000710C1 /* LocationWhenInUse.swift in Sources */,
@@ -357,6 +361,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -419,6 +424,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;

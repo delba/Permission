@@ -84,4 +84,9 @@ Pod::Spec.new do |s|
     ab.dependency 'Permission/Core'
     ab.pod_target_xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS'  => 'PERMISSION_SIRI' }
   end
+
+  s.subspec 'AppTrackingTransparency' do |ab|
+    ab.dependency 'Permission/Core'
+    ab.pod_target_xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS'  => 'PERMISSION_APP_TRACKING_TRANSPARENCY' }
+  end
 end

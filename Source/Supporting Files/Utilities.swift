@@ -89,14 +89,15 @@ struct Defaults {
 }
 
 extension String {
-    static let locationWhenInUseUsageDescription = "NSLocationWhenInUseUsageDescription"
-    static let locationAlwaysUsageDescription    = "NSLocationAlwaysUsageDescription"
-    static let microphoneUsageDescription        = "NSMicrophoneUsageDescription"
-    static let speechRecognitionUsageDescription = "NSSpeechRecognitionUsageDescription"
-    static let photoLibraryUsageDescription      = "NSPhotoLibraryUsageDescription"
-    static let cameraUsageDescription            = "NSCameraUsageDescription"
-    static let mediaLibraryUsageDescription      = "NSAppleMusicUsageDescription"
-    static let siriUsageDescription              = "NSSiriUsageDescription"
+    static let locationWhenInUseUsageDescription       = "NSLocationWhenInUseUsageDescription"
+    static let locationAlwaysUsageDescription          = "NSLocationAlwaysUsageDescription"
+    static let microphoneUsageDescription              = "NSMicrophoneUsageDescription"
+    static let speechRecognitionUsageDescription       = "NSSpeechRecognitionUsageDescription"
+    static let photoLibraryUsageDescription            = "NSPhotoLibraryUsageDescription"
+    static let cameraUsageDescription                  = "NSCameraUsageDescription"
+    static let mediaLibraryUsageDescription            = "NSAppleMusicUsageDescription"
+    static let siriUsageDescription                    = "NSSiriUsageDescription"
+    static let appTrackingTransparencyUsageDescription = "NSUserTrackingUsageDescription"
 }
 
 extension Selector {

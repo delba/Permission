@@ -53,7 +53,7 @@ extension Permission {
 
         UNUserNotificationCenter.current().getNotificationSettings { settings in
             switch settings.authorizationStatus {
-            case .authorized: status = .authorized
+            case .authorized, .ephemeral: status = .authorized
             case .denied: status = .denied
             case .notDetermined: status = .notDetermined
             case .provisional: status = .authorized

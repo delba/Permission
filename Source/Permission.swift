@@ -91,6 +91,12 @@ open class Permission: NSObject {
     public static let siri = Permission(type: .siri)
     #endif
 
+    #if PERMISSION_APP_TRACKING_TRANSPARENCY
+    /// The permission to access app-related data for tracking the user or the device.
+    @available(iOS 14.0, *)
+    public static let appTrackingTransparency = Permission(type: .appTrackingTransparency)
+    #endif
+
     #if PERMISSION_NOTIFICATIONS
     /// The permission to send notifications.
     public static let notifications: Permission = {
@@ -166,6 +172,10 @@ open class Permission: NSObject {
 
         #if PERMISSION_SIRI
         case .siri: return statusSiri
+        #endif
+
+        #if PERMISSION_APP_TRACKING_TRANSPARENCY
+        case .appTrackingTransparency: return statusAppTrackingTransparency
         #endif
 
         case .never: fatalError()
@@ -286,6 +296,10 @@ open class Permission: NSObject {
 
         #if PERMISSION_SIRI
         case .siri: requestSiri(callback)
+        #endif
+
+        #if PERMISSION_APP_TRACKING_TRANSPARENCY
+        case .appTrackingTransparency: requestAppTrackingTransparency(callback)
         #endif
 
         case .never: fatalError()

@@ -76,6 +76,10 @@ public enum PermissionType {
     @available(iOS 10.0, *) case siri
     #endif
 
+    #if PERMISSION_APP_TRACKING_TRANSPARENCY
+    @available(iOS 14.0, *) case appTrackingTransparency
+    #endif
+
     case never
 }
 
@@ -133,6 +137,10 @@ extension PermissionType: CustomStringConvertible {
 
         #if PERMISSION_MEDIA_LIBRARY
         case .mediaLibrary: return "Media Library"
+        #endif
+
+        #if PERMISSION_APP_TRACKING_TRANSPARENCY
+        case .appTrackingTransparency: return "App Tracking Transparency"
         #endif
 
         case .never: fatalError()

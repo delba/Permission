@@ -30,7 +30,7 @@ extension Permission {
         let status = PHPhotoLibrary.authorizationStatus()
 
         switch status {
-        case .authorized:          return .authorized
+        case .authorized, .limited: return .authorized
         case .denied, .restricted: return .denied
         case .notDetermined:       return .notDetermined
         @unknown default:          return .notDetermined
