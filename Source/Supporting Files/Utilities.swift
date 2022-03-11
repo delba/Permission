@@ -82,7 +82,7 @@ struct Defaults {
     static var requestedBluetooth: Bool
 
     @UserDefault("permission.statusBluetooth", defaultValue: nil)
-    static var statusBluetooth: PermissionStatus?
+    static var statusBluetooth: String?
 
     @UserDefault("permission.stateBluetoothManagerDetermined", defaultValue: false)
     static var stateBluetoothManagerDetermined: Bool
