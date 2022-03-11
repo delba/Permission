@@ -47,7 +47,7 @@ extension Permission {
         case .unauthorized: return .denied
         case .poweredOn: return .authorized
         case .resetting, .unknown:
-            return Defaults.statusBluetooth ?? .notDetermined
+            return PermissionStatus(string: Defaults.statusBluetooth) ?? .notDetermined
         @unknown default: return .notDetermined
         }
     }
@@ -62,7 +62,7 @@ extension Permission {
 extension Permission: CBPeripheralManagerDelegate {
     public func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
         Defaults.stateBluetoothManagerDetermined = true
-        Defaults.statusBluetooth = statusBluetooth
+        Defaults.statusBluetooth = statusBluetooth.rawValue
 
         guard Defaults.requestedBluetooth else { return }
 
