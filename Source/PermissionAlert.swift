@@ -89,9 +89,9 @@ class DisabledAlert: PermissionAlert {
     override init(permission: Permission) {
         super.init(permission: permission)
 
-        title   = "\(permission) is currently disabled"
-        message = "Please enable access to \(permission) in the Settings app."
-        cancel  = "OK"
+        title = String.localizedStringWithFormat(NSLocalizedString("Permission.Disabled.Title", comment: ""), permission)
+        message = String.localizedStringWithFormat(NSLocalizedString("Permission.Request.Message", comment: ""), permission)
+        cancel = NSLocalizedString("Permission.Disabled.Ok", comment: "")
     }
 }
 
@@ -112,10 +112,10 @@ class DeniedAlert: PermissionAlert {
     override init(permission: Permission) {
         super.init(permission: permission)
 
-        title    = "Permission for \(permission) was denied"
-        message  = "Please enable access to \(permission) in the Settings app."
-        cancel   = "Cancel"
-        settings = "Settings"
+        title    =  String.localizedStringWithFormat(NSLocalizedString("Permission.Denied.Title", comment: ""), permission)
+        message  = String.localizedStringWithFormat(NSLocalizedString("Permission.Denied.Message", comment: ""), permission)
+        cancel   = NSLocalizedString("Permission.Cancel", comment: "")
+        settings = NSLocalizedString("Permission.Button.Settings", comment: "")
     }
 
     @objc func settingsHandler() {
@@ -148,11 +148,10 @@ class PrePermissionAlert: PermissionAlert {
 
     override init(permission: Permission) {
         super.init(permission: permission)
-
-        title   = "\(Bundle.main.name) would like to access your \(permission)"
-        message = "Please enable access to \(permission)."
-        cancel  = "Cancel"
-        confirm = "Confirm"
+        title   = String.localizedStringWithFormat(NSLocalizedString("Permission.Request.Title", comment: ""), Bundle.main.name, permission)
+        message = String.localizedStringWithFormat(NSLocalizedString("Permission.Request.Message", comment: ""), permission)
+        cancel  = NSLocalizedString("Permission.Cancel", comment: "")
+        confirm = NSLocalizedString("Permission.Confirm", comment: "")
     }
 
     private func confirmHandler(_ action: UIAlertAction) {

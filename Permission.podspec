@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   s.default_subspec = 'Core'
 
   s.subspec 'Core' do |co|
-    co.source_files = 'Source/**/*.{swift, h}'
+    co.source_files = "Source/**/*.{swift, h}"
   end
 
   s.subspec 'Bluetooth' do |bl|
